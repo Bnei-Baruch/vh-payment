@@ -7,6 +7,8 @@ import {StylesProvider} from "@material-ui/styles";
 import maTheme from './theme';
 import Routes from './routes';
 
+import './i18n';
+
 function App({theme}) {
   return (
     <StylesProvider injectFirst>
