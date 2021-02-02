@@ -1,6 +1,7 @@
 {
-  "title": "Welcome to react using react-i18next",
-  "description": {
-    "title": "Welcome"
+  "payment": {
+    "title": "Welcome",
+    "payMethod": "Payment method",
+    "pay": "Pay"
   }
 }

@@ -1,2 +1,3 @@
 export const SET_THEME = 'SET_THEME';
 export const SET_LOGGED_IN_USER = 'SET_LOGGED_IN_USER';
+export const SET_PAYMENT_INFO = 'SET_PAYMENT_INFO';

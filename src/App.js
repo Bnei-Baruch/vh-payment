@@ -1,11 +1,10 @@
-import './App.css';
 import {connect} from 'react-redux';
 
 import {ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles';
 import {StylesProvider} from '@material-ui/styles';
 import {ThemeProvider} from 'styled-components';
-
 import maTheme from './theme';
+
 import Routes from './routes';
 
 import './i18n';

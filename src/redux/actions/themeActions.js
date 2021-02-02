@@ -1,6 +1,6 @@
 import * as types from '../constants';
 
-export function setLoggedInUser(value) {
+export function setTheme(value) {
   return {
     type: types.SET_THEME,
     payload: value

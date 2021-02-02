@@ -1,8 +1,8 @@
-import * as types from '../constants';
+import {SET_LOGGED_IN_USER} from '../constants';
 
 const DEFAULT = {
   authenticated: false,
-  keycloak: undefined,
+  keycloak: null,
   profile: {
     email: '',
     firstName: '',
@@ -12,17 +12,14 @@ const DEFAULT = {
 };
 
 export default function reducer(state= DEFAULT, actions) {
-  console.log(state);
-  console.log(actions.payload);
-
   switch (actions.type) {
-    case types.SET_LOGGED_IN_USER:
+    case SET_LOGGED_IN_USER:
       return {
         ...state,
-        data: actions.payload
+        ...actions.payload,
+        profile: {...actions.payload.profile}
       }
-
     default:
-      return state
+      return state;
   }
 }
