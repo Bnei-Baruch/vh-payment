@@ -4,4 +4,10 @@ const keycloakConfigProd = {
   clientId: 'membership_pay'
 };
 
-module.exports = keycloakConfigProd;
+const keycloakConfigDev = {
+  realm: "master",
+  url: "http://auth.2serv.eu/auth/",
+  clientId: "membership_pay"
+};
+
+module.exports = process.env.NODE_ENV === 'production' ? keycloakConfigProd : keycloakConfigDev;

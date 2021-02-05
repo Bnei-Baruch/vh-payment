@@ -1,26 +1,32 @@
-import {SET_PAYMENT_INFO} from '../constants';
+import {SET_PAYMENT_INFO} from '../types';
 
 const DEFAULT = {
   lang: 'en',
-  currency: 'USD',
-  currencySign: '$',
-  fixedAmount: true,
-  amount: 0,
-  minAmount: 0,
-  maxAmount: 100,
-  stepAmount: 1,
+  amount: {
+    value: 0,
+    min: 0,
+    max: 100,
+    step: 1,
+    fixed: true
+  },
+  currency: {
+    name: 'USD',
+    sign: '$'
+  },
   logoUrl: '',
   buttonText: '',
   dir: 'ltr'
 };
 
-export default function reducer(state= DEFAULT, actions) {
-  switch (actions.type) {
+export default function reducer(state= DEFAULT, {type, payload}) {
+  switch (type) {
     case SET_PAYMENT_INFO:
       return {
         ...state,
-        ...actions.payload
-      }
+        amount: {...state.amount},
+        currency: {...state.currency},
+        ...payload
+      };
     default:
       return state;
   }

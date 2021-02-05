@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import logo from '../images/logo-tree.png'
+import logo from '../../images/logo-tree.png'
 import {
   Button,
   CardActions,
@@ -14,11 +14,12 @@ import {
 } from '@material-ui/core';
 import {makeStyles} from '@material-ui/styles';
 import {useTranslation} from 'react-i18next';
-import {connect, useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
-import {setPaymentInfo} from '../redux/actions/paymentActions';
-import Loader from '../shared/Loader';
-import Layout from '../shared/Layout';
+import {setPaymentInfo} from '../../redux/actions/paymentActions';
+import Loader from '../../shared/Loader';
+import Layout from '../../shared/Layout';
+import {PAYMENT_CANCEL_URL, PAYMENT_ERROR_URL, PAYMENT_SUCCESS_URL} from './redirect-urls';
 
 const useStyles = makeStyles({
   root: {
@@ -33,9 +34,10 @@ const useStyles = makeStyles({
   }
 });
 
-const Payment = ({user}) => {
+const Payment = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   const {t} = useTranslation();
 
@@ -61,26 +63,21 @@ const Payment = ({user}) => {
       State: '',
       Country: '',
 
-
       //Product details
       SKU: '40037',
       OrderLanguage: payData.lang,
       Reference: 'Membership',
       Organization: 'ben2',
       UserKey: user.keycloak.subject,
-      Currency: payData.currency,
-      Amount: payData.amount,
+      Currency: payData.currency.name,
+      Amount: payData.amount.value,
       //Amount: 1,
       Type: 'recurring',
       ProductType: 'globalmembership',
       RecurringFreq: 30,
-
-      // cancelUrl: 'http://86431566a175.ngrok.io/payment/cancel',
-      // successUrl: 'http://86431566a175.ngrok.io/payment/success',
-      // errorUrl: 'http://86431566a175.ngrok.io/payment/error'
-      cancelUrl: 'https://kli.one/payment/cancel',
-      successUrl: 'https://kli.one/payment/success',
-      errorUrl: 'https://kli.one/payment/error'
+      successUrl: PAYMENT_SUCCESS_URL,
+      cancelUrl: PAYMENT_CANCEL_URL,
+      errorUrl: PAYMENT_ERROR_URL
     };
 
     axios.post('https://kli.one/api/orders/newandpay', data)
@@ -89,7 +86,7 @@ const Payment = ({user}) => {
   };
 
   const onSliderIdxChanged = (newValue) => {
-    if (newValue >= (payData.minAmount || 0)) {
+    if (newValue >= (payData.amount.min || 0)) {
       const data = {...payData, amount: newValue};
       setPayData(data);
       dispatch(setPaymentInfo(data));
@@ -103,19 +100,23 @@ const Payment = ({user}) => {
     setTimeout(() => {
       const data = {
         lang: 'en',
-        currency: 'USD',
-        currencySign: '$',
-        fixedAmount: true,
-        amount: 30,
-        minAmount: 10,
-        maxAmount: 100,
-        stepAmount: 1,
+        currency: {
+          name: 'USD',
+          sign: '$'
+        },
+        amount: {
+          value: 30,
+          min: 10,
+          max: 100,
+          step: 1,
+          fixed: true
+        },
         logoUrl: '',
         buttonText: '',
         dir: 'ltr'
       };
 
-      setPayData(data)
+      setPayData(data);
 
       // Ones the data is received store to redux
       dispatch(setPaymentInfo(data));
@@ -123,10 +124,6 @@ const Payment = ({user}) => {
       setLoading(false);
     }, 1000);
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   console.log(user);
-  // }, [user]);
 
   if (loading) {
     return <Loader/>
@@ -141,18 +138,18 @@ const Payment = ({user}) => {
 
         <CardContent>
           <Typography variant="h1" component="p" gutterBottom>
-            {payData.currencySign}{payData.amount}
+            {payData.currency.sign}{payData.amount.value}
           </Typography>
 
           {
-            !payData.fixedAmount &&
+            !payData.amount.fixed &&
             <Slider
-              value={payData.amount || 0}
+              value={payData.amount.value || 0}
               onChange={(event, newValue) => onSliderIdxChanged(newValue)}
               aria-labelledby="continuous-slider"
               min={0}
-              max={payData.maxAmount || 100}
-              step={payData.stepAmount || 1}
+              max={payData.amount.max || 100}
+              step={payData.amount.step || 1}
             />
           }
 
@@ -177,4 +174,4 @@ const Payment = ({user}) => {
 }
 
 
-export default connect(store => ({user: store.userReducers}))(Payment);
+export default Payment;

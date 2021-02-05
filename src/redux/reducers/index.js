@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
-import themeReducer from './themeReducers';
-import userReducers from './userReducers';
-import paymentReducers from './paymentReducers';
+import theme from './themeReducers';
+import user from './userReducers';
+import payment from './paymentReducers';
 
 export default combineReducers({
-	themeReducer,
-	userReducers,
-	paymentReducers
+	theme,
+	user,
+	payment
 });

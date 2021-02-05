@@ -1,15 +1,17 @@
-import {SET_THEME} from '../constants';
+import {SET_THEME} from '../types';
 
-export default function reducer(state={ currentTheme: 0 }, actions) {
-  switch (actions.type) {
+const DEFAULT = {
+  currentTheme: 0
+};
 
+export default function reducer(state = DEFAULT, {type, payload}) {
+  switch (type) {
     case SET_THEME:
       return {
         ...state,
-        currentTheme: actions.payload
-      }
-
+        currentTheme: payload
+      };
     default:
-      return state
+      return state;
   }
 }

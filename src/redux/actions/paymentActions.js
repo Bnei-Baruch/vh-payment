@@ -1,4 +1,4 @@
-import {SET_PAYMENT_INFO} from '../constants';
+import {SET_PAYMENT_INFO} from '../types';
 
 export function setPaymentInfo(value) {
   return {

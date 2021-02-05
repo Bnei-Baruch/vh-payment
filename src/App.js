@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 import {ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles';
 import {StylesProvider} from '@material-ui/styles';
@@ -9,16 +9,18 @@ import Routes from './routes';
 
 import './i18n';
 
-function App({theme}) {
+const App = () => {
+  const {currentTheme} = useSelector(state => state.theme);
+
   return (
     <StylesProvider injectFirst>
-      <MuiThemeProvider theme={maTheme[theme.currentTheme]}>
-        <ThemeProvider theme={maTheme[theme.currentTheme]}>
+      <MuiThemeProvider theme={maTheme[currentTheme]}>
+        <ThemeProvider theme={maTheme[currentTheme]}>
           <Routes/>
         </ThemeProvider>
       </MuiThemeProvider>
     </StylesProvider>
   );
-}
+};
 
-export default connect(store => ({theme: store.themeReducer}))(App);
+export default App;

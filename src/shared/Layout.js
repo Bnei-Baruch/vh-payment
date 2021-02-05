@@ -3,7 +3,7 @@ import {Grid} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 
 const Layout = ({children}) => {
-  const {dir} = useSelector(state => state.paymentReducers);
+  const {dir} = useSelector(state => state.payment);
 
   return (
     <Grid

@@ -1,4 +1,4 @@
-import {SET_LOGGED_IN_USER} from '../constants';
+import {SET_LOGGED_IN_USER} from '../types';
 
 export function setLoggedInUser(value) {
   return {
