@@ -2,8 +2,8 @@ import React from 'react';
 import {Grid} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 
-const Layout = ({children}) => {
-  const {dir} = useSelector(state => state.payment);
+const ContentLayout = ({children}) => {
+  const {dir} = useSelector(state => state.language);
 
   return (
     <Grid
@@ -14,11 +14,11 @@ const Layout = ({children}) => {
       alignItems="center"
       justify="center"
       style={{minHeight: '100vh'}}>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={12} md={6} lg={4}>
         {children}
       </Grid>
     </Grid>
   )
 };
 
-export default Layout;
+export default ContentLayout;

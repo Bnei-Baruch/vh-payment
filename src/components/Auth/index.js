@@ -3,8 +3,8 @@ import {useDispatch} from 'react-redux';
 
 import Keycloak from 'keycloak-js';
 import keycloakConfig from './keycloak-config';
-import {setLoggedInUser} from '../redux/actions/userActions';
-import Loader from '../shared/Loader';
+import {setLoggedInUser} from '../../redux/actions/userActions';
+import Loader from '../Loader';
 
 const Auth = ({children}) => {
   const authContext = createContext(null);

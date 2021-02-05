@@ -10,4 +10,4 @@ const keycloakConfigDev = {
   clientId: "membership_pay"
 };
 
-module.exports = process.env.NODE_ENV === 'production' ? keycloakConfigProd : keycloakConfigDev;
+module.exports = process.env.NODE_ENV === 'production' ? keycloakConfigProd : keycloakConfigProd;

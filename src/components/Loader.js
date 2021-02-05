@@ -1,11 +1,11 @@
 import React from 'react';
 import {CircularProgress} from '@material-ui/core';
-import Layout from './Layout';
+import ContentLayout from '../layouts/ContentLayout';
 
 const Loader = () => (
-  <Layout>
+  <ContentLayout>
     <CircularProgress size={50}/>
-  </Layout>
+  </ContentLayout>
 );
 
 export default Loader;

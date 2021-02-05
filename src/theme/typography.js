@@ -1,10 +1,6 @@
 const typography = {
   useNextVariants: true,
   fontFamily: [
-    "Nunito",
-    "-apple-system",
-    "BlinkMacSystemFont",
-    '"Segoe UI"',
     "Roboto",
     '"Helvetica Neue"',
     "Arial",
@@ -16,7 +12,7 @@ const typography = {
   fontSize: 14,
   fontWeightLight: 300,
   fontWeightRegular: 400,
-  fontWeightMedium: 600,
+  fontWeightMedium: 500,
   h1: {
     fontSize: "2rem",
     fontWeight: 600,
