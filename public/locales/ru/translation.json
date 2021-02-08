@@ -1,0 +1,22 @@
+{
+  "appbar": {
+    "language": "Language",
+    "currency": "Currency"
+  },
+  "languages": {
+    "en": "English",
+    "ru": "Russian",
+    "es": "Spanish",
+    "he": "Hebrew"
+  },
+  "currencies": {
+    "usd": "USD",
+    "eur": "EURO",
+    "nis": "SHEKELS"
+  },
+  "payment": {
+    "title": "Welcome",
+    "payMethod": "Payment method",
+    "pay": "Pay"
+  }
+}
