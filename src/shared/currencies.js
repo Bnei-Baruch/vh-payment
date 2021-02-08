@@ -5,13 +5,13 @@ class Currency {
 
   constructor(id, sign) {
     this.id = id;
-    this.i18nKey = `currencies.${id.toLowerCase()}`;
+    this.i18nKey = `currencies.${id}`;
     this.sign = sign;
   }
 }
 
 export const currencies = [
-  new Currency('USD', '$'),
-  new Currency('EUR', '€'),
-  new Currency('NIS', '₪'),
+  new Currency('usd', '$'),
+  new Currency('eur', '€'),
+  new Currency('nis', '₪'),
 ];

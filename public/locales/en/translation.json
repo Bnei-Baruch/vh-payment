@@ -1,7 +1,8 @@
 {
   "appbar": {
     "language": "Language",
-    "currency": "Currency"
+    "currency": "Currency",
+    "text": "Our Virtual Home"
   },
   "languages": {
     "en": "English",
@@ -14,9 +15,10 @@
     "eur": "EURO",
     "nis": "SHEKELS"
   },
-  "payment": {
+  "order": {
     "title": "Welcome",
     "payMethod": "Payment method",
-    "pay": "Pay"
+    "pay": "Pay",
+    "agree": "I agree with <1>terms and conditions<1>"
   }
 }

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, CardActions, CardContent, Paper, Slider, Typography} from '@material-ui/core';
+import {Box, Button, CardActions, CardContent, Checkbox, Link, Paper, Slider, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/styles';
-import {useTranslation} from 'react-i18next';
+import {Trans, useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import Loader from '../../components/Loader';
@@ -10,7 +10,7 @@ import {PAYMENT_CANCEL_URL, PAYMENT_ERROR_URL, PAYMENT_SUCCESS_URL} from './redi
 import HeaderLayout from '../../layouts/HeaderLayout';
 import CurrencyPicker from '../../components/CurencyPicker';
 import {useParams} from 'react-router-dom';
-import {setPaymentInfo} from '../../redux/actions/paymentActions';
+import {setOrder} from '../../redux/actions/orderActions';
 
 const useStyles = makeStyles({
   header: {
@@ -20,16 +20,25 @@ const useStyles = makeStyles({
     marginTop: 40
   },
   picker: {
-    marginInlineEnd: 12
+    marginInlineEnd: 12,
+    fontSize: 48
   },
   actions: {
     justifyContent: 'flex-end'
+  },
+  secondaryFont: {
+    fontFamily: 'Abel'
+  },
+  agree: {
+    fontFamily: 'Abel',
+    fontSize: 16
   }
 });
 
 const Order = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const order = useSelector(state => state.order);
   const user = useSelector(state => state.user);
   const currency = useSelector(state => state.currency);
   const language = useSelector(state => state.language);
@@ -39,8 +48,9 @@ const Order = () => {
 
   // const [payMethod, setPayMethod] = useState('card');
   const [loading, setLoading] = useState(true);
+  const [agree, setAgree] = useState(false);
+
   const [dbData, setDbData] = useState();
-  const [viewData, setViewData] = useState();
 
   // const handlePaymentChange = (event) => {
   //   setPayMethod(event.target.value);
@@ -62,12 +72,12 @@ const Order = () => {
 
       //Product details
       SKU: '40037',
-      OrderLanguage: language.id,
+      OrderLanguage: language.id.toUpperCase(),
       Reference: 'Membership',
       Organization: 'ben2',
       UserKey: user.keycloak.subject,
-      Currency: viewData.currency.name,
-      Amount: viewData.amount.value,
+      Currency: currency.id.toUpperCase(),
+      Amount: order.currency.amount,
       //Amount: 1,
       Type: 'recurring',
       ProductType: 'globalmembership',
@@ -82,10 +92,10 @@ const Order = () => {
       .catch(error => console.log(error));
   };
 
-  const onSliderIdxChanged = (value) => {
-    if (value >= (viewData.amount.min || 0)) {
-      const data = {...viewData, amount: {value}};
-      setViewData(data);
+  const handleSliderChange = (amount) => {
+    if (amount >= (order.currency.min || 0)) {
+      const data = {...order, currency: {...order.currency, amount}};
+      dispatch(setOrder(data));
     }
   };
 
@@ -95,71 +105,111 @@ const Order = () => {
     // Mock data
     setTimeout(() => {
       const data = {
-        en: {
-          header: {
-            title: 'Product Name',
-            subtitle: 'one liner under the product name',
-            description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
+        language: {
+          en: {
+            header: {
+              title: 'Product Name',
+              subtitle: 'one liner under the product name',
+              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
+            },
+            body: {
+              title: 'Description',
+              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
+                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
+                'might not be here but that can be more than 2 lines A longer description that might or ' +
+                'might not be here but that can be more than 2 lines '
+            },
+            cancel: {
+              text: 'Cancel',
+              url: 'https://kli.one/'
+            },
+            buttonText: 'Pay',
+            termsLink: 'https://kli.one/tos'
           },
-          body: {
-            title: 'Description',
-            description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-              'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-              'might not be here but that can be more than 2 lines A longer description that might or ' +
-              'might not be here but that can be more than 2 lines '
+          ru: {
+            header: {
+              title: 'Име',
+              subtitle: 'one liner under the product name',
+              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
+            },
+            body: {
+              title: 'Description',
+              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
+                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
+                'might not be here but that can be more than 2 lines A longer description that might or ' +
+                'might not be here but that can be more than 2 lines '
+            },
+            cancel: {
+              text: 'Cancel',
+              url: 'https://kli.one/'
+            },
+            buttonText: 'Плати',
+            termsLink: 'https://kli.one/tos'
           },
-          amount: {
-            value: 30,
+          es: {
+            header: {
+              title: 'Product Name',
+              subtitle: 'one liner under the product name',
+              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
+            },
+            body: {
+              title: 'Description',
+              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
+                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
+                'might not be here but that can be more than 2 lines A longer description that might or ' +
+                'might not be here but that can be more than 2 lines '
+            },
+            cancel: {
+              text: 'Cancel',
+              url: 'https://kli.one/'
+            },
+            buttonText: 'Pay',
+            termsLink: 'https://kli.one/tos'
+          },
+          he: {
+            header: {
+              title: 'Product Name',
+              subtitle: 'one liner under the product name',
+              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
+            },
+            body: {
+              title: 'Description',
+              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
+                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
+                'might not be here but that can be more than 2 lines A longer description that might or ' +
+                'might not be here but that can be more than 2 lines '
+            },
+            cancel: {
+              text: 'Cancel',
+              url: 'https://kli.one/'
+            },
+            buttonText: 'Pay',
+            termsLink: 'https://kli.one/tos'
+          },
+        },
+        currency: {
+          usd: {
+            fixed: false,
+            amount: 10,
+            min: 10,
+            max: 30,
+            step: 1
+          },
+          eur: {
+            fixed: false,
+            amount: 10,
             min: 10,
             max: 100,
-            step: 1,
-            fixed: false
+            step: 1
           },
-          cancel: {
-            text: 'Cancel',
-            url: 'https://kli.one/'
-          },
-          buttonText: 'Pay'
-        },
-        ru: {
-          header: {
-            title: 'Заглавие',
-            subtitle: '...',
-            description: '...'
-          },
-          amount: {
-            value: 30,
+          nis: {
+            fixed: false,
+            amount: 10,
             min: 10,
-            max: 100,
-            step: 1,
-            fixed: true
+            max: 20,
+            step: 1
           },
-          cancel: {
-            text: 'Отмени',
-            url: 'https://kli.one/'
-          },
-          buttonText: 'Плати'
-        },
-        he: {
-          header: {
-            title: 'Title',
-            subtitle: 'Subtitle',
-            description: 'Description'
-          },
-          amount: {
-            value: 30,
-            min: 10,
-            max: 100,
-            step: 1,
-            fixed: true
-          },
-          cancel: {
-            text: 'Cancel',
-            url: 'https://kli.one/'
-          },
-          buttonText: 'Pay'
-        },
-        logoUrl: '',
+        }
       };
 
       setDbData(data);
@@ -172,15 +222,13 @@ const Order = () => {
       return;
     }
 
-    if (dbData[language.id]) {
-      const {logoUrl} = dbData;
-      const data = {...dbData[language.id], logoUrl};
-      setViewData(data);
-      dispatch(setPaymentInfo(data));
+    if (dbData.language[language.id] && dbData.currency[currency.id]) {
+      const data = {appbar: {...dbData.appbar}, ...dbData.language[language.id], currency: {...dbData.currency[currency.id]}};
+      dispatch(setOrder(data));
     } else {
-      console.error('Language not supported');
+      console.error('Language or currency not supported');
     }
-  }, [dbData, language, dispatch]);
+  }, [dbData, language, currency, dispatch]);
 
   if (loading) {
     return <Loader/>
@@ -194,54 +242,54 @@ const Order = () => {
           <CardContent>
             <Box component="header" className={classes.header}>
               {
-                viewData.header && viewData.header.title &&
-                <Typography variant="h1" component="h1">
-                  {viewData.header.title}
+                order.header && order.header.title &&
+                <Typography variant="h1" component="h1" style={{fontSize: 36}}>
+                  {order.header.title}
                 </Typography>
               }
               {
-                viewData.header && viewData.header.subtitle &&
-                <Typography variant="subtitle1" component="h2" gutterBottom>
-                  {viewData.header.subtitle}
+                order.header && order.header.subtitle &&
+                <Typography variant="subtitle1" component="h2" gutterBottom style={{fontSize: 14}}>
+                  {order.header.subtitle}
                 </Typography>
               }
               {
-                viewData.header && viewData.header.description &&
+                order.header && order.header.description &&
                 <Typography style={{fontSize: 18}}>
-                  {viewData.header.description}
+                  {order.header.description}
                 </Typography>
               }
             </Box>
 
             <Box display="flex" alignItems="flex-start">
               <Typography variant="h1" component="p" className={classes.picker}>
-                {currency.sign}{viewData.amount.value}
+                {currency.sign}{order.currency.amount}
               </Typography>
-              <CurrencyPicker disableUnderline/>
+              <CurrencyPicker disableUnderline className={classes.secondaryFont}/>
             </Box>
 
             {
-              !viewData.amount.fixed &&
+              !order.currency.fixed &&
               <Slider
-                value={viewData.amount.value || 0}
-                onChange={(event, newValue) => onSliderIdxChanged(newValue)}
+                value={order.currency.amount || 0}
+                onChange={(event, newValue) => handleSliderChange(newValue)}
                 aria-labelledby="continuous-slider"
                 min={0}
-                max={viewData.amount.max || 100}
-                step={viewData.amount.step || 1}
+                max={order.currency.max || 100}
+                step={order.currency.step || 1}
               />
             }
 
             <Box className={classes.body}>
               {
-                viewData.body && viewData.body.title &&
-                <Typography variant="h5" gutterBottom>
-                  {viewData.body.title}
+                order.body && order.body.title &&
+                <Typography variant="h5" gutterBottom style={{fontSize: 18}}>
+                  {order.body.title}
                 </Typography>
               }
               {
-                viewData.body && viewData.body.description &&
-                <Typography>{viewData.body.description}</Typography>
+                order.body && order.body.description &&
+                <Typography style={{fontSize: 14}}>{order.body.description}</Typography>
               }
             </Box>
 
@@ -255,12 +303,32 @@ const Order = () => {
             {/*</RadioGroup>*/}
           </CardContent>
 
+          <Box>
+            <Checkbox
+              checked={agree}
+              color="primary"
+              onClick={() => setAgree(!agree)}
+            />
+            <Typography component="span" className={classes.agree}>
+              <Trans i18nKey="order.agree">
+                I agree with <Link href={order.termsLink} target="_blank">terms and conditions</Link>
+              </Trans>
+            </Typography>
+          </Box>
+
           <CardActions className={classes.actions}>
-            <Button variant="outlined" color="primary" href={viewData.cancel.url}>
-              {viewData.cancel.text || t('payment.cancel')}
+            <Button variant="outlined"
+                    color="primary"
+                    href={order.cancel.url}
+                    className={classes.secondaryFont}>
+              {order.cancel.text || t('order.cancel')}
             </Button>
-            <Button variant="contained" color="primary" onClick={handlePay}>
-              {viewData.buttonText || t('payment.pay')}
+            <Button variant="contained"
+                    color="primary"
+                    onClick={handlePay}
+                    disabled={!agree}
+                    className={classes.secondaryFont}>
+              {order.buttonText || t('order.pay')}
             </Button>
           </CardActions>
         </Paper>
@@ -268,6 +336,5 @@ const Order = () => {
     </>
   );
 }
-
 
 export default Order;

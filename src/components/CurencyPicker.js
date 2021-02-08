@@ -11,14 +11,8 @@ const VH_DEFAULT_CURRENCY = 'VH_DEFAULT_CURRENCY';
 
 const CurrencyPicker = (props) => {
   const {t} = useTranslation();
-  const currency = useSelector(state => state.currency)
+  const currency = useSelector(state => state.currency);
   const dispatch = useDispatch();
-
-  const handleChange = (value) => {
-    const cr = currencies.find(l => l.id === value);
-    dispatch(setCurrency(cr));
-    localStorage.setItem(VH_DEFAULT_CURRENCY, value);
-  };
 
   useEffect(() => {
     const currId = localStorage.getItem(VH_DEFAULT_CURRENCY);
@@ -31,18 +25,17 @@ const CurrencyPicker = (props) => {
     }
   }, [dispatch]);
 
-  if (!currency) {
-    console.log(currency)
-    return;
-  }
-
-  console.log(currency)
+  const handleChange = (value) => {
+    const cr = currencies.find(l => l.id === value);
+    dispatch(setCurrency(cr));
+    localStorage.setItem(VH_DEFAULT_CURRENCY, value);
+  };
 
   return (
     <Select
       {...props}
       value={currency.id}
-      onChange={(event, option) => handleChange(option.props.value)}
+      onChange={event => handleChange(event.target.value)}
     >
       {
         currencies.map((l) => <MenuItem key={l.id} value={l.id}>{t(l.i18nKey)}</MenuItem>)
