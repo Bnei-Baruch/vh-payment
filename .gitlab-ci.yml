@@ -8,13 +8,14 @@ stages:
 variables:
   IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
   PROD_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:prod_$CI_COMMIT_SHORT_SHA
+
 publish:
   image: docker:latest
   stage: publish
   tags:
     - dockerbuild
   services:
-    - docker:19.03.12-dind
+    - $CI_REGISTRY/vh/pm-vh/docker:19.03.12-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build -t $IMAGE .
@@ -46,7 +47,7 @@ publish_prod:
   tags:
     - dockerbuild
   services:
-    - docker:19.03.12-dind
+    - $CI_REGISTRY/vh/pm-vh/docker:19.03.12-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build -t $PROD_IMAGE --build-arg FLAG=false .
