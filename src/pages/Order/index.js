@@ -32,6 +32,10 @@ const useStyles = makeStyles({
   agree: {
     fontFamily: 'Abel',
     fontSize: 16
+  },
+  payBtn: {
+    fontFamily: 'Abel',
+    marginRight: 8
   }
 });
 
@@ -223,7 +227,10 @@ const Order = () => {
     }
 
     if (dbData.language[language.id] && dbData.currency[currency.id]) {
-      const data = {appbar: {...dbData.appbar}, ...dbData.language[language.id], currency: {...dbData.currency[currency.id]}};
+      const data = {
+        appbar: {...dbData.appbar}, ...dbData.language[language.id],
+        currency: {...dbData.currency[currency.id]}
+      };
       dispatch(setOrder(data));
     } else {
       console.error('Language or currency not supported');
@@ -317,17 +324,21 @@ const Order = () => {
           </Box>
 
           <CardActions className={classes.actions}>
-            <Button variant="outlined"
-                    color="primary"
-                    href={order.cancel.url}
-                    className={classes.secondaryFont}>
+            <Button
+              variant="outlined"
+              color="primary"
+              href={order.cancel.url}
+              className={classes.secondaryFont}
+            >
               {order.cancel.text || t('order.cancel')}
             </Button>
-            <Button variant="contained"
-                    color="primary"
-                    onClick={handlePay}
-                    disabled={!agree}
-                    className={classes.secondaryFont}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handlePay}
+              disabled={!agree}
+              className={classes.payBtn}
+            >
               {order.buttonText || t('order.pay')}
             </Button>
           </CardActions>

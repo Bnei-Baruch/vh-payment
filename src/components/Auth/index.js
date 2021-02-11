@@ -1,13 +1,14 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 
 import Keycloak from 'keycloak-js';
 import keycloakConfig from './keycloak-config';
 import {setLoggedInUser} from '../../redux/actions/userActions';
 import Loader from '../Loader';
+import Routes from '../../routes';
+import Theme from '../Theme';
 
-const Auth = ({children}) => {
-  const authContext = createContext(null);
+const Auth = () => {
   const [auth, setAuth] = useState({keycloak: null, authenticated: false});
   const dispatch = useDispatch();
 
@@ -34,14 +35,16 @@ const Auth = ({children}) => {
     login().catch(err => console.log(err));
   }, []);
 
+  useEffect(() => {
+    dispatch(setLoggedInUser(auth));
+  }, [dispatch, auth])
+
   if (auth.keycloak) {
     if (auth.authenticated) {
-      dispatch(setLoggedInUser(auth));
-
       return (
-        <authContext.Provider value={auth}>
-          {children}
-        </authContext.Provider>
+        <Theme>
+          <Routes/>
+        </Theme>
       );
     }
 

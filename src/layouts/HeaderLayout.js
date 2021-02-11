@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppBar, Box, FormControl, InputLabel, Toolbar, Typography} from '@material-ui/core';
+import {AppBar, Box, FormControl, Hidden, InputLabel, Toolbar, Typography} from '@material-ui/core';
 import logo from '../images/tree.svg'
 import {makeStyles} from '@material-ui/styles';
 import LanguagePicker from '../components/LanguagePicker';
@@ -56,14 +56,18 @@ const HeaderLayout = () => {
       <Toolbar className={classes.toolbar}>
         <Box display="flex" alignItems="center">
           <img className={classes.image} src={appbar.logo || logo} alt="BB Logo"/>
-          <Typography className={classes.text} style={{color: appbar.textColor || '#00457c'}}>
-            {appbar.text || t('appbar.text')}
-          </Typography>
+          <Hidden xsDown>
+            <Typography className={classes.text} style={{color: appbar.textColor || '#00457c'}}>
+              {appbar.text || t('appbar.text')}
+            </Typography>
+          </Hidden>
         </Box>
 
         <Box className={classes.menu}>
           <Box display="flex" alignItems="center">
-            <img src={`/images/flags/${flag}`} alt="Flag" className={classes.flag} />
+            <Hidden xsDown>
+              <img src={`/images/flags/${flag}`} alt="Flag" className={classes.flag} />
+            </Hidden>
             <FormControl>
               <InputLabel>{t('appbar.language')}</InputLabel>
               <LanguagePicker/>
@@ -71,7 +75,9 @@ const HeaderLayout = () => {
           </Box>
 
           <Box display="flex" alignItems="center">
-            <Typography className={classes.currencySign}>{sign}</Typography>
+            <Hidden xsDown>
+              <Typography className={classes.currencySign}>{sign}</Typography>
+            </Hidden>
             <FormControl>
               <InputLabel>{t('appbar.currency')}</InputLabel>
               <CurrencyPicker/>
