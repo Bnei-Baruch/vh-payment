@@ -10,12 +10,12 @@ variables:
   PROD_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:prod_$CI_COMMIT_SHORT_SHA
 
 publish:
-  image: $CI_REGISTRY/vh/pm-vh/docker:19.03.12-dind
+  image: docker:latest
   stage: publish
   tags:
     - dockerbuild
   services:
-    - $CI_REGISTRY/vh/pm-vh/docker:19.03.12-dind
+    - docker:19.03.12-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build -t $IMAGE .
@@ -42,12 +42,12 @@ deploy:
     - development
 
 publish_prod:
-  image: $CI_REGISTRY/vh/pm-vh/docker:19.03.12-dind
+  image: docker:latest
   stage: publish_prod
   tags:
     - dockerbuild
   services:
-    - $CI_REGISTRY/vh/pm-vh/docker:19.03.12-dind
+    - docker:19.03.12-dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build -t $PROD_IMAGE --build-arg FLAG=false .
