@@ -97,10 +97,15 @@ const Order = () => {
   };
 
   const handleSliderChange = (amount) => {
+    let data;
+
     if (amount >= (order.currency.min || 0)) {
-      const data = {...order, currency: {...order.currency, amount}};
-      dispatch(setOrder(data));
+      data = {...order, currency: {...order.currency, amount}};
+    } else {
+      data = {...order, currency: {...order.currency, amount: order.currency.min}};
     }
+
+    dispatch(setOrder(data));
   };
 
   useEffect(() => {
