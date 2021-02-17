@@ -11,6 +11,7 @@ import HeaderLayout from '../../layouts/HeaderLayout';
 import CurrencyPicker from '../../components/CurencyPicker';
 import {useParams} from 'react-router-dom';
 import {setOrder} from '../../redux/actions/orderActions';
+import {convention, userfee} from '../../shared/products'
 
 const useStyles = makeStyles({
   header: {
@@ -32,6 +33,10 @@ const useStyles = makeStyles({
   agree: {
     fontFamily: 'Abel',
     fontSize: 16
+  },
+  payBtn: {
+    fontFamily: 'Abel',
+    marginRight: 8
   }
 });
 
@@ -71,7 +76,7 @@ const Order = () => {
       Country: '',
 
       //Product details
-      SKU: '40037',
+      SKU: order.product.SKU,
       OrderLanguage: language.id.toUpperCase(),
       Reference: 'Membership',
       Organization: 'ben2',
@@ -87,135 +92,36 @@ const Order = () => {
       errorUrl: PAYMENT_ERROR_URL
     };
 
-    axios.post('https://kli.one/api/orders/newandpay', data)
+      axios.post(process.env.REACT_APP_SRV_VH_ORDER +'/orders/newandpay', data)
       .then(response => window.location.href = response.data.url)
       .catch(error => console.log(error));
+    
   };
 
   const handleSliderChange = (amount) => {
+    let newAmount = order.currency.min;
+
     if (amount >= (order.currency.min || 0)) {
-      const data = {...order, currency: {...order.currency, amount}};
-      dispatch(setOrder(data));
+      newAmount = amount;
     }
+
+    dispatch(setOrder({...order, currency: {...order.currency, amount: newAmount}}));
   };
 
   useEffect(() => {
     // axios.post('url...', {id}).then(({data}) => setDbData(data));
-
+    
+    
     // Mock data
     setTimeout(() => {
-      const data = {
-        language: {
-          en: {
-            header: {
-              title: 'Product Name',
-              subtitle: 'one liner under the product name',
-              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
-            },
-            body: {
-              title: 'Description',
-              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines '
-            },
-            cancel: {
-              text: 'Cancel',
-              url: 'https://kli.one/'
-            },
-            buttonText: 'Pay',
-            termsLink: 'https://kli.one/tos'
-          },
-          ru: {
-            header: {
-              title: 'Име',
-              subtitle: 'one liner under the product name',
-              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
-            },
-            body: {
-              title: 'Description',
-              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines '
-            },
-            cancel: {
-              text: 'Cancel',
-              url: 'https://kli.one/'
-            },
-            buttonText: 'Плати',
-            termsLink: 'https://kli.one/tos'
-          },
-          es: {
-            header: {
-              title: 'Product Name',
-              subtitle: 'one liner under the product name',
-              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
-            },
-            body: {
-              title: 'Description',
-              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines '
-            },
-            cancel: {
-              text: 'Cancel',
-              url: 'https://kli.one/'
-            },
-            buttonText: 'Pay',
-            termsLink: 'https://kli.one/tos'
-          },
-          he: {
-            header: {
-              title: 'Product Name',
-              subtitle: 'one liner under the product name',
-              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
-            },
-            body: {
-              title: 'Description',
-              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines '
-            },
-            cancel: {
-              text: 'Cancel',
-              url: 'https://kli.one/'
-            },
-            buttonText: 'Pay',
-            termsLink: 'https://kli.one/tos'
-          },
-        },
-        currency: {
-          usd: {
-            fixed: false,
-            amount: 10,
-            min: 10,
-            max: 30,
-            step: 1
-          },
-          eur: {
-            fixed: false,
-            amount: 10,
-            min: 10,
-            max: 100,
-            step: 1
-          },
-          nis: {
-            fixed: false,
-            amount: 10,
-            min: 10,
-            max: 20,
-            step: 1
-          },
-        }
-      };
-
-      setDbData(data);
+      if (id == 1){
+        setDbData(userfee);
+      } else{
+        setDbData(convention);
+      }
       setLoading(false);
     }, 1000);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (!dbData) {
@@ -223,7 +129,10 @@ const Order = () => {
     }
 
     if (dbData.language[language.id] && dbData.currency[currency.id]) {
-      const data = {appbar: {...dbData.appbar}, ...dbData.language[language.id], currency: {...dbData.currency[currency.id]}};
+      const data = {
+        appbar: {...dbData.appbar}, ...dbData.language[language.id],
+        currency: {...dbData.currency[currency.id]}
+      };
       dispatch(setOrder(data));
     } else {
       console.error('Language or currency not supported');
@@ -317,17 +226,21 @@ const Order = () => {
           </Box>
 
           <CardActions className={classes.actions}>
-            <Button variant="outlined"
-                    color="primary"
-                    href={order.cancel.url}
-                    className={classes.secondaryFont}>
+            <Button
+              variant="outlined"
+              color="primary"
+              href={order.cancel.url}
+              className={classes.secondaryFont}
+            >
               {order.cancel.text || t('order.cancel')}
             </Button>
-            <Button variant="contained"
-                    color="primary"
-                    onClick={handlePay}
-                    disabled={!agree}
-                    className={classes.secondaryFont}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handlePay}
+              disabled={!agree}
+              className={classes.payBtn}
+            >
               {order.buttonText || t('order.pay')}
             </Button>
           </CardActions>

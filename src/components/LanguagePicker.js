@@ -30,7 +30,7 @@ const LanguagePicker = () => {
 
   const handleChange = (langId) => {
     const lang = languages.find(l => l.id === langId);
-    dispatch(setLanguage(lang))
+    dispatch(setLanguage(lang));
     localStorage.setItem(VH_DEFAULT_LANG, langId);
     i18n.changeLanguage(langId).catch(err => console.error(err));
 
