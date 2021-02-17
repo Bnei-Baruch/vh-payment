@@ -114,7 +114,7 @@ const Order = () => {
     
     // Mock data
     setTimeout(() => {
-      if (id == 1){
+      if (id === "1"){
         setDbData(userfee);
       } else{
         setDbData(convention);
