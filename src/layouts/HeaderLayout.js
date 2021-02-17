@@ -52,7 +52,7 @@ const HeaderLayout = () => {
   const {appbar} = useSelector(state => state.order);
 
   return (
-    <AppBar color="default" dir={dir} className={classes.appbar}>
+    <AppBar color="default" position="relative" dir={dir} className={classes.appbar}>
       <Toolbar className={classes.toolbar}>
         <Box display="flex" alignItems="center">
           <img className={classes.image} src={appbar.logo || logo} alt="BB Logo"/>

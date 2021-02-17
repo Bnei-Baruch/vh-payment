@@ -11,6 +11,7 @@ import HeaderLayout from '../../layouts/HeaderLayout';
 import CurrencyPicker from '../../components/CurencyPicker';
 import {useParams} from 'react-router-dom';
 import {setOrder} from '../../redux/actions/orderActions';
+import {convention, userfee} from '../../shared/products'
 
 const useStyles = makeStyles({
   header: {
@@ -75,7 +76,7 @@ const Order = () => {
       Country: '',
 
       //Product details
-      SKU: '40037',
+      SKU: order.product.SKU,
       OrderLanguage: language.id.toUpperCase(),
       Reference: 'Membership',
       Organization: 'ben2',
@@ -91,9 +92,10 @@ const Order = () => {
       errorUrl: PAYMENT_ERROR_URL
     };
 
-    axios.post('https://kli.one/api/orders/newandpay', data)
+      axios.post(process.env.REACT_APP_SRV_VH_ORDER +'/orders/newandpay', data)
       .then(response => window.location.href = response.data.url)
       .catch(error => console.log(error));
+    
   };
 
   const handleSliderChange = (amount) => {
@@ -108,121 +110,18 @@ const Order = () => {
 
   useEffect(() => {
     // axios.post('url...', {id}).then(({data}) => setDbData(data));
-
+    
+    
     // Mock data
     setTimeout(() => {
-      const data = {
-        language: {
-          en: {
-            header: {
-              title: 'Product Name',
-              subtitle: 'one liner under the product name',
-              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
-            },
-            body: {
-              title: 'Description',
-              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines '
-            },
-            cancel: {
-              text: 'Cancel',
-              url: 'https://kli.one/'
-            },
-            buttonText: 'Pay',
-            termsLink: 'https://kli.one/tos'
-          },
-          ru: {
-            header: {
-              title: 'Име',
-              subtitle: 'one liner under the product name',
-              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
-            },
-            body: {
-              title: 'Description',
-              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines '
-            },
-            cancel: {
-              text: 'Cancel',
-              url: 'https://kli.one/'
-            },
-            buttonText: 'Плати',
-            termsLink: 'https://kli.one/tos'
-          },
-          es: {
-            header: {
-              title: 'Product Name',
-              subtitle: 'one liner under the product name',
-              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
-            },
-            body: {
-              title: 'Description',
-              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines '
-            },
-            cancel: {
-              text: 'Cancel',
-              url: 'https://kli.one/'
-            },
-            buttonText: 'Pay',
-            termsLink: 'https://kli.one/tos'
-          },
-          he: {
-            header: {
-              title: 'Product Name',
-              subtitle: 'one liner under the product name',
-              description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
-            },
-            body: {
-              title: 'Description',
-              description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-                'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines A longer description that might or ' +
-                'might not be here but that can be more than 2 lines '
-            },
-            cancel: {
-              text: 'Cancel',
-              url: 'https://kli.one/'
-            },
-            buttonText: 'Pay',
-            termsLink: 'https://kli.one/tos'
-          },
-        },
-        currency: {
-          usd: {
-            fixed: false,
-            amount: 10,
-            min: 10,
-            max: 30,
-            step: 1
-          },
-          eur: {
-            fixed: false,
-            amount: 10,
-            min: 10,
-            max: 100,
-            step: 1
-          },
-          nis: {
-            fixed: false,
-            amount: 10,
-            min: 10,
-            max: 20,
-            step: 1
-          },
-        }
-      };
-
-      setDbData(data);
+      if (id == 1){
+        setDbData(userfee);
+      } else{
+        setDbData(convention);
+      }
       setLoading(false);
     }, 1000);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (!dbData) {
