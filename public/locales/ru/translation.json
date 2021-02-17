@@ -1,22 +1,24 @@
 {
-  "appbar": {
-    "language": "Language",
-    "currency": "Currency"
-  },
-  "languages": {
-    "en": "English",
-    "ru": "Russian",
-    "es": "Spanish",
-    "he": "Hebrew"
-  },
-  "currencies": {
-    "usd": "USD",
-    "eur": "EURO",
-    "nis": "SHEKELS"
-  },
-  "payment": {
-    "title": "Welcome",
-    "payMethod": "Payment method",
-    "pay": "Pay"
-  }
+    "appbar": {
+        "language": "Язык",
+        "currency": "Валюта",
+        "text": "Наш виртуальный дом"
+    },
+    "languages": {
+        "en": "English",
+        "ru": "русский",
+        "es": "Español",
+        "he": "עִברִית"
+    },
+    "currencies": {
+        "usd": "USD",
+        "eur": "EURO",
+        "nis": "SHEKELS"
+    },
+    "order": {
+        "title": "Добро пожаловать",
+        "payMethod": "Метод оплаты",
+        "pay": "Платить",
+        "agree": "Я согласен <1>с правилами и условиями<1>"
+    }
 }

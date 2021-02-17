@@ -9,7 +9,7 @@ export default function reducer(state = DEFAULT, {type, payload}) {
     case SET_THEME:
       return {
         ...state,
-        currentTheme: payload
+        ...payload
       };
     default:
       return state;
