@@ -27,6 +27,14 @@ const DEFAULT = {
     max: 100,
     step: 1,
     fixed: true
+  },
+  product:{
+    SKU: '',
+    reference: '',
+    type: '',
+    productType: '',
+    recurringFreq: '',
+    organization: ''
   }
 };
 
@@ -40,6 +48,7 @@ export default function reducer(state = DEFAULT, {type, payload}) {
         body: {...state.body},
         cancel: {...state.cancel},
         currency: {...state.currency},
+        product: {...state.product},
         ...payload
       };
     default:
