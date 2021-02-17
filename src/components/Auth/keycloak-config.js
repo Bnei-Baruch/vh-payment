@@ -7,7 +7,7 @@ const keycloakConfigProd = {
 const keycloakConfigDev = {
   realm: "master",
   url: "http://auth.2serv.eu/auth/",
-  clientId: "membership_pay"
+  clientId: "membership_pay_dev"
 };
 
-module.exports = process.env.NODE_ENV === 'production' ? keycloakConfigProd : keycloakConfigProd;
+module.exports = process.env.REACT_APP_STAGING === true ? keycloakConfigDev : keycloakConfigProd;
