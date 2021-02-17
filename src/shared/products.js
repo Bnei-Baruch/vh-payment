@@ -19,19 +19,16 @@ exports.convention = {
     },
     ru: {
       header: {
-        title: 'Име',
-        subtitle: 'one liner under the product name',
-        description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
+        title: 'билет на конгресс',
+        subtitle: '25-28 ФЕВРАЛЯ 2021',
+        description: 'Международный каббалистический конгресс 2021 - Раскрываем жизнь в десятке'
       },
       body: {
-        title: 'Description',
-        description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-          'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-          'might not be here but that can be more than 2 lines A longer description that might or ' +
-          'might not be here but that can be more than 2 lines '
+        title: 'Описание',
+        description: 'Участие в конгрессе'
       },
       cancel: {
-        text: 'Cancel',
+        text: 'Отмена',
         url: 'https://kli.one/'
       },
       buttonText: 'Плати',
@@ -39,42 +36,36 @@ exports.convention = {
     },
     es: {
       header: {
-        title: 'Product Name',
-        subtitle: 'one liner under the product name',
-        description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
+        title: 'Boleto del congreso',
+        subtitle: '25-28 de Febrero 2021',
+        description: 'Congreso Mundial de Cabalá 2021 || Descubriendo la Vida en la Decena'
       },
       body: {
-        title: 'Description',
-        description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-          'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-          'might not be here but that can be more than 2 lines A longer description that might or ' +
-          'might not be here but that can be more than 2 lines '
+        title: 'Descripción',
+        description: 'Participación en el congreso'
       },
       cancel: {
-        text: 'Cancel',
+        text: 'Cancelar',
         url: 'https://kli.one/'
       },
-      buttonText: 'Pay',
+      buttonText: 'Pagar',
       termsLink: 'https://kli.one/tos'
     },
     he: {
       header: {
-        title: 'Product Name',
-        subtitle: 'one liner under the product name',
-        description: 'A short description that might or might not be here but in any case should be short, like 2 line max'
+        title: 'כרטיס כנס',
+        subtitle: 'פברואר 2021',
+        description: 'כנס קבלה לעם הווירטואלי העולמי | לגלות את החיים בעשירייה'
       },
       body: {
-        title: 'Description',
-        description: 'A longer description that might or might not be here but that can be more than 2 lines A longer ' +
-          'description that might or might not be here but that can be more than 2 lines A longer description that might or ' +
-          'might not be here but that can be more than 2 lines A longer description that might or ' +
-          'might not be here but that can be more than 2 lines '
+        title: 'תיאור',
+        description: 'השתתפות בכנס'
       },
       cancel: {
-        text: 'Cancel',
+        text: 'ביטול',
         url: 'https://kli.one/'
       },
-      buttonText: 'Pay',
+      buttonText: 'תשלום ',
       termsLink: 'https://kli.one/tos'
     },
   },
@@ -88,14 +79,14 @@ exports.convention = {
     },
     eur: {
       fixed: true,
-      amount: 10,
+      amount: 25,
       min: 10,
       max: 100,
       step: 1
     },
     nis: {
       fixed: true,
-      amount: 10,
+      amount: 100,
       min: 10,
       max: 20,
       step: 1

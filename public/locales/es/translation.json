@@ -1,24 +1,24 @@
 {
-  "appbar": {
-    "language": "Language",
-    "currency": "Currency",
-    "text": "Our Virtual Home"
-  },
-  "languages": {
-    "en": "English",
-    "ru": "Russian",
-    "es": "Spanish",
-    "he": "Hebrew"
-  },
-  "currencies": {
-    "usd": "USD",
-    "eur": "EURO",
-    "nis": "SHEKELS"
-  },
-  "order": {
-    "title": "Welcome",
-    "payMethod": "Payment method",
-    "pay": "Pay",
-    "agree": "I agree with <1>terms and conditions<1>"
-  }
+    "appbar": {
+        "language": "Language",
+        "currency": "Currency",
+        "text": "Our Virtual Home"
+    },
+    "languages": {
+        "en": "English",
+        "ru": "русский",
+        "es": "Español",
+        "he": "עִברִית"
+    },
+    "currencies": {
+        "usd": "USD",
+        "eur": "EURO",
+        "nis": "SHEKELS"
+    },
+    "order": {
+        "title": "Welcome",
+        "payMethod": "Payment method",
+        "pay": "Pay",
+        "agree": "I agree with <1>terms and conditions<1>"
+    }
 }
