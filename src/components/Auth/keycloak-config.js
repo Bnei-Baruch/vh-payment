@@ -10,5 +10,12 @@ const keycloakConfigDev = {
   clientId: "membership_pay_dev"
 };
 
-module.exports = process.env.REACT_APP_STAGING ? keycloakConfigDev : keycloakConfigProd;
+
+if (process.env.REACT_APP_STAGING === "true"){
+  module.exports = keycloakConfigDev;
+}
+else {
+  module.exports = keycloakConfigProd;
+}
+  
 
