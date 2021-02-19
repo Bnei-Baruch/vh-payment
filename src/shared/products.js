@@ -86,21 +86,20 @@ exports.convention = {
     },
     nis: {
       fixed: true,
-      amount: 100,
+      amount: 1,
       min: 10,
       max: 20,
       step: 1
     },
   },
-  product:{
+  product: {
     SKU: '40033',
     reference: 'Convention',
     type: 'regular',
     productType: 'feb2021ticket',
-    recurringFreq: '0',
+    recurringFreq: 0,
     organization: 'ben2'
   }
-
 };
 
 /**********************************************************************/
@@ -198,13 +197,13 @@ exports.userfee = {
       max: 500,
       step: 5
     },
-    product:{
-      SKU: '40037',
-      reference: 'Membership',
-      type: 'recurring',
-      productType: 'globalmembership',
-      recurringFreq: '30',
-      organization: 'ben2'
-    }
+  },
+  product:{
+    SKU: '40037',
+    reference: 'Membership',
+    type: 'recurring',
+    productType: 'globalmembership',
+    recurringFreq: 30,
+    organization: 'ben2'
   }
 };

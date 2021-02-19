@@ -16,9 +16,15 @@
         "nis": "SHEKELS"
     },
     "order": {
-        "title": "Welcome",
+        "title": "Bienvenido",
         "payMethod": "Payment method",
-        "pay": "Pay",
-        "agree": "I agree with <1>terms and conditions<1>"
+        "pay": "Pagar",
+        "agree": "estoy de acuerdo con los <1>términos y condiciones</1>",
+        "tos": "los términos y condiciones ",
+        "thankyou": "¡Gracias!",
+        "thxtext": "¡Gracias por tu pago! Recibirás una factura en tu bandeja de entrada dentro de 2 días hábiles. Para cualquier consulta o aclaración, escríbenos por favor al help@kli.one",
+        "error": "Hubo un error con tu pago",
+        "errortext": "El pago no se realizó exitosamente debido al siguiente error:",
+        "errortext2": "Puedes ponerte en contacto con el help@kli.one para cualquier pregunta o aclaración."
     }
 }
