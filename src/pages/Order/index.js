@@ -6,12 +6,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import Loader from '../../components/Loader';
 import ContentLayout from '../../layouts/ContentLayout';
-import {PAYMENT_CANCEL_URL, PAYMENT_ERROR_URL, PAYMENT_SUCCESS_URL} from './redirect-urls';
 import HeaderLayout from '../../layouts/HeaderLayout';
 import CurrencyPicker from '../../components/CurencyPicker';
 import {useParams} from 'react-router-dom';
 import {setOrder} from '../../redux/actions/orderActions';
 import {convention, userfee} from '../../shared/products'
+import appConfig from '../../shared/appconfig';
 
 const useStyles = makeStyles({
   header: {
@@ -78,21 +78,22 @@ const Order = () => {
       //Product details
       SKU: order.product.SKU,
       OrderLanguage: language.id.toUpperCase(),
-      Reference: 'Membership',
-      Organization: 'ben2',
+      Reference: order.product.reference,
+      Organization: order.product.organization,
       UserKey: user.keycloak.subject,
       Currency: currency.id.toUpperCase(),
       Amount: order.currency.amount,
-      //Amount: 1,
-      Type: 'recurring',
-      ProductType: 'globalmembership',
-      RecurringFreq: 30,
-      successUrl: PAYMENT_SUCCESS_URL,
-      cancelUrl: PAYMENT_CANCEL_URL,
-      errorUrl: PAYMENT_ERROR_URL
+      // Amount: 1,
+      Type: order.product.type,
+      ProductType: order.product.productType,
+      RecurringFreq: order.product.recurringFreq,
+      successUrl: appConfig.PAYMENT_SUCCESS_URL,
+      cancelUrl: appConfig.PAYMENT_CANCEL_URL,
+      errorUrl: appConfig.PAYMENT_ERROR_URL
     };
-
-      axios.post(process.env.REACT_APP_SRV_VH_ORDER +'/orders/newandpay', data)
+    console.log(data)
+    console.log(order)
+      axios.post(appConfig.VH_ORDER +'/orders/newandpay', data)
       .then(response => window.location.href = response.data.url)
       .catch(error => console.log(error));
     
@@ -131,7 +132,7 @@ const Order = () => {
     if (dbData.language[language.id] && dbData.currency[currency.id]) {
       const data = {
         appbar: {...dbData.appbar}, ...dbData.language[language.id],
-        currency: {...dbData.currency[currency.id]}
+        currency: {...dbData.currency[currency.id]}, product: {...dbData.product}
       };
       dispatch(setOrder(data));
     } else {
@@ -219,7 +220,7 @@ const Order = () => {
               onClick={() => setAgree(!agree)}
             />
             <Typography component="span" className={classes.agree}>
-              <Trans i18nKey="payment.agree">
+              <Trans i18nKey="order.agree">
                 I agree with <Link href={order.termsLink} target="_blank">terms and conditions</Link>
               </Trans>
             </Typography>
