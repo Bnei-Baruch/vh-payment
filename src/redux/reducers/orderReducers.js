@@ -28,12 +28,12 @@ const DEFAULT = {
     step: 1,
     fixed: true
   },
-  product:{
+  product: {
     SKU: '',
     reference: '',
     type: '',
     productType: '',
-    recurringFreq: '',
+    recurringFreq: 0,
     organization: ''
   }
 };

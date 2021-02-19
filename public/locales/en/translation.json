@@ -19,6 +19,12 @@
         "title": "Welcome",
         "payMethod": "Payment method",
         "pay": "Pay",
-        "agree": "I agree with <1>terms and conditions<1>"
+        "agree": "I agree with the <1>terms and conditions</1>",
+        "tos": "terms and conditions",
+        "thankyou": "Thank you!",
+        "thxtext": "Thank you for your payments, you will receive an invoice in your inbox with 2 business day. For any question or enquires please write to help@kli.one",
+        "error": "Error with your payment",
+        "errortext": "The payment was not successful due to the following error:",
+        "errortext2": "You can get in touch with help@kli.one for any question or enquiries."
     }
 }
