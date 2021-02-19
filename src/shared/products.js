@@ -86,7 +86,7 @@ exports.convention = {
     },
     nis: {
       fixed: true,
-      amount: 1,
+      amount: 100,
       min: 10,
       max: 20,
       step: 1
