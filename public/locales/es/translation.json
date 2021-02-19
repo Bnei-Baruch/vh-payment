@@ -21,8 +21,10 @@
         "pay": "Pagar",
         "agree": "estoy de acuerdo con los <1>términos y condiciones</1>",
         "tos": "los términos y condiciones ",
-        "thankyou": "Gracias!",
-        "thxtext": "Thank you for your payments, you will receive an invoice in your inbox with 2 business day. For any question or enquires please write to help@kli.one",
-        "error": "An Error with your payment"
+        "thankyou": "¡Gracias!",
+        "thxtext": "¡Gracias por tu pago! Recibirás una factura en tu bandeja de entrada dentro de 2 días hábiles. Para cualquier consulta o aclaración, escríbenos por favor al help@kli.one",
+        "error": "Hubo un error con tu pago",
+        "errortext": "El pago no se realizó exitosamente debido al siguiente error:",
+        "errortext2": "Puedes ponerte en contacto con el help@kli.one para cualquier pregunta o aclaración."
     }
 }
