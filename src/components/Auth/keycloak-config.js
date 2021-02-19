@@ -4,18 +4,31 @@ const keycloakConfigProd = {
   clientId: 'membership_pay'
 };
 
-const keycloakConfigDev = {
+const keycloakConfigLocal = {
   realm: "master",
   url: "https://auth.2serv.eu/auth/",
   clientId: "membership_pay_dev"
 };
 
 
-if (process.env.REACT_APP_STAGING === "true"){
-  module.exports = keycloakConfigDev;
+const keycloakConfigDev = {
+  realm: "master",
+  url: "https://auth.2serv.eu/auth/",
+  clientId: "membership_pay_dev"
+};
+
+if (process.env.REACT_APP_LOCAL === "true") { 
+  module.exports = keycloakConfigLocal; 
 }
+
 else {
-  module.exports = keycloakConfigProd;
+  if (process.env.REACT_APP_STAGING === "true"){
+    module.exports = keycloakConfigDev;
+  }
+  else {
+    module.exports = keycloakConfigProd;
+  }
 }
+
   
 
