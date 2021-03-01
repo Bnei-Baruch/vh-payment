@@ -178,22 +178,22 @@ exports.userfee = {
   currency: {
     usd: {
       fixed: false,
-      amount: 20,
-      min: 20,
+      amount: 18,
+      min: 18,
       max: 200,
       step: 1
     },
     eur: {
       fixed: false,
-      amount: 18,
-      min: 18,
+      amount: 15,
+      min: 15,
       max: 200,
       step: 10
     },
     nis: {
       fixed: false,
-      amount: 70,
-      min: 70,
+      amount: 60,
+      min: 60,
       max: 500,
       step: 5
     },
