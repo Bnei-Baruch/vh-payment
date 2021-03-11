@@ -10,7 +10,7 @@ import HeaderLayout from '../../layouts/HeaderLayout';
 import CurrencyPicker from '../../components/CurencyPicker';
 import {useParams} from 'react-router-dom';
 import {setOrder} from '../../redux/actions/orderActions';
-import {convention, userfee} from '../../shared/products'
+import {convention, userfee, userfeenonrecurring} from '../../shared/products'
 import appConfig from '../../shared/appconfig';
 
 const useStyles = makeStyles({
@@ -118,7 +118,11 @@ const Order = () => {
       if (id === "1"){
         setDbData(userfee);
       } else{
-        setDbData(convention);
+        if (id === "3") {
+          setDbData(userfeenonrecurring)
+        } else {
+          setDbData(convention);
+        }
       }
       setLoading(false);
     }, 1000);
