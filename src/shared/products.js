@@ -207,3 +207,109 @@ exports.userfee = {
     organization: 'ben2'
   }
 };
+
+/**********************************************************************/
+
+exports.userfeenonrecurring = {
+  language: {
+    en: {
+      header: {
+        title: 'Maintenance Fee',
+        subtitle: 'Virtual Home',
+        description: 'A minimum user fee per month is necessary to sustain our Virtual Home. '
+      },
+      body: {
+        title: 'Description',
+        description: 'Maintenance Fee - Virtual Home'
+      },
+      cancel: {
+        text: 'Cancel',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Pay',
+      termsLink: 'https://kli.one/tos'
+    },
+    ru: {
+      header: {
+        title: 'Абонентская плата',
+        subtitle: 'Виртуальный дом',
+        description: 'Абонентская плата, необходимая для поддержания системы'
+      },
+      body: {
+        title: 'Описание',
+        description: 'Абонентская плата - Виртуальный дом'
+      },
+      cancel: {
+        text: 'Cancel',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Плати',
+      termsLink: 'https://kli.one/tos'
+    },
+    es: {
+      header: {
+        title: 'Tarifa de usuario',
+        subtitle: 'Hogar Virtual',
+        description: 'Una tarifa de usuario es necesaria para mantener nuestro Hogar Virtual.'
+      },
+      body: {
+        title: 'Descripción',
+        description: 'Tarifa de usuario - Hogar Virtual'
+      },
+      cancel: {
+        text: 'Cancel',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Pay',
+      termsLink: 'https://kli.one/tos'
+    },
+    he: {
+      header: {
+        title: 'דמי מנוי',
+        subtitle: 'הבית הוויטואלי',
+        description: 'תשלום של דמי משתמש חודשי לצורך קיום המערכת'
+      },
+      body: {
+        title: 'תיאור',
+        description: 'דמי מנוי - הבית הוויטואלי'
+      },
+      cancel: {
+        text: 'ביטול',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'תשלום',
+      termsLink: 'https://kli.one/tos'
+    },
+  },
+  currency: {
+    usd: {
+      fixed: false,
+      amount: 10,
+      min: 10,
+      max: 200,
+      step: 1
+    },
+    eur: {
+      fixed: false,
+      amount: 9,
+      min: 9,
+      max: 200,
+      step: 10
+    },
+    nis: {
+      fixed: false,
+      amount: 35,
+      min: 35,
+      max: 500,
+      step: 5
+    },
+  },
+  product:{
+    SKU: '40037',
+    reference: 'Membership',
+    type: 'regular',
+    productType: 'globalmembership',
+    recurringFreq: 30,
+    organization: 'ben2'
+  }
+};
