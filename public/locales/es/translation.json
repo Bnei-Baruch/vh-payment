@@ -25,6 +25,7 @@
         "thxtext": "¡Gracias por tu pago! Recibirás una factura en tu bandeja de entrada dentro de 2 días hábiles. Para cualquier consulta o aclaración, escríbenos por favor al help@kli.one",
         "error": "Hubo un error con tu pago",
         "errortext": "El pago no se realizó exitosamente debido al siguiente error:",
-        "errortext2": "Puedes ponerte en contacto con el help@kli.one para cualquier pregunta o aclaración."
+        "errortext2": "Puedes ponerte en contacto con el help@kli.one para cualquier pregunta o aclaración.",
+        "automaticRenew": "I understand this payment is automatically renewed every month"
     }
 }

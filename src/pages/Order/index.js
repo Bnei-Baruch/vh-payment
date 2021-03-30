@@ -1,5 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, CardActions, CardContent, Checkbox, Link, Paper, Slider, Typography} from '@material-ui/core';
+import {
+  Box,
+  Button,
+  CardActions,
+  CardContent,
+  Checkbox,
+  FormControlLabel,
+  Link,
+  Paper,
+  Slider,
+  Typography
+} from '@material-ui/core';
 import {makeStyles} from '@material-ui/styles';
 import {Trans, useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
@@ -32,7 +43,12 @@ const useStyles = makeStyles({
   },
   agree: {
     fontFamily: 'Abel',
-    fontSize: 16
+    fontSize: 16,
+    userSelect: 'none'
+  },
+  formControlCheckbox: {
+    marginInlineStart: 0,
+    display: 'block'
   },
   payBtn: {
     fontFamily: 'Abel',
@@ -54,6 +70,7 @@ const Order = () => {
   // const [payMethod, setPayMethod] = useState('card');
   const [loading, setLoading] = useState(true);
   const [agree, setAgree] = useState(false);
+  const [automaticRenew, setAutomaticRenew] = useState(false);
 
   const [dbData, setDbData] = useState();
 
@@ -91,12 +108,11 @@ const Order = () => {
       cancelUrl: appConfig.PAYMENT_CANCEL_URL,
       errorUrl: appConfig.PAYMENT_ERROR_URL
     };
-    console.log(data)
-    console.log(order)
-      axios.post(appConfig.VH_ORDER +'/orders/newandpay', data)
+
+    axios.post(appConfig.VH_ORDER + '/orders/newandpay', data)
       .then(response => window.location.href = response.data.url)
       .catch(error => console.log(error));
-    
+
   };
 
   const handleSliderChange = (amount) => {
@@ -111,13 +127,12 @@ const Order = () => {
 
   useEffect(() => {
     // axios.post('url...', {id}).then(({data}) => setDbData(data));
-    
-    
+
     // Mock data
     setTimeout(() => {
-      if (id === "1"){
+      if (id === "1") {
         setDbData(userfee);
-      } else{
+      } else {
         if (id === "3") {
           setDbData(userfeenonrecurring)
         } else {
@@ -217,18 +232,39 @@ const Order = () => {
             {/*</RadioGroup>*/}
           </CardContent>
 
-          <Box>
-            <Checkbox
-              checked={agree}
-              color="primary"
-              onClick={() => setAgree(!agree)}
-            />
-            <Typography component="span" className={classes.agree}>
-              <Trans i18nKey="order.agree">
-                I agree with <Link href={order.termsLink} target="_blank">terms and conditions</Link>
-              </Trans>
-            </Typography>
-          </Box>
+          <FormControlLabel
+            className={classes.formControlCheckbox}
+            control={
+              <Checkbox
+                checked={agree}
+                color="primary"
+                onClick={() => setAgree(!agree)}
+              />
+            }
+            label={
+              <span className={classes.agree}>
+                <Trans i18nKey="order.agree">
+                  I agree with <Link href={order.termsLink} target="_blank">terms and conditions</Link>
+                </Trans>
+              </span>
+            }
+          />
+
+          <FormControlLabel
+            className={classes.formControlCheckbox}
+            control={
+              <Checkbox
+                checked={automaticRenew}
+                color="primary"
+                onClick={() => setAutomaticRenew(!automaticRenew)}
+              />
+            }
+            label={
+              <span className={classes.agree}>
+                {t('order.automaticRenew')}
+              </span>
+            }
+          />
 
           <CardActions className={classes.actions}>
             <Button
@@ -243,7 +279,7 @@ const Order = () => {
               variant="contained"
               color="primary"
               onClick={handlePay}
-              disabled={!agree}
+              disabled={!agree || !automaticRenew}
               className={classes.payBtn}
             >
               {order.buttonText || t('order.pay')}

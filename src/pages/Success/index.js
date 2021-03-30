@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, CardActions, CardContent, Checkbox, Link, Paper, Slider, Typography} from '@material-ui/core';
+import {Box, CardContent, Paper, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/styles';
-import {Trans, useTranslation} from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import Loader from '../../components/Loader';
 import ContentLayout from '../../layouts/ContentLayout';
 import HeaderLayout from '../../layouts/HeaderLayout';
-import CurrencyPicker from '../../components/CurencyPicker';
 import {useParams} from 'react-router-dom';
 import {setOrder} from '../../redux/actions/orderActions';
 import {convention, userfee} from '../../shared/products'
@@ -45,8 +44,6 @@ const useStyles = makeStyles({
 const Success = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const order = useSelector(state => state.order);
-  const user = useSelector(state => state.user);
   const currency = useSelector(state => state.currency);
   const language = useSelector(state => state.language);
 
@@ -55,29 +52,26 @@ const Success = () => {
 
   // const [payMethod, setPayMethod] = useState('card');
   const [loading, setLoading] = useState(true);
-  const [agree, setAgree] = useState(false);
 
   const [dbData, setDbData] = useState();
-  
+
 
   useEffect(() => {
     let q = qs.parse(window.location.search);
-    
-    
     console.log(q)
     axios.post(appConfig.VH_ORDER + '/orders/paid', q)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     // Mock data
     setTimeout(() => {
-      if (id === "1"){
+      if (id === "1") {
         setDbData(userfee);
-      } else{
+      } else {
         setDbData(convention);
       }
       setLoading(false);
@@ -112,14 +106,14 @@ const Success = () => {
           <CardContent>
             <Box component="header" className={classes.header}>
               {
-                <Typography variant="h1" component="h1" style={{fontSize: 36, marginBottom:20}}>
-                 {t('order.thankyou')}
+                <Typography variant="h1" component="h1" style={{fontSize: 36, marginBottom: 20}}>
+                  {t('order.thankyou')}
                 </Typography>
               }
-            
+
               {
                 <Typography style={{fontSize: 18}}>
-                 {t('order.thxtext')}
+                  {t('order.thxtext')}
                 </Typography>
               }
             </Box>

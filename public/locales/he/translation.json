@@ -24,6 +24,7 @@
         "thxtext": "תודה לך על התשלום! חשבונית עבור התשלום תישלח לך תוך שני ימי עסקים. בכל שאלה או בירור ניתן לפנות אל help@kli.one",
         "error": "שגיאה בתשלום",
         "errortext": "התשלום לא עבר עקב השגיאה הבאה",
-        "errortext2": "בכל שאלה או בירור ניתן לפנות אל help@kli.one"
+        "errortext2": "בכל שאלה או בירור ניתן לפנות אל help@kli.one",
+        "automaticRenew": "I understand this payment is automatically renewed every month"
     }
 }

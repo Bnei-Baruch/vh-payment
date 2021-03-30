@@ -25,6 +25,7 @@
         "thxtext": "Благодарим вас за платеж! Вы получите квитанцию об оплате в течение 2х рабочих дней. В случае дополнительных вопросов, пишите на help@kli.one",
         "error": "Ошибка при оплате",
         "errortext": "Платеж не прошел из-за следующей ошибки:",
-        "errortext2": "Вы можете связаться со службой поддержки по адресу help@kli.one."
+        "errortext2": "Вы можете связаться со службой поддержки по адресу help@kli.one.",
+        "automaticRenew": "I understand this payment is automatically renewed every month"
     }
 }
