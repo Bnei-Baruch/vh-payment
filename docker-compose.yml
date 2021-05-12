@@ -1,6 +1,7 @@
 version: '2.2'
 services:
-  vh-dash:
+  vh-payment:
+    container_name: vh-payment
     image: "${IMAGE_NAME}"
     cpus: '0.1'
     mem_limit: 50M
