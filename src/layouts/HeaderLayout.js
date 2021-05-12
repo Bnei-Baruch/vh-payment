@@ -66,7 +66,7 @@ const HeaderLayout = () => {
         <Box className={classes.menu}>
           <Box display="flex" alignItems="center">
             <Hidden xsDown>
-              <img src={`/images/flags/${flag}`} alt="Flag" className={classes.flag} />
+              <img src={`/pay/images/flags/${flag}`} alt="Flag" className={classes.flag} />
             </Hidden>
             <FormControl>
               <InputLabel>{t('appbar.language')}</InputLabel>
