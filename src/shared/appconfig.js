@@ -6,17 +6,17 @@ const configLocal = {
 }
 
 const configStaging = {
-  VH_ORDER: "https://vh.2serv.eu/api/pay",
-  PAYMENT_SUCCESS_URL: "https://vh-04.2serv.eu/success",
-  PAYMENT_CANCEL_URL: "https://vh-04.2serv.eu/order",
-  PAYMENT_ERROR_URL: "https://vh-04.2serv.eu/error"
+  VH_ORDER: "https://api.vh-staging.2serv.eu/pay",
+  PAYMENT_SUCCESS_URL: "https://vh-staging.2serv.eu/success",
+  PAYMENT_CANCEL_URL: "https://vh-staging.2serv.eu/",
+  PAYMENT_ERROR_URL: "https://vh-staging.2serv.eu/error"
 }
 
 const configProd = {
-  VH_ORDER: "https://api.vh.kli.one/pay",
-  PAYMENT_SUCCESS_URL: "https://payment.vh.kli.one/success",
-  PAYMENT_CANCEL_URL: "https://payment.vh.kli.one/order",
-  PAYMENT_ERROR_URL: "https://payment.vh.kli.one/error"
+  VH_ORDER: "https://api.vh-production.2serv.eu/pay",
+  PAYMENT_SUCCESS_URL: "https://vh-production.2serv.eu/success",
+  PAYMENT_CANCEL_URL: "https://vh-production.2serv.eu/",
+  PAYMENT_ERROR_URL: "https://vh-production.2serv.eu/error"
 }
 
 if (process.env.REACT_APP_LOCAL === "true") { 
