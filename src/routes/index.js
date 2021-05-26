@@ -7,9 +7,9 @@ import Error from '../pages/Error';
 const Routes = () => (
     <Router>
       <Switch>
-        <Route exact from='/pay/order/:id' component={Order}/>
-        <Route from='/pay/success' component={Success}/>
-        <Route from='/pay/error' component={Error}/>
+        <Route exact from='/payment/order/:id' component={Order}/>
+        <Route from='/payment/success' component={Success}/>
+        <Route from='/payment/error' component={Error}/>
       </Switch>
     </Router>
 );
