@@ -91,9 +91,14 @@ const Order = () => {
       cancelUrl: appConfig.PAYMENT_CANCEL_URL,
       errorUrl: appConfig.PAYMENT_ERROR_URL
     };
+    const jwt = {
+      headers: {
+        'Authorization': 'Bearer '+user.keycloak.token
+      }
+    }
     console.log(data)
     console.log(order)
-      axios.post(appConfig.VH_ORDER +'/orders/newandpay', data)
+      axios.post(appConfig.VH_ORDER +'/orders/newandpay', data, jwt)
       .then(response => window.location.href = response.data.url)
       .catch(error => console.log(error));
     
