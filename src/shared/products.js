@@ -3,8 +3,8 @@ exports.convention = {
     en: {
       header: {
         title: 'Convention Ticket',
-        subtitle: 'February 2021',
-        description: 'Discovering Life in the Ten - World Kabbalah Convention 2021 - 25-28 February 2021 - Arvut Hall, Virtual Home'
+        subtitle: 'June 2021',
+        description: 'From 10 to 1 - World Kabbalah Convention 2021 - 4-6 June 2021 - Arvut Hall, Virtual Home'
       },
       body: {
         title: 'Description',
@@ -20,8 +20,8 @@ exports.convention = {
     ru: {
       header: {
         title: 'билет на конгресс',
-        subtitle: '25-28 ФЕВРАЛЯ 2021',
-        description: 'Международный каббалистический конгресс 2021 - Раскрываем жизнь в десятке'
+        subtitle: '4-6 ФЕВРАЛЯ 2021',
+        description: 'Международный каббалистический конгресс 2021  '
       },
       body: {
         title: 'Описание',
@@ -37,8 +37,8 @@ exports.convention = {
     es: {
       header: {
         title: 'Boleto del congreso',
-        subtitle: '25-28 de Febrero 2021',
-        description: 'Congreso Mundial de Cabalá 2021 || Descubriendo la Vida en la Decena'
+        subtitle: '4-6 de junio 2021',
+        description: 'Congreso Mundial de Cabalá JUNIO 2021'
       },
       body: {
         title: 'Descripción',
@@ -54,8 +54,8 @@ exports.convention = {
     he: {
       header: {
         title: 'כרטיס כנס',
-        subtitle: 'פברואר 2021',
-        description: 'כנס קבלה לעם הווירטואלי העולמי | לגלות את החיים בעשירייה'
+        subtitle: '4-6-6 2021',
+        description: 'כנס קבלה לעם הווירטואלי העולמי'
       },
       body: {
         title: 'תיאור',
@@ -96,7 +96,7 @@ exports.convention = {
     SKU: '40033',
     reference: 'Convention',
     type: 'regular',
-    productType: 'feb2021ticket',
+    productType: 'jun2021ticket',
     recurringFreq: 0,
     organization: 'ben2'
   }
