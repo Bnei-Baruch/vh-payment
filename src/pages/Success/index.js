@@ -62,10 +62,15 @@ const Success = () => {
 
   useEffect(() => {
     let q = qs.parse(window.location.search);
-    
+     const jwt = {
+      headers: {
+        'Authorization': 'Bearer '+user.keycloak.token
+      }
+    }
+   
     
     console.log(q)
-    axios.post(appConfig.VH_ORDER + '/orders/paid', q)
+    axios.post(appConfig.VH_ORDER + '/orders/paid', q, jwt)
     .then(function (response) {
       console.log(response);
     })
