@@ -13,10 +13,10 @@ const configStaging = {
 }
 
 const configProd = {
-  VH_ORDER: "https://api.vh-production.2serv.eu/pay",
-  PAYMENT_SUCCESS_URL: "https://vh-production.2serv.eu/success",
-  PAYMENT_CANCEL_URL: "https://vh-production.2serv.eu/",
-  PAYMENT_ERROR_URL: "https://vh-production.2serv.eu/error"
+  VH_ORDER: "https://api.kli.one/pay",
+  PAYMENT_SUCCESS_URL: "https://kli.one/pay/success",
+  PAYMENT_CANCEL_URL: "https://kli.one/",
+  PAYMENT_ERROR_URL: "https://kli.one/pay/error"
 }
 
 if (process.env.REACT_APP_LOCAL === "true") { 
