@@ -61,24 +61,25 @@ const Success = () => {
   
 
   useEffect(() => {
-    let q = qs.parse(window.location.search);
-     const jwt = {
-      headers: {
-        'Authorization': 'Bearer '+user.keycloak.token
-      }
-    }
-   
-    
-    console.log(q)
-    axios.post(appConfig.VH_ORDER + '/orders/paid', q, jwt)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
 
-    // Mock data
+    let q = qs.parse(window.location.search);
+
+    if (user.authenticated) {
+      const jwt = {
+        headers: {
+          'Authorization': 'Bearer '+user.keycloak.token
+        }
+      }
+
+      axios.post(appConfig.VH_ORDER + '/orders/paid', q, jwt)
+           .then(function (response) {
+             console.log("Success updated")
+             console.log(response);
+           })
+           .catch(function (error) {
+             console.log(error);
+           });
+    }
     setTimeout(() => {
       if (id === "1"){
         setDbData(userfee);
@@ -87,12 +88,19 @@ const Success = () => {
       }
       setLoading(false);
     }, 1000);
-  }, [id]);
+
+
+  } , [id, user]);
 
   useEffect(() => {
     if (!dbData) {
+      console.log("no db data")
       return;
     }
+
+    console.log("db data OK")
+    console.log(dbData)
+
 
     if (dbData.language[language.id] && dbData.currency[currency.id]) {
       const data = {
@@ -105,9 +113,11 @@ const Success = () => {
     }
   }, [dbData, language, currency, dispatch]);
 
-  if (loading) {
+  if (!user.authenticated || loading) {
     return <Loader/>
   }
+
+  console.log(t('order.thankyou'))
 
   return (
     <>
