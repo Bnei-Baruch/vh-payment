@@ -18,7 +18,7 @@ const keycloakConfigDev = {
 };
 
 if (process.env.REACT_APP_LOCAL === "true") { 
-  module.exports = keycloakConfigLocal; 
+  module.exports = keycloakConfigProd;
 }
 
 else {

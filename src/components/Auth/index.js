@@ -11,6 +11,7 @@ import Theme from '../Theme';
 const Auth = () => {
   const [auth, setAuth] = useState({keycloak: null, authenticated: false});
   const dispatch = useDispatch();
+  console.log("starting auth process")
 
   useEffect(() => {
     const login = async () => {

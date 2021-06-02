@@ -102,6 +102,114 @@ exports.convention = {
   }
 };
 
+/** ***** */
+
+exports.conventiontest = {
+  language: {
+    en: {
+      header: {
+        title: 'Convention Ticket',
+        subtitle: 'June 2021',
+        description: 'From 10 to 1 - World Kabbalah Convention 2021 - 4-6 June 2021 - Arvut Hall, Virtual Home'
+      },
+      body: {
+        title: 'Description',
+        description: 'Participation in the convention'
+      },
+      cancel: {
+        text: 'Cancel',
+        url: 'https://convention.kli.one/'
+      },
+      buttonText: 'Pay',
+      termsLink: 'https://kli.one/tos'
+    },
+    ru: {
+      header: {
+        title: 'билет на конгресс',
+        subtitle: '4-6 ФЕВРАЛЯ 2021',
+        description: 'Международный каббалистический конгресс 2021  '
+      },
+      body: {
+        title: 'Описание',
+        description: 'Участие в конгрессе'
+      },
+      cancel: {
+        text: 'Отмена',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Плати',
+      termsLink: 'https://kli.one/tos'
+    },
+    es: {
+      header: {
+        title: 'Boleto del congreso',
+        subtitle: '4-6 de junio 2021',
+        description: 'Congreso Mundial de Cabalá JUNIO 2021'
+      },
+      body: {
+        title: 'Descripción',
+        description: 'Participación en el congreso'
+      },
+      cancel: {
+        text: 'Cancelar',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Pagar',
+      termsLink: 'https://kli.one/tos'
+    },
+    he: {
+      header: {
+        title: 'כרטיס כנס',
+        subtitle: '4-6-6 2021',
+        description: 'כנס קבלה לעם הווירטואלי העולמי'
+      },
+      body: {
+        title: 'תיאור',
+        description: 'השתתפות בכנס'
+      },
+      cancel: {
+        text: 'ביטול',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'תשלום ',
+      termsLink: 'https://kli.one/tos'
+    },
+  },
+  currency: {
+    usd: {
+      fixed: true,
+      amount: 1,
+      min: 10,
+      max: 30,
+      step: 1
+    },
+    eur: {
+      fixed: true,
+      amount: 25,
+      min: 10,
+      max: 100,
+      step: 1
+    },
+    nis: {
+      fixed: true,
+      amount: 100,
+      min: 10,
+      max: 20,
+      step: 1
+    },
+  },
+  product: {
+    SKU: '40033',
+    reference: 'Convention',
+    type: 'regular',
+    productType: 'testjun2021ticket',
+    recurringFreq: 0,
+    organization: 'ben2'
+  }
+};
+
+
+
 /**********************************************************************/
 
 exports.userfee = {

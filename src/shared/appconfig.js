@@ -1,6 +1,6 @@
 const configLocal = {
-  VH_ORDER: "http://localhost:8185",
-  PAYMENT_SUCCESS_URL: "https://localhost:3000/success",
+  VH_ORDER: "https://api.kli.one/pay",
+  PAYMENT_SUCCESS_URL: "http://9128465c414e.ngrok.io/success",
   PAYMENT_CANCEL_URL: "https://localhost:3000/order",
   PAYMENT_ERROR_URL: "https://localhost:3000/error"
 }
