@@ -1,29 +1,36 @@
 {
-    "appbar": {
-        "language": "שפה",
-        "currency": "מטבע"
-    },
-    "languages": {
-        "en": "English",
-        "ru": "русский",
-        "es": "Español",
-        "he": "עִברִית"
-    },
-    "currencies": {
-        "usd": "USD",
-        "eur": "EURO",
-        "nis": "SHEKELS"
-    },
-    "order": {
-        "title": "ברוך הבא",
-        "payMethod": "אמצעי תשלום",
-        "pay": "שלם",
-        "agree": "אני מסכים עם <1>תנאי שימוש<1/>",
-        "tos": "תנאי שימוש",
-        "thankyou": "תודה רבה",
-        "thxtext": "תודה לך על התשלום! חשבונית עבור התשלום תישלח לך תוך שני ימי עסקים. בכל שאלה או בירור ניתן לפנות אל help@kli.one",
-        "error": "שגיאה בתשלום",
-        "errortext": "התשלום לא עבר עקב השגיאה הבאה",
-        "errortext2": "בכל שאלה או בירור ניתן לפנות אל help@kli.one"
-    }
+  "appbar": {
+    "language": "שפה",
+    "currency": "מטבע"
+  },
+  "languages": {
+    "en": "English",
+    "ru": "русский",
+    "es": "Español",
+    "he": "עִברִית"
+  },
+  "currencies": {
+    "usd": "USD",
+    "eur": "EURO",
+    "nis": "SHEKELS"
+  },
+  "order": {
+    "title": "ברוך הבא",
+    "payMethod": "אמצעי תשלום",
+    "pay": "שלם",
+    "agree": "אני מסכים עם <1>תנאי שימוש<1/>",
+    "tos": "תנאי שימוש",
+    "thankyou": "תודה רבה",
+    "thxtext": "תודה לך על התשלום! חשבונית עבור התשלום תישלח לך תוך שני ימי עסקים. בכל שאלה או בירור ניתן לפנות אל help@kli.one",
+    "error": "שגיאה בתשלום",
+    "errortext": "התשלום לא עבר עקב השגיאה הבאה",
+    "errortext2": "בכל שאלה או בירור ניתן לפנות אל help@kli.one"
+  },
+  "userMenu": {
+    "logOut": "להתנתק",
+    "profile": "פרופיל",
+    "logOutText": "האם את/ה באמת רוצה לצאת?",
+    "yesBtn": "כן",
+    "cancelBtn": "לבטל"
+  }
 }

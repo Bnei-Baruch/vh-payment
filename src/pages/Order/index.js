@@ -120,7 +120,7 @@ const Order = () => {
     
     // Static data
     setTimeout(() => {
-      if (id == "5"){
+      if (id === "5"){
         setDbData(conventiontest);
       } else {
         if (id === "1"){
