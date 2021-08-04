@@ -1,20 +1,34 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react';
 
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 
-import {MenuItem, Select} from '@material-ui/core'
-import {useTranslation} from 'react-i18next';
-import {languages} from '../shared/languages';
-import {setLanguage} from '../redux/actions/languageActions';
-import {setCurrency} from '../redux/actions/currencyActions';
-import {currencies} from '../shared/currencies';
+import {
+  MenuItem,
+  Menu,
+  IconButton as MuiIconButton,
+} from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
+import { languages } from '../shared/languages';
+import { setLanguage } from '../redux/actions/languageActions';
+import { setCurrency } from '../redux/actions/currencyActions';
+import { currencies } from '../shared/currencies';
 
 const VH_DEFAULT_LANG = 'VH_DEFAULT_LANG';
 
+const IconButton = styled(MuiIconButton)`
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+`;
+
 const LanguagePicker = () => {
-  const {t, i18n} = useTranslation();
-  const language = useSelector(state => state.language);
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
+  const { id } = useSelector(state => state.language);
+
+  const [anchorMenu, setAnchorMenu] = useState(null);
 
   useEffect(() => {
     const langId = localStorage.getItem(VH_DEFAULT_LANG);
@@ -28,7 +42,11 @@ const LanguagePicker = () => {
     }
   }, [dispatch, i18n]);
 
-  const handleChange = (langId) => {
+  const toggleMenu = event => {
+    setAnchorMenu(event.currentTarget);
+  };
+
+  const handleChange = langId => {
     const lang = languages.find(l => l.id === langId);
     dispatch(setLanguage(lang));
     localStorage.setItem(VH_DEFAULT_LANG, langId);
@@ -36,21 +54,48 @@ const LanguagePicker = () => {
 
     if (langId === 'he') {
       const cr = currencies.find(l => l.id === 'nis');
-      dispatch(setCurrency(cr))
+      dispatch(setCurrency(cr));
       localStorage.setItem('VH_DEFAULT_CURRENCY', 'he');
     }
+
+    setAnchorMenu(null);
+  };
+
+  const countryToFlag = isoCode => {
+    return typeof String.fromCodePoint !== 'undefined'
+      ? isoCode
+          .toUpperCase()
+          .replace(/./g, char =>
+            String.fromCodePoint(char.charCodeAt(0) + 127397),
+          )
+      : isoCode;
   };
 
   return (
-    <Select
-      value={language.id}
-      onChange={event => handleChange(event.target.value)}
-    >
-      {
-        languages.map((l) => <MenuItem key={l.id} value={l.id}>{t(l.i18nKey)}</MenuItem>)
-      }
-    </Select>
-  )
-}
+    <>
+      <IconButton
+        aria-owns={anchorMenu ? 'menu-appbar' : undefined}
+        aria-haspopup='true'
+        onClick={toggleMenu}
+        color='inherit'
+      >
+        {countryToFlag(languages.find(value => value.id === id).country)}
+      </IconButton>
+      <Menu
+        id='menu-appbar'
+        anchorEl={anchorMenu}
+        open={Boolean(anchorMenu)}
+        onClose={() => setAnchorMenu(null)}
+        style={{ maxHeight: 350 }}
+      >
+        {languages.map(item => (
+          <MenuItem key={item.id} onClick={() => handleChange(item.id)}>
+            {t(item.i18nKey)}
+          </MenuItem>
+        ))}
+      </Menu>
+    </>
+  );
+};
 
-export default LanguagePicker
+export default LanguagePicker;
