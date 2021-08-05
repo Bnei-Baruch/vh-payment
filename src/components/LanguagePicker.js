@@ -14,7 +14,7 @@ import { setLanguage } from '../redux/actions/languageActions';
 import { setCurrency } from '../redux/actions/currencyActions';
 import { currencies } from '../shared/currencies';
 
-const VH_DEFAULT_LANG = 'VH_DEFAULT_LANG';
+const VH_DEFAULT_LANG = 'i18nextLng';
 
 const IconButton = styled(MuiIconButton)`
   svg {
@@ -32,6 +32,7 @@ const LanguagePicker = () => {
 
   useEffect(() => {
     const langId = localStorage.getItem(VH_DEFAULT_LANG);
+  
     if (langId) {
       const lang = languages.find(l => l.id === langId);
 
@@ -48,8 +49,8 @@ const LanguagePicker = () => {
 
   const handleChange = langId => {
     const lang = languages.find(l => l.id === langId);
+    
     dispatch(setLanguage(lang));
-    localStorage.setItem(VH_DEFAULT_LANG, langId);
     i18n.changeLanguage(langId).catch(err => console.error(err));
 
     if (langId === 'he') {
