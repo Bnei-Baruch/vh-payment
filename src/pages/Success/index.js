@@ -1,111 +1,106 @@
-import React, {useEffect, useState} from 'react';
-import {Box, Button, CardActions, CardContent, Checkbox, Link, Paper, Slider, Typography} from '@material-ui/core';
-import {makeStyles} from '@material-ui/styles';
-import {Trans, useTranslation} from 'react-i18next';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { Box, CardContent, Paper, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import Loader from '../../components/Loader';
 import ContentLayout from '../../layouts/ContentLayout';
 import HeaderLayout from '../../layouts/HeaderLayout';
-import CurrencyPicker from '../../components/CurencyPicker';
-import {useParams} from 'react-router-dom';
-import {setOrder} from '../../redux/actions/orderActions';
-import {convention, userfee} from '../../shared/products'
+import { useParams } from 'react-router-dom';
+import { setOrder } from '../../redux/actions/orderActions';
+import { convention, userfee } from '../../shared/products';
 import appConfig from '../../shared/appconfig';
 import * as qs from 'query-string';
 
 const useStyles = makeStyles({
   header: {
     marginBottom: 40,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   body: {
-    marginTop: 40
+    marginTop: 40,
   },
   picker: {
     marginInlineEnd: 12,
-    fontSize: 48
+    fontSize: 48,
   },
   actions: {
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   secondaryFont: {
-    fontFamily: 'Abel'
+    fontFamily: 'Abel',
   },
   agree: {
     fontFamily: 'Abel',
-    fontSize: 16
+    fontSize: 16,
   },
   payBtn: {
     fontFamily: 'Abel',
-    marginRight: 8
-  }
+    marginRight: 8,
+  },
 });
 
 const Success = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const order = useSelector(state => state.order);
   const user = useSelector(state => state.user);
   const currency = useSelector(state => state.currency);
   const language = useSelector(state => state.language);
 
-  const {t} = useTranslation();
-  const {id} = useParams();
+  const { t } = useTranslation();
+  const { id } = useParams();
 
   // const [payMethod, setPayMethod] = useState('card');
   const [loading, setLoading] = useState(true);
-  const [agree, setAgree] = useState(false);
 
   const [dbData, setDbData] = useState();
-  
 
   useEffect(() => {
-
     let q = qs.parse(window.location.search);
 
     if (user.authenticated) {
       const jwt = {
         headers: {
-          'Authorization': 'Bearer '+user.keycloak.token
-        }
-      }
+          Authorization: 'Bearer ' + user.keycloak.token,
+        },
+      };
 
-      axios.post(appConfig.VH_ORDER + '/orders/paid', q, jwt)
-           .then(function (response) {
-             console.log("Success updated")
-             console.log(response);
-           })
-           .catch(function (error) {
-             console.log(error);
-           });
+      axios
+        .post(appConfig.VH_ORDER + '/orders/paid', q, jwt)
+        .then(function (response) {
+          console.log('Success updated');
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
     setTimeout(() => {
-      if (id === "1"){
+      if (id === '1') {
         setDbData(userfee);
-      } else{
+      } else {
         setDbData(convention);
       }
       setLoading(false);
     }, 1000);
-
-
-  } , [id, user]);
+  }, [id, user]);
 
   useEffect(() => {
     if (!dbData) {
-      console.log("no db data")
+      console.log('no db data');
       return;
     }
 
-    console.log("db data OK")
-    console.log(dbData)
-
+    console.log('db data OK');
+    console.log(dbData);
 
     if (dbData.language[language.id] && dbData.currency[currency.id]) {
       const data = {
-        appbar: {...dbData.appbar}, ...dbData.language[language.id],
-        currency: {...dbData.currency[currency.id]}, product: {...dbData.product}
+        appbar: { ...dbData.appbar },
+        ...dbData.language[language.id],
+        currency: { ...dbData.currency[currency.id] },
+        product: { ...dbData.product },
       };
       dispatch(setOrder(data));
     } else {
@@ -114,27 +109,31 @@ const Success = () => {
   }, [dbData, language, currency, dispatch]);
 
   if (!user.authenticated || loading) {
-    return <Loader/>
+    return <Loader />;
   }
 
-  console.log(t('order.thankyou'))
+  console.log(t('order.thankyou'));
 
   return (
     <>
-      <HeaderLayout/>
+      <HeaderLayout />
       <ContentLayout>
         <Paper elevation={0}>
           <CardContent>
-            <Box component="header" className={classes.header}>
+            <Box component='header' className={classes.header}>
               {
-                <Typography variant="h1" component="h1" style={{fontSize: 36, marginBottom:20}}>
-                 {t('order.thankyou')}
+                <Typography
+                  variant='h1'
+                  component='h1'
+                  style={{ fontSize: 36, marginBottom: 20 }}
+                >
+                  {t('order.thankyou')}
                 </Typography>
               }
-            
+
               {
-                <Typography style={{fontSize: 18}}>
-                 {t('order.thxtext')}
+                <Typography style={{ fontSize: 18 }}>
+                  {t('order.thxtext')}
                 </Typography>
               }
             </Box>
@@ -143,6 +142,6 @@ const Success = () => {
       </ContentLayout>
     </>
   );
-}
+};
 
 export default Success;

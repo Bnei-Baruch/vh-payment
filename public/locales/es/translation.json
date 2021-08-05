@@ -1,30 +1,37 @@
 {
-    "appbar": {
-        "language": "Language",
-        "currency": "Currency",
-        "text": "Our Virtual Home"
-    },
-    "languages": {
-        "en": "English",
-        "ru": "русский",
-        "es": "Español",
-        "he": "עִברִית"
-    },
-    "currencies": {
-        "usd": "USD",
-        "eur": "EURO",
-        "nis": "SHEKELS"
-    },
-    "order": {
-        "title": "Bienvenido",
-        "payMethod": "Payment method",
-        "pay": "Pagar",
-        "agree": "estoy de acuerdo con los <1>términos y condiciones</1>",
-        "tos": "los términos y condiciones ",
-        "thankyou": "¡Gracias!",
-        "thxtext": "¡Gracias por tu pago! Recibirás una factura en tu bandeja de entrada dentro de 2 días hábiles. Para cualquier consulta o aclaración, escríbenos por favor al help@kli.one",
-        "error": "Hubo un error con tu pago",
-        "errortext": "El pago no se realizó exitosamente debido al siguiente error:",
-        "errortext2": "Puedes ponerte en contacto con el help@kli.one para cualquier pregunta o aclaración."
-    }
+  "appbar": {
+    "language": "Language",
+    "currency": "Currency",
+    "text": "Our Virtual Home"
+  },
+  "languages": {
+    "en": "English",
+    "ru": "русский",
+    "es": "Español",
+    "he": "עִברִית"
+  },
+  "currencies": {
+    "usd": "USD",
+    "eur": "EURO",
+    "nis": "SHEKELS"
+  },
+  "order": {
+    "title": "Bienvenido",
+    "payMethod": "Payment method",
+    "pay": "Pagar",
+    "agree": "estoy de acuerdo con los <1>términos y condiciones</1>",
+    "tos": "los términos y condiciones ",
+    "thankyou": "¡Gracias!",
+    "thxtext": "¡Gracias por tu pago! Recibirás una factura en tu bandeja de entrada dentro de 2 días hábiles. Para cualquier consulta o aclaración, escríbenos por favor al help@kli.one",
+    "error": "Hubo un error con tu pago",
+    "errortext": "El pago no se realizó exitosamente debido al siguiente error:",
+    "errortext2": "Puedes ponerte en contacto con el help@kli.one para cualquier pregunta o aclaración."
+  },
+  "userMenu": {
+    "logOut": "Cerrar la sesión",
+    "profile": "Perfil",
+    "logOutText": "¿Realmente quiere dejar de fumar?",
+    "yesBtn": "Sí",
+    "cancelBtn": "Cancelar"
+  }
 }
