@@ -6,7 +6,7 @@ const configLocal = {
 };
 
 const configStaging = {
-  VH_ORDER: 'http://api.eurokab.info/pay',
+  VH_ORDER: 'https://api.eurokab.info/pay',
   PAYMENT_SUCCESS_URL: 'https://api.eurokab.info/pay/success',
   PAYMENT_CANCEL_URL: 'http://eurokab.info',
   PAYMENT_ERROR_URL: 'https://api.eurokab.info/pay/error',
