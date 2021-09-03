@@ -96,7 +96,7 @@ exports.convention = {
     SKU: '40033',
     reference: 'Convention',
     type: 'regular',
-    productType: 'jun2021ticket',
+    productType: 'sept2021ticket',
     recurringFreq: 0,
     organization: 'ben2'
   }
