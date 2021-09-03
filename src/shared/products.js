@@ -3,8 +3,8 @@ exports.convention = {
     en: {
       header: {
         title: 'Convention Ticket',
-        subtitle: 'June 2021',
-        description: 'From 10 to 1 - World Kabbalah Convention 2021 - 4-6 June 2021 - Arvut Hall, Virtual Home'
+        subtitle: 'September 2021',
+        description: 'World Kabbalah Convention 2021 - 25-26 September 2021 - Arvut Hall, Virtual Home'
       },
       body: {
         title: 'Description',
@@ -15,12 +15,12 @@ exports.convention = {
         url: 'https://convention.kli.one/'
       },
       buttonText: 'Pay',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
     ru: {
       header: {
         title: 'билет на конгресс',
-        subtitle: '4-6 ФЕВРАЛЯ 2021',
+        subtitle: '25-26/09/2021',
         description: 'Международный каббалистический конгресс 2021  '
       },
       body: {
@@ -32,13 +32,13 @@ exports.convention = {
         url: 'https://kli.one/'
       },
       buttonText: 'Плати',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
     es: {
       header: {
         title: 'Boleto del congreso',
-        subtitle: '4-6 de junio 2021',
-        description: 'Congreso Mundial de Cabalá JUNIO 2021'
+        subtitle: '25-26/09/2021',
+        description: 'Congreso Mundial de Cabalá septiembre 2021'
       },
       body: {
         title: 'Descripción',
@@ -49,12 +49,12 @@ exports.convention = {
         url: 'https://kli.one/'
       },
       buttonText: 'Pagar',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
     he: {
       header: {
         title: 'כרטיס כנס',
-        subtitle: '4-6-6 2021',
+        subtitle: '25-26-09 2021',
         description: 'כנס קבלה לעם הווירטואלי העולמי'
       },
       body: {
@@ -66,7 +66,7 @@ exports.convention = {
         url: 'https://kli.one/'
       },
       buttonText: 'תשלום ',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
   },
   currency: {
