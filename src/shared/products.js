@@ -315,3 +315,109 @@ exports.userfee = {
     organization: 'ben2'
   }
 };
+
+/**********************************************************************/
+
+exports.userfeeonetime = {
+  language: {
+    en: {
+      header: {
+        title: 'Maintenance Fee',
+        subtitle: 'Virtual Home',
+        description: 'A minimum user fee per month is necessary to sustain our Virtual Home. '
+      },
+      body: {
+        title: 'Description',
+        description: 'An invoice will be emailed within two days of making the payment. If you would like to increase your monthly payment to expand our Virtual Home’s operations and to express extra appreciation for our efforts toward our common goal, you may use our Pay What You Wish system. We welcome extra contributions from those who are able to afford more. '
+      },
+      cancel: {
+        text: 'Cancel',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Pay',
+      termsLink: 'https://kli.one/terms'
+    },
+    ru: {
+      header: {
+        title: 'Абонентская плата',
+        subtitle: 'Виртуальный дом',
+        description: 'Абонентская плата, необходимая для поддержания системы'
+      },
+      body: {
+        title: 'Описание',
+        description: 'Квитанция будет отправлена по электронной почте в течение двух дней с момента оплаты. У вас есть возможность увеличить эту сумму, если вы хотите помочь нам в дальнейшем развитии системы и выразить признательность за наши усилия. Мы используем функцию «Платите, сколько пожелаете» для тех, кто может позволить себе больше.'
+      },
+      cancel: {
+        text: 'Cancel',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Плати',
+      termsLink: 'https://kli.one/terms'
+    },
+    es: {
+      header: {
+        title: 'Tarifa de usuario',
+        subtitle: 'Hogar Virtual',
+        description: 'Una tarifa de usuario es necesaria para mantener nuestro Hogar Virtual.'
+      },
+      body: {
+        title: 'Descripción',
+        description: 'Recibirá una factura por correo electrónico dentro de los dos días posteriores a la realización del pago. Si desea aumentar la tarifa mensual de usuario para expandir las operaciones y plataformas de nuestro Hogar Virtual como un agradecimiento adicional por nuestros esfuerzos hacia la meta común, puede utilizar el sistema "Paga lo que desees", de manera que quienes puedan pagar más lo hagan.'
+      },
+      cancel: {
+        text: 'Cancel',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Pay',
+      termsLink: 'https://kli.one/terms'
+    },
+    he: {
+      header: {
+        title: 'דמי מנוי',
+        subtitle: 'הבית הוויטואלי',
+        description: 'תשלום של דמי משתמש חודשי לצורך קיום המערכת'
+      },
+      body: {
+        title: 'תיאור',
+        description: ' חשבונית תתקבל במייל תוך יומיים מביצוע התשלום. אם תרצה להגדיל את התשלום החודשי בכדי לעזור לנו להרחיב את פעולת המערכת שלנו ולהראות הערכה נוספת למאמצינו, אתה יכול להשתמש ב"שלם לפי רצונך", כך שמי שיכול להרשות לעצמו לשלם יותר יכול לעשות זאת.'
+      },
+      cancel: {
+        text: 'ביטול',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'תשלום',
+      termsLink: 'https://kli.one/terms'
+    },
+  },
+  currency: {
+    usd: {
+      fixed: false,
+      amount: 10,
+      min: 10,
+      max: 200,
+      step: 1
+    },
+    eur: {
+      fixed: false,
+      amount: 9,
+      min: 9,
+      max: 200,
+      step: 10
+    },
+    nis: {
+      fixed: false,
+      amount: 35,
+      min: 35,
+      max: 500,
+      step: 5
+    },
+  },
+  product:{
+    SKU: '40037',
+    reference: 'Membership',
+    type: 'regular',
+    productType: 'globalmembership',
+    recurringFreq: 0,
+    organization: 'ben2'
+  }
+};
