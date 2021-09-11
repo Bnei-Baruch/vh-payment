@@ -108,8 +108,8 @@ exports.conventiontest = {
   language: {
     en: {
       header: {
-        title: 'Convention Ticket',
-        subtitle: 'June 2021',
+        title: 'TEST PAYMENT',
+        subtitle: 'recurring',
         description: 'From 10 to 1 - World Kabbalah Convention 2021 - 4-6 June 2021 - Arvut Hall, Virtual Home'
       },
       body: {
@@ -185,25 +185,25 @@ exports.conventiontest = {
     },
     eur: {
       fixed: true,
-      amount: 25,
+      amount: 1,
       min: 10,
       max: 100,
       step: 1
     },
     nis: {
       fixed: true,
-      amount: 100,
+      amount: 1,
       min: 10,
       max: 20,
       step: 1
     },
   },
   product: {
-    SKU: '40033',
-    reference: 'Convention',
-    type: 'regular',
-    productType: 'testjun2021ticket',
-    recurringFreq: 0,
+    SKU: '40037',
+    reference: 'testemv',
+    type: 'recurring',
+    productType: 'testreccuring',
+    recurringFreq: 30,
     organization: 'ben2'
   }
 };
