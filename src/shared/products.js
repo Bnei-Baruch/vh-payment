@@ -31,7 +31,7 @@ exports.convention = {
         text: 'Отмена',
         url: 'https://kli.one/'
       },
-      buttonText: 'Плати',
+      buttonText: 'Оплатить',
       termsLink: 'https://kli.one/terms'
     },
     es: {
@@ -137,7 +137,7 @@ exports.conventiontest = {
         text: 'Отмена',
         url: 'https://kli.one/'
       },
-      buttonText: 'Плати',
+      buttonText: 'Оплатить',
       termsLink: 'https://kli.one/tos'
     },
     es: {
@@ -245,7 +245,7 @@ exports.userfee = {
         text: 'Cancel',
         url: 'https://kli.one/'
       },
-      buttonText: 'Плати',
+      buttonText: 'Оплатить',
       termsLink: 'https://kli.one/tos'
     },
     es: {
@@ -351,7 +351,7 @@ exports.userfeeonetime = {
         text: 'Cancel',
         url: 'https://kli.one/'
       },
-      buttonText: 'Плати',
+      buttonText: 'Оплатить',
       termsLink: 'https://kli.one/terms'
     },
     es: {
