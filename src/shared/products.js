@@ -3,8 +3,8 @@ exports.convention = {
     en: {
       header: {
         title: 'Convention Ticket',
-        subtitle: 'September 2021',
-        description: 'World Kabbalah Convention 2021 - 25-26 September 2021 - Arvut Hall, Virtual Home'
+        subtitle: 'January 2022',
+        description: 'World Kabbalah Convention 2022'
       },
       body: {
         title: 'Description',
@@ -20,8 +20,8 @@ exports.convention = {
     ru: {
       header: {
         title: 'билет на конгресс',
-        subtitle: '25-26/09/2021',
-        description: 'Международный каббалистический конгресс 2021  '
+        subtitle: 'Январь 2022 г.',
+        description: 'Международный каббалистический конгресс 2022  '
       },
       body: {
         title: 'Описание',
@@ -37,8 +37,8 @@ exports.convention = {
     es: {
       header: {
         title: 'Boleto del congreso',
-        subtitle: '25-26/09/2021',
-        description: 'Congreso Mundial de Cabalá septiembre 2021'
+        subtitle: 'Enero 2022',
+        description: 'Congreso Mundial de Cabalá 2022'
       },
       body: {
         title: 'Descripción',
@@ -54,7 +54,7 @@ exports.convention = {
     he: {
       header: {
         title: 'כרטיס כנס',
-        subtitle: '25-26-09 2021',
+        subtitle: 'ינואר 2022',
         description: 'כנס קבלה לעם הווירטואלי העולמי'
       },
       body: {
@@ -96,11 +96,117 @@ exports.convention = {
     SKU: '40033',
     reference: 'Convention',
     type: 'regular',
-    productType: 'sept2021ticket',
+    productType: 'jan2022ticket',
     recurringFreq: 0,
     organization: 'ben2'
   }
 };
+
+
+exports.convention10 = {
+  language: {
+    en: {
+      header: {
+        title: 'Convention Ticket',
+        subtitle: 'January 2022',
+        description: 'World Kabbalah Convention 2022'
+      },
+      body: {
+        title: 'Description',
+        description: 'Participation in the convention'
+      },
+      cancel: {
+        text: 'Cancel',
+        url: 'https://convention.kli.one/'
+      },
+      buttonText: 'Pay',
+      termsLink: 'https://kli.one/terms'
+    },
+    ru: {
+      header: {
+        title: 'билет на конгресс',
+        subtitle: 'Январь 2022 г.',
+        description: 'Международный каббалистический конгресс 2022  '
+      },
+      body: {
+        title: 'Описание',
+        description: 'Участие в конгрессе'
+      },
+      cancel: {
+        text: 'Отмена',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Оплатить',
+      termsLink: 'https://kli.one/terms'
+    },
+    es: {
+      header: {
+        title: 'Boleto del congreso',
+        subtitle: 'Enero 2022',
+        description: 'Congreso Mundial de Cabalá 2022'
+      },
+      body: {
+        title: 'Descripción',
+        description: 'Participación en el congreso'
+      },
+      cancel: {
+        text: 'Cancelar',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'Pagar',
+      termsLink: 'https://kli.one/terms'
+    },
+    he: {
+      header: {
+        title: 'כרטיס כנס',
+        subtitle: 'ינואר 2022',
+        description: 'כנס קבלה לעם הווירטואלי העולמי'
+      },
+      body: {
+        title: 'תיאור',
+        description: 'השתתפות בכנס'
+      },
+      cancel: {
+        text: 'ביטול',
+        url: 'https://kli.one/'
+      },
+      buttonText: 'תשלום ',
+      termsLink: 'https://kli.one/terms'
+    },
+  },
+  currency: {
+    usd: {
+      fixed: true,
+      amount: 10,
+      min: 10,
+      max: 30,
+      step: 1
+    },
+    eur: {
+      fixed: true,
+      amount: 9,
+      min: 10,
+      max: 100,
+      step: 1
+    },
+    nis: {
+      fixed: true,
+      amount: 35,
+      min: 10,
+      max: 20,
+      step: 1
+    },
+  },
+  product: {
+    SKU: '40033',
+    reference: 'Convention',
+    type: 'regular',
+    productType: 'jan2022ticket',
+    recurringFreq: 0,
+    organization: 'ben2'
+  }
+};
+
 
 /** ***** */
 
