@@ -12,6 +12,7 @@ import { setOrder } from '../../redux/actions/orderActions';
 import { convention, userfee } from '../../shared/products';
 import appConfig from '../../shared/appconfig';
 import * as qs from 'query-string';
+import { getQueryParams } from '../../utils/common';
 
 const useStyles = makeStyles({
   header: {
@@ -71,6 +72,11 @@ const Success = () => {
         .then(function (response) {
           console.log('Success updated');
           console.log(response);
+          const productType = getQueryParams('productType');
+          const redirectUrl = getQueryParams('redirectUrl');
+          if (productType === 'jan2022ticket' && redirectUrl) {
+            window.location.href = redirectUrl;
+          }
         })
         .catch(function (error) {
           console.log(error);
