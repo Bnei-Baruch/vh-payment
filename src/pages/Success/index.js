@@ -73,9 +73,9 @@ const Success = () => {
           console.log('Success updated');
           console.log(response);
           const productType = getQueryParams('productType');
-          const redirectUrl = getQueryParams('redirectUrl');
-          if (productType === 'jan2022ticket' && redirectUrl) {
-            window.location.href = redirectUrl;
+          //const redirectUrl = getQueryParams('redirectUrl');
+          if (productType === 'jan2022ticket') {
+            window.location.href = `${window.location.origin}/register`;
           }
         })
         .catch(function (error) {
