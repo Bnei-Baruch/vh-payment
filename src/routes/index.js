@@ -8,6 +8,7 @@ const Routes = () => (
     <Router>
       <Switch>
         <Route exact from='/pay/order/:id' component={Order}/>
+        <Route from='/pay/success/:pdt' component={Success}/>
         <Route from='/pay/success' component={Success}/>
         <Route from='/pay/error' component={Error}/>
       </Switch>
