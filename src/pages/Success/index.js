@@ -74,11 +74,9 @@ const Success = () => {
           console.log('Success updated');
           console.log(response);
           const productType = pdt;
-          //const productType = getQueryParams('productType');
-          //const redirectUrl = getQueryParams('redirectUrl');
           if (productType === 'jan2022ticket') {
-            //window.location.href = `${window.location.origin}/register`;
-            console.log("\\o/ we are in")
+            console.log("Back to registration page")
+            window.location.href = `${window.location.origin}/register`;
           }
         })
         .catch(function (error) {
