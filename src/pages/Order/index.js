@@ -87,7 +87,8 @@ const Order = () => {
       Type: order.product.type,
       ProductType: order.product.productType,
       RecurringFreq: order.product.recurringFreq,
-      successUrl: appConfig.PAYMENT_SUCCESS_URL,
+      //replace this with routing mechanism
+      successUrl: appConfig.PAYMENT_SUCCESS_URL+"/"+order.product.productType,
       cancelUrl: appConfig.PAYMENT_CANCEL_URL,
       errorUrl: appConfig.PAYMENT_ERROR_URL
     };
