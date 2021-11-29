@@ -50,7 +50,8 @@ const Success = () => {
   const language = useSelector(state => state.language);
 
   const { t } = useTranslation();
-  const { id } = useParams();
+  const { pdt } = useParams();
+  console.log(pdt)
 
   // const [payMethod, setPayMethod] = useState('card');
   const [loading, setLoading] = useState(true);
@@ -72,10 +73,12 @@ const Success = () => {
         .then(function (response) {
           console.log('Success updated');
           console.log(response);
-          const productType = getQueryParams('productType');
+          const productType = pdt;
+          //const productType = getQueryParams('productType');
           //const redirectUrl = getQueryParams('redirectUrl');
           if (productType === 'jan2022ticket') {
-            window.location.href = `${window.location.origin}/register`;
+            //window.location.href = `${window.location.origin}/register`;
+            console.log("\\o/ we are in")
           }
         })
         .catch(function (error) {
