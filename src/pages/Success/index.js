@@ -86,14 +86,10 @@ const Success = () => {
         });
     }
     setTimeout(() => {
-      if (id === '1') {
-        setDbData(userfee);
-      } else {
-        setDbData(convention);
-      }
+        console.log("timeout here")
       setLoading(false);
     }, 1000);
-  }, [id, user]);
+  }, [pdt, user]);
 
   useEffect(() => {
     if (!dbData) {
