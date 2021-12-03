@@ -79,7 +79,7 @@ exports.convention = {
     },
     eur: {
       fixed: true,
-      amount: 25,
+      amount: 1,
       min: 10,
       max: 100,
       step: 1
@@ -184,7 +184,7 @@ exports.convention10 = {
     },
     eur: {
       fixed: true,
-      amount: 9,
+      amount: 1,
       min: 10,
       max: 100,
       step: 1
