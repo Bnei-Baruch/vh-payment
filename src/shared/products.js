@@ -79,7 +79,7 @@ exports.convention = {
     },
     eur: {
       fixed: true,
-      amount: 1,
+      amount: 25,
       min: 10,
       max: 100,
       step: 1
@@ -184,7 +184,7 @@ exports.convention10 = {
     },
     eur: {
       fixed: true,
-      amount: 1,
+      amount: 9,
       min: 10,
       max: 100,
       step: 1
@@ -227,7 +227,7 @@ exports.conventiontest = {
         url: 'https://convention.kli.one/'
       },
       buttonText: 'Pay',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
     ru: {
       header: {
@@ -244,7 +244,7 @@ exports.conventiontest = {
         url: 'https://kli.one/'
       },
       buttonText: 'Оплатить',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
     es: {
       header: {
@@ -261,7 +261,7 @@ exports.conventiontest = {
         url: 'https://kli.one/'
       },
       buttonText: 'Pagar',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
     he: {
       header: {
@@ -278,7 +278,7 @@ exports.conventiontest = {
         url: 'https://kli.one/'
       },
       buttonText: 'תשלום ',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
   },
   currency: {
@@ -335,7 +335,7 @@ exports.userfee = {
         url: 'https://kli.one/'
       },
       buttonText: 'Pay',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
     ru: {
       header: {
@@ -352,7 +352,7 @@ exports.userfee = {
         url: 'https://kli.one/'
       },
       buttonText: 'Оплатить',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
     es: {
       header: {
@@ -369,7 +369,7 @@ exports.userfee = {
         url: 'https://kli.one/'
       },
       buttonText: 'Pay',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
     he: {
       header: {
@@ -386,7 +386,7 @@ exports.userfee = {
         url: 'https://kli.one/'
       },
       buttonText: 'תשלום',
-      termsLink: 'https://kli.one/tos'
+      termsLink: 'https://kli.one/terms'
     },
   },
   currency: {
