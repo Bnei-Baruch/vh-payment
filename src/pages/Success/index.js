@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, CardContent, Paper, Typography } from '@material-ui/core'
+import { Box, CardContent, Paper, Typography, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -39,6 +39,13 @@ const useStyles = makeStyles({
   payBtn: {
     fontFamily: 'Abel',
     marginRight: 8,
+  },
+  buttonNext: {
+    padding: '0px 45px',
+    marginTop: '15px',
+  },
+  link: {
+    textDecoration: 'none',
   },
 })
 
@@ -128,6 +135,17 @@ const Success = () => {
                 <Typography style={{ fontSize: 18 }}>
                   {t('order.thxtext')}
                 </Typography>
+              }
+              {
+                <a href={`/register/thank-you`} className={classes.link}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.buttonNext}
+                  >
+                    Next
+                  </Button>
+                </a>
               }
             </Box>
           </CardContent>
