@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Box, CardContent, Paper, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import Loader from '../../components/Loader';
-import ContentLayout from '../../layouts/ContentLayout';
-import HeaderLayout from '../../layouts/HeaderLayout';
-import { useParams } from 'react-router-dom';
-import { setOrder } from '../../redux/actions/orderActions';
-import { convention, userfee } from '../../shared/products';
-import appConfig from '../../shared/appconfig';
-import * as qs from 'query-string';
-import { getQueryParams } from '../../utils/common';
+import React, { useEffect, useState } from 'react'
+import { Box, CardContent, Paper, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
+import Loader from '../../components/Loader'
+import ContentLayout from '../../layouts/ContentLayout'
+import HeaderLayout from '../../layouts/HeaderLayout'
+import { useParams } from 'react-router-dom'
+import { setOrder } from '../../redux/actions/orderActions'
+import { convention, userfee } from '../../shared/products'
+import appConfig from '../../shared/appconfig'
+import * as qs from 'query-string'
+import { getQueryParams } from '../../utils/common'
 
 const useStyles = makeStyles({
   header: {
@@ -40,63 +40,55 @@ const useStyles = makeStyles({
     fontFamily: 'Abel',
     marginRight: 8,
   },
-});
+})
 
 const Success = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
-  const currency = useSelector(state => state.currency);
-  const language = useSelector(state => state.language);
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
+  const currency = useSelector((state) => state.currency)
+  const language = useSelector((state) => state.language)
 
-  const { t } = useTranslation();
-  const { pdt } = useParams();
-  console.log(pdt)
+  const { t } = useTranslation()
+  const { pdt } = useParams()
 
   // const [payMethod, setPayMethod] = useState('card');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true)
 
-  const [dbData, setDbData] = useState();
+  const [dbData, setDbData] = useState()
 
   useEffect(() => {
-    let q = qs.parse(window.location.search);
+    let q = qs.parse(window.location.search)
 
     if (user.authenticated) {
       const jwt = {
         headers: {
           Authorization: 'Bearer ' + user.keycloak.token,
         },
-      };
+      }
 
       axios
         .post(appConfig.VH_ORDER + '/orders/paid', q, jwt)
         .then(function (response) {
-          console.log('Success updated');
-          console.log(response);
-          const productType = pdt;
+          const productType = pdt
           if (productType === 'jan2022ticket') {
-            console.log("Back to registration page")
-            window.location.href = `${window.location.origin}/register`;
+            window.location.href = `${window.location.origin}/register`
           }
         })
         .catch(function (error) {
-          console.log(error);
-        });
+          console.log(error)
+        })
     }
     setTimeout(() => {
-        console.log("timeout here")
-      setLoading(false);
-    }, 1000);
-  }, [pdt, user]);
+      console.log('timeout here')
+      setLoading(false)
+    }, 1000)
+  }, [pdt, user])
 
   useEffect(() => {
     if (!dbData) {
-      console.log('no db data');
-      return;
+      return
     }
-
-    console.log('db data OK');
-    console.log(dbData);
 
     if (dbData.language[language.id] && dbData.currency[currency.id]) {
       const data = {
@@ -104,18 +96,16 @@ const Success = () => {
         ...dbData.language[language.id],
         currency: { ...dbData.currency[currency.id] },
         product: { ...dbData.product },
-      };
-      dispatch(setOrder(data));
+      }
+      dispatch(setOrder(data))
     } else {
-      console.error('Language or currency not supported');
+      console.error('Language or currency not supported')
     }
-  }, [dbData, language, currency, dispatch]);
+  }, [dbData, language, currency, dispatch])
 
   if (!user.authenticated || loading) {
-    return <Loader />;
+    return <Loader />
   }
-
-  console.log(t('order.thankyou'));
 
   return (
     <>
@@ -123,11 +113,11 @@ const Success = () => {
       <ContentLayout>
         <Paper elevation={0}>
           <CardContent>
-            <Box component='header' className={classes.header}>
+            <Box component="header" className={classes.header}>
               {
                 <Typography
-                  variant='h1'
-                  component='h1'
+                  variant="h1"
+                  component="h1"
                   style={{ fontSize: 36, marginBottom: 20 }}
                 >
                   {t('order.thankyou')}
@@ -144,7 +134,7 @@ const Success = () => {
         </Paper>
       </ContentLayout>
     </>
-  );
-};
+  )
+}
 
-export default Success;
+export default Success

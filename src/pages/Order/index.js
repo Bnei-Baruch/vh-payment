@@ -1,61 +1,77 @@
-import React, {useEffect, useState} from 'react';
-import {Box, Button, CardActions, CardContent, Checkbox, Link, Paper, Slider, Typography} from '@material-ui/core';
-import {makeStyles} from '@material-ui/styles';
-import {Trans, useTranslation} from 'react-i18next';
-import {useDispatch, useSelector} from 'react-redux';
-import axios from 'axios';
-import Loader from '../../components/Loader';
-import ContentLayout from '../../layouts/ContentLayout';
-import HeaderLayout from '../../layouts/HeaderLayout';
-import CurrencyPicker from '../../components/CurencyPicker';
-import {useParams} from 'react-router-dom';
-import {setOrder} from '../../redux/actions/orderActions';
-import { convention, userfee, userfeeonetime, conventiontest, convention10} from '../../shared/products'
-import appConfig from '../../shared/appconfig';
+import React, { useEffect, useState } from 'react'
+import {
+  Box,
+  Button,
+  CardActions,
+  CardContent,
+  Checkbox,
+  Link,
+  Paper,
+  Slider,
+  Typography,
+} from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
+import Loader from '../../components/Loader'
+import ContentLayout from '../../layouts/ContentLayout'
+import HeaderLayout from '../../layouts/HeaderLayout'
+import CurrencyPicker from '../../components/CurencyPicker'
+import { useParams } from 'react-router-dom'
+import { setOrder } from '../../redux/actions/orderActions'
+import {
+  convention,
+  userfee,
+  userfeeonetime,
+  conventiontest,
+  convention10,
+} from '../../shared/products'
+import appConfig from '../../shared/appconfig'
 
 const useStyles = makeStyles({
   header: {
-    marginBottom: 40
+    marginBottom: 40,
   },
   body: {
-    marginTop: 40
+    marginTop: 40,
   },
   picker: {
     marginInlineEnd: 12,
-    fontSize: 48
+    fontSize: 48,
   },
   actions: {
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   secondaryFont: {
-    fontFamily: 'Abel'
+    fontFamily: 'Abel',
   },
   agree: {
     fontFamily: 'Abel',
-    fontSize: 16
+    fontSize: 16,
   },
   payBtn: {
     fontFamily: 'Abel',
-    marginRight: 8
-  }
-});
+    marginRight: 8,
+  },
+})
 
 const Order = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const order = useSelector(state => state.order);
-  const user = useSelector(state => state.user);
-  const currency = useSelector(state => state.currency);
-  const language = useSelector(state => state.language);
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const order = useSelector((state) => state.order)
+  const user = useSelector((state) => state.user)
+  const currency = useSelector((state) => state.currency)
+  const language = useSelector((state) => state.language)
 
-  const {t} = useTranslation();
-  const {id} = useParams();
+  const { t } = useTranslation()
+  const { id } = useParams()
 
   // const [payMethod, setPayMethod] = useState('card');
-  const [loading, setLoading] = useState(true);
-  const [agree, setAgree] = useState(false);
+  const [loading, setLoading] = useState(true)
+  const [agree, setAgree] = useState(false)
 
-  const [dbData, setDbData] = useState();
+  const [dbData, setDbData] = useState()
 
   // const handlePaymentChange = (event) => {
   //   setPayMethod(event.target.value);
@@ -88,117 +104,128 @@ const Order = () => {
       ProductType: order.product.productType,
       RecurringFreq: order.product.recurringFreq,
       //replace this with routing mechanism
-      successUrl: appConfig.PAYMENT_SUCCESS_URL+"/"+order.product.productType,
+      successUrl:
+        appConfig.PAYMENT_SUCCESS_URL + '/' + order.product.productType,
       cancelUrl: appConfig.PAYMENT_CANCEL_URL,
-      errorUrl: appConfig.PAYMENT_ERROR_URL
-    };
+      errorUrl: appConfig.PAYMENT_ERROR_URL,
+    }
     const jwt = {
       headers: {
-        'Authorization': 'Bearer '+user.keycloak.token
-      }
+        Authorization: 'Bearer ' + user.keycloak.token,
+      },
     }
-    console.log(data)
-    console.log(order)
-      axios.post(appConfig.VH_ORDER +'/orders/newandpay', data, jwt)
-      .then(response => window.location.href = response.data.url)
-      .catch(error => console.log(error));
-    
-  };
+
+    axios
+      .post(appConfig.VH_ORDER + '/orders/newandpay', data, jwt)
+      .then((response) => (window.location.href = response.data.url))
+      .catch((error) => console.log(error))
+  }
 
   const handleSliderChange = (amount) => {
-    let newAmount = order.currency.min;
+    let newAmount = order.currency.min
 
     if (amount >= (order.currency.min || 0)) {
-      newAmount = amount;
+      newAmount = amount
     }
 
-    dispatch(setOrder({...order, currency: {...order.currency, amount: newAmount}}));
-  };
+    dispatch(
+      setOrder({ ...order, currency: { ...order.currency, amount: newAmount } })
+    )
+  }
 
   useEffect(() => {
     // axios.post('url...', {id}).then(({data}) => setDbData(data));
-    
-    
+
     // Static data
     setTimeout(() => {
-      if (id === "5"){
-        setDbData(conventiontest);
+      if (id === '5') {
+        setDbData(conventiontest)
       } else {
-        if (id === "1"){
-          setDbData(userfee);
-        } else{
-          if (id === "3"){
-            setDbData(userfeeonetime);
+        if (id === '1') {
+          setDbData(userfee)
+        } else {
+          if (id === '3') {
+            setDbData(userfeeonetime)
           } else {
-            if (id === "4"){
-              setDbData(convention10);
-            }
-            else {
-              setDbData(convention);
+            if (id === '4') {
+              setDbData(convention10)
+            } else {
+              setDbData(convention)
             }
           }
         }
       }
-      setLoading(false);
-    }, 1000);
-  }, [id]);
+      setLoading(false)
+    }, 1000)
+  }, [id])
 
   useEffect(() => {
     if (!dbData) {
-      return;
+      return
     }
 
     if (dbData.language[language.id] && dbData.currency[currency.id]) {
       const data = {
-        appbar: {...dbData.appbar}, ...dbData.language[language.id],
-        currency: {...dbData.currency[currency.id]}, product: {...dbData.product}
-      };
-      dispatch(setOrder(data));
+        appbar: { ...dbData.appbar },
+        ...dbData.language[language.id],
+        currency: { ...dbData.currency[currency.id] },
+        product: { ...dbData.product },
+      }
+      dispatch(setOrder(data))
     } else {
-      console.error('Language or currency not supported');
+      console.error('Language or currency not supported')
     }
-  }, [dbData, language, currency, dispatch]);
+  }, [dbData, language, currency, dispatch])
 
   if (loading) {
-    return <Loader/>
+    return <Loader />
   }
 
   return (
     <>
-      <HeaderLayout/>
+      <HeaderLayout />
       <ContentLayout>
         <Paper elevation={0}>
           <CardContent>
             <Box component="header" className={classes.header}>
-              {
-                order.header && order.header.title &&
-                <Typography variant="h1" component="h1" style={{fontSize: 36}}>
+              {order.header && order.header.title && (
+                <Typography
+                  variant="h1"
+                  component="h1"
+                  style={{ fontSize: 36 }}
+                >
                   {order.header.title}
                 </Typography>
-              }
-              {
-                order.header && order.header.subtitle &&
-                <Typography variant="subtitle1" component="h2" gutterBottom style={{fontSize: 14}}>
+              )}
+              {order.header && order.header.subtitle && (
+                <Typography
+                  variant="subtitle1"
+                  component="h2"
+                  gutterBottom
+                  style={{ fontSize: 14 }}
+                >
                   {order.header.subtitle}
                 </Typography>
-              }
-              {
-                order.header && order.header.description &&
-                <Typography style={{fontSize: 18}}>
+              )}
+              {order.header && order.header.description && (
+                <Typography style={{ fontSize: 18 }}>
                   {order.header.description}
                 </Typography>
-              }
+              )}
             </Box>
 
             <Box display="flex" alignItems="flex-start">
               <Typography variant="h1" component="p" className={classes.picker}>
-                {currency.sign}{order.currency.amount}
+                {currency.sign}
+                {order.currency.amount}
               </Typography>
-              <CurrencyPicker disableUnderline className={classes.secondaryFont}/>
+              <CurrencyPicker
+                disableUnderline
+                className={classes.secondaryFont}
+              />
             </Box>
 
-            {
-              !order.currency.fixed &&
+            {!order.currency.fixed && (
               <Slider
                 value={order.currency.amount || 0}
                 onChange={(event, newValue) => handleSliderChange(newValue)}
@@ -207,19 +234,19 @@ const Order = () => {
                 max={order.currency.max || 100}
                 step={order.currency.step || 1}
               />
-            }
+            )}
 
             <Box className={classes.body}>
-              {
-                order.body && order.body.title &&
-                <Typography variant="h5" gutterBottom style={{fontSize: 18}}>
+              {order.body && order.body.title && (
+                <Typography variant="h5" gutterBottom style={{ fontSize: 18 }}>
                   {order.body.title}
                 </Typography>
-              }
-              {
-                order.body && order.body.description &&
-                <Typography style={{fontSize: 14}}>{order.body.description}</Typography>
-              }
+              )}
+              {order.body && order.body.description && (
+                <Typography style={{ fontSize: 14 }}>
+                  {order.body.description}
+                </Typography>
+              )}
             </Box>
 
             {/*<Typography variant="h4" color="textSecondary" component="p">*/}
@@ -240,7 +267,10 @@ const Order = () => {
             />
             <Typography component="span" className={classes.agree}>
               <Trans i18nKey="order.agree">
-                I agree with <Link href={order.termsLink} target="_blank">terms and conditions</Link>
+                I agree with{' '}
+                <Link href={order.termsLink} target="_blank">
+                  terms and conditions
+                </Link>
               </Trans>
             </Typography>
           </Box>
@@ -267,7 +297,7 @@ const Order = () => {
         </Paper>
       </ContentLayout>
     </>
-  );
+  )
 }
 
-export default Order;
+export default Order

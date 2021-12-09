@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Box, CardContent, Paper, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import { useTranslation } from 'react-i18next';
-import Loader from '../../components/Loader';
-import ContentLayout from '../../layouts/ContentLayout';
-import HeaderLayout from '../../layouts/HeaderLayout';
-import { useParams } from 'react-router-dom';
-import * as qs from 'query-string';
+import React, { useEffect, useState } from 'react'
+import { Box, CardContent, Paper, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import { useTranslation } from 'react-i18next'
+import Loader from '../../components/Loader'
+import ContentLayout from '../../layouts/ContentLayout'
+import HeaderLayout from '../../layouts/HeaderLayout'
+import { useParams } from 'react-router-dom'
+import * as qs from 'query-string'
 
 const useStyles = makeStyles({
   header: {
@@ -34,27 +34,23 @@ const useStyles = makeStyles({
     fontFamily: 'Abel',
     marginRight: 8,
   },
-});
+})
 
 const Error = () => {
-  const classes = useStyles();
-  const { ordkey, paramx } = useParams();
-  const { t } = useTranslation();
+  const classes = useStyles()
+  const { ordkey, paramx } = useParams()
+  const { t } = useTranslation()
 
   // const [payMethod, setPayMethod] = useState('card');
-  const [loading, setLoading] = useState(true);
-  const [errorMesg, setErrorMesg] = useState('Unknown Error');
+  const [loading, setLoading] = useState(true)
+  const [errorMesg, setErrorMesg] = useState('Unknown Error')
 
   useEffect(() => {
-    let q = qs.parse(window.location.search);
+    let q = qs.parse(window.location.search)
 
-    console.log(q);
     if (q.error != null && q.error.length > 0) {
-      setErrorMesg(q.error);
+      setErrorMesg(q.error)
     }
-
-    console.log('orderid', ordkey);
-    console.log('paramX', paramx);
 
     // TODO: create backend for this
     // axios.post( appConfig.VH_ORDER, errinfo)
@@ -66,13 +62,13 @@ const Error = () => {
     // });
 
     setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+      setLoading(false)
+    }, 1000)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   if (loading) {
-    return <Loader />;
+    return <Loader />
   }
 
   return (
@@ -81,11 +77,11 @@ const Error = () => {
       <ContentLayout>
         <Paper elevation={0}>
           <CardContent>
-            <Box component='header' className={classes.header}>
+            <Box component="header" className={classes.header}>
               {
                 <Typography
-                  variant='h1'
-                  component='h1'
+                  variant="h1"
+                  component="h1"
                   style={{ fontSize: 36, marginBottom: 20 }}
                 >
                   {t('order.error')}
@@ -104,7 +100,7 @@ const Error = () => {
         </Paper>
       </ContentLayout>
     </>
-  );
-};
+  )
+}
 
-export default Error;
+export default Error
