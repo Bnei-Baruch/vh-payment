@@ -25,7 +25,11 @@
     "thxtext": "¡Gracias por tu pago! Recibirás una factura en tu bandeja de entrada dentro de 2 días hábiles. Para cualquier consulta o aclaración, escríbenos por favor al help@kli.one",
     "error": "Hubo un error con tu pago",
     "errortext": "El pago no se realizó exitosamente debido al siguiente error:",
-    "errortext2": "Puedes ponerte en contacto con el help@kli.one para cualquier pregunta o aclaración."
+    "errortext2": "Puedes ponerte en contacto con el help@kli.one para cualquier pregunta o aclaración.",
+    "closethepage": "¡Bravo! Puedes cerrar la página",
+    "next": "Siguiente",
+    "thanksstep3": "¡Enhorabuena! Te has registrado con éxito para el congreso. Pronto recibirás un correo electrónico confirmando tu participación en el congreso, además de una descripción detallada del programa del congreso y enlaces para conectarte.",
+    "allGood": "Todo está correcto",
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",
