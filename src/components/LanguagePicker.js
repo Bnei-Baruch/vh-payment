@@ -25,7 +25,11 @@ const LanguagePicker = () => {
   const { id } = useSelector((state) => state.language)
 
   const [anchorMenu, setAnchorMenu] = useState(null)
-
+  const changeCurrency = () => {
+    const cr = currencies.find((l) => l.id === 'nis')
+    dispatch(setCurrency(cr))
+    localStorage.setItem('VH_DEFAULT_CURRENCY', 'he')
+  }
   useEffect(() => {
     const langId = localStorage.getItem(VH_DEFAULT_LANG)
 
@@ -36,8 +40,16 @@ const LanguagePicker = () => {
         dispatch(setLanguage(lang))
         i18n.changeLanguage(langId).catch((err) => console.error(err))
       }
+      if (window.location.search.slice(6) === 'he') {
+        changeCurrency()
+      }
     }
   }, [dispatch, i18n])
+  useEffect(() => {
+    if (window.location.search.slice(6) === 'he') {
+      changeCurrency()
+    }
+  }, [])
 
   const toggleMenu = (event) => {
     setAnchorMenu(event.currentTarget)
@@ -48,7 +60,9 @@ const LanguagePicker = () => {
 
     dispatch(setLanguage(lang))
     i18n.changeLanguage(langId).catch((err) => console.error(err))
-
+    if (langId === 'he') {
+      changeCurrency()
+    }
     setAnchorMenu(null)
   }
 
