@@ -306,10 +306,10 @@ exports.conventiontest = {
   },
   product: {
     SKU: '40037',
-    reference: 'testemv',
-    type: 'recurring',
-    productType: 'testreccuring',
-    recurringFreq: 30,
+    reference: 'conventiontest',
+    type: 'regular',
+    productType: 'jan2022ticket',
+    recurringFreq: 0,
     organization: 'ben2'
   }
 };
