@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Paper,
-  Typography,
-} from '@material-ui/core'
+import { Box, CardContent, Paper, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -50,17 +42,16 @@ const useStyles = makeStyles({
   },
 })
 
-const Success = (props) => {
+const Success = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const currency = useSelector((state) => state.currency)
   const language = useSelector((state) => state.language)
-  console.log('props', language.id)
+
   const { t } = useTranslation()
   const { pdt } = useParams()
-  /*   const pathnameFromPayment = location.pathname.slice(10) */
-  /*  console.log(pathnameFromPayment) */
+
   // const [payMethod, setPayMethod] = useState('card');
   const [loading, setLoading] = useState(true)
 
@@ -81,7 +72,7 @@ const Success = (props) => {
         .then(function (response) {
           const productType = pdt
           if (productType === 'jan2022ticket') {
-            window.location.href = `${window.location.origin}/register`
+            window.location.href = `${window.location.origin}/register/success`
           }
         })
         .catch(function (error) {
@@ -119,28 +110,29 @@ const Success = (props) => {
   return (
     <>
       <HeaderLayout />
-      <Card mb={6} style={{ marginTop: '5px' }}>
-        <CardContent>
-          <Typography variant="h3" gutterBottom className="email-seprater-text">
-            {t('payments.allGood')}
-          </Typography>
-          <Grid container spacing={6}>
-            <Grid item md={12}>
-              <div>{t('common.thanksstep3')}</div>
-            </Grid>
-            <Grid item md={12}>
-              <a
-                href={`/register/${language.id && '?lang=' + language.id}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <Button variant="contained" color="primary">
-                  {t('common.next')}
-                </Button>
-              </a>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+      <ContentLayout>
+        <Paper elevation={0}>
+          <CardContent>
+            <Box component="header" className={classes.header}>
+              {
+                <Typography
+                  variant="h1"
+                  component="h1"
+                  style={{ fontSize: 36, marginBottom: 20 }}
+                >
+                  {t('order.thankyou')}
+                </Typography>
+              }
+
+              {
+                <Typography style={{ fontSize: 18 }}>
+                  {t('order.thxtext')}
+                </Typography>
+              }
+            </Box>
+          </CardContent>
+        </Paper>
+      </ContentLayout>
     </>
   )
 }
