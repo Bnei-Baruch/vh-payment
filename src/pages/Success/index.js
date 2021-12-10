@@ -72,7 +72,7 @@ const Success = () => {
         .then(function (response) {
           const productType = pdt
           if (productType === 'jan2022ticket') {
-            window.location.href = `${window.location.origin}/register`
+            window.location.href = `${window.location.origin}/register/success`
           }
         })
         .catch(function (error) {
