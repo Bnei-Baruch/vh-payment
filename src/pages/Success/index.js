@@ -72,7 +72,9 @@ const Success = () => {
         .then(function (response) {
           const productType = pdt
           if (productType === 'jan2022ticket') {
-            window.location.href = `${window.location.origin}/register/success`
+            setTimeout(() => {
+              window.location.href = `${window.location.origin}/register/success`
+            }, 3000)
           }
         })
         .catch(function (error) {
@@ -80,7 +82,6 @@ const Success = () => {
         })
     }
     setTimeout(() => {
-      console.log('timeout here')
       setLoading(false)
     }, 1000)
   }, [pdt, user])
