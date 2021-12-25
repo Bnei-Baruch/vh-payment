@@ -29,8 +29,7 @@
     "allGood": "All good!",
     "thanksstep3": "Congratulations! You have successfully registered for the congress. Soon you will receive an email confirming your participation in the congress, as well as with a detailed description of the congress program and links to connect.",
     "next": "Next",
-    "closethepage": "Well done! You can close the page",
-    
+    "closethepage": "Well done! You can close the page"
   },
   "userMenu": {
     "profile": "Profile",
@@ -38,5 +37,9 @@
     "logOutText": "Do you really want to quit?",
     "yesBtn": "Yes",
     "cancelBtn": "Cancel"
+  },
+  "error" : {
+    "page_not_found" : "Page Not found",
+    "retry": "Please go back or"
   }
 }
