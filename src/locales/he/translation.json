@@ -28,7 +28,7 @@
     "closethepage": "כל הכבוד! את/ה יכול/ה לסגור את הדף",
     "next": "המשך",
     "thanksstep3": "מזל טוב! נרשמת בהצלחה לכנס. בקרוב תקבל אימייל המאשר את השתתפותך בכנס כמו גם תיאור מפורט של תוכנית הכנס וקישורים להתחברות.",
-    "allGood": "!הכל טוב",
+    "allGood": "!הכל טוב"
   },
   "userMenu": {
     "logOut": "להתנתק",
@@ -36,5 +36,9 @@
     "logOutText": "האם את/ה באמת רוצה לצאת?",
     "yesBtn": "כן",
     "cancelBtn": "לבטל"
+  },
+  "error" : {
+    "page_not_found" : "Page Not found",
+    "retry": "Please go back or"
   }
 }

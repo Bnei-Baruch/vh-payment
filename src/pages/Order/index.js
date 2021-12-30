@@ -13,21 +13,16 @@ import {
 import { makeStyles } from '@material-ui/styles'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
 import Loader from '../../components/Loader'
 import ContentLayout from '../../layouts/ContentLayout'
 import HeaderLayout from '../../layouts/HeaderLayout'
 import CurrencyPicker from '../../components/CurencyPicker'
 import { useParams } from 'react-router-dom'
 import { setOrder } from '../../redux/actions/orderActions'
-import {
-  convention,
-  userfee,
-  userfeeonetime,
-  conventiontest,
-  convention10,
-} from '../../shared/products'
 import appConfig from '../../shared/appconfig'
+import { handlePayment } from '../../services/orderservice'
+import { getProduct } from '../../services/productservice'
+import { getProfile } from '../../services/userservice'
 
 const useStyles = makeStyles({
   header: {
@@ -58,38 +53,39 @@ const useStyles = makeStyles({
 
 const Order = () => {
   const classes = useStyles()
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const order = useSelector((state) => state.order)
   const user = useSelector((state) => state.user)
   const currency = useSelector((state) => state.currency)
   const language = useSelector((state) => state.language)
 
-  const { t } = useTranslation()
-  const { id } = useParams()
-
-  // const [payMethod, setPayMethod] = useState('card');
   const [loading, setLoading] = useState(true)
   const [agree, setAgree] = useState(false)
-
+  const [profileData, setUserProfileData] = useState(null)
   const [dbData, setDbData] = useState()
+  const { id } = useParams()
 
-  // const handlePaymentChange = (event) => {
-  //   setPayMethod(event.target.value);
-  // };
-
-  const handlePay = () => {
+  //fetching user profile data.
+  const getUserProfileData = async () => {
+    if (user && user.keycloak && user.keycloak.subject) {
+      const userProfileData = await getProfile(user.keycloak.subject);
+      setUserProfileData(userProfileData)
+    }
+  }
+  const handlePay = async () => {
     const data = {
       // Account details
       AccountID: '-',
       FirstName: user.profile.firstName,
       LastName: user.profile.lastName,
       Email: user.profile.email,
-      Phone: '',
-      Street: '',
-      City: '',
-      Postcode: '',
-      State: '',
-      Country: '',
+      Phone: profileData?.mobile_number || '',
+      Street: profileData?.street_address || '',
+      City: profileData?.city || '',
+      Postcode: profileData?.postal_code || '',
+      State: profileData?.state_region || '',
+      Country: profileData?.country || '',
 
       //Product details
       SKU: order.product.SKU,
@@ -109,61 +105,53 @@ const Order = () => {
       cancelUrl: appConfig.PAYMENT_CANCEL_URL,
       errorUrl: appConfig.PAYMENT_ERROR_URL,
     }
-    const jwt = {
-      headers: {
-        Authorization: 'Bearer ' + user.keycloak.token,
-      },
-    }
-
-    axios
-      .post(appConfig.VH_ORDER + '/orders/newandpay', data, jwt)
-      .then((response) => (window.location.href = response.data.url))
-      .catch((error) => console.log(error))
+    handlePayment(data).then(response => {
+      window.location.href = response.data.url
+    }).catch((error) => console.error(error))
+      
   }
 
   const handleSliderChange = (amount) => {
     let newAmount = order.currency.min
-
     if (amount >= (order.currency.min || 0)) {
       newAmount = amount
     }
-
     dispatch(
       setOrder({ ...order, currency: { ...order.currency, amount: newAmount } })
     )
   }
-
+  
+  /**
+   * This useeffect fetches product
+   * of the payment on the nature of type
+   */
   useEffect(() => {
-    // axios.post('url...', {id}).then(({data}) => setDbData(data));
-
-    // Static data
+    const product = getProduct(id);
+    if (product) {
+      setDbData(product);
+    }
     setTimeout(() => {
-      if (id === '5') {
-        setDbData(conventiontest)
-      } else {
-        if (id === '1') {
-          setDbData(userfee)
-        } else {
-          if (id === '3') {
-            setDbData(userfeeonetime)
-          } else {
-            if (id === '4') {
-              setDbData(convention10)
-            } else {
-              setDbData(convention)
-            }
-          }
-        }
-      }
       setLoading(false)
     }, 1000)
   }, [id])
 
+  /**
+   * This user effect is user to fetch
+   * user profile from the profile service
+   */
+  useEffect(() => {
+    getUserProfileData();
+  }, [user])
+
+  /**
+   * This User Effect handle the
+   * immediate changes in laguage or curreny 
+   * to accomodate the product in redux
+   */
   useEffect(() => {
     if (!dbData) {
       return
     }
-
     if (dbData.language[language.id] && dbData.currency[currency.id]) {
       const data = {
         appbar: { ...dbData.appbar },
@@ -267,7 +255,7 @@ const Order = () => {
             />
             <Typography component="span" className={classes.agree}>
               <Trans i18nKey="order.agree">
-                I agree with{' '}
+                I agree with {' '}
                 <Link href={order.termsLink} target="_blank">
                   terms and conditions
                 </Link>

@@ -30,7 +30,6 @@ const CurrencyPicker = (props) => {
     dispatch(setCurrency(cr));
     localStorage.setItem(VH_DEFAULT_CURRENCY, value);
   };
-
   return (
     <Select
       {...props}
@@ -38,7 +37,7 @@ const CurrencyPicker = (props) => {
       onChange={event => handleChange(event.target.value)}
     >
       {
-        currencies.map((l) => <MenuItem key={l.id} value={l.id}>{t(l.i18nKey)}</MenuItem>)
+        currencies.map((l) => <MenuItem key={l.id} value={l.id}>{l.sign + " " + t(l.i18nKey)}</MenuItem>)
       }
     </Select>
   )

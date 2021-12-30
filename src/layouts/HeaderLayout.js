@@ -18,8 +18,9 @@ import { UserMenu } from '../components/UserMenu/UserMenu';
 
 const useStyles = makeStyles({
   appbar: {
-    boxShadow:
-      'rgb(0 0 0 / 20%) 0 3px 1px -2px, rgb(0 0 0 / 14%) 0 2px 2px 0, rgb(0 0 0 / 12%) 0 1px 5px 0',
+    // boxShadow:
+    //   'rgb(0 0 0 / 20%) 0 3px 1px -2px, rgb(0 0 0 / 14%) 0 2px 2px 0, rgb(0 0 0 / 12%) 0 1px 5px 0',
+      backgroundColor:'#fff'
   },
   toolbar: {
     display: 'flex',
@@ -94,11 +95,8 @@ const HeaderLayout = () => {
 
         <Box className={classes.menu}>
           <Box display='flex' alignItems='center'>
-            <Hidden xsDown>
-              <Typography className={classes.currencySign}>{sign}</Typography>
-            </Hidden>
+          <InputLabel style={{color: '#000'}}>{t('appbar.currency')} : </InputLabel> &nbsp;
             <FormControl>
-              <InputLabel>{t('appbar.currency')}</InputLabel>
               <CurrencyPicker />
             </FormControl>
           </Box>
