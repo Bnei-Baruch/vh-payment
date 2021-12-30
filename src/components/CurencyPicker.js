@@ -30,7 +30,6 @@ const CurrencyPicker = (props) => {
     dispatch(setCurrency(cr));
     localStorage.setItem(VH_DEFAULT_CURRENCY, value);
   };
-  console.log(currencies)
   return (
     <Select
       {...props}
