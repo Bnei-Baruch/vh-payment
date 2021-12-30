@@ -1,11 +1,21 @@
-import React from 'react';
-import {CircularProgress} from '@material-ui/core';
-import ContentLayout from '../layouts/ContentLayout';
+import React from "react";
+import styled from "styled-components";
 
-const Loader = () => (
-  <ContentLayout>
-    <CircularProgress size={50}/>
-  </ContentLayout>
-);
+import { CircularProgress } from "@material-ui/core";
+
+const Root = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
+`;
+
+function Loader() {
+  return (
+    <Root>
+      <CircularProgress m={2} color="secondary" />
+    </Root>
+  );
+}
 
 export default Loader;

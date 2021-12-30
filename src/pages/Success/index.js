@@ -2,17 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Box, CardContent, Paper, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
+import { useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
 import ContentLayout from '../../layouts/ContentLayout'
 import HeaderLayout from '../../layouts/HeaderLayout'
 import { useParams } from 'react-router-dom'
-import { setOrder } from '../../redux/actions/orderActions'
-import { convention, userfee } from '../../shared/products'
-import appConfig from '../../shared/appconfig'
 import * as qs from 'query-string'
-import { getQueryParams } from '../../utils/common'
+import { paymentSuccess } from '../../services/orderservice'
 
 const useStyles = makeStyles({
   header: {
@@ -44,65 +40,32 @@ const useStyles = makeStyles({
 
 const Success = () => {
   const classes = useStyles()
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.user)
-  const currency = useSelector((state) => state.currency)
-  const language = useSelector((state) => state.language)
-
   const { t } = useTranslation()
   const { pdt } = useParams()
-
-  // const [payMethod, setPayMethod] = useState('card');
+  
+  const user = useSelector((state) => state.user)
   const [loading, setLoading] = useState(true)
 
-  const [dbData, setDbData] = useState()
-
+  /**
+   * This Useeffect sends the payments detail
+   * to backend after successful payment completion.
+   */
   useEffect(() => {
     let q = qs.parse(window.location.search)
-
     if (user.authenticated) {
-      const jwt = {
-        headers: {
-          Authorization: 'Bearer ' + user.keycloak.token,
-        },
-      }
-
-      axios
-        .post(appConfig.VH_ORDER + '/orders/paid', q, jwt)
-        .then(function (response) {
-          const productType = pdt
-          if (productType === 'jan2022ticket') {
+      paymentSuccess(q).then(() => {
+          if (pdt === 'jan2022ticket') {
             setTimeout(() => {
               window.location.href = `${window.location.origin}/register/success`
             }, 3000)
           }
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+          setLoading(false)
+      }).catch(function (error) {
+        console.error(error)
+        setLoading(false)
+      })
     }
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
   }, [pdt, user])
-
-  useEffect(() => {
-    if (!dbData) {
-      return
-    }
-
-    if (dbData.language[language.id] && dbData.currency[currency.id]) {
-      const data = {
-        appbar: { ...dbData.appbar },
-        ...dbData.language[language.id],
-        currency: { ...dbData.currency[currency.id] },
-        product: { ...dbData.product },
-      }
-      dispatch(setOrder(data))
-    } else {
-      console.error('Language or currency not supported')
-    }
-  }, [dbData, language, currency, dispatch])
 
   if (!user.authenticated || loading) {
     return <Loader />

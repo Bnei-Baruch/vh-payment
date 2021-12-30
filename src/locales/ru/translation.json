@@ -37,5 +37,9 @@
     "logOutText": "Вы действительно хотите выйти?",
     "yesBtn": "Да",
     "cancelBtn": "Отменить"
+  },
+  "error" : {
+    "page_not_found" : "Page Not found",
+    "retry": "Please go back or"
   }
 }

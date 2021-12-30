@@ -13,8 +13,8 @@ const ContentLayout = ({children}) => {
       direction="column"
       alignItems="center"
       justify="center"
-      style={{minHeight: '100vh'}}>
-      <Grid item xs={12} sm={12} md={6} lg={4}>
+      style={{padding: '20px', minHeight: 'calc(100vh - 160px)'}}>
+      <Grid item xs={12} sm={12} md={8} lg={6} style={{margin: 'auto', padding: '20px', backgroundColor: '#fff', boxShadow: '0 0 14px 0 rgb(53 64 82 / 5%)'}}>
         {children}
       </Grid>
     </Grid>
