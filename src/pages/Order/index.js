@@ -182,6 +182,7 @@ const Order = () => {
     return <Loader />
   }
 
+  console.log(order)
   return (
     <>
       <HeaderLayout />
@@ -267,7 +268,7 @@ const Order = () => {
               onClick={() => setAgree(!agree)}
             />
             <Typography component="span" className={classes.agree}>
-              <Trans i18nKey="order.agree">
+              <Trans>
                 I agree with {' '}
                 <Link href={order.termsLink} target="_blank">
                   terms and conditions
