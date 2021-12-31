@@ -29,7 +29,8 @@
     "closethepage": "¡Bravo! Puedes cerrar la página",
     "next": "Siguiente",
     "thanksstep3": "¡Enhorabuena! Te has registrado con éxito para el congreso. Pronto recibirás un correo electrónico confirmando tu participación en el congreso, además de una descripción detallada del programa del congreso y enlaces para conectarte.",
-    "allGood": "Todo está correcto"
+    "allGood": "Todo está correcto",
+    "processing" : "Processing"
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",
