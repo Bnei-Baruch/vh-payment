@@ -269,9 +269,9 @@ const Order = () => {
             />
             <Typography component="span" className={classes.agree}>
               <Trans>
-                I agree with {' '}
+                {t('order.agree')} &nbsp;
                 <Link href={order.termsLink} target="_blank">
-                  terms and conditions
+                  {t('order.tos')}
                 </Link>
               </Trans>
             </Typography>
