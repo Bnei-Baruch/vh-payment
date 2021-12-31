@@ -5,6 +5,7 @@ import {
   CardActions,
   CardContent,
   Checkbox,
+  CircularProgress,
   Link,
   Paper,
   Slider,
@@ -49,6 +50,11 @@ const useStyles = makeStyles({
     fontFamily: 'Abel',
     marginRight: 8,
   },
+  loader: {
+    color: '#fff !important',
+    height: '15px !important',
+    width: '15px !important'
+  }
 })
 
 const Order = () => {
@@ -61,6 +67,7 @@ const Order = () => {
   const language = useSelector((state) => state.language)
 
   const [loading, setLoading] = useState(true)
+  const [payClicked, setOnPayClicked] = useState(false)
   const [agree, setAgree] = useState(false)
   const [profileData, setUserProfileData] = useState(null)
   const [dbData, setDbData] = useState()
@@ -74,6 +81,7 @@ const Order = () => {
     }
   }
   const handlePay = async () => {
+    setOnPayClicked(true);
     const data = {
       // Account details
       AccountID: '-',
@@ -106,8 +114,13 @@ const Order = () => {
       errorUrl: appConfig.PAYMENT_ERROR_URL,
     }
     handlePayment(data).then(response => {
+      setOnPayClicked(false);
       window.location.href = response.data.url
-    }).catch((error) => console.error(error))
+
+    }).catch((error) => {
+      setOnPayClicked(false);
+      console.error(error)
+    })
       
   }
 
@@ -279,7 +292,7 @@ const Order = () => {
               disabled={!agree}
               className={classes.payBtn}
             >
-              {order.buttonText || t('order.pay')}
+           {payClicked && <CircularProgress m={2} className={classes.loader} />} &nbsp; {!payClicked ? order.buttonText || t('order.pay') : t('order.processing')} 
             </Button>
           </CardActions>
         </Paper>
