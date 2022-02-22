@@ -53,7 +53,7 @@ const Error = () => {
     }
 
     // TODO: create backend for this
-    // axios.post( appConfig.VH_ORDER, errinfo)
+    // axios.post( window.APP_CONFIG.VH_ORDER, errinfo)
     // .then(function (response) {
     //   console.log(response);
     // })

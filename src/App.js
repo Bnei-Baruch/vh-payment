@@ -3,7 +3,6 @@ import React from 'react';
 import Auth from './components/Auth';
 import axios from 'axios';
 import store from './redux/store';
-import appconfig from './shared/appconfig';
 let token;
 store.subscribe(listener)
 
@@ -17,7 +16,7 @@ function listener() {
   token = getToken(store.getState())
 }
 axios.interceptors.request.use((c) => {
-  if (token && c.url && c.url.includes(appconfig.PAYMENT_DOMAIN)) {
+  if (token && c.url && c.url.includes(window.APP_CONFIG.PAYMENT_DOMAIN)) {
     let header = {
       Authorization: "Bearer " + token,
       Accept: "application/json",
