@@ -7,7 +7,7 @@ window.APP_CONFIG = {
     PAYMENT_SUCCESS_URL: '{{env.Getenv "PAYMENT_SUCCESS_URL" "http://eurokab.info/pay/success"}}',
     PAYMENT_CANCEL_URL: '{{env.Getenv "PAYMENT_CANCEL_URL" "http://eurokab.info"}}',
     PAYMENT_ERROR_URL: '{{env.Getenv "PAYMENT_ERROR_URL" "http://eurokab.info/pay/error"}}',
-    PAYMENT_DOMAIN: '{{env.Getenv "PAYMENT_ERROR_URL" "eurokab.info"}}',
+    PAYMENT_DOMAIN: '{{env.Getenv "PAYMENT_DOMAIN" "eurokab.info"}}',
     KEYCLOAK_CONFIG: {
         realm: '{{env.Getenv "KEYCLOAK_REALM" "master"}}',
         url: '{{env.Getenv "KEYCLOAK_URL" "https://auth.2serv.eu/auth/"}}',
