@@ -108,9 +108,9 @@ const Order = () => {
       RecurringFreq: order.product.recurringFreq,
       //replace this with routing mechanism
       successUrl:
-      window.APP_CONFIG.PAYMENT_SUCCESS_URL + '/' + order.product.productType,
-      cancelUrl: window.APP_CONFIG.PAYMENT_CANCEL_URL,
-      errorUrl: window.APP_CONFIG.PAYMENT_ERROR_URL,
+      window.APP_CONFIG.VH_BASE_URL + '/pay/success/' + order.product.productType,
+      cancelUrl: window.APP_CONFIG.VH_BASE_URL,
+      errorUrl: window.APP_CONFIG.VH_BASE_URL+"/pay/error",
     }
     handlePayment(data).then(response => {
       setOnPayClicked(false);

@@ -16,7 +16,7 @@ function listener() {
   token = getToken(store.getState())
 }
 axios.interceptors.request.use((c) => {
-  if (token && c.url && c.url.includes(window.APP_CONFIG.PAYMENT_DOMAIN)) {
+  if (token && c.url && c.url.includes(window.APP_CONFIG.VH_BASE_URL.replace(/(^\w+:|^)\/\//, ''))) {
     let header = {
       Authorization: "Bearer " + token,
       Accept: "application/json",
