@@ -33,6 +33,10 @@ deploy_staging:
   tags:
     - staging
   script:
+    - mkdir -p /opt/$CI_PROJECT_PATH || true
+    - env
+    - for variable in "${!DYN_STAGING@}"; do echo "${variable#DYN_STAGING_}"="${!variable}"; export "${variable#DYN_STAGING_}"="${!variable}"; done;
+    - gomplate --input-dir=config-templates --output-map="/opt/$CI_PROJECT_PATH/public/config/{{ .in | strings.ReplaceAll \".js\" \"-${CI_COMMIT_SHORT_SHA}.js\" }}"
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - IMAGE_NAME=$STAGING_IMAGE docker-compose up -d
   only:
@@ -47,7 +51,10 @@ build_production:
   services:
     - docker:19.03.12-dind
   script:
+    - mkdir -p /opt/$CI_PROJECT_PATH || true
     - env
+    - for variable in "${!DYN_PROD@}"; do echo "${variable#DYN_PROD_}"="${!variable}"; export "${variable#DYN_PROD_}"="${!variable}"; done;
+    - gomplate --input-dir=config-templates --output-map="/opt/$CI_PROJECT_PATH/public/config/{{ .in | strings.ReplaceAll \".js\" \"-${CI_COMMIT_SHORT_SHA}.js\" }}"
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build --build-arg PUBLIC_URL=$PRODUCTION_URL --build-arg  IS_STAGING_BUILD=false -t $PROD_IMAGE .
     - docker push $PROD_IMAGE

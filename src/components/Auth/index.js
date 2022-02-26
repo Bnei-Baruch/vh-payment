@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 
 import Keycloak from 'keycloak-js';
-import keycloakConfig from './keycloak-config';
 import {setLoggedInUser} from '../../redux/actions/userActions';
 import Loader from '../Loader';
 import Routes from '../../routes';
@@ -14,7 +13,7 @@ const Auth = () => {
 
   useEffect(() => {
     const login = async () => {
-      const keycloak = Keycloak(keycloakConfig);
+      const keycloak = Keycloak(window.APP_CONFIG.KEYCLOAK_CONFIG);
       const authenticated = await keycloak.init({onLoad: 'login-required'})
       await keycloak.loadUserProfile();
 
