@@ -20,7 +20,6 @@ import HeaderLayout from '../../layouts/HeaderLayout'
 import CurrencyPicker from '../../components/CurencyPicker'
 import { useParams } from 'react-router-dom'
 import { setOrder } from '../../redux/actions/orderActions'
-import appConfig from '../../shared/appconfig'
 import { handlePayment } from '../../services/orderservice'
 import { getProduct } from '../../services/productservice'
 import { getProfile } from '../../services/userservice'
@@ -109,9 +108,9 @@ const Order = () => {
       RecurringFreq: order.product.recurringFreq,
       //replace this with routing mechanism
       successUrl:
-        appConfig.PAYMENT_SUCCESS_URL + '/' + order.product.productType,
-      cancelUrl: appConfig.PAYMENT_CANCEL_URL,
-      errorUrl: appConfig.PAYMENT_ERROR_URL,
+      window.APP_CONFIG.VH_BASE_URL + '/pay/success/' + order.product.productType,
+      cancelUrl: window.APP_CONFIG.VH_BASE_URL,
+      errorUrl: window.APP_CONFIG.VH_BASE_URL+"/pay/error",
     }
     handlePayment(data).then(response => {
       setOnPayClicked(false);

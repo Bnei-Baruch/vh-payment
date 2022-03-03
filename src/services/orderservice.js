@@ -1,9 +1,8 @@
 import axios from "axios"
-import appConfig from '../shared/appconfig'
 
 export const handlePayment = (data) => {
     return axios
-      .post(appConfig.VH_ORDER + '/orders/newandpay', data)
+      .post(`${window.APP_CONFIG.VH_API_BASE_URL}/pay` + '/orders/newandpay', data)
       .then((response) => response)
       .catch((error) => {
           throw error
@@ -12,7 +11,7 @@ export const handlePayment = (data) => {
 
 export const paymentSuccess = (data) => {
     return axios
-        .post(appConfig.VH_ORDER + '/orders/paid', data)
+        .post(`${window.APP_CONFIG.VH_API_BASE_URL}/pay` + '/orders/paid', data)
         .then(function (response) {
             return response;
         })
