@@ -181,7 +181,6 @@ const Order = () => {
     return <Loader />
   }
 
-  console.log(order)
   return (
     <>
       <HeaderLayout />
