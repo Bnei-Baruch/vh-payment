@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Order from '../pages/Order';
 import Ticket from '../pages/Order/tickets';
+import UserDetail from '../pages/registration';
 import Success from '../pages/Success';
 import Error from '../pages/Error';
 import NotFound from '../pages/Error/NotFound';
@@ -11,6 +12,7 @@ const Routes = () => (
       <Switch>
         <Route exact from='/pay/order/:id' component={Order}/>
         <Route exact from='/pay/order/ticket/:id' component={Ticket}/>
+        <Route from='/pay/order/register/userdetail' component={UserDetail}/>
         <Route from='/pay/success/:pdt' component={Success}/>
         <Route from='/pay/success' component={Success}/>
         <Route from='/pay/error' component={Error}/>
