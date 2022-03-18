@@ -6,12 +6,16 @@ import UserDetail from '../pages/registration';
 import Success from '../pages/Success';
 import Error from '../pages/Error';
 import NotFound from '../pages/Error/NotFound';
+import Payment from '../pages/Order/payment';
+import OtherPayment from '../pages/Order/otherpayment';
 
 const Routes = () => (
     <Router>
       <Switch>
         <Route exact from='/pay/order/:id' component={Order}/>
         <Route exact from='/pay/order/ticket/:id' component={Ticket}/>
+        <Route exact from='/pay/order/ticket/payment/:id' component={Payment}/>
+        <Route exact from='/pay/order/ticket/payment/others/:id' component={OtherPayment}/>
         <Route from='/pay/order/register/userdetail' component={UserDetail}/>
         <Route from='/pay/success/:pdt' component={Success}/>
         <Route from='/pay/success' component={Success}/>
