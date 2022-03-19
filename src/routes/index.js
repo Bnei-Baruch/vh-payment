@@ -8,6 +8,7 @@ import Error from '../pages/Error';
 import NotFound from '../pages/Error/NotFound';
 import Payment from '../pages/Order/payment';
 import OtherPayment from '../pages/Order/otherpayment';
+import Needhelp from '../pages/Order/Needhelp';
 
 const Routes = () => (
     <Router>
@@ -15,6 +16,7 @@ const Routes = () => (
         <Route exact from='/pay/order/:id' component={Order}/>
         <Route exact from='/pay/order/ticket/:id' component={Ticket}/>
         <Route exact from='/pay/order/ticket/payment/:id' component={Payment}/>
+        <Route exact from='/pay/order/ticket/payment/help/:id' component={Needhelp}/>
         <Route exact from='/pay/order/ticket/payment/others/:id' component={OtherPayment}/>
         <Route from='/pay/order/register/userdetail' component={UserDetail}/>
         <Route from='/pay/success/:pdt' component={Success}/>

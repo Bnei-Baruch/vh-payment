@@ -52,6 +52,7 @@
     "upload": "Upload",
     "step": "Step",
     "amount": "Amount",
+    "ok": "Ok",
     "paymentMethod": "Payment Method"
   },
   "paymentMethod": {
@@ -65,5 +66,12 @@
     "incash": "In cash",
     "doYouHaveAReciept": "Do you have a reciept?",
     "extraInformation":"Extra Information"
+  },
+  "help": {
+    "header": "Need Help?",
+    "requestHelp": "You cannot afford to pay and you want to request for help?",
+    "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+    "submittedHeader": "Request Submitted",
+    "requestSubmitted": "Your request for help have been submitted and soon will be reviewed."
   }
 }
