@@ -8,7 +8,7 @@ variables:
   PROD_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
   PROD_LATEST_IMAGE: $CI_REGISTRY_IMAGE:latest
   STAGING_URL: "/pay/"
-  PRODUCTION_URL: "https://$PRODUCTION_DOMAIN/pay/"
+  PRODUCTION_URL: "/pay/"
 
 build_staging:
   image: docker:latest
@@ -18,6 +18,7 @@ build_staging:
   services:
     - docker:19.03.12-dind
   script:
+    - env
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build --build-arg PUBLIC_URL=$STAGING_URL --build-arg REACT_APP_COMMIT_SHA=$CI_COMMIT_SHORT_SHA -t $STAGING_IMAGE .
     - docker tag $STAGING_IMAGE $STAGING_LATEST_IMAGE
