@@ -2,6 +2,8 @@ FROM node:14.12.0-stretch as builder
 # this will be passed in as  --build-arg, when building docker image
 # default value will be localhost
 ARG PUBLIC_URL=""
+
+ARG REACT_APP_COMMIT_SHA="dynamic"
 # below environment variable will be considered when npm building 
 # production assets / html
 ENV PUBLIC_URL=${PUBLIC_URL}
