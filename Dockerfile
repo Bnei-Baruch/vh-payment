@@ -10,6 +10,8 @@ ARG IS_STAGING_BUILD="true"
 
 ENV REACT_APP_STAGING="${IS_STAGING_BUILD}"
 
+ENV REACT_APP_COMMIT_SHA="${REACT_APP_COMMIT_SHA}"
+
 RUN mkdir vh-payment && chown -R node:node vh-payment
 
 WORKDIR /vh-payment

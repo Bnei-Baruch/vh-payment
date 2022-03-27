@@ -7,6 +7,8 @@ services:
     mem_limit: 50M
     ports:
       - 8084:80
+    volumes:
+      - /opt/$CI_PROJECT_PATH/public/config/:/usr/share/nginx/html/config/
 networks:
     default:
         external:
