@@ -8,6 +8,10 @@ exports.tickets = {
       action: "Select the type of ticket"
     },
   },
+  event: {
+    slug: "eventslug",
+    id: "XXXX",
+  },
   plans: [
     {
       content: {
