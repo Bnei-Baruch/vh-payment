@@ -1,3 +1,143 @@
+
+exports.tickets = {
+  name: "maytickets",
+  content: {
+    en: {
+      title: "On the Path to Wholeness",
+      subtitle: "29.4 – 1.5 2022",
+      action: "Select the type of ticket"
+    },
+  },
+  plans: [
+    {
+      content: {
+        en: {
+          name: "Regular Ticket",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+        }
+      },
+      flow: {
+        type: "checkout"
+      },
+      payment_options: [
+        {
+          name: "pelecard",
+          content: {
+            en: {
+              label: "Credit/Debit Card"
+            }
+          }
+        },
+        {
+          name: "others",
+          content: {
+            en: {
+              label: "Other payment type"
+            }
+          }
+        }
+      ],
+      name: "regular",
+      membership: false,
+      order: 1,
+      price: {
+        usd: {
+          amount: 30
+        },
+        nis: {
+          amount: 100
+        },
+        eur: {
+          amount: 25
+        },
+      },
+      product: {
+        SKU: '40033',
+        reference: 'Convention',
+        type: 'regular',
+        productType: 't-0522-01',
+        recurringFreq: 0,
+        organization: 'ben2'
+      }
+    },
+    {
+      content: {
+        en: {
+          name: "Help Haver",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+          intersticial: {
+            title: "Title",
+            body: "Message",
+            button: "Next"
+          },
+          redirect_url: "/dash/membership"
+        }
+      },
+      flow: {
+        type: "helphaver",
+        intersticial: true
+      },
+      name: "membership",
+      membership: false,
+      order: 2,
+      price: {
+        usd: {
+          amount: 30
+        },
+        nis: {
+          amount: 100
+        },
+        eur: {
+          amount: 25
+        },
+      },
+      product: {
+        SKU: '40033',
+        reference: 'Convention',
+        type: 'regular',
+        productType: 't-0522-02-hp',
+        recurringFreq: 0,
+        organization: 'ben2'
+      }
+    },
+    {
+      content: {
+        en: {
+          name: "Help Haver",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+          intersticial: {
+            title: "Title",
+            body: "Message",
+            button: "Next"
+          },
+          redirect_url: "/dash/membership"
+        }
+      },
+      flow: {
+        type: "redirect",
+        intersticial: true
+      },
+      name: "membership",
+      membership: false,
+      order: 2,
+      price: {
+        usd: {
+          amount: 30
+        },
+        nis: {
+          amount: 100
+        },
+        eur: {
+          amount: 25
+        },
+      },
+    }
+  ]
+};
+
 exports.convention = {
   language: {
     en: {
