@@ -64,20 +64,48 @@ exports.tickets = {
     {
       content: {
         en: {
-          name: "Help Haver",
+          name: "special",
           description: ["First bullet", "Second bullet", "3rd one"],
           button_label: "Select",
-          intersticial: {
-            title: "Title",
-            body: "Message",
-            button: "Next"
-          },
-          redirect_url: "/dash/membership"
+          options: [
+            {
+              label: "ukraine",
+              name: "ukraine",
+              intersticial: {
+                title: "Ukraine",
+                body: "Message",
+                button: "Next"
+              },
+              redirect_url: "/doweneedone?",
+              type: "register"
+            },
+            {
+              label: "russia",
+              name: "russia",
+              intersticial: {
+                title: "Ukraine",
+                body: "Message",
+                button: "Next"
+              },
+              redirect_url: "/doweneedone?",
+              type: "register"
+            },
+            {
+              label: "helphaver",
+              name: "helphaver",
+              intersticial: {
+                title: "Help Haver",
+                body: "Message",
+                button: "Next"
+              },
+              redirect_url: "https://google.com",
+              type: "helphaver"
+            }
+          ],
         }
       },
       flow: {
-        type: "helphaver",
-        intersticial: true
+        type: "options",
       },
       name: "membership",
       membership: false,
@@ -97,7 +125,7 @@ exports.tickets = {
         SKU: '40033',
         reference: 'Convention',
         type: 'regular',
-        productType: 't-0522-02-hp',
+        productType: 't-0522-02-sp',
         recurringFreq: 0,
         organization: 'ben2'
       }
@@ -105,7 +133,7 @@ exports.tickets = {
     {
       content: {
         en: {
-          name: "Help Haver",
+          name: "Membership Ticket",
           description: ["First bullet", "Second bullet", "3rd one"],
           button_label: "Select",
           intersticial: {
