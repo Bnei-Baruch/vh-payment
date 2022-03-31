@@ -1,7 +1,21 @@
-import { Button, Divider, Grid, Typography } from "@material-ui/core";
+import {
+  Button,
+  Divider,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Grid,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@material-ui/core";
 import React from "react";
 import HeaderLayout from "../../layouts/HeaderLayout";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { getEventsProductBySlug } from "../../services/productservice";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -29,112 +43,93 @@ const CenterTextGrey = styled(Typography)`
 const CTAGrid = styled(Grid)`
   text-align: center;
 `;
-export default function tickets() {
+
+export default function Tickets() {
+  const { i18n } = useTranslation();
+  const { event_slug } = useParams();
+  const [product, setProduct] = React.useState(undefined);
+  const currency = useSelector((state) => state.currency);
+  console.log(product);
+
+  React.useEffect(() => {
+    setProduct(getEventsProductBySlug(event_slug));
+  }, [event_slug]);
+
+  if (!product) return <></>;
+
+  const { content, plans } = product;
+  const header =
+    typeof content[i18n.language] !== "undefined"
+      ? content[i18n.language]
+      : content["en"];
   return (
     <>
       <HeaderLayout />
       <TicketGrid container spacing={6}>
         <Grid item xs={12}>
           <br />
-          <CenterText variant="h1">Registration</CenterText> <br />
-          <CenterText variant="h1">Convention Title</CenterText>
-          <CenterTextGrey variant="h6">24 - March - 2021</CenterTextGrey>
+          <CenterText variant="h1">{header.title}</CenterText>
+          <CenterTextGrey variant="h6">{header.subtitle}</CenterTextGrey>
           <br />
           <Divider />
           <br />
-          <CenterText variant="h6">Select the type of ticket</CenterText>
+          <CenterText variant="h6">{header.action}</CenterText>
         </Grid>
         <Grid container item xs={12} spacing={6}>
-          <Grid item xs={12} md={4}>
-            <TicketCard>
-              <CenterText variant="h1">Regular Ticket</CenterText>
-              <CenterTextGrey variant="h2">$10</CenterTextGrey>
-              <Grid>
-                <ul>
-                  <li>
-                    <Typography variant="body">
-                      Lorum Ipsum Lorem Ipsum
-                    </Typography>
-                  </li>
-                  <li>
-                    <Typography variant="body">
-                      Lorum Ipsum Lorem Ipsum
-                    </Typography>
-                  </li>
-                  <li>
-                    <Typography variant="body">
-                      Lorum Ipsum Lorem Ipsum
-                    </Typography>
-                  </li>
-                </ul>
+          {plans.map((plan) => {
+            const planContent =
+              typeof plan.content[i18n.language] !== "undefined"
+                ? plan.content[i18n.language]
+                : plan.content["en"];
+            return (
+              <Grid item xs={12} md={4}>
+                <TicketCard>
+                  <CenterText variant="h1">{planContent.name}</CenterText>
+                  <br />
+                  <Divider />
+                  <br />
+                  <CenterTextGrey variant="h2">
+                    {currency.sign + " " + plan.price[currency.id].amount}
+                  </CenterTextGrey>
+                  <Grid>
+                    <ul>
+                      {planContent.description.map((item) => (
+                        <li>
+                          <Typography variant="body">{item}</Typography>
+                        </li>
+                      ))}
+                    </ul>
+                  </Grid>
+                  <Grid>
+                    {planContent.options && (
+                      <FormControl component="fieldset">
+                        <FormLabel component="legend">Select Option</FormLabel>
+                        <RadioGroup
+                          aria-label="gender"
+                          name="gender1"
+                          style={{ flexDirection: "row" }}
+                        >
+                          {planContent.options.map((item) => (
+                            <FormControlLabel
+                              value={item.name}
+                              control={<Radio />}
+                              label={item.label}
+                            />
+                          ))}
+                        </RadioGroup>
+                        <br />
+                      </FormControl>
+                    )}
+                  </Grid>
+                  <CTAGrid>
+                    <Button variant="contained" color="secondary">
+                      {planContent.button_label}
+                    </Button>
+                  </CTAGrid>
+                </TicketCard>
               </Grid>
-              <CTAGrid>
-                <Button variant="contained" color="secondary">
-                  Select
-                </Button>
-              </CTAGrid>
-            </TicketCard>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <TicketCard>
-              <CenterText variant="h1">Membership Ticket</CenterText>
-              <CenterTextGrey variant="h2">$10</CenterTextGrey>
-              <Grid>
-                <ul>
-                  <li>
-                    <Typography variant="body">
-                      Lorum Ipsum Lorem Ipsum
-                    </Typography>
-                  </li>
-                  <li>
-                    <Typography variant="body">
-                      Lorum Ipsum Lorem Ipsum
-                    </Typography>
-                  </li>
-                  <li>
-                    <Typography variant="body">
-                      Lorum Ipsum Lorem Ipsum
-                    </Typography>
-                  </li>
-                </ul>
-              </Grid>
-              <CTAGrid>
-                <Button variant="contained" color="secondary">
-                  Select
-                </Button>
-              </CTAGrid>
-            </TicketCard>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <TicketCard>
-              <CenterText variant="h1">Help Haver</CenterText>
-              <CenterTextGrey variant="h2">$10</CenterTextGrey>
-              <Grid>
-                <ul>
-                  <li>
-                    <Typography variant="body">
-                      Lorum Ipsum Lorem Ipsum
-                    </Typography>
-                  </li>
-                  <li>
-                    <Typography variant="body">
-                      Lorum Ipsum Lorem Ipsum
-                    </Typography>
-                  </li>
-                  <li>
-                    <Typography variant="body">
-                      Lorum Ipsum Lorem Ipsum
-                    </Typography>
-                  </li>
-                </ul>
-              </Grid>
-              <CTAGrid>
-                <Button variant="contained" color="secondary">
-                  Select
-                </Button>
-              </CTAGrid>
-            </TicketCard>
-          </Grid>
+            );
+          })}
         </Grid>
       </TicketGrid>
     </>

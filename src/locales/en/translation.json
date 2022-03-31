@@ -53,7 +53,8 @@
     "step": "Step",
     "amount": "Amount",
     "ok": "Ok",
-    "paymentMethod": "Payment Method"
+    "paymentMethod": "Payment Method",
+    "registration": "Registration"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
