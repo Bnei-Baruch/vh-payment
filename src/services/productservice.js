@@ -1,15 +1,21 @@
-import { convention, convention10, conventiontest, userfee, userfeeonetime } from "../shared/products";
+import {
+  convention,
+  convention10,
+  conventiontest,
+  tickets,
+  userfee,
+  userfeeonetime,
+} from "../shared/products";
 
 //Getting the Product.
 /**
  * This is a service to get the product can be replace later
  * with the backend API.
- * 
+ *
  * @param {*} id Id of the product
  * @returns Product of the payment
  */
 export const getProduct = (id) => {
-
   if (id) {
     switch (id) {
       case "1":
@@ -24,4 +30,8 @@ export const getProduct = (id) => {
         return convention;
     }
   }
+};
+
+export const getEventsProductBySlug = (slug) => {
+  if (tickets.event.slug === slug) return tickets;
 };
