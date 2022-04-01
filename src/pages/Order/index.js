@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -10,19 +10,19 @@ import {
   Paper,
   Slider,
   Typography,
-} from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import Loader from '../../components/Loader'
-import ContentLayout from '../../layouts/ContentLayout'
-import HeaderLayout from '../../layouts/HeaderLayout'
-import CurrencyPicker from '../../components/CurencyPicker'
-import { useParams } from 'react-router-dom'
-import { setOrder } from '../../redux/actions/orderActions'
-import { handlePayment } from '../../services/orderservice'
-import { getProduct } from '../../services/productservice'
-import { getProfile } from '../../services/userservice'
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+import { Trans, useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/Loader";
+import ContentLayout from "../../layouts/ContentLayout";
+import HeaderLayout from "../../layouts/HeaderLayout";
+import CurrencyPicker from "../../components/CurencyPicker";
+import { useParams } from "react-router-dom";
+import { setOrder } from "../../redux/actions/orderActions";
+import { handlePayment } from "../../services/orderservice";
+import { getProduct } from "../../services/productservice";
+import { getProfile } from "../../services/userservice";
 
 const useStyles = makeStyles({
   header: {
@@ -36,63 +36,63 @@ const useStyles = makeStyles({
     fontSize: 48,
   },
   actions: {
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
   secondaryFont: {
-    fontFamily: 'Abel',
+    fontFamily: "Abel",
   },
   agree: {
-    fontFamily: 'Abel',
+    fontFamily: "Abel",
     fontSize: 16,
   },
   payBtn: {
-    fontFamily: 'Abel',
+    fontFamily: "Abel",
     marginRight: 8,
   },
   loader: {
-    color: '#fff !important',
-    height: '15px !important',
-    width: '15px !important'
-  }
-})
+    color: "#fff !important",
+    height: "15px !important",
+    width: "15px !important",
+  },
+});
 
 const Order = () => {
-  const classes = useStyles()
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const order = useSelector((state) => state.order)
-  const user = useSelector((state) => state.user)
-  const currency = useSelector((state) => state.currency)
-  const language = useSelector((state) => state.language)
+  const classes = useStyles();
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const order = useSelector((state) => state.order);
+  const user = useSelector((state) => state.user);
+  const currency = useSelector((state) => state.currency);
+  const language = useSelector((state) => state.language);
 
-  const [loading, setLoading] = useState(true)
-  const [payClicked, setOnPayClicked] = useState(false)
-  const [agree, setAgree] = useState(false)
-  const [profileData, setUserProfileData] = useState(null)
-  const [dbData, setDbData] = useState()
-  const { id } = useParams()
+  const [loading, setLoading] = useState(true);
+  const [payClicked, setOnPayClicked] = useState(false);
+  const [agree, setAgree] = useState(false);
+  const [profileData, setUserProfileData] = useState(null);
+  const [dbData, setDbData] = useState();
+  const { id } = useParams();
 
   //fetching user profile data.
   const getUserProfileData = async () => {
     if (user && user.keycloak && user.keycloak.subject) {
       const userProfileData = await getProfile(user.keycloak.subject);
-      setUserProfileData(userProfileData)
+      setUserProfileData(userProfileData);
     }
-  }
+  };
   const handlePay = async () => {
     setOnPayClicked(true);
     const data = {
       // Account details
-      AccountID: '-',
+      AccountID: "-",
       FirstName: user.profile.firstName,
       LastName: user.profile.lastName,
       Email: user.profile.email,
-      Phone: profileData?.mobile_number || '',
-      Street: profileData?.street_address || '',
-      City: profileData?.city || '',
-      Postcode: profileData?.postal_code || '',
-      State: profileData?.state_region || '',
-      Country: profileData?.country || '',
+      Phone: profileData?.mobile_number || "",
+      Street: profileData?.street_address || "",
+      City: profileData?.city || "",
+      Postcode: profileData?.postal_code || "",
+      State: profileData?.state_region || "",
+      Country: profileData?.country || "",
 
       //Product details
       SKU: order.product.SKU,
@@ -108,31 +108,33 @@ const Order = () => {
       RecurringFreq: order.product.recurringFreq,
       //replace this with routing mechanism
       successUrl:
-      window.APP_CONFIG.VH_BASE_URL + '/pay/success/' + order.product.productType,
+        window.APP_CONFIG.VH_BASE_URL +
+        "/pay/success/" +
+        order.product.productType,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
-      errorUrl: window.APP_CONFIG.VH_BASE_URL+"/pay/error",
-    }
-    handlePayment(data).then(response => {
-      setOnPayClicked(false);
-      window.location.href = response.data.url
-
-    }).catch((error) => {
-      setOnPayClicked(false);
-      console.error(error)
-    })
-      
-  }
+      errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
+    };
+    handlePayment(data)
+      .then((response) => {
+        setOnPayClicked(false);
+        window.location.href = response.data.url;
+      })
+      .catch((error) => {
+        setOnPayClicked(false);
+        console.error(error);
+      });
+  };
 
   const handleSliderChange = (amount) => {
-    let newAmount = order.currency.min
+    let newAmount = order.currency.min;
     if (amount >= (order.currency.min || 0)) {
-      newAmount = amount
+      newAmount = amount;
     }
     dispatch(
       setOrder({ ...order, currency: { ...order.currency, amount: newAmount } })
-    )
-  }
-  
+    );
+  };
+
   /**
    * This useeffect fetches product
    * of the payment on the nature of type
@@ -143,9 +145,9 @@ const Order = () => {
       setDbData(product);
     }
     setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-  }, [id])
+      setLoading(false);
+    }, 1000);
+  }, [id]);
 
   /**
    * This user effect is user to fetch
@@ -153,16 +155,16 @@ const Order = () => {
    */
   useEffect(() => {
     getUserProfileData();
-  }, [user])
+  }, [user]);
 
   /**
    * This User Effect handle the
-   * immediate changes in laguage or curreny 
+   * immediate changes in laguage or curreny
    * to accomodate the product in redux
    */
   useEffect(() => {
     if (!dbData) {
-      return
+      return;
     }
     if (dbData.language[language.id] && dbData.currency[currency.id]) {
       const data = {
@@ -170,15 +172,15 @@ const Order = () => {
         ...dbData.language[language.id],
         currency: { ...dbData.currency[currency.id] },
         product: { ...dbData.product },
-      }
-      dispatch(setOrder(data))
+      };
+      dispatch(setOrder(data));
     } else {
-      console.error('Language or currency not supported')
+      console.error("Language or currency not supported");
     }
-  }, [dbData, language, currency, dispatch])
+  }, [dbData, language, currency, dispatch]);
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
@@ -267,9 +269,9 @@ const Order = () => {
             />
             <Typography component="span" className={classes.agree}>
               <Trans>
-                {t('order.agree')} &nbsp;
+                {t("order.agree")} &nbsp;
                 <Link href={order.termsLink} target="_blank">
-                  {t('order.tos')}
+                  {t("order.tos")}
                 </Link>
               </Trans>
             </Typography>
@@ -282,7 +284,7 @@ const Order = () => {
               href={order.cancel.url}
               className={classes.secondaryFont}
             >
-              {order.cancel.text || t('order.cancel')}
+              {order.cancel.text || t("order.cancel")}
             </Button>
             <Button
               variant="contained"
@@ -291,13 +293,19 @@ const Order = () => {
               disabled={!agree}
               className={classes.payBtn}
             >
-           {payClicked && <CircularProgress m={2} className={classes.loader} />} &nbsp; {!payClicked ? order.buttonText || t('order.pay') : t('order.processing')} 
+              {payClicked && (
+                <CircularProgress m={2} className={classes.loader} />
+              )}{" "}
+              &nbsp;{" "}
+              {!payClicked
+                ? order.buttonText || t("order.pay")
+                : t("order.processing")}
             </Button>
           </CardActions>
         </Paper>
       </ContentLayout>
     </>
-  )
-}
+  );
+};
 
-export default Order
+export default Order;

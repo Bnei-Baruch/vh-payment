@@ -1,56 +1,83 @@
-import {SET_ORDER} from '../types';
+import {
+  SET_ORDER,
+  SET_SELECTED_MEMBERSHIP,
+  SET_SELECTED_TICKET,
+  SET_PRODUCT,
+} from "../types";
 
 const DEFAULT = {
   appbar: {
-    logo: '',
-    text: '',
-    textColor: ''
+    logo: "",
+    text: "",
+    textColor: "",
   },
   header: {
-    title: '',
-    subtitle: '',
-    description: ''
+    title: "",
+    subtitle: "",
+    description: "",
   },
   body: {
-    title: '',
-    description: ''
+    title: "",
+    description: "",
   },
-  termsLink: '',
+  termsLink: "",
   cancel: {
-    text: '',
-    url: ''
+    text: "",
+    url: "",
   },
-  buttonText: '',
+  buttonText: "",
   currency: {
     amount: 0,
     min: 0,
     max: 100,
     step: 1,
-    fixed: true
+    fixed: true,
   },
   product: {
-    SKU: '',
-    reference: '',
-    type: '',
-    productType: '',
+    SKU: "",
+    reference: "",
+    type: "",
+    productType: "",
     recurringFreq: 0,
-    organization: ''
-  }
+    organization: "",
+  },
+  ticketProduct: undefined,
+  selectedTicket: undefined,
+  selectedMembership: undefined,
 };
 
-export default function reducer(state = DEFAULT, {type, payload}) {
+export default function reducer(state = DEFAULT, { type, payload }) {
   switch (type) {
     case SET_ORDER:
       return {
         ...state,
-        appbar: {...state.appbar},
-        header: {...state.header},
-        body: {...state.body},
-        cancel: {...state.cancel},
-        currency: {...state.currency},
-        product: {...state.product},
-        ...payload
+        appbar: { ...state.appbar },
+        header: { ...state.header },
+        body: { ...state.body },
+        cancel: { ...state.cancel },
+        currency: { ...state.currency },
+        product: { ...state.product },
+        ...payload,
       };
+
+    case SET_SELECTED_MEMBERSHIP:
+      return {
+        ...state,
+        selectedMembership: payload,
+      };
+
+    case SET_SELECTED_TICKET:
+      return {
+        ...state,
+        selectedTicket: payload,
+      };
+
+    case SET_PRODUCT:
+      return {
+        ...state,
+        ticketProduct: payload,
+      };
+
     default:
       return state;
   }

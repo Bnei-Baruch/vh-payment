@@ -16,6 +16,12 @@ import { useParams } from "react-router-dom";
 import { getEventsProductBySlug } from "../../services/productservice";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {
+  setProduct,
+  setSelectedTicket,
+} from "../../redux/actions/orderActions";
+import { useHistory } from "react-router-dom";
 const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -44,17 +50,45 @@ const CTAGrid = styled(Grid)`
   text-align: center;
 `;
 
+const selectedStyle = {
+  border: "2px solid #00bcd4",
+};
+
+const blurredStyle = {
+  opacity: "0.3",
+};
+
 export default function Tickets() {
   const { i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { event_slug } = useParams();
-  const [product, setProduct] = React.useState(undefined);
+  const product = useSelector((state) => state.order.ticketProduct);
   const currency = useSelector((state) => state.currency);
-  console.log(product);
+  const selectedTicket = useSelector((state) => state.order.selectedTicket);
+  const [specialOption, setSpecialOption] = React.useState("helphaver");
 
   React.useEffect(() => {
-    setProduct(getEventsProductBySlug(event_slug));
+    dispatch(setProduct(getEventsProductBySlug(event_slug)));
   }, [event_slug]);
 
+  const planSelected = (ticket) => {
+    dispatch(setSelectedTicket(ticket));
+  };
+
+  const navigateToConfirmation = (ticket) => {
+    if (ticket && ticket.name.toLowerCase() === "special") {
+      //Special Case Implmentation
+      return;
+    }
+    if (ticket && ticket.name.toLowerCase() === "membership ticket") {
+      //Special Case Membership Implmentation
+      return;
+    }
+    if (ticket && ticket.name.toLowerCase() === "regular ticket") {
+      history.push(`/pay/order/ticket/payment/${event_slug}`);
+    }
+  };
   if (!product) return <></>;
 
   const { content, plans } = product;
@@ -83,7 +117,15 @@ export default function Tickets() {
                 : plan.content["en"];
             return (
               <Grid item xs={12} md={4}>
-                <TicketCard>
+                <TicketCard
+                  style={
+                    selectedTicket !== undefined
+                      ? selectedTicket === plan
+                        ? selectedStyle
+                        : blurredStyle
+                      : {}
+                  }
+                >
                   <CenterText variant="h1">{planContent.name}</CenterText>
                   <br />
                   <Divider />
@@ -107,6 +149,8 @@ export default function Tickets() {
                         <RadioGroup
                           aria-label="gender"
                           name="gender1"
+                          value={specialOption}
+                          onChange={(e) => setSpecialOption(e.target.value)}
                           style={{ flexDirection: "row" }}
                         >
                           {planContent.options.map((item) => (
@@ -122,9 +166,25 @@ export default function Tickets() {
                     )}
                   </Grid>
                   <CTAGrid>
-                    <Button variant="contained" color="secondary">
-                      {planContent.button_label}
-                    </Button>
+                    {(selectedTicket === undefined ||
+                      selectedTicket !== plan) && (
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => planSelected(plan)}
+                      >
+                        {planContent.button_label}
+                      </Button>
+                    )}
+                    {selectedTicket !== undefined && selectedTicket === plan && (
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => navigateToConfirmation(planContent)}
+                      >
+                        Next
+                      </Button>
+                    )}
                   </CTAGrid>
                 </TicketCard>
               </Grid>

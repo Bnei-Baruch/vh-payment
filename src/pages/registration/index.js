@@ -14,8 +14,8 @@ export default function Registration(props) {
       <HeaderLayout />
       <ContentLayout>
         <Switch>
-          <Route exact from={`${path}/success/:id`} component={Redirection}/>
-          <Route exact from={`${path}/:id`} component={UserDetail}/>
+          <Route exact from={`${path}/success/:event_slug`} component={Redirection}/>
+          <Route exact from={`${path}/:event_slug`} component={UserDetail}/>
       </Switch>
       </ContentLayout>
     </>

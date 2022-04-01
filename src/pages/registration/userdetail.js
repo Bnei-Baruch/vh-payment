@@ -1,16 +1,25 @@
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 const GreyText = styled(Typography)`
   color: #777777;
 `;
 export default function UserDetail() {
+  const { event_slug } = useParams();
+  const history = useHistory();
   const [profile, setProfileData] = useState({});
   const profileData = useSelector((state) => state.user.profileData);
   React.useEffect(() => {
     setProfileData(profileData);
   }, [profileData]);
+
+  const saveProfileAndRedirect = () => {
+    //AP to save changes made
+    history.push(`/pay/order/register/userdetail/success/${event_slug}`);
+  };
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
@@ -118,7 +127,7 @@ export default function UserDetail() {
             />
           </Grid>
           <Grid item xs={12} md={12} style={{ textAlign: "right" }}>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={saveProfileAndRedirect}>
               Next
             </Button>
           </Grid>

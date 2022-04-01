@@ -14,9 +14,11 @@ import {
   getMembershipStatus,
   getUserProfileData,
 } from "../../services/userservice";
+import { useSelector } from "react-redux";
 
 const Auth = () => {
   const [auth, setAuth] = useState({ keycloak: null, authenticated: false });
+  const keycloak = useSelector((state) => state.user.keycloak);
   const dispatch = useDispatch();
 
   const fetchUserDetails = async (keycloak) => {
@@ -31,7 +33,6 @@ const Auth = () => {
       const keycloak = Keycloak(window.APP_CONFIG.KEYCLOAK_CONFIG);
       const authenticated = await keycloak.init({ onLoad: "login-required" });
       await keycloak.loadUserProfile();
-      fetchUserDetails(keycloak);
       const profile = {
         username: keycloak.profile.username,
         firstName: keycloak.profile.firstName,
@@ -52,6 +53,10 @@ const Auth = () => {
   useEffect(() => {
     dispatch(setLoggedInUser(auth));
   }, [dispatch, auth]);
+
+  useEffect(() => {
+    if (keycloak !== null) fetchUserDetails(keycloak);
+  }, [keycloak]);
 
   if (auth.keycloak) {
     if (auth.authenticated) {
