@@ -541,7 +541,22 @@ exports.tickets = {
   name: "maytickets",
   content: {
     en: {
-      title: "On the Path to Wholeness",
+      title: "Only the friends",
+      subtitle: "29.4 – 1.5 2022",
+      action: "Select the type of ticket",
+    },
+    he: {
+      title: "Only the friends HE",
+      subtitle: "29.4 – 1.5 2022",
+      action: "Select the type of ticket",
+    },
+    ru: {
+      title: "Only the friends RU",
+      subtitle: "29.4 – 1.5 2022",
+      action: "Select the type of ticket",
+    },
+    es: {
+      title: "Only the friends ES",
       subtitle: "29.4 – 1.5 2022",
       action: "Select the type of ticket",
     },
@@ -703,6 +718,404 @@ exports.tickets = {
         eur: {
           amount: 25,
         },
+      },
+    },
+    {
+      content: {
+        en: {
+          name: "Membership Ticket",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+        },
+      },
+      flow: {
+        type: "checkout",
+      },
+      payment_options: [
+        {
+          name: "pelecard",
+          content: {
+            en: {
+              label: "Credit/Debit Card",
+            },
+          },
+        },
+        {
+          name: "others",
+          content: {
+            en: {
+              label: "Other payment type",
+            },
+          },
+        },
+      ],
+      name: "regular",
+      membership: true,
+      order: 1,
+      price: {
+        usd: {
+          amount: 10,
+        },
+        nis: {
+          amount: 35,
+        },
+        eur: {
+          amount: 9,
+        },
+      },
+      product: {
+        SKU: "40033",
+        reference: "Convention",
+        type: "regular",
+        productType: "t-0522-02",
+        recurringFreq: 0,
+        organization: "ben2",
+      },
+    },
+    {
+      content: {
+        en: {
+          name: "Special M",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+          options: [
+            {
+              label: "ukraine",
+              name: "ukraine",
+              intersticial: {
+                title: "Ukraine",
+                body: "Message",
+                button: "Next",
+              },
+              redirect_url: "/doweneedone?",
+              type: "register",
+            },
+            {
+              label: "russia",
+              name: "russia",
+              intersticial: {
+                title: "Ukraine",
+                body: "Message",
+                button: "Next",
+              },
+              redirect_url: "/doweneedone?",
+              type: "register",
+            },
+            {
+              label: "helphaver",
+              name: "helphaver",
+              intersticial: {
+                title: "Help Haver",
+                body: "Message",
+                button: "Next",
+              },
+              redirect_url: "https://google.com",
+              type: "helphaver",
+            },
+          ],
+        },
+      },
+      flow: {
+        type: "options",
+      },
+      name: "membership",
+      membership: true,
+      order: 2,
+      price: {
+        usd: {
+          amount: 10,
+        },
+        nis: {
+          amount: 35,
+        },
+        eur: {
+          amount: 9,
+        },
+      },
+      product: {
+        SKU: "40033",
+        reference: "Convention",
+        type: "regular",
+        productType: "t-0522-03-sp",
+        recurringFreq: 0,
+        organization: "ben2",
+      },
+    },
+  ],
+};
+
+
+exports.membershipsplans= {
+  name: "membership",
+  content: {
+    en: {
+      title: "Membership",
+      subtitle: "Membership",
+      action: "Select your plan",
+    },
+    es: {
+      title: "Membershipo",
+      subtitle: "Membership",
+      action: "Select your plan",
+    },
+    ru: {
+      title: "Membership RU",
+      subtitle: "Membership",
+      action: "Select your plan",
+    },
+    he: {
+      title: "Membership HE",
+      subtitle: "Membership",
+      action: "Select your plan",
+    },
+  },
+  plans: [
+    {
+      content: {
+        en: {
+          name: "Manual",
+          description: ["Pay any time of the month", "Multiple payment solutions"],
+          button_label: "Select",
+        },
+        es: {
+          name: "Manual",
+          description: ["Pay any time of the month", "Multiple payment solutions"],
+          button_label: "Select",
+        },
+        ru: {
+          name: "Manual",
+          description: ["Pay any time of the month", "Multiple payment solutions"],
+          button_label: "Select",
+        },
+        he: {
+          name: "Manual",
+          description: ["Pay any time of the month", "Multiple payment solutions"],
+          button_label: "Select",
+        },
+      },
+      flow: {
+        type: "checkout",
+      },
+      payment_options: [
+        {
+          name: "pelecard",
+          content: {
+            en: {
+              label: "Credit/Debit Card",
+            },
+            ru: {
+              label: "Credit/Debit Card",
+            },
+            he: {
+              label: "Credit/Debit Card",
+            },
+            es: {
+              label: "Credit/Debit Card",
+            },
+          },
+        },
+        {
+          name: "others",
+          content: {
+            en: {
+              label: "Other payment type",
+            },
+            he: {
+              label: "Other payment type",
+            },
+            ru: {
+              label: "Other payment type",
+            },
+            es: {
+              label: "Other payment type",
+            },
+          },
+        },
+      ],
+      name: "manual",
+      order: 1,
+      price: {
+        usd: {
+          fixed: false,
+          amount: 10,
+          min: 10,
+          max: 200,
+          step: 1,
+        },
+        eur: {
+          fixed: false,
+          amount: 9,
+          min: 9,
+          max: 200,
+          step: 10,
+        },
+        nis: {
+          fixed: false,
+          amount: 35,
+          min: 35,
+          max: 500,
+          step: 5,
+        },
+      },
+      product: {
+        SKU: "40037",
+        reference: "Membership",
+        type: "recurring",
+        productType: "globalmembership",
+        recurringFreq: 30,
+        organization: "ben2",
+      },
+    },
+    {
+      content: {
+        en: {
+          name: "Automatic",
+          description: ["Pay any time of the month", "Multiple payment solutions"],
+          button_label: "Select",
+        },
+        es: {
+          name: "Automatic ES",
+          description: ["Pay any time of the month", "Multiple payment solutions"],
+          button_label: "Select",
+        },
+        ru: {
+          name: "Automatic RU",
+          description: ["Pay any time of the month", "Multiple payment solutions"],
+          button_label: "Select",
+        },
+        he: {
+          name: "Automatic HE",
+          description: ["Pay any time of the month", "Multiple payment solutions"],
+          button_label: "Select",
+        },
+      },
+      flow: {
+        type: "checkout",
+      },
+      payment_options: [
+        {
+          name: "pelecard",
+          content: {
+            en: {
+              label: "Credit/Debit Card",
+            },
+            ru: {
+              label: "Credit/Debit Card",
+            },
+            he: {
+              label: "Credit/Debit Card",
+            },
+            es: {
+              label: "Credit/Debit Card",
+            },
+          },
+        }
+      ],
+      name: "automatic",
+      order: 2,
+      price: {
+        usd: {
+          fixed: false,
+          amount: 10,
+          min: 10,
+          max: 200,
+          step: 1,
+        },
+        eur: {
+          fixed: false,
+          amount: 9,
+          min: 9,
+          max: 200,
+          step: 10,
+        },
+        nis: {
+          fixed: false,
+          amount: 35,
+          min: 35,
+          max: 500,
+          step: 5,
+        },
+      },
+      product: {
+        SKU: "40037",
+        reference: "Membership",
+        type: "recurring",
+        productType: "globalmembership",
+        recurringFreq: 30,
+        organization: "ben2",
+      },
+    },
+    {
+      content: {
+        en: {
+          name: "Help Haver",
+          description: ["If you have financial issues, you can apply for help"],
+          button_label: "Select",
+          intersticial: {
+            title: "Title",
+            body: "Message",
+            button: "Next",
+          },
+          redirect_url: "https://google.com",
+        },
+        ru: {
+          name: "Help Haver",
+          description: ["If you have financial issues, you can apply for help"],
+          button_label: "Select",
+          intersticial: {
+            title: "Title",
+            body: "Message",
+            button: "Next",
+          },
+          redirect_url: "https://google.com",
+        },
+        es: {
+          name: "Help Haver",
+          description: ["If you have financial issues, you can apply for help"],
+          button_label: "Select",
+          intersticial: {
+            title: "Title",
+            body: "Message",
+            button: "Next",
+          },
+          redirect_url: "https://google.com",
+        },
+        he: {
+          name: "Help Haver",
+          description: ["If you have financial issues, you can apply for help"],
+          button_label: "Select",
+          intersticial: {
+            title: "Title",
+            body: "Message",
+            button: "Next",
+          },
+          redirect_url: "https://google.com",
+        },
+      },
+      flow: {
+        type: "redirect",
+        intersticial: true,
+      },
+      name: "membership-hh",
+      order: 3,
+      price: {
+        usd: {
+          amount: 0,
+        },
+        nis: {
+          amount: 100,
+        },
+        eur: {
+          amount: 25,
+        },
+      },
+      product: {
+        SKU: "40037",
+        reference: "Membership",
+        type: "recurring",
+        productType: "globalmembership",
+        recurringFreq: 30,
+        organization: "ben2",
       },
     },
   ],
