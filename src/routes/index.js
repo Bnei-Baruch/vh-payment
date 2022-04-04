@@ -15,9 +15,9 @@ const Routes = () => (
       <Switch>
         <Route exact from='/pay/order/:id' component={Order}/>
         <Route exact from='/pay/order/ticket/:event_slug' component={Ticket}/>
-        <Route exact from='/pay/order/ticket/payment/:id' component={Payment}/>
-        <Route exact from='/pay/order/ticket/payment/help/:id' component={Needhelp}/>
-        <Route exact from='/pay/order/ticket/payment/others/:id' component={OtherPayment}/>
+        <Route exact from='/pay/order/ticket/payment/:event_slug' component={Payment}/>
+        <Route exact from='/pay/order/ticket/payment/help/:event_slug' component={Needhelp}/>
+        <Route exact from='/pay/order/ticket/payment/others/:event_slug' component={OtherPayment}/>
         <Route from='/pay/order/register/userdetail' component={UserDetail}/>
         <Route from='/pay/success/:pdt' component={Success}/>
         <Route from='/pay/success' component={Success}/>
