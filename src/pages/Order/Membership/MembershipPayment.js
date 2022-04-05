@@ -17,11 +17,11 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import CurrencyPicker from "../../components/CurencyPicker";
-import ContentLayout from "../../layouts/ContentLayout";
-import HeaderLayout from "../../layouts/HeaderLayout";
-import { handlePayment } from "../../services/orderservice";
-import { getProfile } from "../../services/userservice";
+import CurrencyPicker from "../../../components/CurencyPicker";
+import ContentLayout from "../../../layouts/ContentLayout";
+import HeaderLayout from "../../../layouts/HeaderLayout";
+import { handlePayment } from "../../../services/orderservice";
+import { getProfile } from "../../../services/userservice";
 const PaymentTile = styled.div`
   padding: 20px 20px;
   > span:first-child {
@@ -47,7 +47,7 @@ const SubText = styled.div`
 const HeaderTitle = styled(Typography)`
   text-align: center;
 `;
-export default function Payment() {
+export default function MembershipPayment() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
   const { event_slug } = useParams();
@@ -58,6 +58,9 @@ export default function Payment() {
   const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
+  const selectedMembership = useSelector(
+    (state) => state.order.selectedMembership
+  );
   const product = useSelector((state) => state.order.ticketProduct);
   const nextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -132,8 +135,8 @@ export default function Payment() {
     }
   };
 
-  if (!product) return <></>;
-  let { content } = product;
+  if (!selectedMembership) return <></>;
+  let { content } = selectedMembership;
   let event = content[i18n.language]
     ? content[i18n.language].title
     : content.en;
@@ -142,7 +145,11 @@ export default function Payment() {
     <>
       <HeaderLayout />
       <ContentLayout>
-        {event && <><HeaderTitle variant="h3">{event.title}</HeaderTitle> <br /></>}
+        {event && (
+          <>
+            <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
+          </>
+        )}
         <Stepper activeStep={activeStep} alternativeLabel>
           {[1, 2, 3].map((label) => (
             <Step key={label}>
@@ -157,7 +164,7 @@ export default function Payment() {
             <Grid item xs={12}>
               <SubText>{t("common.amount")}</SubText>
               <PaymentTile>
-                <span>{selectedTicket.price[currency.id]?.amount}</span>
+                <span>{selectedMembership.price[currency.id]?.amount}</span>
                 <span>
                   {" "}
                   <CurrencyPicker />
@@ -221,9 +228,11 @@ export default function Payment() {
               <SubText>{t("common.amount")}</SubText>
               <PaymentTile>
                 <span class="lightgrey">
-                  {selectedTicket.price[currency.id]?.amount}
+                  {selectedMembership.price[currency.id]?.amount}
                 </span>
-                <span class="lightgrey">{currency.id}</span>
+                <span class="lightgrey" style={{ textTransform: "uppercase" }}>
+                  {currency.id}
+                </span>
               </PaymentTile>
             </Grid>
             <Grid item xs={12}>

@@ -9,11 +9,15 @@ import NotFound from '../pages/Error/NotFound';
 import Payment from '../pages/Order/payment';
 import OtherPayment from '../pages/Order/otherpayment';
 import Needhelp from '../pages/Order/Needhelp';
+import Membership from '../pages/Order/Membership/Membership';
+import MembershipPayment from '../pages/Order/Membership/MembershipPayment';
 
 const Routes = () => (
     <Router>
       <Switch>
         <Route exact from='/pay/order/:id' component={Order}/>
+        <Route exact from='/pay/membership' component={Membership}/>
+        <Route exact from='/pay/membership/payment/:plan' component={MembershipPayment}/>
         <Route exact from='/pay/order/ticket/:event_slug' component={Ticket}/>
         <Route exact from='/pay/order/ticket/payment/:event_slug' component={Payment}/>
         <Route exact from='/pay/order/ticket/payment/help/:event_slug' component={Needhelp}/>

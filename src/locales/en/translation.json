@@ -54,7 +54,8 @@
     "amount": "Amount",
     "ok": "Ok",
     "paymentMethod": "Payment Method",
-    "registration": "Registration"
+    "registration": "Registration",
+    "select_option": "Select Option"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
