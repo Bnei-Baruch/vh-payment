@@ -1,16 +1,20 @@
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { paymentSuccess } from "../../services/orderservice";
 const GreyText = styled(Typography)`
   color: #777777;
 `;
 export default function UserDetail() {
+  const { t } = useTranslation();
   const { event_slug } = useParams();
   const history = useHistory();
   const [profile, setProfileData] = useState({});
+  const [isEditable, setIsEditAble] = useState(false);
   const profileData = useSelector((state) => state.user.profileData);
   React.useEffect(() => {
     setProfileData(profileData);
@@ -20,6 +24,14 @@ export default function UserDetail() {
     //AP to save changes made
     history.push(`/pay/order/register/userdetail/success/${event_slug}`);
   };
+
+  const enableEdit = () => {setIsEditAble(!isEditable)};
+  // React.useEffect(() => {
+  //   let q = qs.parse(window.location.search)
+  //   if (user.authenticated) {
+  //     paymentSuccess(q);
+  //   }
+  // }, [user])
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
@@ -37,6 +49,7 @@ export default function UserDetail() {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              disabled={!isEditable}
               id="outlined-basic"
               label="First Name"
               variant="outlined"
@@ -46,6 +59,7 @@ export default function UserDetail() {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              disabled={!isEditable}
               id="outlined-basic"
               label="Last Name"
               variant="outlined"
@@ -56,6 +70,7 @@ export default function UserDetail() {
           <Grid item xs={12} md={6}>
             {/* Change to select */}
             <TextField
+              disabled={!isEditable}
               id="outlined-basic"
               label="Country"
               variant="outlined"
@@ -65,6 +80,7 @@ export default function UserDetail() {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              disabled={!isEditable}
               id="outlined-basic"
               label="Date of birth"
               variant="outlined"
@@ -74,6 +90,7 @@ export default function UserDetail() {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              disabled={!isEditable}
               id="outlined-basic"
               label="Phone Number"
               variant="outlined"
@@ -83,6 +100,7 @@ export default function UserDetail() {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              disabled={!isEditable}
               id="outlined-basic"
               label="Gender"
               variant="outlined"
@@ -92,6 +110,7 @@ export default function UserDetail() {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              disabled={!isEditable}
               id="outlined-basic"
               label="First Language"
               variant="outlined"
@@ -101,6 +120,7 @@ export default function UserDetail() {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              disabled={!isEditable}
               id="outlined-basic"
               label="Second Language"
               variant="outlined"
@@ -110,6 +130,7 @@ export default function UserDetail() {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              disabled={!isEditable}
               id="outlined-basic"
               label="What year did you start in Bnei Baruch?"
               variant="outlined"
@@ -127,8 +148,15 @@ export default function UserDetail() {
             />
           </Grid>
           <Grid item xs={12} md={12} style={{ textAlign: "right" }}>
-            <Button variant="contained" color="primary" onClick={saveProfileAndRedirect}>
-              Next
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={saveProfileAndRedirect}
+            >
+              {!isEditable ? t('common.next') : t('common.save')}
+            </Button> &nbsp;&nbsp;
+            <Button variant="contained" color={!isEditable ? "primary" : 'default'} onClick={enableEdit}>
+            {!isEditable ? t('common.edit') : t('common.cancel')}
             </Button>
           </Grid>
         </Grid>

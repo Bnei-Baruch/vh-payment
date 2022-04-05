@@ -48,6 +48,8 @@
     "cancel" : "Cancel",
     "next" : "Next",
     "back" : "Back",
+    "edit": "Edit",
+    "save": "Save",
     "other": "Other",
     "upload": "Upload",
     "step": "Step",

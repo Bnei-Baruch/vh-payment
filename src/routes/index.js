@@ -1,12 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Order from '../pages/Order';
-import Ticket from '../pages/Order/tickets';
+import Ticket from '../pages/Order/EventTicket/tickets';
 import UserDetail from '../pages/registration';
 import Success from '../pages/Success';
 import Error from '../pages/Error';
 import NotFound from '../pages/Error/NotFound';
-import Payment from '../pages/Order/payment';
+import Payment from '../pages/Order/EventTicket/payment';
 import OtherPayment from '../pages/Order/otherpayment';
 import Needhelp from '../pages/Order/Needhelp';
 import Membership from '../pages/Order/Membership/Membership';

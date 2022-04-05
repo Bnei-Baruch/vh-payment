@@ -101,13 +101,13 @@ export default function Membership() {
           <CenterText variant="h6">{header.action}</CenterText>
         </Grid>
         <Grid container item xs={12} spacing={6}>
-          {plans.map((plan) => {
+          {plans.map((plan, index) => {
             const planContent =
               typeof plan.content[i18n.language] !== "undefined"
                 ? plan.content[i18n.language]
                 : plan.content["en"];
             return (
-              <Grid item xs={12} md={4}>
+              <Grid key={index} item xs={12} md={4}>
                 <TicketCard
                   style={
                     selectedMembership !== undefined
@@ -126,8 +126,8 @@ export default function Membership() {
                   </CenterTextGrey>
                   <Grid>
                     <ul>
-                      {planContent.description.map((item) => (
-                        <li>
+                      {planContent.description.map((item, index) => (
+                        <li key={index}>
                           <Typography variant="body">{item}</Typography>
                         </li>
                       ))}
@@ -146,8 +146,9 @@ export default function Membership() {
                           onChange={(e) => setSpecialOption(e.target.value)}
                           style={{ flexDirection: "row" }}
                         >
-                          {planContent.options.map((item) => (
+                          {planContent.options.map((item, index) => (
                             <FormControlLabel
+                              key={index}
                               value={item.name}
                               control={<Radio />}
                               label={item.label}

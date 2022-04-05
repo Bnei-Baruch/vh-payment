@@ -10,17 +10,17 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import HeaderLayout from "../../layouts/HeaderLayout";
+import HeaderLayout from "../../../layouts/HeaderLayout";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { getEventsProductBySlug } from "../../services/productservice";
+import { getEventsProductBySlug } from "../../../services/productservice";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
   setProduct,
   setSelectedTicket,
-} from "../../redux/actions/orderActions";
+} from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
 const TicketCard = styled(Grid)`
   background-color: #fff;
@@ -82,7 +82,7 @@ export default function Tickets() {
       return;
     }
     if (ticket && ticket.name.toLowerCase() === "membership ticket") {
-      //Special Case Membership Implmentation
+      window.location.href = window.location.origin + "/dash/membership";
       return;
     }
     if (ticket && ticket.name.toLowerCase() === "regular ticket") {
@@ -110,13 +110,13 @@ export default function Tickets() {
           <CenterText variant="h6">{header.action}</CenterText>
         </Grid>
         <Grid container item xs={12} spacing={6}>
-          {plans.map((plan) => {
+          {plans.map((plan, index) => {
             const planContent =
               typeof plan.content[i18n.language] !== "undefined"
                 ? plan.content[i18n.language]
                 : plan.content["en"];
             return (
-              <Grid item xs={12} md={4}>
+              <Grid key={index} item xs={12} md={4}>
                 <TicketCard
                   style={
                     selectedTicket !== undefined
@@ -135,8 +135,8 @@ export default function Tickets() {
                   </CenterTextGrey>
                   <Grid>
                     <ul>
-                      {planContent.description.map((item) => (
-                        <li>
+                      {planContent.description.map((item, index) => (
+                        <li key={index}>
                           <Typography variant="body">{item}</Typography>
                         </li>
                       ))}
@@ -153,8 +153,9 @@ export default function Tickets() {
                           onChange={(e) => setSpecialOption(e.target.value)}
                           style={{ flexDirection: "row" }}
                         >
-                          {planContent.options.map((item) => (
+                          {planContent.options.map((item, index) => (
                             <FormControlLabel
+                              key={index}
                               value={item.name}
                               control={<Radio />}
                               label={item.label}

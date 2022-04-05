@@ -17,11 +17,11 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import CurrencyPicker from "../../components/CurencyPicker";
-import ContentLayout from "../../layouts/ContentLayout";
-import HeaderLayout from "../../layouts/HeaderLayout";
-import { handlePayment } from "../../services/orderservice";
-import { getProfile } from "../../services/userservice";
+import CurrencyPicker from "../../../components/CurencyPicker";
+import ContentLayout from "../../../layouts/ContentLayout";
+import HeaderLayout from "../../../layouts/HeaderLayout";
+import { handlePayment } from "../../../services/orderservice";
+import { getProfile } from "../../../services/userservice";
 const PaymentTile = styled.div`
   padding: 20px 20px;
   > span:first-child {
@@ -96,7 +96,7 @@ export default function Payment() {
       Organization: selectedTicket.product?.organization,
       UserKey: user.keycloak.subject,
       Currency: currency.id?.toUpperCase(),
-      Amount: selectedTicket.currency?.amount,
+      Amount: selectedTicket.price[currency.id]?.amount,
       // Amount: 1,
       Type: selectedTicket.product?.type,
       ProductType: selectedTicket.product?.productType,
@@ -142,7 +142,11 @@ export default function Payment() {
     <>
       <HeaderLayout />
       <ContentLayout>
-        {event && <><HeaderTitle variant="h3">{event.title}</HeaderTitle> <br /></>}
+        {event && (
+          <>
+            <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
+          </>
+        )}
         <Stepper activeStep={activeStep} alternativeLabel>
           {[1, 2, 3].map((label) => (
             <Step key={label}>
@@ -242,14 +246,21 @@ export default function Payment() {
           <Button
             variant="contained"
             color="primary"
+            disabled={payClicked}
             onClick={activeStep === 2 ? proceedToPayment : nextStep}
           >
-            {activeStep === 2 ? t("common.confirm") : t("common.next")}
+            {activeStep === 2
+              ? payClicked
+                ? t("order.processing")
+                : t("common.confirm")
+              : t("common.next")}
           </Button>
           &nbsp;&nbsp;
-          <Button variant="contained" onClick={prevStep}>
-            {activeStep === 0 ? t("common.cancel") : t("common.back")}
-          </Button>
+          {activeStep !== 0 && (
+            <Button variant="contained" onClick={prevStep}>
+              {activeStep === 0 ? t("common.cancel") : t("common.back")}
+            </Button>
+          )}
         </Grid>
       </ContentLayout>
     </>
