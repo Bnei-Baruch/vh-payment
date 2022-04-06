@@ -5,6 +5,7 @@ import {
   tickets,
   userfee,
   userfeeonetime,
+  membershipsplans
 } from "../shared/products";
 
 //Getting the Product.
@@ -35,3 +36,7 @@ export const getProduct = (id) => {
 export const getEventsProductBySlug = (slug) => {
   if (tickets.event.slug === slug) return tickets;
 };
+
+export const getMembershipProduct = () => {
+  return membershipsplans;
+}

@@ -24,7 +24,7 @@ import { handlePayment } from "../../services/orderservice";
 import { getProduct } from "../../services/productservice";
 import { getProfile } from "../../services/userservice";
 
-const useStyles = makeStyles({
+export const useStyles = makeStyles({
   header: {
     marginBottom: 40,
   },
