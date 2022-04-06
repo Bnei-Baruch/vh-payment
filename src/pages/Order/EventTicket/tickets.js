@@ -59,17 +59,19 @@ const blurredStyle = {
 };
 
 export default function Tickets() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
   const { event_slug } = useParams();
   const product = useSelector((state) => state.order.ticketProduct);
   const currency = useSelector((state) => state.currency);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
+  const membershipData = useSelector((state) => state.user.membershipdata);
   const [specialOption, setSpecialOption] = React.useState("helphaver");
 
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
+    // eslint-disable-next-line
   }, [event_slug]);
 
   const planSelected = (ticket) => {
@@ -78,11 +80,12 @@ export default function Tickets() {
 
   const navigateToConfirmation = (ticket) => {
     if (ticket && ticket.name.toLowerCase() === "special") {
-      //Special Case Implmentation
+      history.push(`/pay/order/ticket/payment/help/${event_slug}`);
       return;
     }
     if (ticket && ticket.name.toLowerCase() === "membership ticket") {
-      window.location.href = window.location.origin + "/dash/membership";
+      history.push("/pay/membership");
+      //window.location.href = window.location.origin + "/dash/membership";
       return;
     }
     if (ticket && ticket.name.toLowerCase() === "regular ticket") {
@@ -91,7 +94,10 @@ export default function Tickets() {
   };
   if (!product) return <></>;
 
-  const { content, plans } = product;
+  const { content } = product;
+  let plans = product.plans.filter(
+    (plan) => plan.membership === membershipData?.membership
+  );
   const header =
     typeof content[i18n.language] !== "undefined"
       ? content[i18n.language]
@@ -183,7 +189,7 @@ export default function Tickets() {
                         color="secondary"
                         onClick={() => navigateToConfirmation(planContent)}
                       >
-                        Next
+                        {t("common.next")}
                       </Button>
                     )}
                   </CTAGrid>

@@ -8,6 +8,7 @@ import {
   RadioGroup,
   Step,
   StepLabel,
+  CircularProgress,
   Stepper,
   Typography,
 } from "@material-ui/core";
@@ -16,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { useStyles } from "../index";
 import styled from "styled-components";
 import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
@@ -50,6 +52,7 @@ const HeaderTitle = styled(Typography)`
 export default function Payment() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
+  const classes = useStyles();
   const { event_slug } = useParams();
   const user = useSelector((state) => state.user);
   const [profileData, setUserProfileData] = React.useState(null);
@@ -104,8 +107,7 @@ export default function Payment() {
       //replace this with routing mechanism
       successUrl:
         window.APP_CONFIG.VH_BASE_URL +
-        "/pay/order/register/userdetail/" +
-        selectedTicket.product.productType,
+        `/pay/order/register/userdetail/${event_slug}`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
@@ -148,10 +150,10 @@ export default function Payment() {
           </>
         )}
         <Stepper activeStep={activeStep} alternativeLabel>
-          {[1, 2, 3].map((label) => (
+          {['Ticket Amount', 'Payment Method Selection', 'Checkout Confirmation'].map((label) => (
             <Step key={label}>
               <StepLabel>
-                {t("common.step")} {label}
+                {label}
               </StepLabel>
             </Step>
           ))}
@@ -249,15 +251,24 @@ export default function Payment() {
             disabled={payClicked}
             onClick={activeStep === 2 ? proceedToPayment : nextStep}
           >
-            {activeStep === 2
-              ? payClicked
-                ? t("order.processing")
-                : t("common.confirm")
-              : t("common.next")}
+            {activeStep === 2 ? (
+              payClicked ? (
+                <>
+                  {payClicked && (
+                    <CircularProgress m={2} className={classes.loader} />
+                  )}&nbsp;
+                  {t("order.processing")}
+                </>
+              ) : (
+                t("common.confirm")
+              )
+            ) : (
+              t("common.next")
+            )}
           </Button>
           &nbsp;&nbsp;
           {activeStep !== 0 && (
-            <Button variant="contained" onClick={prevStep}>
+            <Button variant="contained" onClick={prevStep} disabled={payClicked}>
               {activeStep === 0 ? t("common.cancel") : t("common.back")}
             </Button>
           )}
