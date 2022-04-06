@@ -10,23 +10,20 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import HeaderLayout from "../../layouts/HeaderLayout";
+import HeaderLayout from "../../../layouts/HeaderLayout";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
-import { getEventsProductBySlug } from "../../services/productservice";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {
-  setProduct,
-  setSelectedTicket,
-} from "../../redux/actions/orderActions";
+import { setSelectedMembership } from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
+import { getMembershipProduct } from "../../../services/productservice";
 const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   padding: 20px;
+  min-height: 300px;
 `;
 const TicketGrid = styled(Grid)`
   margin: auto;
@@ -58,40 +55,34 @@ const blurredStyle = {
   opacity: "0.3",
 };
 
-export default function Tickets() {
-  const { i18n } = useTranslation();
+export default function Membership() {
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { event_slug } = useParams();
-  const product = useSelector((state) => state.order.ticketProduct);
   const currency = useSelector((state) => state.currency);
-  const selectedTicket = useSelector((state) => state.order.selectedTicket);
+  const selectedMembership = useSelector(
+    (state) => state.order.selectedMembership
+  );
   const [specialOption, setSpecialOption] = React.useState("helphaver");
-
+  const [membership, setMembership] = React.useState(undefined);
   React.useEffect(() => {
-    dispatch(setProduct(getEventsProductBySlug(event_slug)));
-  }, [event_slug]);
+    setMembership(getMembershipProduct());
+  }, []);
 
-  const planSelected = (ticket) => {
-    dispatch(setSelectedTicket(ticket));
+  const planSelected = (membership) => {
+    dispatch(setSelectedMembership(membership));
   };
 
-  const navigateToConfirmation = (ticket) => {
-    if (ticket && ticket.name.toLowerCase() === "special") {
-      //Special Case Implmentation
-      return;
-    }
-    if (ticket && ticket.name.toLowerCase() === "membership ticket") {
-      //Special Case Membership Implmentation
-      return;
-    }
-    if (ticket && ticket.name.toLowerCase() === "regular ticket") {
-      history.push(`/pay/order/ticket/payment/${event_slug}`);
+  const navigateToConfirmation = () => {
+    if (selectedMembership.flow.type === "redirect") {
+      history.push(`/pay/order/ticket/payment/help/${selectedMembership.name}`);
+    } else if (selectedMembership.flow.type === "checkout") {
+      history.push("/pay/membership/payment/" + selectedMembership.name);
     }
   };
-  if (!product) return <></>;
+  if (!membership) return <></>;
 
-  const { content, plans } = product;
+  const { content, plans } = membership;
   const header =
     typeof content[i18n.language] !== "undefined"
       ? content[i18n.language]
@@ -110,17 +101,17 @@ export default function Tickets() {
           <CenterText variant="h6">{header.action}</CenterText>
         </Grid>
         <Grid container item xs={12} spacing={6}>
-          {plans.map((plan) => {
+          {plans.map((plan, index) => {
             const planContent =
               typeof plan.content[i18n.language] !== "undefined"
                 ? plan.content[i18n.language]
                 : plan.content["en"];
             return (
-              <Grid item xs={12} md={4}>
+              <Grid key={index} item xs={12} md={4}>
                 <TicketCard
                   style={
-                    selectedTicket !== undefined
-                      ? selectedTicket === plan
+                    selectedMembership !== undefined
+                      ? selectedMembership === plan
                         ? selectedStyle
                         : blurredStyle
                       : {}
@@ -135,8 +126,8 @@ export default function Tickets() {
                   </CenterTextGrey>
                   <Grid>
                     <ul>
-                      {planContent.description.map((item) => (
-                        <li>
+                      {planContent.description.map((item, index) => (
+                        <li key={index}>
                           <Typography variant="body">{item}</Typography>
                         </li>
                       ))}
@@ -145,7 +136,9 @@ export default function Tickets() {
                   <Grid>
                     {planContent.options && (
                       <FormControl component="fieldset">
-                        <FormLabel component="legend">Select Option</FormLabel>
+                        <FormLabel component="legend">
+                          {t("common.select_option")}
+                        </FormLabel>
                         <RadioGroup
                           aria-label="gender"
                           name="gender1"
@@ -153,8 +146,9 @@ export default function Tickets() {
                           onChange={(e) => setSpecialOption(e.target.value)}
                           style={{ flexDirection: "row" }}
                         >
-                          {planContent.options.map((item) => (
+                          {planContent.options.map((item, index) => (
                             <FormControlLabel
+                              key={index}
                               value={item.name}
                               control={<Radio />}
                               label={item.label}
@@ -166,8 +160,8 @@ export default function Tickets() {
                     )}
                   </Grid>
                   <CTAGrid>
-                    {(selectedTicket === undefined ||
-                      selectedTicket !== plan) && (
+                    {(selectedMembership === undefined ||
+                      selectedMembership !== plan) && (
                       <Button
                         variant="contained"
                         color="secondary"
@@ -176,15 +170,16 @@ export default function Tickets() {
                         {planContent.button_label}
                       </Button>
                     )}
-                    {selectedTicket !== undefined && selectedTicket === plan && (
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => navigateToConfirmation(planContent)}
-                      >
-                        Next
-                      </Button>
-                    )}
+                    {selectedMembership !== undefined &&
+                      selectedMembership === plan && (
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => navigateToConfirmation(planContent)}
+                        >
+                          {t("common.next")}
+                        </Button>
+                      )}
                   </CTAGrid>
                 </TicketCard>
               </Grid>

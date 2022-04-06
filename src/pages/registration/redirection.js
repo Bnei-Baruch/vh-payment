@@ -1,9 +1,12 @@
 import React from "react";
-import { Button, Grid, TextField, Typography } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import styled from "styled-components";
 const GreyText = styled(Typography)`
   color: #777777;
 `;
+const goToProfileArea = () => {
+  window.location.href = window.location.origin + "/dash/events";
+}
 export default function Redirection() {
   return (
     <Grid container spacing={6}>
@@ -21,7 +24,7 @@ export default function Redirection() {
           </GreyText>
         </Grid>
         <Grid item xs={12} md={12} style={{ textAlign: "center" }}>
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={goToProfileArea}>
             View Event Ticket
           </Button>
         </Grid>

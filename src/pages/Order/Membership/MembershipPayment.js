@@ -6,6 +6,7 @@ import {
   Grid,
   Radio,
   RadioGroup,
+  CircularProgress,
   Step,
   StepLabel,
   Stepper,
@@ -16,12 +17,13 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { useStyles } from '../index';
 import styled from "styled-components";
-import CurrencyPicker from "../../components/CurencyPicker";
-import ContentLayout from "../../layouts/ContentLayout";
-import HeaderLayout from "../../layouts/HeaderLayout";
-import { handlePayment } from "../../services/orderservice";
-import { getProfile } from "../../services/userservice";
+import CurrencyPicker from "../../../components/CurencyPicker";
+import ContentLayout from "../../../layouts/ContentLayout";
+import HeaderLayout from "../../../layouts/HeaderLayout";
+import { handlePayment } from "../../../services/orderservice";
+import { getProfile } from "../../../services/userservice";
 const PaymentTile = styled.div`
   padding: 20px 20px;
   > span:first-child {
@@ -47,9 +49,10 @@ const SubText = styled.div`
 const HeaderTitle = styled(Typography)`
   text-align: center;
 `;
-export default function Payment() {
+export default function MembershipPayment() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
+  const classes = useStyles();
   const { event_slug } = useParams();
   const user = useSelector((state) => state.user);
   const [profileData, setUserProfileData] = React.useState(null);
@@ -57,9 +60,10 @@ export default function Payment() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
-  const selectedTicket = useSelector((state) => state.order.selectedTicket);
+  const selectedMembership = useSelector(
+    (state) => state.order.selectedMembership
+  );
   const product = useSelector((state) => state.order.ticketProduct);
-  console.log(product);
   const nextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -91,22 +95,19 @@ export default function Payment() {
       Country: profileData?.country || "",
 
       //Product details
-      SKU: selectedTicket.product?.SKU,
+      SKU: selectedMembership.product?.SKU,
       OrderLanguage: i18n.language?.toUpperCase(),
-      Reference: selectedTicket.product?.reference,
-      Organization: selectedTicket.product?.organization,
+      Reference: selectedMembership.product?.reference,
+      Organization: selectedMembership.product?.organization,
       UserKey: user.keycloak.subject,
       Currency: currency.id?.toUpperCase(),
-      Amount: selectedTicket.currency?.amount,
+      Amount: selectedMembership.price[currency.id]?.amount,
       // Amount: 1,
-      Type: selectedTicket.product?.type,
-      ProductType: selectedTicket.product?.productType,
-      RecurringFreq: selectedTicket.product?.recurringFreq,
+      Type: selectedMembership.product?.type,
+      ProductType: selectedMembership.product?.productType,
+      RecurringFreq: selectedMembership.product?.recurringFreq,
       //replace this with routing mechanism
-      successUrl:
-        window.APP_CONFIG.VH_BASE_URL +
-        "/pay/order/register/userdetail/" +
-        selectedTicket.product.productType,
+      successUrl: window.APP_CONFIG.VH_BASE_URL + "/dash/membership",
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
@@ -133,8 +134,8 @@ export default function Payment() {
     }
   };
 
-  if (!product) return <></>;
-  let { content } = product;
+  if (!selectedMembership) return <></>;
+  let { content } = selectedMembership;
   let event = content[i18n.language]
     ? content[i18n.language].title
     : content.en;
@@ -143,12 +144,16 @@ export default function Payment() {
     <>
       <HeaderLayout />
       <ContentLayout>
-        <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
+        {event && (
+          <>
+            <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
+          </>
+        )}
         <Stepper activeStep={activeStep} alternativeLabel>
-          {[1, 2, 3].map((label) => (
+          {['Membership Amount', 'Payment Method Selection', 'Checkout Confirmation'].map((label) => (
             <Step key={label}>
               <StepLabel>
-                {t("common.step")} {label}
+                {label}
               </StepLabel>
             </Step>
           ))}
@@ -158,7 +163,7 @@ export default function Payment() {
             <Grid item xs={12}>
               <SubText>{t("common.amount")}</SubText>
               <PaymentTile>
-                <span>{selectedTicket.price[currency.id]?.amount}</span>
+                <span>{selectedMembership.price[currency.id]?.amount}</span>
                 <span>
                   {" "}
                   <CurrencyPicker />
@@ -222,9 +227,11 @@ export default function Payment() {
               <SubText>{t("common.amount")}</SubText>
               <PaymentTile>
                 <span class="lightgrey">
-                  {selectedTicket.price[currency.id]?.amount}
+                  {selectedMembership.price[currency.id]?.amount}
                 </span>
-                <span class="lightgrey">{currency.id}</span>
+                <span class="lightgrey" style={{ textTransform: "uppercase" }}>
+                  {currency.id}
+                </span>
               </PaymentTile>
             </Grid>
             <Grid item xs={12}>
@@ -243,14 +250,30 @@ export default function Payment() {
           <Button
             variant="contained"
             color="primary"
+            disabled={payClicked}
             onClick={activeStep === 2 ? proceedToPayment : nextStep}
           >
-            {activeStep === 2 ? t("common.confirm") : t("common.next")}
+            {activeStep === 2 ? (
+              payClicked ? (
+                <>
+                  {payClicked && (
+                    <CircularProgress m={2} className={classes.loader} />
+                  )}&nbsp;
+                  {t("order.processing")}
+                </>
+              ) : (
+                t("common.confirm")
+              )
+            ) : (
+              t("common.next")
+            )}
           </Button>
           &nbsp;&nbsp;
-          <Button variant="contained" onClick={prevStep}>
-            {activeStep === 0 ? t("common.cancel") : t("common.back")}
-          </Button>
+          {activeStep !== 0 && (
+            <Button variant="contained" onClick={prevStep} disabled={payClicked}>
+              {activeStep === 0 ? t("common.cancel") : t("common.back")}
+            </Button>
+          )}
         </Grid>
       </ContentLayout>
     </>

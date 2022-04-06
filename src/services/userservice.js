@@ -25,3 +25,7 @@ export const getUserProfileData = (keycloakId) => {
       throw err;
     });
 }
+
+export const saveUserProfileData = (data) => {
+  axios.patch(`${window.APP_CONFIG.VH_API_BASE_URL}/profile/v1/profile`, data).then(res => res.data);
+}

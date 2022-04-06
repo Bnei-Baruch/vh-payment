@@ -20,3 +20,6 @@ export const paymentSuccess = (data) => {
         })
 }
 
+export const updateStatus = async data =>
+  await axios.post(`${window.APP_CONFIG.VH_API_BASE_URL}/register/choice/kc/${data.keycloakid}`, data).then(res => res?.data)
+

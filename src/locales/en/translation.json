@@ -48,13 +48,16 @@
     "cancel" : "Cancel",
     "next" : "Next",
     "back" : "Back",
+    "edit": "Edit",
+    "save": "Save",
     "other": "Other",
     "upload": "Upload",
     "step": "Step",
     "amount": "Amount",
     "ok": "Ok",
     "paymentMethod": "Payment Method",
-    "registration": "Registration"
+    "registration": "Registration",
+    "select_option": "Select Option"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
@@ -73,6 +76,7 @@
     "requestHelp": "You cannot afford to pay and you want to request for help?",
     "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
     "submittedHeader": "Request Submitted",
-    "requestSubmitted": "Your request for help have been submitted and soon will be reviewed."
+    "requestSubmitted": "Your request for help have been submitted and soon will be reviewed.",
+    "return_to_personal_area": "Return to personal area"
   }
 }
