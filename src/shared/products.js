@@ -622,7 +622,7 @@ exports.tickets = {
       content: {
         en: {
           name: "Special",
-          description: ["First bullet", "Second bullet", "3rd one"],
+          description: ["First bullet" ],
           button_label: "Select",
           options: [
             {
@@ -633,8 +633,8 @@ exports.tickets = {
                 body: "Message",
                 button: "Next",
               },
-              redirect_url: "/doweneedone?",
-              type: "register",
+              type: "special",
+              register_status: "sp-ukraine"
             },
             {
               label: "russia",
@@ -644,8 +644,8 @@ exports.tickets = {
                 body: "Message",
                 button: "Next",
               },
-              redirect_url: "/doweneedone?",
-              type: "register",
+              type: "special",
+              register_status: "sp-russia"
             },
             {
               label: "helphaver",
@@ -655,8 +655,9 @@ exports.tickets = {
                 body: "Message",
                 button: "Next",
               },
-              redirect_url: "https://google.com",
+              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
+              register_status: "hh-request"
             },
           ],
         },
@@ -1056,7 +1057,7 @@ exports.membershipsplans= {
             body: "Message",
             button: "Next",
           },
-          redirect_url: "https://google.com",
+          redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         ru: {
           name: "Help Haver",
@@ -1067,7 +1068,7 @@ exports.membershipsplans= {
             body: "Message",
             button: "Next",
           },
-          redirect_url: "https://google.com",
+          redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         es: {
           name: "Help Haver",
@@ -1078,7 +1079,7 @@ exports.membershipsplans= {
             body: "Message",
             button: "Next",
           },
-          redirect_url: "https://google.com",
+          redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         he: {
           name: "Help Haver",
@@ -1089,7 +1090,7 @@ exports.membershipsplans= {
             body: "Message",
             button: "Next",
           },
-          redirect_url: "https://google.com",
+          redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
       },
       flow: {
