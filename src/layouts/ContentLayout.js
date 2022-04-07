@@ -19,7 +19,7 @@ const ContentLayout = ({ children }) => {
       spacing={0}
       direction="column"
       alignItems="center"
-      justify="center"
+      justifyContent="center"
       style={containerStyle}
     >
       <Grid item xs={12} sm={12} md={8} lg={6} style={layoutStyle}>

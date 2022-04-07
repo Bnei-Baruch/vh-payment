@@ -3,6 +3,7 @@ import {
   SET_SELECTED_MEMBERSHIP,
   SET_SELECTED_TICKET,
   SET_PRODUCT,
+  SPECIAL_SELECTED_OPTION,
 } from "../types";
 
 const DEFAULT = {
@@ -76,6 +77,12 @@ export default function reducer(state = DEFAULT, { type, payload }) {
       return {
         ...state,
         ticketProduct: payload,
+      };
+
+    case SPECIAL_SELECTED_OPTION:
+      return {
+        ...state,
+        specialSelectedOption: payload,
       };
 
     default:

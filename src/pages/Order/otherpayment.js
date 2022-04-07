@@ -23,6 +23,10 @@ const Input = styled("input")({
 });
 export default function OtherPayment() {
   const { t } = useTranslation();
+  const saveDetail = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  };
   return (
     <>
       <HeaderLayout />
@@ -32,41 +36,42 @@ export default function OtherPayment() {
         </HeaderTitle>{" "}
         <br />
         <Divider /> <br />
-        <Grid container spacing={6}>
-          <Grid item xs={12}>
-            <FormControl>
-              <FormLabel id="demo-radio-buttons-group-label">
-                {t("otherPayments.howAreYouPaying")}
-              </FormLabel>
-              <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="offlinebank"
-                name="radio-buttons-group"
-              >
-                <FormControlLabel
-                  value="offlinebank"
-                  control={<Radio />}
-                  label={t("otherPayments.offlineBank")}
-                />
-                <FormControlLabel
-                  value="localGroup"
-                  control={<Radio />}
-                  label={t("otherPayments.localGroup")}
-                />
-                <FormControlLabel
-                  value="cash"
-                  control={<Radio />}
-                  label={t("otherPayments.incash")}
-                />
-                <FormControlLabel
-                  value="other"
-                  control={<Radio />}
-                  label={t("common.other")}
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
+        <form onSubmit={saveDetail}>
+          <Grid container spacing={6}>
+            <Grid item xs={12}>
+              <FormControl>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  {t("otherPayments.howAreYouPaying")}
+                </FormLabel>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="offlinebank"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="offlinebank"
+                    control={<Radio />}
+                    label={t("otherPayments.offlineBank")}
+                  />
+                  <FormControlLabel
+                    value="localGroup"
+                    control={<Radio />}
+                    label={t("otherPayments.localGroup")}
+                  />
+                  <FormControlLabel
+                    value="cash"
+                    control={<Radio />}
+                    label={t("otherPayments.incash")}
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label={t("common.other")}
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            {/* <Grid item xs={12}>
             <FormControl>
               <FormLabel id="demo-radio-buttons-group-label">
                 {t("otherPayments.doYouHaveAReciept")}
@@ -84,22 +89,24 @@ export default function OtherPayment() {
                 </Button>
               </label>
             </FormControl>
+          </Grid> */}
+            <Grid item xs={12}>
+              <TextField
+                id="outlined-basic"
+                multiline
+                label={t("otherPayments.extraInformation")}
+                variant="outlined"
+                fullWidth
+                required
+              />
+            </Grid>
+            <Grid item xs={12} style={{ textAlign: "right" }}>
+              <Button variant="contained" color="primary" type={"submit"}>
+                {t("common.confirm")}
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="outlined-basic"
-              multiline
-              label={t("otherPayments.extraInformation")}
-              variant="outlined"
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} style={{ textAlign: "right" }}>
-            <Button variant="contained" color="primary">
-              {t("common.confirm")}
-            </Button>
-          </Grid>
-        </Grid>
+        </form>
       </ContentLayout>
     </>
   );

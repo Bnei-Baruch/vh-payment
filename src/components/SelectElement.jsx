@@ -35,6 +35,7 @@ const SelectElement = ({
   selectData,
   disabled = false,
   tooltipText,
+  required
 }) => {
   const classes = useStyles();
 
@@ -56,6 +57,7 @@ const SelectElement = ({
         inputProps={{
           id,
         }}
+        required={required}
         MenuProps={{
           classes: {
             paper: classes.menu,
