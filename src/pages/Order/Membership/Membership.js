@@ -15,7 +15,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setSelectedMembership } from "../../../redux/actions/orderActions";
+import { setSelectedMembership, setSpecialSelectedOption } from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
 import { getMembershipProduct } from "../../../services/productservice";
 const TicketCard = styled(Grid)`
@@ -52,7 +52,7 @@ const selectedStyle = {
 };
 
 const blurredStyle = {
-  opacity: "0.3",
+  // opacity: "0.3",
 };
 
 export default function Membership() {
@@ -75,7 +75,10 @@ export default function Membership() {
 
   const navigateToConfirmation = () => {
     if (selectedMembership.flow.type === "redirect") {
-      history.push(`/pay/order/ticket/payment/help/${selectedMembership.name}`);
+      const selectedOption =
+      selectedMembership.content[i18n.language] || selectedMembership.content.en;
+      dispatch(setSpecialSelectedOption(selectedOption));
+      history.push(`/pay/order/ticket/payment/intersticial/${selectedMembership.name}?isMembership=true`);
     } else if (selectedMembership.flow.type === "checkout") {
       history.push("/pay/membership/payment/" + selectedMembership.name);
     }
