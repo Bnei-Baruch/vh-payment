@@ -56,11 +56,12 @@ export default function Payment() {
   const { event_slug } = useParams();
   const user = useSelector((state) => state.user);
   const [profileData, setUserProfileData] = React.useState(null);
-  const [paymentMethod, setPaymentMethod] = React.useState("creditcard");
+  const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
+  console.log(selectedTicket)
   const product = useSelector((state) => state.order.ticketProduct);
   const nextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -113,7 +114,6 @@ export default function Payment() {
     };
     handlePayment(data)
       .then((response) => {
-        setOnPayClicked(false);
         window.location.href = response.data.url;
       })
       .catch((error) => {
@@ -127,7 +127,7 @@ export default function Payment() {
   }, []);
 
   const proceedToPayment = () => {
-    if (paymentMethod === "creditcard") {
+    if (paymentMethod === "pelecard") {
       handlePay();
     } else {
       history.push(`/pay/order/ticket/payment/others/${event_slug}`);
@@ -139,6 +139,9 @@ export default function Payment() {
   let event = content[i18n.language]
     ? content[i18n.language].title
     : content.en;
+  
+  let ticketDescription = selectedTicket.content ? selectedTicket.content[i18n.language].description : selectedTicket.content.en.description;
+  let paymentOption = selectedTicket.payment_options;
 
   return (
     <>
@@ -150,11 +153,13 @@ export default function Payment() {
           </>
         )}
         <Stepper activeStep={activeStep} alternativeLabel>
-          {['Ticket Amount', 'Payment Method Selection', 'Checkout Confirmation'].map((label) => (
+          {[
+            "Ticket Amount",
+            "Payment Method Selection",
+            "Checkout Confirmation",
+          ].map((label) => (
             <Step key={label}>
-              <StepLabel>
-                {label}
-              </StepLabel>
+              <StepLabel>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>
@@ -172,12 +177,12 @@ export default function Payment() {
             </Grid>
             <Grid item xs={12}>
               <SubText>
-                Ticket description : Loreum ipsum dolor sit amet, consectetur
-                adipiscing elit. Ticket description : Loreum ipsum dolor sit
-                amet, consectetur adipiscing elit.
+                <ul style={{padding: '0px 10px'}}>
+                  {ticketDescription && ticketDescription.map(description => {
+                    return <li>{description}</li>
+                  })}
+                </ul>
               </SubText>
-              <br />
-              <br />
             </Grid>
           </Grid>
         )}
@@ -196,28 +201,16 @@ export default function Payment() {
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   >
-                    <FormControlLabel
-                      value="creditcard"
-                      control={<Radio />}
-                      label={t("paymentMethod.creditCard")}
+                    {paymentOption.map(option => (
+                      <FormControlLabel
+                        value={option.name}
+                        control={<Radio />}
+                        label={option.content[i18n.language].label}
                     />
-                    <FormControlLabel
-                      value="other"
-                      control={<Radio />}
-                      label={t("common.other")}
-                    />
+                    ))}
                   </RadioGroup>
                 </FormControl>
               </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <SubText>
-                Payment description : Loreum ipsum dolor sit amet, consectetur
-                adipiscing elit. Payment description : Loreum ipsum dolor sit
-                amet, consectetur adipiscing elit.
-              </SubText>
-              <br />
-              <br />
             </Grid>
           </Grid>
         )}
@@ -236,9 +229,7 @@ export default function Payment() {
               <SubText>{t("common.paymentMethod")}</SubText>
               <PaymentTile>
                 <span class="lightgrey">
-                  {paymentMethod === "creditcard"
-                    ? t("paymentMethod.creditCard")
-                    : t("common.other")}
+                  {paymentOption.find(item => item.name === paymentMethod)?.content[i18n.language]?.label}
                 </span>
               </PaymentTile>
             </Grid>
@@ -256,7 +247,8 @@ export default function Payment() {
                 <>
                   {payClicked && (
                     <CircularProgress m={2} className={classes.loader} />
-                  )}&nbsp;
+                  )}
+                  &nbsp;
                   {t("order.processing")}
                 </>
               ) : (
@@ -268,7 +260,11 @@ export default function Payment() {
           </Button>
           &nbsp;&nbsp;
           {activeStep !== 0 && (
-            <Button variant="contained" onClick={prevStep} disabled={payClicked}>
+            <Button
+              variant="contained"
+              onClick={prevStep}
+              disabled={payClicked}
+            >
               {activeStep === 0 ? t("common.cancel") : t("common.back")}
             </Button>
           )}

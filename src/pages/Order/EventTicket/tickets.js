@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import {
   setProduct,
   setSelectedTicket,
+  setSpecialSelectedOption,
 } from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
 const TicketCard = styled(Grid)`
@@ -55,7 +56,7 @@ const selectedStyle = {
 };
 
 const blurredStyle = {
-  opacity: "0.3",
+  // opacity: "0.3",
 };
 
 export default function Tickets() {
@@ -80,12 +81,19 @@ export default function Tickets() {
 
   const navigateToConfirmation = (ticket) => {
     if (ticket && ticket.name.toLowerCase() === "special") {
-      history.push(`/pay/order/ticket/payment/help/${event_slug}`);
-      return;
+      const content =
+        selectedTicket.content[i18n.language] || selectedTicket.content.en;
+      const selectedOption = content.options.find(
+        (item) => item.name === specialOption
+      );
+      dispatch(setSpecialSelectedOption(selectedOption));
+      history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
     }
     if (ticket && ticket.name.toLowerCase() === "membership ticket") {
-      history.push("/pay/membership");
-      //window.location.href = window.location.origin + "/dash/membership";
+      const selectedOption =
+        selectedTicket.content[i18n.language] || selectedTicket.content.en;
+      dispatch(setSpecialSelectedOption(selectedOption));
+      history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
       return;
     }
     if (ticket && ticket.name.toLowerCase() === "regular ticket") {
@@ -157,7 +165,6 @@ export default function Tickets() {
                           name="gender1"
                           value={specialOption}
                           onChange={(e) => setSpecialOption(e.target.value)}
-                          style={{ flexDirection: "row" }}
                         >
                           {planContent.options.map((item, index) => (
                             <FormControlLabel

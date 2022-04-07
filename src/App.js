@@ -3,6 +3,8 @@ import React from 'react';
 import Auth from './components/Auth';
 import axios from 'axios';
 import store from './redux/store';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 let token;
 store.subscribe(listener)
 
@@ -29,7 +31,9 @@ axios.interceptors.request.use((c) => {
 
 const App = () => {
   return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
     <Auth />
+    </MuiPickersUtilsProvider>
   );
 };
 
