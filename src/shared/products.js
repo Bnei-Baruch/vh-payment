@@ -606,7 +606,7 @@ exports.tickets = {
           amount: 100,
         },
         eur: {
-          amount: 25,
+          amount: 1,
         },
       },
       product: {
