@@ -79,7 +79,6 @@ export default function Payment() {
 
   const handlePay = async () => {
     setOnPayClicked(true);
-    //TODO fix the objects here on the app.
     const data = {
       // Account details
       AccountID: "-",
@@ -108,7 +107,7 @@ export default function Payment() {
       //replace this with routing mechanism
       successUrl:
         window.APP_CONFIG.VH_BASE_URL +
-        `/pay/order/register/userdetail/${event_slug}`,
+        `/pay/order/register/${selectedTicket.name}/userdetail/${event_slug}`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
@@ -124,6 +123,7 @@ export default function Payment() {
 
   React.useEffect(() => {
     getUserProfileData();
+  // eslint-disable-next-line
   }, []);
 
   const proceedToPayment = () => {
@@ -139,7 +139,7 @@ export default function Payment() {
   let event = content[i18n.language]
     ? content[i18n.language].title
     : content.en;
-  
+
   let ticketDescription = selectedTicket.content ? selectedTicket.content[i18n.language].description : selectedTicket.content.en.description;
   let paymentOption = selectedTicket.payment_options;
 
@@ -154,9 +154,9 @@ export default function Payment() {
         )}
         <Stepper activeStep={activeStep} alternativeLabel>
           {[
-            "Ticket Amount",
-            "Payment Method Selection",
-            "Checkout Confirmation",
+            t('payment.ticketStep1'),
+            t('payment.step2'),
+            t('payment.step3'),
           ].map((label) => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
@@ -177,7 +177,7 @@ export default function Payment() {
             </Grid>
             <Grid item xs={12}>
               <SubText>
-                <ul style={{padding: '0px 10px'}}>
+                <ul style={{ padding: '0px 10px' }}>
                   {ticketDescription && ticketDescription.map(description => {
                     return <li>{description}</li>
                   })}
@@ -206,7 +206,7 @@ export default function Payment() {
                         value={option.name}
                         control={<Radio />}
                         label={option.content[i18n.language].label}
-                    />
+                      />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -222,7 +222,7 @@ export default function Payment() {
                 <span class="lightgrey">
                   {selectedTicket.price[currency.id]?.amount}
                 </span>
-                <span class="lightgrey">{currency.id}</span>
+                <span class="lightgrey">{currency.id?.toUpperCase()}</span>
               </PaymentTile>
             </Grid>
             <Grid item xs={12}>

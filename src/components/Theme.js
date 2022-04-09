@@ -10,7 +10,11 @@ const Theme = ({children}) => {
   const [theme, setTheme] = useState(Themes(currentTheme, dir));
 
   useEffect(() => {
-    setTheme(Themes(currentTheme, dir));
+    if (dir === 'rtl') {
+      document.body.style.direction = dir
+    } else if (dir === 'ltr') {
+      document.body.style.direction = dir
+    }
   }, [currentTheme, dir]);
 
   return (

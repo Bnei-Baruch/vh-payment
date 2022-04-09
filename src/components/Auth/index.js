@@ -56,6 +56,7 @@ const Auth = () => {
 
   useEffect(() => {
     if (keycloak !== null) fetchUserDetails(keycloak);
+    // eslint-disable-next-line
   }, [keycloak]);
 
   if (auth.keycloak) {

@@ -63,7 +63,6 @@ const HeaderLayout = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { dir } = useSelector((state) => state.language);
-  const { sign } = useSelector((state) => state.currency);
   const { appbar } = useSelector((state) => state.order);
 
   return (
