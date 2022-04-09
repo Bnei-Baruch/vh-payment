@@ -546,18 +546,18 @@ exports.tickets = {
       action: "Select the type of ticket",
     },
     he: {
-      title: "Only the friends HE",
-      subtitle: "29.4 – 1.5 2022",
-      action: "Select the type of ticket",
+      title: "רק החברים",
+      subtitle: "29.04-01.05.2022",
+      action: "נא לבחור כרטיס",
     },
     ru: {
-      title: "Only the friends RU",
-      subtitle: "29.4 – 1.5 2022",
-      action: "Select the type of ticket",
+      title: "Только с товарищами",
+      subtitle: "29.04-01.05.2022",
+      action: "Пожалуйста, выберите вариант оплаты",
     },
     es: {
-      title: "Only the friends ES",
-      subtitle: "29.4 – 1.5 2022",
+      title: "Solo los amigos",
+      subtitle: "29.04-01.05.2022",
       action: "Select the type of ticket",
     },
   },
@@ -570,8 +570,23 @@ exports.tickets = {
       content: {
         en: {
           name: "Regular Ticket",
-          description: ["First bullet", "Second bullet", "3rd one"],
+          description: ["Participation to the convention", "No membership required"],
           button_label: "Select",
+        },
+        he: {
+          name: "כרטיס רגיל",
+          description: ["השתתפות בכנס", "אין צורך בחברות"],
+          button_label: "לבחור",
+        },
+        es: {
+          name: "Boleto común",
+          description: ["Participación en el congreso", "No se precisa membresía"],
+          button_label: "elige",
+        },
+        ru: {
+          name: "Для новых участников",
+          description: ["Участие в конгрессе", "Не требуется абонентской платы"],
+          button_label: "Выбрать",
         },
       },
       flow: {
