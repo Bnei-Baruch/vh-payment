@@ -25,9 +25,6 @@ import { useHistory } from "react-router-dom";
 const HeaderTitle = styled(Typography)`
   text-align: center;
 `;
-const Input = styled("input")({
-  display: "none",
-});
 export default function OtherPayment() {
   const classes = useStyles();
   const history = useHistory();
@@ -54,6 +51,7 @@ export default function OtherPayment() {
 
   React.useEffect(() => {
     getUserProfileData();
+  // eslint-disable-next-line
   }, []);
 
   const handlePay = async () => {

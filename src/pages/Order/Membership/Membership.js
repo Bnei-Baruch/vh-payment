@@ -76,7 +76,7 @@ export default function Membership() {
   const navigateToConfirmation = () => {
     if (selectedMembership.flow.type === "redirect") {
       const selectedOption =
-      selectedMembership.content[i18n.language] || selectedMembership.content.en;
+        selectedMembership.content[i18n.language] || selectedMembership.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/intersticial/${selectedMembership.name}?isMembership=true`);
     } else if (selectedMembership.flow.type === "checkout") {
@@ -165,14 +165,14 @@ export default function Membership() {
                   <CTAGrid>
                     {(selectedMembership === undefined ||
                       selectedMembership !== plan) && (
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => planSelected(plan)}
-                      >
-                        {planContent.button_label}
-                      </Button>
-                    )}
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => planSelected(plan)}
+                        >
+                          {planContent.button_label}
+                        </Button>
+                      )}
                     {selectedMembership !== undefined &&
                       selectedMembership === plan && (
                         <Button

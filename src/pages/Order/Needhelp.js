@@ -12,13 +12,11 @@ import { useTranslation } from "react-i18next";
 import { updateStatus } from "../../services/orderservice";
 import { useSelector } from "react-redux";
 import { useStyles } from "./index";
-import { useParams, useQuery } from "react-router-dom";
 import { getQueryParams } from "../../utils/common";
 import { useHistory } from "react-router-dom";
 export default function Needhelp() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
-  const { event_slug } = useParams();
   let isMembership = getQueryParams("isMembership");
   const classes = useStyles();
   const [submitting, setSubmitting] = React.useState(false);

@@ -182,14 +182,14 @@ export default function Tickets() {
                   <CTAGrid>
                     {(selectedTicket === undefined ||
                       selectedTicket !== plan) && (
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => planSelected(plan)}
-                      >
-                        {planContent.button_label}
-                      </Button>
-                    )}
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => planSelected(plan)}
+                        >
+                          {planContent.button_label}
+                        </Button>
+                      )}
                     {selectedTicket !== undefined && selectedTicket === plan && (
                       <Button
                         variant="contained"

@@ -35,6 +35,7 @@ export default function Intersticial() {
   };
   React.useEffect(() => {
     getUserProfileData();
+  // eslint-disable-next-line
   }, []);
   const handlePay = async (redirect_url) => {
     const data = {

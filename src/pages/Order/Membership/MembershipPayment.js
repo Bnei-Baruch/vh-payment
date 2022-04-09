@@ -63,7 +63,6 @@ export default function MembershipPayment() {
   const selectedMembership = useSelector(
     (state) => state.order.selectedMembership
   );
-  const product = useSelector((state) => state.order.ticketProduct);
   const nextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -124,6 +123,7 @@ export default function MembershipPayment() {
 
   React.useEffect(() => {
     getUserProfileData();
+  // eslint-disable-next-line
   }, []);
 
   const proceedToPayment = () => {

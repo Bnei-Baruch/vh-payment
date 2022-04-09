@@ -124,6 +124,7 @@ export default function Payment() {
 
   React.useEffect(() => {
     getUserProfileData();
+  // eslint-disable-next-line
   }, []);
 
   const proceedToPayment = () => {
@@ -139,7 +140,7 @@ export default function Payment() {
   let event = content[i18n.language]
     ? content[i18n.language].title
     : content.en;
-  
+
   let ticketDescription = selectedTicket.content ? selectedTicket.content[i18n.language].description : selectedTicket.content.en.description;
   let paymentOption = selectedTicket.payment_options;
 
@@ -177,7 +178,7 @@ export default function Payment() {
             </Grid>
             <Grid item xs={12}>
               <SubText>
-                <ul style={{padding: '0px 10px'}}>
+                <ul style={{ padding: '0px 10px' }}>
                   {ticketDescription && ticketDescription.map(description => {
                     return <li>{description}</li>
                   })}
@@ -206,7 +207,7 @@ export default function Payment() {
                         value={option.name}
                         control={<Radio />}
                         label={option.content[i18n.language].label}
-                    />
+                      />
                     ))}
                   </RadioGroup>
                 </FormControl>
