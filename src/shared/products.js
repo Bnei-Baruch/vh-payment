@@ -599,6 +599,15 @@ exports.tickets = {
             en: {
               label: "Credit/Debit Card",
             },
+            ru: {
+              label: "Кредитная / дебетовая карта",
+            },
+            es: {
+              label: "Tarjeta de crédito / débito",
+            },
+            he: {
+              label: "כרטיס אשראי/כרטיס חיוב",
+            },
           },
         },
         {
@@ -606,6 +615,15 @@ exports.tickets = {
           content: {
             en: {
               label: "Other payment type",
+            },
+            he: {
+              label: "אפשרויות תשלום נוספות",
+            },
+            es: {
+              label: "Otras opciones de pago",
+            },
+            ru: {
+              label: "Другой вид оплаты",
             },
           },
         },
@@ -636,39 +654,58 @@ exports.tickets = {
     {
       content: {
         en: {
-          name: "Special",
-          description: ["First bullet" ],
+          name: "Financial Help",
+          description: ["If you need financial " ],
           button_label: "Select",
           options: [
             {
-              label: "ukraine",
+              label: "helphaver",
+              name: "Help Haver",
+              intersticial: {
+                title: "If you need financial help",
+                body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
+                button: "Next",
+              },
+              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              type: "helphaver",
+              register_status: "hh-request"
+            },
+          ],
+        },
+        ru: {
+          name: "Для особых случаев",
+          description: ["-" ],
+          button_label: "Выбрать",
+          options: [
+            {
+              label: "Я из Украины",
               name: "ukraine",
               intersticial: {
-                title: "Ukraine",
-                body: "Message",
-                button: "Next",
+                title: "Для наших товарищей из Украины",
+                body: "Руководство Международной академии каббалы приняло решение, что участие в этом конгрессе для товарищей из Украины бесплатно.",
+                button: "Дальше",
               },
               type: "special",
               register_status: "sp-ukraine"
             },
             {
-              label: "russia",
+              label: "Я из России",
               name: "russia",
               intersticial: {
-                title: "Ukraine",
-                body: "Message",
-                button: "Next",
+                title: "Для наших товарищей из России",
+                body: "1.  Пройдите регистрацию до конца.  2. Инструкцию для оплаты за участие в конгрессе в размере 800 рублей, мы пришлём Вам позже",
+                button: "Далее",
               },
               type: "special",
               register_status: "sp-russia"
             },
             {
-              label: "helphaver",
+              label: "Финансовая помощь",
               name: "helphaver",
               intersticial: {
-                title: "Help Haver",
-                body: "Message",
-                button: "Next",
+                title: "Если Вы не можете оплатить участие",
+                body: "Если вам нужна помощь, чтобы оплатить участие в конгрессе: 1. Завершите регистрацию. 2. Пожалуйста обратитесь в фонд Help Haver.",
+                button: "Далее",
               },
               redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
