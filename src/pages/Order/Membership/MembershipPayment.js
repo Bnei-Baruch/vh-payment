@@ -53,10 +53,10 @@ export default function MembershipPayment() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
   const classes = useStyles();
-  const { event_slug } = useParams();
+  const { plan } = useParams();
   const user = useSelector((state) => state.user);
   const [profileData, setUserProfileData] = React.useState(null);
-  const [paymentMethod, setPaymentMethod] = React.useState("creditcard");
+  const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
@@ -79,7 +79,6 @@ export default function MembershipPayment() {
 
   const handlePay = async () => {
     setOnPayClicked(true);
-    //TODO fix the objects here on the app.
     const data = {
       // Account details
       AccountID: "-",
@@ -106,7 +105,7 @@ export default function MembershipPayment() {
       ProductType: selectedMembership.product?.productType,
       RecurringFreq: selectedMembership.product?.recurringFreq,
       //replace this with routing mechanism
-      successUrl: window.APP_CONFIG.VH_BASE_URL + "/dash/membership",
+      successUrl: window.APP_CONFIG.VH_BASE_URL + `/pay/membership/payment/${selectedMembership.name}/success`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
@@ -123,14 +122,14 @@ export default function MembershipPayment() {
 
   React.useEffect(() => {
     getUserProfileData();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const proceedToPayment = () => {
-    if (paymentMethod === "creditcard") {
+    if (paymentMethod === "pelecard") {
       handlePay();
     } else {
-      history.push(`/pay/order/ticket/payment/others/${event_slug}`);
+      history.push(`/pay/order/ticket/payment/others/${plan}?isMembership=true`);
     }
   };
 
@@ -139,7 +138,8 @@ export default function MembershipPayment() {
   let event = content[i18n.language]
     ? content[i18n.language].title
     : content.en;
-
+  let membershipDescription = selectedMembership.content ? selectedMembership.content[i18n.language].description : selectedMembership.content.en.description;
+  let paymentOption = selectedMembership.payment_options;
   return (
     <>
       <HeaderLayout />
@@ -150,7 +150,7 @@ export default function MembershipPayment() {
           </>
         )}
         <Stepper activeStep={activeStep} alternativeLabel>
-          {['Membership Amount', 'Payment Method Selection', 'Checkout Confirmation'].map((label) => (
+          {[t('payment.membershipStep1'), t('payment.step2'), t('payment.step3')].map((label) => (
             <Step key={label}>
               <StepLabel>
                 {label}
@@ -172,9 +172,11 @@ export default function MembershipPayment() {
             </Grid>
             <Grid item xs={12}>
               <SubText>
-                Ticket description : Loreum ipsum dolor sit amet, consectetur
-                adipiscing elit. Ticket description : Loreum ipsum dolor sit
-                amet, consectetur adipiscing elit.
+                <ul style={{ padding: '0px 10px' }}>
+                  {membershipDescription && membershipDescription.map(description => {
+                    return <li>{description}</li>
+                  })}
+                </ul>
               </SubText>
               <br />
               <br />
@@ -196,28 +198,16 @@ export default function MembershipPayment() {
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   >
-                    <FormControlLabel
-                      value="creditcard"
-                      control={<Radio />}
-                      label={t("paymentMethod.creditCard")}
-                    />
-                    <FormControlLabel
-                      value="other"
-                      control={<Radio />}
-                      label={t("common.other")}
-                    />
+                    {paymentOption.map(option => (
+                      <FormControlLabel
+                        value={option.name}
+                        control={<Radio />}
+                        label={option.content[i18n.language].label}
+                      />
+                    ))}
                   </RadioGroup>
                 </FormControl>
               </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <SubText>
-                Payment description : Loreum ipsum dolor sit amet, consectetur
-                adipiscing elit. Payment description : Loreum ipsum dolor sit
-                amet, consectetur adipiscing elit.
-              </SubText>
-              <br />
-              <br />
             </Grid>
           </Grid>
         )}
@@ -230,7 +220,7 @@ export default function MembershipPayment() {
                   {selectedMembership.price[currency.id]?.amount}
                 </span>
                 <span class="lightgrey" style={{ textTransform: "uppercase" }}>
-                  {currency.id}
+                  {currency.id?.toUpperCase()}
                 </span>
               </PaymentTile>
             </Grid>
@@ -238,9 +228,7 @@ export default function MembershipPayment() {
               <SubText>{t("common.paymentMethod")}</SubText>
               <PaymentTile>
                 <span class="lightgrey">
-                  {paymentMethod === "creditcard"
-                    ? t("paymentMethod.creditCard")
-                    : t("common.other")}
+                  {paymentOption.find(item => item.name === paymentMethod)?.content[i18n.language]?.label}
                 </span>
               </PaymentTile>
             </Grid>

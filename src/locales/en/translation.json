@@ -30,7 +30,8 @@
     "thanksstep3": "Congratulations! You have successfully registered for the congress. Soon you will receive an email confirming your participation in the congress, as well as with a detailed description of the congress program and links to connect.",
     "next": "Next",
     "closethepage": "Well done! You can close the page",
-    "processing" : "Processing"
+    "processing": "Processing",
+    "returnToPersonalArea": "Return to Personal area"
   },
   "userMenu": {
     "profile": "Profile",
@@ -39,15 +40,15 @@
     "yesBtn": "Yes",
     "cancelBtn": "Cancel"
   },
-  "error" : {
-    "page_not_found" : "Page Not found",
+  "error": {
+    "page_not_found": "Page Not found",
     "retry": "Please go back or"
   },
-  "common" :{
-    "confirm" : "Confirm",
-    "cancel" : "Cancel",
-    "next" : "Next",
-    "back" : "Back",
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "next": "Next",
+    "back": "Back",
     "edit": "Edit",
     "save": "Save",
     "other": "Other",
@@ -69,14 +70,20 @@
     "localGroup": "Through Local Group",
     "incash": "In cash",
     "doYouHaveAReciept": "Do you have a reciept?",
-    "extraInformation":"Extra Information"
+    "extraInformation": "Extra Information"
   },
   "help": {
     "header": "Need Help?",
     "requestHelp": "You cannot afford to pay and you want to request for help?",
     "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
     "submittedHeader": "Request Submitted",
-    "requestSubmitted": "Your request for help have been submitted and soon will be reviewed.",
+    "requestSubmitted": "Your request for help have been submitted and soon will be reviewed. For any question or enquires please write to help@kli.one",
     "return_to_personal_area": "Return to personal area"
+  },
+  "payment": {
+    "membershipStep1": "Membership Amount",
+    "ticketStep1": "Ticket Amount",
+    "step2": "Payment Method Selection",
+    "step3": "Checkout Confirmation"
   }
 }

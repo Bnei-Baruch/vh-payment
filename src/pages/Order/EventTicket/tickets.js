@@ -68,7 +68,7 @@ export default function Tickets() {
   const currency = useSelector((state) => state.currency);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
   const membershipData = useSelector((state) => state.user.membershipdata);
-  const [specialOption, setSpecialOption] = React.useState("helphaver");
+  const [specialOption, setSpecialOption] = React.useState("Help Haver");
 
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
@@ -80,7 +80,8 @@ export default function Tickets() {
   };
 
   const navigateToConfirmation = (ticket) => {
-    if (ticket && ticket.name.toLowerCase() === "special") {
+    const { name } = ticket;
+    if (name === 'special') {
       const content =
         selectedTicket.content[i18n.language] || selectedTicket.content.en;
       const selectedOption = content.options.find(
@@ -88,24 +89,27 @@ export default function Tickets() {
       );
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
-    }
-    if (ticket && ticket.name.toLowerCase() === "membership ticket") {
+    } else if (name === "membership" && membershipData?.membership !== true) {
       const selectedOption =
         selectedTicket.content[i18n.language] || selectedTicket.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
       return;
-    }
-    if (ticket && ticket.name.toLowerCase() === "regular ticket") {
+    } else {
       history.push(`/pay/order/ticket/payment/${event_slug}`);
     }
   };
   if (!product) return <></>;
 
+  const getPlansInSortedFormat = (plans) => {
+    let plan = plans.filter(
+      (plan) => plan.membership === membershipData?.membership
+    );
+    return plan.sort((a, b) => parseInt(a.order) - parseInt(b.order));
+  }
+
   const { content } = product;
-  let plans = product.plans.filter(
-    (plan) => plan.membership === membershipData?.membership
-  );
+  let plans = getPlansInSortedFormat(product.plans);
   const header =
     typeof content[i18n.language] !== "undefined"
       ? content[i18n.language]
@@ -194,7 +198,7 @@ export default function Tickets() {
                       <Button
                         variant="contained"
                         color="secondary"
-                        onClick={() => navigateToConfirmation(planContent)}
+                        onClick={() => navigateToConfirmation(plan)}
                       >
                         {t("common.next")}
                       </Button>

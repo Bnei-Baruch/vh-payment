@@ -79,7 +79,6 @@ export default function Payment() {
 
   const handlePay = async () => {
     setOnPayClicked(true);
-    //TODO fix the objects here on the app.
     const data = {
       // Account details
       AccountID: "-",
@@ -108,7 +107,7 @@ export default function Payment() {
       //replace this with routing mechanism
       successUrl:
         window.APP_CONFIG.VH_BASE_URL +
-        `/pay/order/register/userdetail/${event_slug}`,
+        `/pay/order/register/${selectedTicket.name}/userdetail/${event_slug}`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
@@ -155,9 +154,9 @@ export default function Payment() {
         )}
         <Stepper activeStep={activeStep} alternativeLabel>
           {[
-            "Ticket Amount",
-            "Payment Method Selection",
-            "Checkout Confirmation",
+            t('payment.ticketStep1'),
+            t('payment.step2'),
+            t('payment.step3'),
           ].map((label) => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
@@ -223,7 +222,7 @@ export default function Payment() {
                 <span class="lightgrey">
                   {selectedTicket.price[currency.id]?.amount}
                 </span>
-                <span class="lightgrey">{currency.id}</span>
+                <span class="lightgrey">{currency.id?.toUpperCase()}</span>
               </PaymentTile>
             </Grid>
             <Grid item xs={12}>

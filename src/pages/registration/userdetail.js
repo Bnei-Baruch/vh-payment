@@ -21,6 +21,7 @@ import { DatePicker } from "@material-ui/pickers";
 import { addAParticipant, getParticipantByEmail } from "../../services/participants.service";
 import { addPariticpantInEvent } from "../../services/event.service";
 import { getEventsProductBySlug } from "../../services/productservice";
+import { getQueryParams } from "../../utils/common";
 const GreyText = styled(Typography)`
   color: #777777;
 `;
@@ -41,7 +42,8 @@ export const genderData = [
 ];
 export default function UserDetail() {
   const { t } = useTranslation();
-  const { event_slug } = useParams();
+  let ManualPayment = getQueryParams("ManualPayment");
+  const { event_slug, participation_option } = useParams();
   const history = useHistory();
   const [profile, setProfileData] = useState({});
   const [isEditable, setIsEditAble] = useState(false);
@@ -50,7 +52,6 @@ export default function UserDetail() {
   const [participantId, setParticipantId] = useState(undefined);
   React.useEffect(() => {
     setProfileData(profileData);
-    postSuccessPayment(profileData);
     if (profileData && profileData.primary_email) {
       getParticipantByEmail(profileData.primary_email).then(res => {
         if (res) {
@@ -63,9 +64,16 @@ export default function UserDetail() {
     }
   }, [profileData]);
 
+  React.useEffect(() => {
+    if (!ManualPayment) {
+      postSuccessPayment();
+    }
+    // eslint-disable-next-line
+  }, [])
+
   const postSuccessPayment = async () => {
     let q = qs.parse(window.location.search);
-    if (q) {
+    if (Object.keys(q).length !== 0 && !ManualPayment) {
       await paymentSuccess(q);
     }
   };
@@ -76,13 +84,13 @@ export default function UserDetail() {
       saveUserProfileData(profile).then(async () => {
         if (participantId) {
           const data = {
-            "participation_option": "automatic",
+            "participation_option": participation_option,
             "participant_id": participantId,
             "event_id": eventData.event.id,
             "registration_date": new Date().toISOString(),
           }
           addPariticpantInEvent(data).then(res => {
-            history.push(`/pay/order/register/userdetail/success/${event_slug}`);
+            history.push(`/pay/order/register/${participation_option}/userdetail/success/${event_slug}`);
           });
         } else {
           //SetUpdatedObject
@@ -102,20 +110,20 @@ export default function UserDetail() {
               setParticipantId(res.id);
               const data = {
                 //Should be the option of the user pariticpant.
-                "participation_option": "automatic",
+                "participation_option": participation_option,
                 "participant_id": res.id,
                 "event_id": eventData.event.id,
                 "registration_date": new Date().toISOString(),
               }
               addPariticpantInEvent(data).then(res => {
-                history.push(`/pay/order/register/userdetail/success/${event_slug}`);
+                history.push(`/pay/order/register/${participation_option}/userdetail/success/${event_slug}`);
               });
             }
           })
         }
       });
     } else {
-      history.push(`/pay/order/register/userdetail/success/${event_slug}`);
+      history.push(`/pay/order/register/${participation_option}/userdetail/success/${event_slug}`);
     }
   };
 

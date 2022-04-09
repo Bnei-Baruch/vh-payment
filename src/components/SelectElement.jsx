@@ -39,7 +39,6 @@ const SelectElement = ({
 }) => {
   const classes = useStyles();
 
-  // TODO: pass value after updating DB on backend
   const defaultValue =
     id.includes("country") && value && value.length >= 3
       ? selectData.filter((item) => item.code === value)[0]?.ISO

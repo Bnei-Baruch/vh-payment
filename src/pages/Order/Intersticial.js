@@ -9,6 +9,9 @@ import { useParams } from "react-router-dom";
 import { getQueryParams } from "../../utils/common";
 import { useHistory } from "react-router-dom";
 import { getProfile } from "../../services/userservice";
+import { addAParticipant, getParticipantByEmail } from "../../services/participants.service";
+import { getEventsProductBySlug } from "../../services/productservice";
+import { addPariticpantInEvent } from "../../services/event.service";
 export default function Intersticial() {
   const history = useHistory();
   const { event_slug } = useParams();
@@ -20,6 +23,7 @@ export default function Intersticial() {
   const currency = useSelector((state) => state.currency);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
   const [profileData, setUserProfileData] = React.useState(null);
+  const [participantId, setParticipantId] = React.useState(undefined);
   const selectedMembership = useSelector(
     (state) => state.order.selectedMembership
   );
@@ -35,7 +39,7 @@ export default function Intersticial() {
   };
   React.useEffect(() => {
     getUserProfileData();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
   const handlePay = async (redirect_url) => {
     const data = {
@@ -67,7 +71,7 @@ export default function Intersticial() {
       //replace this with routing mechanism
       successUrl:
         window.APP_CONFIG.VH_BASE_URL +
-        `/pay/order/register/userdetail/${event_slug}`,
+        `/pay/membership/payment/${event_slug}/success?help=true`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
@@ -75,44 +79,72 @@ export default function Intersticial() {
       window.location.href = redirect_url;
     });
   };
+  const getPariticpantDetail = () => {
+    getParticipantByEmail(userProfileData.primary_email).then(res => {
+      if (res) {
+        const { id } = res;
+        setParticipantId(id);
+      }
+    }).catch(ex => {
+      console.log(ex);
+    })
+  }
+  React.useEffect(() => {
+    if (userProfileData && userProfileData.primary_email) {
+      getPariticpantDetail();
+    }
+  }, [userProfileData])
   const confirmNeedsHelpEvent = async () => {
     setSubmitting(true);
+    const eventData = getEventsProductBySlug(event_slug);
     const { type, register_status, redirect_url } = selectedSpecialOption;
-    if (isMembership && typeof type === "undefined") {
-      handlePay(redirect_url);
-      return;
-    }
     if (typeof type === "undefined") {
       window.location.href = window.location.origin + redirect_url;
       return;
     }
-    await updateStatus({
-      choice: register_status || "help",
-      communication_language: i18n.language?.toUpperCase(),
-      country: userProfileData?.country,
-      dob: userProfileData?.date_of_birth,
-      email: userProfileData?.primary_email,
-      event: selectedTicket.product?.productType,
-      first_language: userProfileData?.first_language || i18n.language,
-      first_name: userProfileData?.first_name_vernacular || user.firstName,
-      gender: userProfileData?.gender,
-      keycloakid: user?.keycloak?.subject,
-      lang: i18n.language.toUpperCase(),
-      last_name: userProfileData?.last_name_vernacular || user.lastName,
-    })
-      .then(() => {
-        setSubmitted(true);
-        setSubmitting(false);
-        if (type === "helphaver") {
-          window.location.href = redirect_url;
-          return;
+    if (type === 'helphaver') {
+      if (participantId) {
+        const data = {
+          "participation_option": register_status,
+          "participant_id": participantId,
+          "event_id": eventData.event.id,
+          "registration_date": new Date().toISOString(),
         }
-        history.push(`/pay/order/register/userdetail/${event_slug}`);
-      })
-      .catch((e) => {
-        console.error(e);
-        setSubmitting(false);
-      });
+        addPariticpantInEvent(data).then(() => {
+          window.location.href = redirect_url;
+        });
+      } else {
+        //SetUpdatedObject
+        const data = {
+          "keycloak_id": user.keycloak.subject,
+          "first_language": profileData.first_language,
+          "email_language": profileData.first_language,
+          "dob": new Date(profileData.dob).toISOString(),
+          "gender": profileData.gender,
+          "email": profileData.primary_email,
+          "country": profileData.country,
+          "first_name": profileData.first_name_vernacular,
+          "last_name": profileData.last_name_vernacular
+        }
+        addAParticipant(data).then(res => {
+          if (res) {
+            setParticipantId(res.id);
+            const data = {
+              //Should be the option of the user pariticpant.
+              "participation_option": register_status,
+              "participant_id": res.id,
+              "event_id": eventData.event.id,
+              "registration_date": new Date().toISOString(),
+            }
+            addPariticpantInEvent(data).then(res => {
+              window.location.href = redirect_url;
+            });
+          }
+        })
+      }
+    } else {
+      history.push(`/pay/order/register/${register_status}/userdetail/${event_slug}?Manual=true`);
+    }
   };
   const confirmNeedsHelpMembership = async () => {
     const { type, redirect_url } = selectedSpecialOption;

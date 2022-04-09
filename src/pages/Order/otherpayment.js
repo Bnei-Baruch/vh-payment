@@ -22,12 +22,14 @@ import HeaderLayout from "../../layouts/HeaderLayout";
 import { handlePayment } from "../../services/orderservice";
 import { getProfile } from "../../services/userservice";
 import { useHistory } from "react-router-dom";
+import { getQueryParams } from "../../utils/common";
 const HeaderTitle = styled(Typography)`
   text-align: center;
 `;
 export default function OtherPayment() {
   const classes = useStyles();
   const history = useHistory();
+  let isMembership = getQueryParams("isMembership");
   const { t, i18n } = useTranslation();
   const { event_slug } = useParams();
   const [payClicked, setOnPayClicked] = React.useState(false);
@@ -35,9 +37,12 @@ export default function OtherPayment() {
   const [profileData, setUserProfileData] = React.useState(null);
   const currency = useSelector((state) => state.currency);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
+  const selectedMembership = useSelector(
+    (state) => state.order.selectedMembership
+  );
   const [selectedPaymentType, setSelectedPaymentType] =
     React.useState("offlinebank");
-  const [extraInfo, setExtraInfo] = React.useState("offlinebank");
+  const [extraInfo, setExtraInfo] = React.useState("");
   const saveDetail = (e) => {
     e.preventDefault();
     handlePay();
@@ -51,12 +56,12 @@ export default function OtherPayment() {
 
   React.useEffect(() => {
     getUserProfileData();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const handlePay = async () => {
     setOnPayClicked(true);
-    //TODO fix the objects here on the app.
+    const ticketObject = isMembership ? selectedMembership : selectedTicket;
     const data = {
       // Account details
       AccountID: "-",
@@ -71,32 +76,36 @@ export default function OtherPayment() {
       Country: profileData?.country || "",
 
       //Product details
-      SKU: selectedTicket.product?.SKU,
+      SKU: ticketObject.product?.SKU,
       OrderLanguage: i18n.language?.toUpperCase(),
-      Reference: selectedTicket.product?.reference,
-      Organization: selectedTicket.product?.organization,
+      Reference: ticketObject.product?.reference,
+      Organization: ticketObject.product?.organization,
       UserKey: user.keycloak.subject,
       Currency: currency.id?.toUpperCase(),
-      Amount: selectedTicket.price[currency.id]?.amount,
+      Amount: ticketObject.price[currency.id]?.amount,
       // Amount: 1,
-      Type: selectedTicket.product?.type,
-      ProductType: selectedTicket.product?.productType,
-      RecurringFreq: selectedTicket.product?.recurringFreq,
+      Type: ticketObject.product?.type,
+      ProductType: ticketObject.product?.productType,
+      RecurringFreq: ticketObject.product?.recurringFreq,
       PaymentType: "manual",
       PaymentMethod: selectedPaymentType,
       ExtraInfo: extraInfo,
       //replace this with routing mechanism
-      successUrl:
+      successUrl: isMembership ? window.APP_CONFIG.VH_BASE_URL + `/pay/membership/payment/${event_slug}/success?help=true` :
         window.APP_CONFIG.VH_BASE_URL +
-        `/pay/order/register/userdetail/${event_slug}`,
+        `/pay/order/register/${ticketObject.name}/userdetail/${event_slug}`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
     handlePayment(data)
       .then(() => {
-        history.push(`/pay/order/register/userdetail/${event_slug}`);
+        if (isMembership) {
+          history.push(`/pay/membership/payment/${event_slug}/success?help=true`);
+          return;
+        }
+        history.push(`/pay/order/register/${selectedTicket.name}/userdetail/${event_slug}?ManualPayment=true`);
       })
-      .catch((error) => {
+      .catch(() => {
         setOnPayClicked(false);
       });
   };

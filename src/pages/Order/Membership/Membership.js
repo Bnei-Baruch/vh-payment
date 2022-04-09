@@ -143,8 +143,8 @@ export default function Membership() {
                           {t("common.select_option")}
                         </FormLabel>
                         <RadioGroup
-                          aria-label="gender"
-                          name="gender1"
+                          aria-label="special"
+                          name="special"
                           value={specialOption}
                           onChange={(e) => setSpecialOption(e.target.value)}
                           style={{ flexDirection: "row" }}
