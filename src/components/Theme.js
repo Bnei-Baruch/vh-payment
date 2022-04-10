@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux';
 const Theme = ({children}) => {
   const {currentTheme} = useSelector(state => state.theme);
   const {dir} = useSelector(state => state.language);
+  //eslint-disable-next-line
   const [theme, setTheme] = useState(Themes(currentTheme, dir));
 
   useEffect(() => {

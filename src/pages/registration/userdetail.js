@@ -41,7 +41,7 @@ export const genderData = [
   },
 ];
 export default function UserDetail() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   let ManualPayment = getQueryParams("ManualPayment");
   const { event_slug, participation_option } = useParams();
   const history = useHistory();
@@ -97,8 +97,8 @@ export default function UserDetail() {
           const data = {
             "keycloak_id": user.keycloak.subject,
             "first_language": profileData.first_language,
-            "email_language": profileData.first_language,
-            "dob": new Date(profileData.dob).toISOString(),
+            "email_language": i18n.language,
+            "dob": profileData.date_of_birth ? new Date(profileData.date_of_birth).toISOString() : new Date().toISOString(),
             "gender": profileData.gender,
             "email": profileData.primary_email,
             "country": profileData.country,
@@ -115,7 +115,7 @@ export default function UserDetail() {
                 "event_id": eventData.event.id,
                 "registration_date": new Date().toISOString(),
               }
-              addPariticpantInEvent(data).then(res => {
+              addPariticpantInEvent(data).then(() => {
                 history.push(`/pay/order/register/${participation_option}/userdetail/success/${event_slug}`);
               });
             }
@@ -141,12 +141,8 @@ export default function UserDetail() {
     data[key] = e.target.value;
     setProfileData(data);
   };
-  // React.useEffect(() => {
-  //   let q = qs.parse(window.location.search)
-  //   if (user.authenticated) {
-  //     paymentSuccess(q);
-  //   }
-  // }, [user])
+
+  console.log(profile);
 
   const profileSubmit = (e) => {
     e.preventDefault();
@@ -156,14 +152,13 @@ export default function UserDetail() {
     <form onSubmit={profileSubmit}>
       <Grid container spacing={6}>
         <Grid item xs={12}>
-          <Typography variant="h4">Ticket Registration Detail</Typography>
+          <Typography variant="h4">{t('userDetail.ticketRegistrationDetail')}</Typography>
         </Grid>
         {profile ? (
           <ProfileGrid container item xs={12} spacing={6}>
             <Grid item xs={12}>
               <GreyText variant="h6">
-                In Order for us to produce your ticket. We need you to review
-                following user details
+                {t('userDetail.ticketRegistrationSubtitle')}
               </GreyText>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -225,7 +220,7 @@ export default function UserDetail() {
                 label="Gender"
                 variant="outlined"
                 fullWidth
-                value={profile.gender}
+                value={profile.gender || ''}
                 onChange={(e) => handleChange("gender", e)}
                 selectData={genderData}
                 required={true}
@@ -250,7 +245,7 @@ export default function UserDetail() {
                 label="Country"
                 variant="outlined"
                 fullWidth
-                value={profile.country}
+                value={profile.country || ''}
                 onChange={(e) => handleChange("country", e)}
                 selectData={countries}
                 required={true}
@@ -263,7 +258,7 @@ export default function UserDetail() {
                 label="First Language"
                 variant="outlined"
                 fullWidth
-                value={profile.first_language}
+                value={profile.first_language || ''}
                 onChange={(e) => handleChange("first_language", e)}
                 selectData={languages}
                 required={true}
@@ -275,7 +270,7 @@ export default function UserDetail() {
                 id="outlined-basic"
                 label="Second Language"
                 variant="outlined"
-                value={profile.other_language_1}
+                value={profile.other_language_1 || ''}
                 onChange={(e) => handleChange("other_language_1", e)}
                 selectData={languages}
                 fullWidth
@@ -298,7 +293,7 @@ export default function UserDetail() {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={saveProfileAndRedirect}
+                  type="submit"
                 >
                   {t("common.next")}
                 </Button>

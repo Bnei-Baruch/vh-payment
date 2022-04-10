@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { setSelectedMembership, setSpecialSelectedOption } from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
 import { getMembershipProduct } from "../../../services/productservice";
+import Loader from "../../../components/Loader";
 const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -83,7 +84,7 @@ export default function Membership() {
       history.push("/pay/membership/payment/" + selectedMembership.name);
     }
   };
-  if (!membership) return <></>;
+  if (!membership) return <Loader />;
 
   const { content, plans } = membership;
   const header =
@@ -131,7 +132,7 @@ export default function Membership() {
                     <ul>
                       {planContent.description.map((item, index) => (
                         <li key={index}>
-                          <Typography variant="body">{item}</Typography>
+                          <Typography variant="body1">{item}</Typography>
                         </li>
                       ))}
                     </ul>
@@ -178,6 +179,7 @@ export default function Membership() {
                         <Button
                           variant="contained"
                           color="secondary"
+                          style={{backgroundColor: 'rgb(52, 168, 83)'}}
                           onClick={() => navigateToConfirmation(planContent)}
                         >
                           {t("common.next")}

@@ -75,7 +75,7 @@ export default function Needhelp() {
               </Typography>
               <br />
               <Typography
-                variant="body"
+                variant="body1"
                 style={{ color: "#777", fontWeight: "normal" }}
               >
                 {t("help.helpDescription")}
