@@ -85,5 +85,9 @@
     "ticketStep1": "Ticket Amount",
     "step2": "Payment Method Selection",
     "step3": "Checkout Confirmation"
+  },
+  "userDetail": {
+    "ticketRegistrationDetail": "Ticket Registration Detail",
+    "ticketRegistrationSubtitle": "In Order for us to produce your ticket. We need you to review following user details"
   }
 }

@@ -23,6 +23,7 @@ import {
   setSpecialSelectedOption,
 } from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
+import Loader from "../../../components/Loader";
 const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -99,7 +100,7 @@ export default function Tickets() {
       history.push(`/pay/order/ticket/payment/${event_slug}`);
     }
   };
-  if (!product) return <></>;
+  if (!product) return <Loader />;
 
   const getPlansInSortedFormat = (plans) => {
     let plan = plans.filter(
@@ -155,7 +156,7 @@ export default function Tickets() {
                     <ul>
                       {planContent.description.map((item, index) => (
                         <li key={index}>
-                          <Typography variant="body">{item}</Typography>
+                          <Typography variant="body1">{item}</Typography>
                         </li>
                       ))}
                     </ul>
@@ -198,6 +199,7 @@ export default function Tickets() {
                       <Button
                         variant="contained"
                         color="secondary"
+                        style={{backgroundColor: 'rgb(52, 168, 83)'}}
                         onClick={() => navigateToConfirmation(plan)}
                       >
                         {t("common.next")}

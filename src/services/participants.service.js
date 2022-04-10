@@ -5,5 +5,5 @@ export const getParticipantByEmail = (email) => {
 }
 
 export const addAParticipant = (data) => {
-    return axios.post(`${window.APP_CONFIG.VH_API_BASE_URL}/events/v1/participant`, data).then(res => res.data);
+    return axios.post(`${window.APP_CONFIG.VH_API_BASE_URL}/events/v1/participant`, data).then(res => res.data.data);
 }
