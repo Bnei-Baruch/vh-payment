@@ -155,6 +155,7 @@ const Order = () => {
    */
   useEffect(() => {
     getUserProfileData();
+  // eslint-disable-next-line
   }, [user]);
 
   /**

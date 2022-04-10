@@ -44,11 +44,13 @@ const LanguagePicker = () => {
         changeCurrency()
       }
     }
+    // eslint-disable-next-line
   }, [dispatch, i18n])
   useEffect(() => {
     if (window.location.search.slice(6) === 'he') {
       changeCurrency()
     }
+  // eslint-disable-next-line
   }, [])
 
   const toggleMenu = (event) => {

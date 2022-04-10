@@ -563,7 +563,7 @@ exports.tickets = {
   },
   event: {
     slug: "may2022",
-    id: "XXXX",
+    id: 3,
   },
   plans: [
     {
@@ -655,7 +655,7 @@ exports.tickets = {
       content: {
         en: {
           name: "Financial Help",
-          description: ["If you need financial " ],
+          description: ["If you need financial "],
           button_label: "Select",
           options: [
             {
@@ -674,7 +674,7 @@ exports.tickets = {
         },
         ru: {
           name: "Для особых случаев",
-          description: ["-" ],
+          description: ["-"],
           button_label: "Выбрать",
           options: [
             {
@@ -717,7 +717,7 @@ exports.tickets = {
       flow: {
         type: "options",
       },
-      name: "membership",
+      name: "special",
       membership: false,
       order: 2,
       price: {
@@ -760,7 +760,7 @@ exports.tickets = {
       },
       name: "membership",
       membership: false,
-      order: 2,
+      order: 3,
       price: {
         usd: {
           amount: 30,
@@ -871,7 +871,7 @@ exports.tickets = {
       flow: {
         type: "options",
       },
-      name: "membership",
+      name: "special",
       membership: true,
       order: 2,
       price: {
@@ -898,7 +898,7 @@ exports.tickets = {
 };
 
 
-exports.membershipsplans= {
+exports.membershipsplans = {
   name: "membership",
   content: {
     en: {

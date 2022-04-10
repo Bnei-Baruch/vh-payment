@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import Loader from '../../components/Loader'
 import ContentLayout from '../../layouts/ContentLayout'
 import HeaderLayout from '../../layouts/HeaderLayout'
-import { useParams } from 'react-router-dom'
 import * as qs from 'query-string'
 
 const useStyles = makeStyles({
@@ -38,7 +37,6 @@ const useStyles = makeStyles({
 
 const Error = () => {
   const classes = useStyles()
-  const { ordkey, paramx } = useParams()
   const { t } = useTranslation()
 
   // const [payMethod, setPayMethod] = useState('card');
