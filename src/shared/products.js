@@ -863,8 +863,8 @@ exports.tickets = {
                 title: "Help Haver",
                 body: "Message",
                 button: "Next",
-                register_status: "hh-request"
               },
+              register_status: "hh-request",
               redirect_url: "https://google.com",
               type: "helphaver",
             },
