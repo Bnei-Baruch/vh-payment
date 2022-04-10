@@ -3,7 +3,7 @@ import HeaderLayout from "../../layouts/HeaderLayout";
 import ContentLayout from "../../layouts/ContentLayout";
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
-import { handlePayment, updateStatus } from "../../services/orderservice";
+import { handlePayment } from "../../services/orderservice";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getQueryParams } from "../../utils/common";
@@ -12,16 +12,17 @@ import { getProfile } from "../../services/userservice";
 import { addAParticipant, getParticipantByEmail } from "../../services/participants.service";
 import { getEventsProductBySlug } from "../../services/productservice";
 import { addPariticpantInEvent } from "../../services/event.service";
+import Loader from "../../components/Loader";
 export default function Intersticial() {
   const history = useHistory();
   const { event_slug } = useParams();
   const { t, i18n } = useTranslation();
   const user = useSelector((state) => state.user);
   let isMembership = getQueryParams("isMembership");
+  // eslint-disable-next-line
   const [submitted, setSubmitted] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const currency = useSelector((state) => state.currency);
-  const selectedTicket = useSelector((state) => state.order.selectedTicket);
   const [profileData, setUserProfileData] = React.useState(null);
   const [participantId, setParticipantId] = React.useState(undefined);
   const selectedMembership = useSelector(
@@ -93,6 +94,7 @@ export default function Intersticial() {
     if (userProfileData && userProfileData.primary_email) {
       getPariticpantDetail();
     }
+    // eslint-disable-next-line
   }, [userProfileData])
   const confirmNeedsHelpEvent = async () => {
     setSubmitting(true);
@@ -116,10 +118,10 @@ export default function Intersticial() {
       } else {
         //SetUpdatedObject
         const data = {
-          "keycloak_id": user.keycloak.subject,
+          "keycloak_id": 'be0ddd0c-ebbf-4f89-9fe1-b41245001gg0',
           "first_language": profileData.first_language,
-          "email_language": profileData.first_language,
-          "dob": new Date(profileData.dob).toISOString(),
+          "email_language": i18n.language,
+          "dob": profileData.date_of_birth ? new Date(profileData.date_of_birth).toISOString() : new Date().toISOString(),
           "gender": profileData.gender,
           "email": profileData.primary_email,
           "country": profileData.country,
@@ -156,7 +158,7 @@ export default function Intersticial() {
   const moveback = () => {
     history.goBack();
   };
-  if (!selectedSpecialOption) return <></>;
+  if (!selectedSpecialOption) return <Loader />;
   const { intersticial } = selectedSpecialOption;
   return (
     <>
@@ -170,7 +172,7 @@ export default function Intersticial() {
             <br />
             <Divider /> <br />
             <Typography
-              variant="body"
+              variant="body1"
               style={{ color: "#777", fontWeight: "normal" }}
             >
               {intersticial.body}

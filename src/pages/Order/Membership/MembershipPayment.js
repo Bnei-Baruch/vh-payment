@@ -24,6 +24,7 @@ import ContentLayout from "../../../layouts/ContentLayout";
 import HeaderLayout from "../../../layouts/HeaderLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
+import Loader from "../../../components/Loader";
 const PaymentTile = styled.div`
   padding: 20px 20px;
   > span:first-child {
@@ -133,7 +134,7 @@ export default function MembershipPayment() {
     }
   };
 
-  if (!selectedMembership) return <></>;
+  if (!selectedMembership) return <Loader />
   let { content } = selectedMembership;
   let event = content[i18n.language]
     ? content[i18n.language].title
