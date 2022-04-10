@@ -118,7 +118,7 @@ export default function Intersticial() {
       } else {
         //SetUpdatedObject
         const data = {
-          "keycloak_id": 'be0ddd0c-ebbf-4f89-9fe1-b41245001gg0',
+          "keycloak_id": user.keycloak.subject,
           "first_language": profileData.first_language,
           "email_language": i18n.language,
           "dob": profileData.date_of_birth ? new Date(profileData.date_of_birth).toISOString() : new Date().toISOString(),

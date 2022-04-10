@@ -18,7 +18,10 @@ import * as qs from "query-string";
 import languages from "../../shared/languages_profile";
 import { paymentSuccess } from "../../services/orderservice";
 import { DatePicker } from "@material-ui/pickers";
-import { addAParticipant, getParticipantByEmail } from "../../services/participants.service";
+import {
+  addAParticipant,
+  getParticipantByEmail,
+} from "../../services/participants.service";
 import { addPariticpantInEvent } from "../../services/event.service";
 import { getEventsProductBySlug } from "../../services/productservice";
 import { getQueryParams } from "../../utils/common";
@@ -53,14 +56,16 @@ export default function UserDetail() {
   React.useEffect(() => {
     setProfileData(profileData);
     if (profileData && profileData.primary_email) {
-      getParticipantByEmail(profileData.primary_email).then(res => {
-        if (res) {
-          const { id } = res;
-          setParticipantId(id);
-        }
-      }).catch(ex => {
-        console.log(ex);
-      })
+      getParticipantByEmail(profileData.primary_email)
+        .then((res) => {
+          if (res) {
+            const { id } = res;
+            setParticipantId(id);
+          }
+        })
+        .catch((ex) => {
+          console.log(ex);
+        });
     }
   }, [profileData]);
 
@@ -69,7 +74,7 @@ export default function UserDetail() {
       postSuccessPayment();
     }
     // eslint-disable-next-line
-  }, [])
+  }, []);
 
   const postSuccessPayment = async () => {
     let q = qs.parse(window.location.search);
@@ -81,49 +86,67 @@ export default function UserDetail() {
   const saveProfileAndRedirect = async () => {
     const eventData = getEventsProductBySlug(event_slug);
     if (isEditable) {
-      saveUserProfileData(profile).then(async () => {
+      const data = { ...profile };
+      data.date_of_birth =
+        typeof data.date_of_birth === "object"
+          ? data.date_of_birth?.toISOString()
+          : new Date(data.date_of_birth)?.toISOString();
+      data.study_start_year =
+        typeof data.study_start_year === "object"
+          ? data.study_start_year?.getFullYear()
+          : data.study_start_year ? data.study_start_year : new Date().getFullYear();
+      data.email_language = i18n.language;
+      saveUserProfileData(data).then(async () => {
         if (participantId) {
           const data = {
-            "participation_option": participation_option,
-            "participant_id": participantId,
-            "event_id": eventData.event.id,
-            "registration_date": new Date().toISOString(),
-          }
-          addPariticpantInEvent(data).then(res => {
-            history.push(`/pay/order/register/${participation_option}/userdetail/success/${event_slug}`);
+            participation_option: participation_option,
+            participant_id: participantId,
+            event_id: eventData.event.id,
+            registration_date: new Date().toISOString(),
+          };
+          addPariticpantInEvent(data).then((res) => {
+            history.push(
+              `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
+            );
           });
         } else {
           //SetUpdatedObject
           const data = {
-            "keycloak_id": user.keycloak.subject,
-            "first_language": profileData.first_language,
-            "email_language": i18n.language,
-            "dob": profileData.date_of_birth ? new Date(profileData.date_of_birth).toISOString() : new Date().toISOString(),
-            "gender": profileData.gender,
-            "email": profileData.primary_email,
-            "country": profileData.country,
-            "first_name": profileData.first_name_vernacular,
-            "last_name": profileData.last_name_vernacular
-          }
-          addAParticipant(data).then(res => {
+            keycloak_id: user.keycloak.subject,
+            first_language: profileData.first_language,
+            email_language: i18n.language,
+            dob: profileData.date_of_birth
+              ? new Date(profileData.date_of_birth).toISOString()
+              : new Date().toISOString(),
+            gender: profileData.gender,
+            email: profileData.primary_email,
+            country: profileData.country,
+            first_name: profileData.first_name_vernacular,
+            last_name: profileData.last_name_vernacular,
+          };
+          addAParticipant(data).then((res) => {
             if (res) {
               setParticipantId(res.id);
               const data = {
                 //Should be the option of the user pariticpant.
-                "participation_option": participation_option,
-                "participant_id": res.id,
-                "event_id": eventData.event.id,
-                "registration_date": new Date().toISOString(),
-              }
+                participation_option: participation_option,
+                participant_id: res.id,
+                event_id: eventData.event.id,
+                registration_date: new Date().toISOString(),
+              };
               addPariticpantInEvent(data).then(() => {
-                history.push(`/pay/order/register/${participation_option}/userdetail/success/${event_slug}`);
+                history.push(
+                  `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
+                );
               });
             }
-          })
+          });
         }
       });
     } else {
-      history.push(`/pay/order/register/${participation_option}/userdetail/success/${event_slug}`);
+      history.push(
+        `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
+      );
     }
   };
 
@@ -138,7 +161,11 @@ export default function UserDetail() {
 
   const handleChange = (key, e) => {
     let data = { ...profile };
-    data[key] = e.target.value;
+    if (key === "study_start_year") {
+      data[key] = e;
+    } else {
+      data[key] = e.target.value;
+    }
     setProfileData(data);
   };
 
@@ -152,13 +179,15 @@ export default function UserDetail() {
     <form onSubmit={profileSubmit}>
       <Grid container spacing={6}>
         <Grid item xs={12}>
-          <Typography variant="h4">{t('userDetail.ticketRegistrationDetail')}</Typography>
+          <Typography variant="h4">
+            {t("userDetail.ticketRegistrationDetail")}
+          </Typography>
         </Grid>
         {profile ? (
           <ProfileGrid container item xs={12} spacing={6}>
             <Grid item xs={12}>
               <GreyText variant="h6">
-                {t('userDetail.ticketRegistrationSubtitle')}
+                {t("userDetail.ticketRegistrationSubtitle")}
               </GreyText>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -220,7 +249,7 @@ export default function UserDetail() {
                 label="Gender"
                 variant="outlined"
                 fullWidth
-                value={profile.gender || ''}
+                value={profile.gender || ""}
                 onChange={(e) => handleChange("gender", e)}
                 selectData={genderData}
                 required={true}
@@ -245,7 +274,7 @@ export default function UserDetail() {
                 label="Country"
                 variant="outlined"
                 fullWidth
-                value={profile.country || ''}
+                value={profile.country || ""}
                 onChange={(e) => handleChange("country", e)}
                 selectData={countries}
                 required={true}
@@ -258,7 +287,7 @@ export default function UserDetail() {
                 label="First Language"
                 variant="outlined"
                 fullWidth
-                value={profile.first_language || ''}
+                value={profile.first_language || ""}
                 onChange={(e) => handleChange("first_language", e)}
                 selectData={languages}
                 required={true}
@@ -270,7 +299,7 @@ export default function UserDetail() {
                 id="outlined-basic"
                 label="Second Language"
                 variant="outlined"
-                value={profile.other_language_1 || ''}
+                value={profile.other_language_1 || ""}
                 onChange={(e) => handleChange("other_language_1", e)}
                 selectData={languages}
                 fullWidth
@@ -285,16 +314,12 @@ export default function UserDetail() {
                 value={profile.study_start_year}
                 fullWidth
                 required
-                onChange={(e) => handleChange("date_of_birth", e)}
+                onChange={(e) => handleChange("study_start_year", e)}
               />
             </Grid>
             <Grid item xs={12} md={12} style={{ textAlign: "right" }}>
               {!isEditable && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                >
+                <Button variant="contained" color="primary" type="submit">
                   {t("common.next")}
                 </Button>
               )}
