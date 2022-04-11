@@ -782,46 +782,46 @@ exports.tickets = {
     {
       content: {
         en: {
-          name: "Membership Ticket EN",
-          description: ["First bullet", "Second bullet", "3rd one"],
+          name: "Membership Ticket",
+          description: ["Participation to the convention", "Membership Required" ],
           button_label: "Select",
           intersticial: {
-            title: "Title",
-            body: "Message",
+            title: "Membership Ticket",
+            body: "Membership Ticket are discounted ticket for people who pay a monthly membership. In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
             button: "Next",
           },
           redirect_url: "/dash/membership",
         },
         ru: {
-          name: "Membership Ticket RU",
-          description: ["First bullet", "Second bullet", "3rd one"],
-          button_label: "Select",
+          name: "Для новых участников сообщества",
+          description: ["Участие в конгрессе", "Требуется абонентская плата" ],
+          button_label: "Выбрать",
           intersticial: {
-            title: "Title",
-            body: "Message",
-            button: "Next",
+            title: "Для новых участников сообщества",
+            body: "Вы можете зарегистрироваться на конгресс со скидкой, став постоянным участником сообщества.  Для этого подключительсь к ежемесячной абонентской плате, и вернитесь к регистрации на конгресс",
+            button: "Выбрать",
           },
           redirect_url: "/dash/membership",
         },
         es: {
-          name: "Membership Ticket ES",
-          description: ["First bullet", "Second bullet", "3rd one"],
-          button_label: "Select",
+          name: "Boleto de membresía",
+          description: ["Participación en el congreso", "Se requiere membresía", ],
+          button_label: "Elige",
           intersticial: {
-            title: "Title",
-            body: "Message",
-            button: "Next",
+            title: "Boleto de membresía",
+            body: "Los boletos de membresía son descontados para personas que pagan la membresía mensual. Con el fin de ser elegible para esta opción, primero debes obtener la membresîa, y luego volver para registrarte.",
+            button: "Elige",
           },
           redirect_url: "/dash/membership",
         },
         he: {
-          name: "Membership Ticket HE",
-          description: ["First bullet", "Second bullet", "3rd one"],
-          button_label: "Select",
+          name: "כרטיס חבר",
+          description: ["השתתפות בכנס", "נדרשת חברות" ],
+          button_label: "לבחור",
           intersticial: {
-            title: "Title",
-            body: "Message",
-            button: "Next",
+            title: "כרטיס חבר",
+            body: "כרטיס חבר הוא כרטיס מוזל עבור אנשים שמשלמים דמי מנוי חודשיים. כדי להיות זכאי לאפשרות זו, עליך לסדר קודם את דמי המנוי שלך, ואז לחזור ולהירשם לאחר שזה מסודר.",
+            button: "לבחור",
           },
           redirect_url: "/dash/membership",
         },
@@ -849,23 +849,23 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: ["First bullet", "Second bullet", "3rd one"],
+          description: ["Participation to the convention", "Membership Required" ],
           button_label: "Select",
         },
         he: {
-          name: "Membership Ticket HE",
-          description: ["First bullet", "Second bullet", "3rd one"],
-          button_label: "Select",
+          name: "כרטיס חבר",
+          description: ["השתתפות בכנס", "נדרשת חברות", ],
+          button_label: "לבחור",
         },
         es: {
-          name: "Membership Ticket ES",
-          description: ["First bullet", "Second bullet", "3rd one"],
-          button_label: "Select",
+          name: "Boleto de membresía",
+          description: ["Participación en el congreso", "Se requiere membresía" ],
+          button_label: "Elige"
         },
         ru: {
-          name: "Membership Ticket RU",
-          description: ["First bullet", "Second bullet", "3rd one"],
-          button_label: "Select",
+          name: "Для постоянных участников сообщества",
+          description: ["Участие в конгрессе", "Требуется абонентская плата" ],
+          button_label: "Выбрать",
         },
       },
       flow: {
@@ -879,13 +879,13 @@ exports.tickets = {
               label: "Credit/Debit Card",
             },
             es: {
-              label: "Credit/Debit Card ES",
+              label: "Tarjeta de crédito / débito",
             },
             he: {
-              label: "Credit/Debit Card HE",
+              label: "כרטיס אשראי/כרטיס חיוב",
             },
             ru: {
-              label: "Credit/Debit Card RU",
+              label: "Кредитная / дебетовая карта",
             },
           },
         },
@@ -893,16 +893,16 @@ exports.tickets = {
           name: "others",
           content: {
             en: {
-              label: "Other payment type EN",
+              label: "Other payment type",
             },
             es: {
-              label: "Other payment type ES",
+              label: "Otras opciones de pago",
             },
             he: {
-              label: "Other payment type  HE",
+              label: "אפשרויות תשלום נוספות",
             },
             ru: {
-              label: "Other payment type RU",
+              label: "Другой вид оплаты",
             },
           },
         },
