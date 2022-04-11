@@ -672,9 +672,48 @@ exports.tickets = {
             },
           ],
         },
+        es: {
+          name: "Ayuda financiera",
+          description: ["Si necesitas ayuda financiera"],
+          button_label: "Elige",
+          options: [
+            {
+              label: "helphaver",
+              name: "Help Haver",
+              intersticial: {
+                title: "Si necesitas ayuda financiera",
+                body: "Si necesitas ayuda para cubrir el costo de la participación en el congreso, por favor aplica al fondo de Help Haver. Tu boleto será creado pero los detalles del pago dependerán de la respuesta de Help Haver.",
+                button: "Próximo",
+              },
+              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              type: "helphaver",
+              register_status: "hh-request"
+            },
+          ],
+        },
+
+        he: {
+          name: "עזרה כלכלית",
+          description: ["אם נדרשת עזרה כלכלית"],
+          button_label: "לבחור",
+          options: [
+            {
+              label: "helphaver",
+              name: "הלפ חבר",
+              intersticial: {
+                title: "אם נדרשת עזרה כלכלית",
+                body: "אם נדרשת עזרה לכסות את עלות ההשתתפות של הכנס, נא לפנות לקרן הלפ חבר. הכרטיס שלך יווצר אבל פרטי התשלום יהיו תלויים בתשובה של הלפ חבר.",
+                button: "הבא",
+              },
+              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              type: "helphaver",
+              register_status: "hh-request"
+            },
+          ],
+        },
         ru: {
           name: "Для особых случаев",
-          description: ["-"],
+          description: [""],
           button_label: "Выбрать",
           options: [
             {
@@ -719,7 +758,7 @@ exports.tickets = {
       },
       name: "special",
       membership: false,
-      order: 2,
+      order: 3,
       price: {
         usd: {
           amount: 30,
@@ -743,7 +782,40 @@ exports.tickets = {
     {
       content: {
         en: {
-          name: "Membership Ticket",
+          name: "Membership Ticket EN",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+          intersticial: {
+            title: "Title",
+            body: "Message",
+            button: "Next",
+          },
+          redirect_url: "/dash/membership",
+        },
+        ru: {
+          name: "Membership Ticket RU",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+          intersticial: {
+            title: "Title",
+            body: "Message",
+            button: "Next",
+          },
+          redirect_url: "/dash/membership",
+        },
+        es: {
+          name: "Membership Ticket ES",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+          intersticial: {
+            title: "Title",
+            body: "Message",
+            button: "Next",
+          },
+          redirect_url: "/dash/membership",
+        },
+        he: {
+          name: "Membership Ticket HE",
           description: ["First bullet", "Second bullet", "3rd one"],
           button_label: "Select",
           intersticial: {
@@ -760,7 +832,7 @@ exports.tickets = {
       },
       name: "membership",
       membership: false,
-      order: 3,
+      order: 2,
       price: {
         usd: {
           amount: 30,
@@ -780,6 +852,21 @@ exports.tickets = {
           description: ["First bullet", "Second bullet", "3rd one"],
           button_label: "Select",
         },
+        he: {
+          name: "Membership Ticket HE",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+        },
+        es: {
+          name: "Membership Ticket ES",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+        },
+        ru: {
+          name: "Membership Ticket RU",
+          description: ["First bullet", "Second bullet", "3rd one"],
+          button_label: "Select",
+        },
       },
       flow: {
         type: "checkout",
@@ -791,13 +878,31 @@ exports.tickets = {
             en: {
               label: "Credit/Debit Card",
             },
+            es: {
+              label: "Credit/Debit Card ES",
+            },
+            he: {
+              label: "Credit/Debit Card HE",
+            },
+            ru: {
+              label: "Credit/Debit Card RU",
+            },
           },
         },
         {
           name: "others",
           content: {
             en: {
-              label: "Other payment type",
+              label: "Other payment type EN",
+            },
+            es: {
+              label: "Other payment type ES",
+            },
+            he: {
+              label: "Other payment type  HE",
+            },
+            ru: {
+              label: "Other payment type RU",
             },
           },
         },
@@ -828,6 +933,63 @@ exports.tickets = {
     {
       content: {
         en: {
+          name: "Financial Help",
+          description: ["-"],
+          button_label: "Select",
+          options: [
+            {
+              label: "helphaver",
+              name: "helphaver",
+              intersticial: {
+                title: "Help Haver",
+                body: "Message",
+                button: "Next",
+              },
+              register_status: "hh-request",
+              redirect_url: "https://google.com",
+              type: "helphaver",
+            },
+          ],
+        },
+        es: {
+          name: "Financial Help ES",
+          description: ["-"],
+          button_label: "Select",
+          options: [
+            {
+              label: "helphaver",
+              name: "helphaver",
+              intersticial: {
+                title: "Help Haver",
+                body: "Message",
+                button: "Next",
+              },
+              register_status: "hh-request",
+              redirect_url: "https://google.com",
+              type: "helphaver",
+            },
+          ],
+        },
+        he: {
+          name: "HE Financial Help",
+          description: ["-"],
+          button_label: "Select",
+          options: [
+            {
+              label: "helphaver",
+              name: "helphaver",
+              intersticial: {
+                title: "Help Haver",
+                body: "Message",
+                button: "Next",
+              },
+              register_status: "hh-request",
+              redirect_url: "https://google.com",
+              type: "helphaver",
+            },
+          ],
+        },
+        ru: {
           name: "Special M",
           description: ["First bullet", "Second bullet", "3rd one"],
           button_label: "Select",
