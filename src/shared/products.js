@@ -707,13 +707,13 @@ exports.tickets = {
       order: 2,
       price: {
         usd: {
-          amount: 30,
+          amount: 10,
         },
         nis: {
-          amount: 100,
+          amount: 35,
         },
         eur: {
-          amount: 25,
+          amount: 9,
         },
       },
     },
@@ -810,8 +810,8 @@ exports.tickets = {
           button_label: "Select",
           options: [
             {
-              label: "helphaver",
-              name: "help haver",
+              label: "Help Haver",
+              name: "helphaver",
               intersticial: {
                 title: "If you need financial help",
                 body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
@@ -829,8 +829,8 @@ exports.tickets = {
           button_label: "Elige",
           options: [
             {
-              label: "helphaver",
-              name: "Help Haver",
+              name: "helphaver",
+              label: "Help Haver",
               intersticial: {
                 title: "Si necesitas ayuda financiera",
                 body: "Si necesitas ayuda para cubrir el costo de la participación en el congreso, por favor aplica al fondo de Help Haver. Tu boleto será creado pero los detalles del pago dependerán de la respuesta de Help Haver.",
@@ -849,8 +849,8 @@ exports.tickets = {
           button_label: "לבחור",
           options: [
             {
-              label: "helphaver",
-              name: "הלפ חבר",
+              name: "helphaver",
+              label: "הלפ חבר",
               intersticial: {
                 title: "אם נדרשת עזרה כלכלית",
                 body: "אם נדרשת עזרה לכסות את עלות ההשתתפות של הכנס, נא לפנות לקרן הלפ חבר. הכרטיס שלך יווצר אבל פרטי התשלום יהיו תלויים בתשובה של הלפ חבר.",
@@ -864,7 +864,7 @@ exports.tickets = {
         },
         ru: {
           name: "Для особых случаев",
-          description: [""],
+          description: ["Участие в конгрессе"],
           button_label: "Выбрать",
           options: [
             {
@@ -938,97 +938,96 @@ exports.tickets = {
           button_label: "Select",
           options: [
             {
-              label: "helphaver",
+              label: "Help Haver",
               name: "helphaver",
               intersticial: {
-                title: "Help Haver",
-                body: "Message",
+                title: "If you need financial help",
+                body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
                 button: "Next",
               },
-              register_status: "hh-request",
-              redirect_url: "https://google.com",
+              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
+              register_status: "hh-request"
             },
           ],
         },
         es: {
-          name: "Financial Help ES",
-          description: ["-"],
-          button_label: "Select",
+          name: "Ayuda financiera",
+          description: ["Si necesitas ayuda financiera"],
+          button_label: "Elige",
           options: [
             {
-              label: "helphaver",
               name: "helphaver",
+              label: "Help Haver",
               intersticial: {
-                title: "Help Haver",
-                body: "Message",
-                button: "Next",
+                title: "Si necesitas ayuda financiera",
+                body: "Si necesitas ayuda para cubrir el costo de la participación en el congreso, por favor aplica al fondo de Help Haver. Tu boleto será creado pero los detalles del pago dependerán de la respuesta de Help Haver.",
+                button: "Próximo",
               },
-              register_status: "hh-request",
-              redirect_url: "https://google.com",
+              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
+              register_status: "hh-request"
             },
           ],
         },
+
         he: {
-          name: "HE Financial Help",
-          description: ["-"],
-          button_label: "Select",
+          name: "עזרה כלכלית",
+          description: ["אם נדרשת עזרה כלכלית"],
+          button_label: "לבחור",
           options: [
             {
-              label: "helphaver",
               name: "helphaver",
+              label: "הלפ חבר",
               intersticial: {
-                title: "Help Haver",
-                body: "Message",
-                button: "Next",
+                title: "אם נדרשת עזרה כלכלית",
+                body: "אם נדרשת עזרה לכסות את עלות ההשתתפות של הכנס, נא לפנות לקרן הלפ חבר. הכרטיס שלך יווצר אבל פרטי התשלום יהיו תלויים בתשובה של הלפ חבר.",
+                button: "הבא",
               },
-              register_status: "hh-request",
-              redirect_url: "https://google.com",
+              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
+              register_status: "hh-request"
             },
           ],
         },
         ru: {
-          name: "Special M",
-          description: ["First bullet", "Second bullet", "3rd one"],
-          button_label: "Select",
+          name: "Для особых случаев",
+          description: ["Участие в конгрессе"],
+          button_label: "Выбрать",
           options: [
             {
-              label: "ukraine",
+              label: "Я из Украины",
               name: "ukraine",
               intersticial: {
-                title: "Ukraine",
-                body: "Message",
-                button: "Next",
+                title: "Для наших товарищей из Украины",
+                body: "Руководство Международной академии каббалы приняло решение, что участие в этом конгрессе для товарищей из Украины бесплатно.",
+                button: "Дальше",
               },
-              redirect_url: "/doweneedone?",
-              type: "register",
+              type: "special",
               register_status: "sp-ukraine"
             },
             {
-              label: "russia",
+              label: "Я из России",
               name: "russia",
               intersticial: {
-                title: "Ukraine",
-                body: "Message",
-                button: "Next",
+                title: "Для наших товарищей из России",
+                body: "1.  Пройдите регистрацию до конца.  2. Инструкцию для оплаты за участие в конгрессе в размере 800 рублей, мы пришлём Вам позже",
+                button: "Далее",
               },
-              redirect_url: "/doweneedone?",
-              type: "register",
+              type: "special",
               register_status: "sp-russia"
             },
             {
-              label: "helphaver",
+              label: "Финансовая помощь",
               name: "helphaver",
               intersticial: {
-                title: "Help Haver",
-                body: "Message",
-                button: "Next",
+                title: "Если Вы не можете оплатить участие",
+                body: "Если вам нужна помощь, чтобы оплатить участие в конгрессе: 1. Завершите регистрацию. 2. Пожалуйста обратитесь в фонд Help Haver.",
+                button: "Далее",
               },
-              register_status: "hh-request",
-              redirect_url: "https://google.com",
+              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
+              register_status: "hh-request"
             },
           ],
         },
