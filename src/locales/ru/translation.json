@@ -58,7 +58,10 @@
     "ok": "OK",
     "paymentMethod": "Способ оплаты",
     "registration": "Регистрация",
-    "select_option": "Выбрать"
+    "select_option": "Выбрать",
+    "successHeader": "Congratulations! You have successfully registered for the event",
+    "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
+    "viewTicket": "View Event Ticket"
   },
   "paymentMethod": {
     "creditCard": "Кредитная"
