@@ -96,53 +96,52 @@ export default function UserDetail() {
           ? data.study_start_year?.getFullYear()
           : data.study_start_year ? data.study_start_year : new Date().getFullYear();
       data.email_language = i18n.language;
-      saveUserProfileData(data).then(async () => {
-        if (participantId) {
-          const data = {
-            participation_option: participation_option,
-            participant_id: participantId,
-            event_id: eventData.event.id,
-            registration_date: new Date().toISOString(),
-          };
-          addPariticpantInEvent(data).then((res) => {
-            history.push(
-              `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
-            );
-          });
-        } else {
-          //SetUpdatedObject
-          const data = {
-            keycloak_id: user.keycloak.subject,
-            first_language: profileData.first_language,
-            email_language: i18n.language,
-            dob: profileData.date_of_birth
-              ? new Date(profileData.date_of_birth).toISOString()
-              : new Date().toISOString(),
-            gender: profileData.gender,
-            email: profileData.primary_email,
-            country: profileData.country,
-            first_name: profileData.first_name_vernacular,
-            last_name: profileData.last_name_vernacular,
-          };
-          addAParticipant(data).then((res) => {
-            if (res) {
-              setParticipantId(res.id);
-              const data = {
-                //Should be the option of the user pariticpant.
-                participation_option: participation_option,
-                participant_id: res.id,
-                event_id: eventData.event.id,
-                registration_date: new Date().toISOString(),
-              };
-              addPariticpantInEvent(data).then(() => {
-                history.push(
-                  `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
-                );
-              });
-            }
-          });
-        }
-      });
+      await saveUserProfileData(data);
+      if (participantId) {
+        const eventBody = {
+          participation_option: participation_option,
+          participant_id: participantId,
+          event_id: eventData.event.id,
+          registration_date: new Date().toISOString(),
+        };
+        addPariticpantInEvent(eventBody).then(() => {
+          history.push(
+            `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
+          );
+        });
+      } else {
+        //SetUpdatedObject
+        const participantdata = {
+          keycloak_id: user.keycloak.subject,
+          first_language: data.first_language,
+          email_language: i18n.language,
+          dob: data.date_of_birth
+            ? new Date(data.date_of_birth).toISOString()
+            : new Date().toISOString(),
+          gender: data.gender,
+          email: data.primary_email,
+          country: data.country,
+          first_name: data.first_name_vernacular,
+          last_name: data.last_name_vernacular,
+        };
+        addAParticipant(participantdata).then((res) => {
+          if (res) {
+            setParticipantId(res.id);
+            const eventBody = {
+              //Should be the option of the user pariticpant.
+              participation_option: participation_option,
+              participant_id: res.id,
+              event_id: eventData.event.id,
+              registration_date: new Date().toISOString(),
+            };
+            addPariticpantInEvent(eventBody).then(() => {
+              history.push(
+                `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
+              );
+            });
+          }
+        });
+      }
     } else {
       history.push(
         `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
