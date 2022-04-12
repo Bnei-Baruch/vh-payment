@@ -27,10 +27,15 @@ import { getProfile } from "../../../services/userservice";
 import Loader from "../../../components/Loader";
 const PaymentTile = styled.div`
   padding: 20px 20px;
-  > span:first-child {
+  > span:first-child.left {
     font-size: 80px;
     border-left: 1px dashed #ccc;
     padding-left: 20px;
+  }
+  > span:first-child.right {
+    font-size: 80px;
+    border-right: 1px dashed #ccc;
+    padding-right: 20px;
   }
   > span:last-child {
     padding-left: 10px;
@@ -61,8 +66,8 @@ export default function Payment() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
+  const { dir } = useSelector(state => state.language);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
-  console.log(selectedTicket)
   const product = useSelector((state) => state.order.ticketProduct);
   const nextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -153,7 +158,7 @@ export default function Payment() {
             <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
           </>
         )}
-        <Stepper activeStep={activeStep} alternativeLabel>
+        <Stepper className={ dir === 'rtl' && classes.unaffectedrtl} activeStep={activeStep} alternativeLabel>
           {[
             t('payment.ticketStep1'),
             t('payment.step2'),
@@ -169,7 +174,7 @@ export default function Payment() {
             <Grid item xs={12}>
               <SubText>{t("common.amount")}</SubText>
               <PaymentTile>
-                <span>{selectedTicket.price[currency.id]?.amount}</span>
+                <span className={dir === 'ltr' ? 'left' : 'right' }>{selectedTicket.price[currency.id]?.amount}</span>
                 <span>
                   {" "}
                   <CurrencyPicker />
