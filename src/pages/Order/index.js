@@ -54,6 +54,17 @@ export const useStyles = makeStyles({
     height: "15px !important",
     width: "15px !important",
   },
+  unaffected: {
+    flip: false,
+    direction: "ltr !important",
+  },
+  unaffectedrtl: {
+    '& .MuiStepConnector-horizontal': {
+      '&>span': {
+        borderColor: '#fff !important',
+      }
+    }
+  }
 });
 
 const Order = () => {
