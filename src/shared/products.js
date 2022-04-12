@@ -1067,47 +1067,47 @@ exports.membershipsplans = {
   content: {
     en: {
       title: "Membership",
-      subtitle: "Membership",
+      subtitle: "Monthly subscription",
       action: "Select your plan",
     },
     es: {
-      title: "Membershipo",
-      subtitle: "Membership",
-      action: "Select your plan",
+      title: "Suscripción",
+      subtitle: "Suscripción mensual",
+      action: "Selecciona tu plan",
     },
     ru: {
-      title: "Membership RU",
-      subtitle: "Membership",
-      action: "Select your plan",
+      title: "Абонемент",
+      subtitle: "Месячная абонентская плата",
+      action: "Выберите удобный для вас способ оплаты",
     },
     he: {
-      title: "Membership HE",
-      subtitle: "Membership",
-      action: "Select your plan",
+      title: "דמי מנוי",
+      subtitle: " דמי מנוי חודשיים",
+      action: "בחר המסלול המתאים לך",
     },
   },
   plans: [
     {
       content: {
         en: {
-          name: "Manual",
-          description: ["Pay any time of the month", "Multiple payment solutions"],
+          name: "Manual Payment",
+          description: ["Pay any time of the month", "Offline payment option"],
           button_label: "Select",
         },
         es: {
-          name: "Manual",
-          description: ["Pay any time of the month", "Multiple payment solutions"],
-          button_label: "Select",
+          name: "Pago manual",
+          description: ["Pago en cualquier momento del mes", "Soluciones de pago fuera de línea"],
+          button_label: "Elige",
         },
         ru: {
-          name: "Manual",
-          description: ["Pay any time of the month", "Multiple payment solutions"],
-          button_label: "Select",
+          name: "Платить самостоятельно",
+          description: ["Платить в любой день месяца", "Платеж не через интернет"],
+          button_label: "Выбрать",
         },
         he: {
-          name: "Manual",
-          description: ["Pay any time of the month", "Multiple payment solutions"],
-          button_label: "Select",
+          name: "תשלום ידני",
+          description: ["שלם בכל עת בחודש", "אפשרויות תשלום לא מקוונות"],
+          button_label: "בחר",
         },
       },
       flow: {
