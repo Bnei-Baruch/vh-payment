@@ -45,62 +45,62 @@
     "retry": "Please go back or"
   },
   "common": {
-    "confirm": "Confirm",
-    "cancel": "Cancel",
-    "next": "Next",
-    "back": "Back",
-    "edit": "Edit",
-    "save": "Save",
-    "other": "Other",
-    "upload": "Upload",
-    "step": "Step",
-    "amount": "Amount",
-    "ok": "Ok",
-    "paymentMethod": "Payment Method",
-    "registration": "Registration",
-    "select_option": "Select Option"
+    "confirm": "Подтвердить",
+    "cancel": "Отмена",
+    "next": "Продолжить",
+    "back": "Назад",
+    "edit": "Редактировать",
+    "save": "Сохранить",
+    "other": "Другой",
+    "upload": "Загрузить",
+    "step": "Шаг",
+    "amount": "Сумма",
+    "ok": "OK",
+    "paymentMethod": "Способ оплаты",
+    "registration": "Регистрация",
+    "select_option": "Выбрать"
   },
   "paymentMethod": {
-    "creditCard": "Credit Card"
+    "creditCard": "Кредитная"
   },
   "otherPayments": {
-    "paymentDetails": "Payment details",
-    "howAreYouPaying": "How are you paying?",
-    "offlineBank": "Offline Bank Transfer",
-    "localGroup": "Through Local Group",
-    "incash": "In cash",
-    "doYouHaveAReciept": "Do you have a reciept?",
-    "extraInformation": "Extra Information"
+    "paymentDetails": "Детали оплаты",
+    "howAreYouPaying": "Как вы будете оплачивать?",
+    "offlineBank": "Оффлайн банковский перевод",
+    "localGroup": "Через региональную группу",
+    "incash": "Наличными",
+    "doYouHaveAReciept": "Receipt?",
+    "extraInformation": "Дополнительная информация"
   },
   "help": {
     "header": "Need Help?",
     "requestHelp": "You cannot afford to pay and you want to request for help?",
     "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-    "submittedHeader": "Request Submitted",
-    "requestSubmitted": "Your request for help have been submitted and soon will be reviewed. For any question or enquires please write to help@kli.one",
-    "return_to_personal_area": "Return to personal area"
+    "submittedHeader": "Запрос отправлен",
+    "requestSubmitted": "Ваш запрос отправлен и вскоре будет рассмотрен. По любым вопросам пишите на help@kli.one",
+    "return_to_personal_area": "Вернуться в личный кабинет"
   },
   "payment": {
-    "membershipStep1": "Membership Amount",
-    "ticketStep1": "Ticket Amount",
-    "step2": "Payment Method Selection",
-    "step3": "Checkout Confirmation"
+    "membershipStep1": "Цена абонемента",
+    "ticketStep1": "Цена билета",
+    "step2": "Выбор способа оплаты",
+    "step3": "Подтверждение оплаты"
   },
   "userDetail": {
-    "ticketRegistrationDetail": "Ticket Registration Detail",
-    "ticketRegistrationSubtitle": "In Order for us to produce your ticket. We need you to review following user details",
-    "firstName": "First Name",
-    "lastName": "Last Name",
-    "email": "Email",
-    "phone": "Phone Number",
-    "dateOfBirth": "Date of Birth",
-    "country": "Country",
-    "gender": "Gender",
-    "firstLanguage": "First Language",
-    "secondLanguage": "Second Langugage",
-    "startYear": "What year did you start in Bnei Baruch?"
+    "ticketRegistrationDetail": "Детали регистрации билета",
+    "ticketRegistrationSubtitle": "Для того, чтобы мы могли послать вам билет, подтвердите следующие данные пользователя",
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "емайл",
+    "phone": "Номер мобильного телефона",
+    "dateOfBirth": "Дата рождения",
+    "country": "Страна",
+    "gender": "Пол",
+    "firstLanguage": "Родной язык",
+    "secondLanguage": "Второй язык",
+    "startYear": "Год начала"
   },
   "errorMessage" : {
-    "pleaseSelectOption": "Please select an option"
+    "pleaseSelectOption": "Вы должны выбрать вариант"
   }
 }

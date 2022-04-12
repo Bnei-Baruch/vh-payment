@@ -36,7 +36,7 @@
   "userMenu": {
     "logOut": "Cerrar la sesión",
     "profile": "Perfil",
-    "logOutText": "¿Realmente quiere dejar de fumar?",
+    "logOutText": "¿Realmente quiere dejar?",
     "yesBtn": "Sí",
     "cancelBtn": "Cancelar"
   },
@@ -45,25 +45,25 @@
     "retry": "Please go back or"
   },
   "common": {
-    "confirm": "Confirm",
-    "cancel": "Cancel",
-    "next": "Next",
-    "back": "Back",
-    "edit": "Edit",
-    "save": "Save",
-    "other": "Other",
-    "upload": "Upload",
-    "step": "Step",
-    "amount": "Amount",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "next": "Próximo",
+    "back": "Atrás",
+    "edit": "Editar",
+    "save": "Guardar",
+    "other": "Otro",
+    "upload": "Subir",
+    "step": "Paso",
+    "amount": "Monto",
     "ok": "Ok",
-    "paymentMethod": "Payment Method",
-    "registration": "Registration",
-    "select_option": "Select Option"
+    "paymentMethod": "Método de pago",
+    "registration": "Registro",
+    "select_option": "Elige"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
   },
-  "otherPayments": {
+  "ssotherPayments": {
     "paymentDetails": "Payment details",
     "howAreYouPaying": "How are you paying?",
     "offlineBank": "Offline Bank Transfer",
@@ -72,35 +72,44 @@
     "doYouHaveAReciept": "Do you have a reciept?",
     "extraInformation": "Extra Information"
   },
+  "otherPayments": {
+    "paymentDetails": "Detalles del pago",
+    "howAreYouPaying": "¿Cómo vas a pagar?",
+    "offlineBank": "Transferencia bancaria",
+    "localGroup": "A través del grupo local",
+    "incash": "En efectivo",
+    "doYouHaveAReciept": "¿Tienes un recibo?",
+    "extraInformation": "información adicional"
+  },
   "help": {
     "header": "Need Help?",
     "requestHelp": "You cannot afford to pay and you want to request for help?",
     "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-    "submittedHeader": "Request Submitted",
-    "requestSubmitted": "Your request for help have been submitted and soon will be reviewed. For any question or enquires please write to help@kli.one",
-    "return_to_personal_area": "Return to personal area"
+    "submittedHeader": "solicitud enviada",
+    "requestSubmitted": "Su solicitud de ayuda ha sido enviada y pronto será revisada. Para cualquier pregunta o consulta, escriba a help@kli.one",
+    "return_to_personal_area": "Volver al área personal"
   },
   "payment": {
-    "membershipStep1": "Membership Amount",
-    "ticketStep1": "Ticket Amount",
-    "step2": "Payment Method Selection",
-    "step3": "Checkout Confirmation"
+    "membershipStep1": "Suma de membresía",
+    "ticketStep1": "Suma de entradas",
+    "step2": "Selección de método de pago",
+    "step3": "Confirmación de pago"
   },
   "userDetail": {
-    "ticketRegistrationDetail": "Ticket Registration Detail",
-    "ticketRegistrationSubtitle": "In Order for us to produce your ticket. We need you to review following user details",
-    "firstName": "First Name",
-    "lastName": "Last Name",
+    "ticketRegistrationDetail": "Detalle de registro de entradas",
+    "ticketRegistrationSubtitle": "Para que podamos producir su boleto. Necesitamos que revise los siguientes detalles de usuario",
+    "firstName": "Primer nombre",
+    "lastName": "Apellido",
     "email": "Email",
-    "phone": "Phone Number",
-    "dateOfBirth": "Date of Birth",
-    "country": "Country",
-    "gender": "Gender",
-    "firstLanguage": "First Language",
-    "secondLanguage": "Second Langugage",
-    "startYear": "What year did you start in Bnei Baruch?"
+    "phone": "Número de móvil",
+    "dateOfBirth": "Fecha de cumpleaños",
+    "country": "País",
+    "gender": "Género",
+    "firstLanguage": "Primer idioma",
+    "secondLanguage": "Segundo lenguaje",
+    "startYear": "Año de inicio"
   },
   "errorMessage" : {
-    "pleaseSelectOption": "Please select an option"
+    "pleaseSelectOption": "Tienes que elegir una opción"
   }
 }
