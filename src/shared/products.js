@@ -1302,7 +1302,7 @@ exports.membershipsplans = {
         },
         he: {
           name: "helphaver",
-          name: "Help Haver",
+          label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
           button_label: "Select",
           intersticial: {
