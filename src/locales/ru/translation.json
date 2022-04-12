@@ -88,6 +88,19 @@
   },
   "userDetail": {
     "ticketRegistrationDetail": "Ticket Registration Detail",
-    "ticketRegistrationSubtitle": "In Order for us to produce your ticket. We need you to review following user details"
+    "ticketRegistrationSubtitle": "In Order for us to produce your ticket. We need you to review following user details",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "dateOfBirth": "Date of Birth",
+    "country": "Country",
+    "gender": "Gender",
+    "firstLanguage": "First Language",
+    "secondLanguage": "Second Langugage",
+    "startYear": "What year did you start in Bnei Baruch?"
+  },
+  "errorMessage" : {
+    "pleaseSelectOption": "Please select an option"
   }
 }

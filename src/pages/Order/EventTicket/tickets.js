@@ -69,7 +69,8 @@ export default function Tickets() {
   const currency = useSelector((state) => state.currency);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
   const membershipData = useSelector((state) => state.user.membershipdata);
-  const [specialOption, setSpecialOption] = React.useState("Help Haver");
+  const [specialOption, setSpecialOption] = React.useState("helphaver");
+  const [errorMessage, setErrorMessage] = React.useState(undefined);
 
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
@@ -83,6 +84,10 @@ export default function Tickets() {
   const navigateToConfirmation = (ticket) => {
     const { name } = ticket;
     if (name === 'special') {
+      if (specialOption === '') {
+        setErrorMessage(t('errorMessage.pleaseSelectOption'));
+        return '';
+      }
       const content =
         selectedTicket.content[i18n.language] || selectedTicket.content.en;
       const selectedOption = content.options.find(
@@ -128,6 +133,9 @@ export default function Tickets() {
           <br />
           <CenterText variant="h6">{header.action}</CenterText>
         </Grid>
+        {errorMessage && <Grid item xs={12}>
+          <div style={{ color: 'red' }}>{errorMessage}</div>
+        </Grid>}
         <Grid container item xs={12} spacing={6}>
           {plans.map((plan, index) => {
             const planContent =
@@ -164,7 +172,7 @@ export default function Tickets() {
                   <Grid>
                     {planContent.options && (
                       <FormControl component="fieldset">
-                        <FormLabel component="legend">Select Option</FormLabel>
+                        <FormLabel component="legend">{t('common.select_option')}</FormLabel>
                         <RadioGroup
                           aria-label="gender"
                           name="gender1"
@@ -199,7 +207,7 @@ export default function Tickets() {
                       <Button
                         variant="contained"
                         color="secondary"
-                        style={{backgroundColor: 'rgb(52, 168, 83)'}}
+                        style={{ backgroundColor: 'rgb(52, 168, 83)' }}
                         onClick={() => navigateToConfirmation(plan)}
                       >
                         {t("common.next")}

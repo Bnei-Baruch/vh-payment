@@ -61,10 +61,11 @@ export default function Membership() {
   const dispatch = useDispatch();
   const history = useHistory();
   const currency = useSelector((state) => state.currency);
+  const [errorMessage, setErrorMessage] = React.useState(undefined);
   const selectedMembership = useSelector(
     (state) => state.order.selectedMembership
   );
-  const [specialOption, setSpecialOption] = React.useState("helphaver");
+  const [specialOption, setSpecialOption] = React.useState("Help Haver");
   const [membership, setMembership] = React.useState(undefined);
   React.useEffect(() => {
     setMembership(getMembershipProduct());
@@ -76,6 +77,10 @@ export default function Membership() {
 
   const navigateToConfirmation = () => {
     if (selectedMembership.flow.type === "redirect") {
+      if (specialOption === '') {
+        setErrorMessage(t('errorMessage.pleaseSelectOption'));
+        return '';
+      }
       const selectedOption =
         selectedMembership.content[i18n.language] || selectedMembership.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
@@ -104,6 +109,9 @@ export default function Membership() {
           <br />
           <CenterText variant="h6">{header.action}</CenterText>
         </Grid>
+        {errorMessage && <Grid item xs={12}>
+          <div style={{ color: 'red' }}>{errorMessage}</div>
+        </Grid>}
         <Grid container item xs={12} spacing={6}>
           {plans.map((plan, index) => {
             const planContent =
