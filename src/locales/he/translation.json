@@ -58,7 +58,10 @@
         "ok": "Ok",
         "paymentMethod": "אמצעי תשלום",
         "registration": "רשום",
-        "select_option": "בחר"
+        "select_option": "בחר",
+        "successHeader": "Congratulations! You have successfully registered for the event",
+        "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
+        "viewTicket": "View Event Ticket"
     },
     "paymentMethod": {
         "creditCard": "Credit Card"
@@ -99,8 +102,8 @@
         "firstLanguage": "שפת אם",
         "secondLanguage": "שפה שניה",
         "startYear": "באיזו שנה התחלת בבני ברוך?"
-      },
-      "errorMessage" : {
+    },
+    "errorMessage": {
         "pleaseSelectOption": "בבקשה בחר אפשרות"
-      }
+    }
 }

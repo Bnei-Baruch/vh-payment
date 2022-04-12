@@ -12,19 +12,18 @@ export default function Redirection() {
     <Grid container spacing={6}>
       <Grid item xs={12}>
         <Typography variant="h4">
-          Registration &gt; Convention 2022 &gt; Ticket
+          {t('common.successHeader')}
         </Typography>
       </Grid>
       <Grid container item xs={12} spacing={6}>
         <Grid item xs={12}>
           <GreyText variant="h6">
-            Thanks You for the confirmation. Your details have been saved and
-            ticket is generated. Please click on below link to view your event
-            ticket.
+          {t('common.successDescription')}
           </GreyText>
         </Grid>
         <Grid item xs={12} md={12} style={{ textAlign: "center" }}>
           <Button variant="contained" color="primary" onClick={goToProfileArea}>
+          {t('common.viewTicket')}
             View Event Ticket
           </Button>
         </Grid>
