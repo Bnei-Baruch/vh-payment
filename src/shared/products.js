@@ -563,7 +563,7 @@ exports.tickets = {
   },
   event: {
     slug: "may2022",
-    id: 3,
+    id: 1,
   },
   plans: [
     {
@@ -639,7 +639,7 @@ exports.tickets = {
           amount: 100,
         },
         eur: {
-          amount: 1,
+          amount: 25,
         },
       },
       product: {
