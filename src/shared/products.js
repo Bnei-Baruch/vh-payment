@@ -655,7 +655,7 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: ["Participation to the convention", "Membership Required" ],
+          description: ["Participation to the convention", "Membership Required"],
           button_label: "Select",
           intersticial: {
             title: "Membership Ticket",
@@ -666,7 +666,7 @@ exports.tickets = {
         },
         ru: {
           name: "Для новых участников сообщества",
-          description: ["Участие в конгрессе", "Требуется абонентская плата" ],
+          description: ["Участие в конгрессе", "Требуется абонентская плата"],
           button_label: "Выбрать",
           intersticial: {
             title: "Для новых участников сообщества",
@@ -677,7 +677,7 @@ exports.tickets = {
         },
         es: {
           name: "Boleto de membresía",
-          description: ["Participación en el congreso", "Se requiere membresía", ],
+          description: ["Participación en el congreso", "Se requiere membresía",],
           button_label: "Elige",
           intersticial: {
             title: "Boleto de membresía",
@@ -688,7 +688,7 @@ exports.tickets = {
         },
         he: {
           name: "כרטיס חבר",
-          description: ["השתתפות בכנס", "נדרשת חברות" ],
+          description: ["השתתפות בכנס", "נדרשת חברות"],
           button_label: "לבחור",
           intersticial: {
             title: "כרטיס חבר",
@@ -721,22 +721,22 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: ["Participation to the convention", "Membership Required" ],
+          description: ["Participation to the convention", "Membership Required"],
           button_label: "Select",
         },
         he: {
           name: "כרטיס חבר",
-          description: ["השתתפות בכנס", "נדרשת חברות", ],
+          description: ["השתתפות בכנס", "נדרשת חברות",],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto de membresía",
-          description: ["Participación en el congreso", "Se requiere membresía" ],
+          description: ["Participación en el congreso", "Se requiere membresía"],
           button_label: "Elige"
         },
         ru: {
           name: "Для постоянных участников сообщества",
-          description: ["Участие в конгрессе", "Требуется абонентская плата" ],
+          description: ["Участие в конгрессе", "Требуется абонентская плата"],
           button_label: "Выбрать",
         },
       },
@@ -810,8 +810,8 @@ exports.tickets = {
           button_label: "Select",
           options: [
             {
-              label: "Help Haver",
               name: "helphaver",
+              label: "Help Haver",
               intersticial: {
                 title: "If you need financial help",
                 body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
@@ -938,8 +938,8 @@ exports.tickets = {
           button_label: "Select",
           options: [
             {
-              label: "Help Haver",
-              name: "helphaver",
+              label: "helphaver",
+              name: "Help Haver",
               intersticial: {
                 title: "If you need financial help",
                 body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
@@ -1265,7 +1265,8 @@ exports.membershipsplans = {
     {
       content: {
         en: {
-          name: "Help Haver",
+          name: "helphaver",
+          label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
           button_label: "Select",
           intersticial: {
@@ -1276,7 +1277,8 @@ exports.membershipsplans = {
           redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         ru: {
-          name: "Help Haver",
+          name: "helphaver",
+          label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
           button_label: "Select",
           intersticial: {
@@ -1287,7 +1289,8 @@ exports.membershipsplans = {
           redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         es: {
-          name: "Help Haver",
+          name: "helphaver",
+          label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
           button_label: "Select",
           intersticial: {
@@ -1298,6 +1301,7 @@ exports.membershipsplans = {
           redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         he: {
+          name: "helphaver",
           name: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
           button_label: "Select",
