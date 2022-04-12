@@ -194,7 +194,7 @@ export default function UserDetail() {
               <TextField
                 disabled={!isEditable}
                 id="outlined-basic"
-                label="First Name"
+                label={t('userDetail.firstName')}
                 variant="outlined"
                 fullWidth
                 value={profile.first_name_vernacular}
@@ -206,7 +206,7 @@ export default function UserDetail() {
               <TextField
                 disabled={!isEditable}
                 id="outlined-basic"
-                label="Last Name"
+                label={t('userDetail.lastName')}
                 variant="outlined"
                 fullWidth
                 value={profile.last_name_vernacular}
@@ -218,7 +218,7 @@ export default function UserDetail() {
               <TextField
                 disabled={!isEditable}
                 id="outlined-basic"
-                label="Date of birth"
+                label={t('userDetail.dateOfBirth')}
                 variant="outlined"
                 type="date"
                 value={profile.date_of_birth}
@@ -234,7 +234,7 @@ export default function UserDetail() {
               <TextField
                 disabled={!isEditable}
                 id="outlined-basic"
-                label="Phone Number"
+                label={t('userDetail.phone')}
                 variant="outlined"
                 value={profile.mobile_number}
                 fullWidth
@@ -246,7 +246,7 @@ export default function UserDetail() {
               <SelectElement
                 disabled={!isEditable}
                 id="outlined-basic"
-                label="Gender"
+                label={t('userDetail.gender')}
                 variant="outlined"
                 fullWidth
                 value={profile.gender || ""}
@@ -259,7 +259,7 @@ export default function UserDetail() {
               <TextField
                 disabled
                 id="outlined-basic"
-                label="Email"
+                label={t('userDetail.email')}
                 variant="outlined"
                 fullWidth
                 value={profile.primary_email}
@@ -271,7 +271,7 @@ export default function UserDetail() {
               <SelectElement
                 disabled={!isEditable}
                 id="outlined-basic"
-                label="Country"
+                label={t('userDetail.country')}
                 variant="outlined"
                 fullWidth
                 value={profile.country || ""}
@@ -284,7 +284,7 @@ export default function UserDetail() {
               <SelectElement
                 disabled={!isEditable}
                 id="outlined-basic"
-                label="First Language"
+                label={t('userDetail.firstLanguage')}
                 variant="outlined"
                 fullWidth
                 value={profile.first_language || ""}
@@ -297,7 +297,7 @@ export default function UserDetail() {
               <SelectElement
                 disabled={!isEditable}
                 id="outlined-basic"
-                label="Second Language"
+                label={t('userDetail.secondLanguage')}
                 variant="outlined"
                 value={profile.other_language_1 || ""}
                 onChange={(e) => handleChange("other_language_1", e)}
@@ -310,7 +310,7 @@ export default function UserDetail() {
               <DatePicker
                 disabled={!isEditable}
                 views={["year"]}
-                label="What year did you start in Bnei Baruch?"
+                label={t('userDetail.startYear')}
                 value={profile.study_start_year}
                 fullWidth
                 required
