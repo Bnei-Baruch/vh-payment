@@ -27,10 +27,15 @@ import { getProfile } from "../../../services/userservice";
 import Loader from "../../../components/Loader";
 const PaymentTile = styled.div`
   padding: 20px 20px;
-  > span:first-child {
+  > span:first-child.left {
     font-size: 80px;
     border-left: 1px dashed #ccc;
     padding-left: 20px;
+  }
+  > span:first-child.right {
+    font-size: 80px;
+    border-right: 1px dashed #ccc;
+    padding-right: 20px;
   }
   > span:last-child {
     padding-left: 10px;
@@ -56,6 +61,7 @@ export default function MembershipPayment() {
   const classes = useStyles();
   const { plan } = useParams();
   const user = useSelector((state) => state.user);
+  const { dir } = useSelector(state => state.language);
   const [profileData, setUserProfileData] = React.useState(null);
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
@@ -150,7 +156,7 @@ export default function MembershipPayment() {
             <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
           </>
         )}
-        <Stepper activeStep={activeStep} alternativeLabel>
+        <Stepper className={ dir === 'rtl' && classes.unaffectedrtl} activeStep={activeStep} alternativeLabel>
           {[t('payment.membershipStep1'), t('payment.step2'), t('payment.step3')].map((label) => (
             <Step key={label}>
               <StepLabel>
@@ -164,7 +170,7 @@ export default function MembershipPayment() {
             <Grid item xs={12}>
               <SubText>{t("common.amount")}</SubText>
               <PaymentTile>
-                <span>{selectedMembership.price[currency.id]?.amount}</span>
+                <span className={dir === 'ltr' ? 'left' : 'right' }>{selectedMembership.price[currency.id]?.amount}</span>
                 <span>
                   {" "}
                   <CurrencyPicker />
