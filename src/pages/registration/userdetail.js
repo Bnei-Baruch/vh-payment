@@ -94,7 +94,7 @@ export default function UserDetail() {
         ? data.study_start_year?.getFullYear()
         : data.study_start_year ? data.study_start_year : new Date().getFullYear();
     data.email_language = i18n.language;
-    await saveUserProfileData(data);
+    await saveUserProfileData(data).then(() => setIsEditAble(false)).catch(() => setIsEditAble(false));
     setIsEditAble(false);
   }
 
