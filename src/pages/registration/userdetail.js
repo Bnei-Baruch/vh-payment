@@ -185,6 +185,11 @@ export default function UserDetail() {
       saveProfileAndRedirect();
     }
   };
+  if (profile) {
+    console.log(typeof profile.study_start_year === 'number')
+    console.log(typeof profile.study_start_year)
+    console.log(new Date(profile.study_start_year))
+  }
   return (
     <form onSubmit={profileSubmit}>
       <Grid container spacing={6}>
@@ -321,7 +326,7 @@ export default function UserDetail() {
                 disabled={!isEditable}
                 views={["year"]}
                 label={t('userDetail.startYear')}
-                value={profile.study_start_year}
+                value={profile && profile.study_start_year ? typeof profile.study_start_year === 'number' ? new Date(profile.study_start_year?.toString()) : profile.study_start_year : ''}
                 fullWidth
                 required
                 onChange={(e) => handleChange("study_start_year", e)}
