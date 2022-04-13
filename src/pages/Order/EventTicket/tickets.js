@@ -161,13 +161,13 @@ export default function Tickets() {
                     {currency.sign + " " + plan.price[currency.id].amount}
                   </CenterTextGrey>
                   <Grid>
-                    <ul>
+                    {planContent && planContent.description && planContent.description.length > 0 && <ul>
                       {planContent.description.map((item, index) => (
                         <li key={index}>
                           <Typography variant="body1">{item}</Typography>
                         </li>
                       ))}
-                    </ul>
+                    </ul>}
                   </Grid>
                   <Grid>
                     {planContent.options && (

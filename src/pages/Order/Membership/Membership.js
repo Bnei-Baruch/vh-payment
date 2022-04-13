@@ -137,13 +137,13 @@ export default function Membership() {
                     {currency.sign + " " + plan.price[currency.id].amount}
                   </CenterTextGrey>
                   <Grid>
-                    <ul>
+                    {planContent && planContent.description && planContent.description.length > 0 && <ul>
                       {planContent.description.map((item, index) => (
                         <li key={index}>
                           <Typography variant="body1">{item}</Typography>
                         </li>
                       ))}
-                    </ul>
+                    </ul>}
                   </Grid>
                   <Grid>
                     {planContent.options && (
@@ -187,7 +187,7 @@ export default function Membership() {
                         <Button
                           variant="contained"
                           color="secondary"
-                          style={{backgroundColor: 'rgb(52, 168, 83)'}}
+                          style={{ backgroundColor: 'rgb(52, 168, 83)' }}
                           onClick={() => navigateToConfirmation(planContent)}
                         >
                           {t("common.next")}

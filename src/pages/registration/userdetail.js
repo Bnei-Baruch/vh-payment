@@ -83,69 +83,78 @@ export default function UserDetail() {
     }
   };
 
+  const saveProfile = async () => {
+    const data = { ...profile };
+    data.date_of_birth =
+      typeof data.date_of_birth === "object"
+        ? data.date_of_birth?.toISOString()
+        : new Date(data.date_of_birth)?.toISOString();
+    data.study_start_year =
+      typeof data.study_start_year === "object"
+        ? data.study_start_year?.getFullYear()
+        : data.study_start_year ? data.study_start_year : new Date().getFullYear();
+    data.email_language = i18n.language;
+    await saveUserProfileData(data).then(() => setIsEditAble(false)).catch(() => setIsEditAble(false));
+    setIsEditAble(false);
+  }
+
   const saveProfileAndRedirect = async () => {
     const eventData = getEventsProductBySlug(event_slug);
-    if (isEditable) {
-      const data = { ...profile };
-      data.date_of_birth =
-        typeof data.date_of_birth === "object"
-          ? data.date_of_birth?.toISOString()
-          : new Date(data.date_of_birth)?.toISOString();
-      data.study_start_year =
-        typeof data.study_start_year === "object"
-          ? data.study_start_year?.getFullYear()
-          : data.study_start_year ? data.study_start_year : new Date().getFullYear();
-      data.email_language = i18n.language;
-      await saveUserProfileData(data);
-      if (participantId) {
-        const eventBody = {
-          participation_option: participation_option,
-          participant_id: participantId,
-          event_id: eventData.event.id,
-          registration_date: new Date().toISOString(),
-        };
-        addPariticpantInEvent(eventBody).then(() => {
-          history.push(
-            `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
-          );
-        });
-      } else {
-        //SetUpdatedObject
-        const participantdata = {
-          keycloak_id: user.keycloak.subject,
-          first_language: data.first_language,
-          email_language: i18n.language,
-          dob: data.date_of_birth
-            ? new Date(data.date_of_birth).toISOString()
-            : new Date().toISOString(),
-          gender: data.gender,
-          email: data.primary_email,
-          country: data.country,
-          first_name: data.first_name_vernacular,
-          last_name: data.last_name_vernacular,
-        };
-        addAParticipant(participantdata).then((res) => {
-          if (res) {
-            setParticipantId(res.id);
-            const eventBody = {
-              //Should be the option of the user pariticpant.
-              participation_option: participation_option,
-              participant_id: res.id,
-              event_id: eventData.event.id,
-              registration_date: new Date().toISOString(),
-            };
-            addPariticpantInEvent(eventBody).then(() => {
-              history.push(
-                `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
-              );
-            });
-          }
-        });
-      }
+    const data = { ...profile };
+    data.date_of_birth =
+      typeof data.date_of_birth === "object"
+        ? data.date_of_birth?.toISOString()
+        : new Date(data.date_of_birth)?.toISOString();
+    data.study_start_year =
+      typeof data.study_start_year === "object"
+        ? data.study_start_year?.getFullYear()
+        : data.study_start_year ? data.study_start_year : new Date().getFullYear();
+    data.email_language = i18n.language;
+    //await saveUserProfileData(data);
+    if (participantId) {
+      const eventBody = {
+        participation_option: participation_option,
+        participant_id: participantId,
+        event_id: eventData.event.id,
+        registration_date: new Date().toISOString(),
+      };
+      addPariticpantInEvent(eventBody).then(() => {
+        history.push(
+          `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
+        );
+      });
     } else {
-      history.push(
-        `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
-      );
+      //SetUpdatedObject
+      const participantdata = {
+        keycloak_id: user.keycloak.subject,
+        first_language: data.first_language,
+        email_language: i18n.language,
+        dob: data.date_of_birth
+          ? new Date(data.date_of_birth).toISOString()
+          : new Date().toISOString(),
+        gender: data.gender,
+        email: data.primary_email,
+        country: data.country,
+        first_name: data.first_name_vernacular,
+        last_name: data.last_name_vernacular,
+      };
+      addAParticipant(participantdata).then((res) => {
+        if (res) {
+          setParticipantId(res.id);
+          const eventBody = {
+            //Should be the option of the user pariticpant.
+            participation_option: participation_option,
+            participant_id: res.id,
+            event_id: eventData.event.id,
+            registration_date: new Date().toISOString(),
+          };
+          addPariticpantInEvent(eventBody).then(() => {
+            history.push(
+              `/pay/order/register/${participation_option}/userdetail/success/${event_slug}`
+            );
+          });
+        }
+      });
     }
   };
 
@@ -168,11 +177,13 @@ export default function UserDetail() {
     setProfileData(data);
   };
 
-  console.log(profile);
-
   const profileSubmit = (e) => {
     e.preventDefault();
-    saveProfileAndRedirect();
+    if (isEditable) {
+      saveProfile();
+    } else {
+      saveProfileAndRedirect();
+    }
   };
   return (
     <form onSubmit={profileSubmit}>
@@ -316,7 +327,16 @@ export default function UserDetail() {
                 onChange={(e) => handleChange("study_start_year", e)}
               />
             </Grid>
-            <Grid item xs={12} md={12} style={{ textAlign: "right" }}>
+            <Grid item xs={12} md={12} style={{ textAlign: isEditable ? "center" : "right" }}>
+              {!isEditable && <Button
+                variant="contained"
+                color={!isEditable ? "primary" : "default"}
+                style={!isEditable ? { backgroundColor: "rgb(52, 168, 83)" } : {}}
+                onClick={!isEditable ? enableEdit : discardChanges}
+              >
+                {!isEditable ? t("common.edit") : t("common.cancel")}
+              </Button>}
+              &nbsp;&nbsp;
               {!isEditable && (
                 <Button variant="contained" color="primary" type="submit">
                   {t("common.next")}
@@ -327,14 +347,12 @@ export default function UserDetail() {
                   {t("common.save")}
                 </Button>
               )}
-              &nbsp;&nbsp;
-              <Button
+              {isEditable && <>&nbsp;&nbsp; <Button
                 variant="contained"
                 color={!isEditable ? "primary" : "default"}
+                style={!isEditable ? { backgroundColor: "rgb(52, 168, 83)" } : {}}
                 onClick={!isEditable ? enableEdit : discardChanges}
-              >
-                {!isEditable ? t("common.edit") : t("common.cancel")}
-              </Button>
+              >{!isEditable ? t("common.edit") : t("common.cancel")}</Button> </>}
             </Grid>
           </ProfileGrid>
         ) : (
