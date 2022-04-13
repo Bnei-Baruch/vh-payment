@@ -938,8 +938,8 @@ exports.tickets = {
           button_label: "Select",
           options: [
             {
-              label: "helphaver",
-              name: "Help Haver",
+              name: "helphaver",
+              label: "Help Haver",
               intersticial: {
                 title: "If you need financial help",
                 body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
