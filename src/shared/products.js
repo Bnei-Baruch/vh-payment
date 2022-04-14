@@ -570,22 +570,22 @@ exports.tickets = {
       content: {
         en: {
           name: "Regular Ticket",
-          description: ["Participation to the convention", "No membership required"],
+          description: [],
           button_label: "Select",
         },
         he: {
           name: "כרטיס רגיל",
-          description: ["השתתפות בכנס", "אין צורך בחברות"],
+          description: [],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto común",
-          description: ["Participación en el congreso", "No se precisa membresía"],
+          description: [],
           button_label: "elige",
         },
         ru: {
           name: "Для новых участников",
-          description: ["Участие в конгрессе", "Не требуется абонентской платы"],
+          description: [],
           button_label: "Выбрать",
         },
       },
@@ -655,7 +655,7 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: ["Participation to the convention", "Membership Required"],
+          description: [],
           button_label: "Select",
           intersticial: {
             title: "Membership Ticket",
@@ -665,8 +665,8 @@ exports.tickets = {
           redirect_url: "/dash/membership",
         },
         ru: {
-          name: "Для новых участников сообщества",
-          description: ["Участие в конгрессе", "Требуется абонентская плата"],
+          name: "Для постоянных участников сообщества",
+          description: [],
           button_label: "Выбрать",
           intersticial: {
             title: "Для новых участников сообщества",
@@ -677,7 +677,7 @@ exports.tickets = {
         },
         es: {
           name: "Boleto de membresía",
-          description: ["Participación en el congreso", "Se requiere membresía",],
+          description: [],
           button_label: "Elige",
           intersticial: {
             title: "Boleto de membresía",
@@ -688,7 +688,7 @@ exports.tickets = {
         },
         he: {
           name: "כרטיס חבר",
-          description: ["השתתפות בכנס", "נדרשת חברות"],
+          description: [],
           button_label: "לבחור",
           intersticial: {
             title: "כרטיס חבר",
@@ -721,7 +721,7 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: ["Participation to the convention", "Membership Required"],
+          description: [],
           button_label: "Select",
         },
         he: {
@@ -731,12 +731,12 @@ exports.tickets = {
         },
         es: {
           name: "Boleto de membresía",
-          description: ["Participación en el congreso", "Se requiere membresía"],
+          description: [],
           button_label: "Elige"
         },
         ru: {
           name: "Для постоянных участников сообщества",
-          description: ["Участие в конгрессе", "Требуется абонентская плата"],
+          description: [],
           button_label: "Выбрать",
         },
       },
@@ -806,7 +806,7 @@ exports.tickets = {
       content: {
         en: {
           name: "Financial Help",
-          description: ["If you need financial help"],
+          description: [],
           button_label: "Select",
           options: [
             {
@@ -825,7 +825,7 @@ exports.tickets = {
         },
         es: {
           name: "Ayuda financiera",
-          description: ["Si necesitas ayuda financiera"],
+          description: [],
           button_label: "Elige",
           options: [
             {
@@ -845,7 +845,7 @@ exports.tickets = {
 
         he: {
           name: "עזרה כלכלית",
-          description: ["אם נדרשת עזרה כלכלית"],
+          description: [],
           button_label: "לבחור",
           options: [
             {
@@ -864,7 +864,7 @@ exports.tickets = {
         },
         ru: {
           name: "Для особых случаев",
-          description: ["Участие в конгрессе"],
+          description: [],
           button_label: "Выбрать",
           options: [
             {
@@ -934,7 +934,7 @@ exports.tickets = {
       content: {
         en: {
           name: "Financial Help",
-          description: ["If you need financial help"],
+          description: [],
           button_label: "Select",
           options: [
             {
@@ -953,7 +953,7 @@ exports.tickets = {
         },
         es: {
           name: "Ayuda financiera",
-          description: ["Si necesitas ayuda financiera"],
+          description: [],
           button_label: "Elige",
           options: [
             {
@@ -973,7 +973,7 @@ exports.tickets = {
 
         he: {
           name: "עזרה כלכלית",
-          description: ["אם נדרשת עזרה כלכלית"],
+          description: [],
           button_label: "לבחור",
           options: [
             {
@@ -992,7 +992,7 @@ exports.tickets = {
         },
         ru: {
           name: "Для особых случаев",
-          description: ["Участие в конгрессе"],
+          description: [],
           button_label: "Выбрать",
           options: [
             {
