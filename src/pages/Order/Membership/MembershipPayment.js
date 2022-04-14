@@ -74,6 +74,10 @@ export default function MembershipPayment() {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
   const prevStep = () => {
+    if (activeStep === 0) {
+      history.goBack();
+      return;
+    }
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -264,9 +268,9 @@ export default function MembershipPayment() {
             )}
           </Button>
           &nbsp;&nbsp;
-          {activeStep !== 0 && (
+          {(
             <Button variant="contained" onClick={prevStep} disabled={payClicked}>
-              {activeStep === 0 ? t("common.cancel") : t("common.back")}
+              {t("common.back")}
             </Button>
           )}
         </Grid>

@@ -49,7 +49,7 @@ export default function UserDetail() {
   const { event_slug, participation_option } = useParams();
   const history = useHistory();
   const [profile, setProfileData] = useState({});
-  const [isEditable, setIsEditAble] = useState(false);
+  const [isEditable, setIsEditAble] = useState(true);
   const user = useSelector((state) => state.user);
   const profileData = useSelector((state) => state.user.profileData);
   const [participantId, setParticipantId] = useState(undefined);
@@ -116,6 +116,8 @@ export default function UserDetail() {
         participation_option: participation_option,
         participant_id: participantId,
         event_id: eventData.event.id,
+        notification: 'true',
+        notification_type: 'confirmation',
         registration_date: new Date().toISOString(),
       };
       addPariticpantInEvent(eventBody).then(() => {
@@ -146,6 +148,8 @@ export default function UserDetail() {
             participation_option: participation_option,
             participant_id: res.id,
             event_id: eventData.event.id,
+            notification: 'true',
+            notification_type: 'confirmation',
             registration_date: new Date().toISOString(),
           };
           addPariticpantInEvent(eventBody).then(() => {
@@ -282,7 +286,6 @@ export default function UserDetail() {
               />
             </Grid>
             <Grid item xs={12} md={4}>
-              {/* Change to select */}
               <SelectElement
                 disabled={!isEditable}
                 id="outlined-basic"
@@ -318,7 +321,7 @@ export default function UserDetail() {
                 onChange={(e) => handleChange("other_language_1", e)}
                 selectData={languages}
                 fullWidth
-                required={true}
+                required={false}
               />
             </Grid>
             <Grid item xs={12} md={12}>
