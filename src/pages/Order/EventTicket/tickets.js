@@ -79,6 +79,7 @@ export default function Tickets() {
 
   const planSelected = (ticket) => {
     dispatch(setSelectedTicket(ticket));
+    navigateToConfirmation(ticket);
   };
 
   const navigateToConfirmation = (ticket) => {
@@ -193,26 +194,16 @@ export default function Tickets() {
                     )}
                   </Grid>
                   <CTAGrid>
-                    {(selectedTicket === undefined ||
-                      selectedTicket !== plan) && (
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          onClick={() => planSelected(plan)}
-                        >
-                          {planContent.button_label}
-                        </Button>
-                      )}
-                    {selectedTicket !== undefined && selectedTicket === plan && (
+                    {(
                       <Button
                         variant="contained"
                         color="secondary"
-                        style={{ backgroundColor: 'rgb(52, 168, 83)' }}
-                        onClick={() => navigateToConfirmation(plan)}
+                        onClick={() => planSelected(plan)}
                       >
-                        {t("common.next")}
+                        {planContent.button_label}
                       </Button>
                     )}
+
                   </CTAGrid>
                 </TicketCard>
               </Grid>
