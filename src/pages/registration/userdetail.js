@@ -246,6 +246,7 @@ export default function UserDetail() {
                   shrink: true,
                 }}
                 onChange={(e) => handleChange("date_of_birth", e)}
+                required
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -257,6 +258,7 @@ export default function UserDetail() {
                 value={profile.mobile_number}
                 fullWidth
                 onChange={(e) => handleChange("mobile_number", e)}
+                required
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -269,6 +271,7 @@ export default function UserDetail() {
                 value={profile.gender || ""}
                 onChange={(e) => handleChange("gender", e)}
                 selectData={genderData}
+                required={true}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -292,6 +295,7 @@ export default function UserDetail() {
                 value={profile.country || ""}
                 onChange={(e) => handleChange("country", e)}
                 selectData={countries}
+                required={true}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -327,6 +331,7 @@ export default function UserDetail() {
                 label={t('userDetail.startYear')}
                 value={profile && profile.study_start_year ? typeof profile.study_start_year === 'number' ? new Date(profile.study_start_year?.toString()) : profile.study_start_year : ''}
                 fullWidth
+                required
                 onChange={(e) => handleChange("study_start_year", e)}
               />
             </Grid>
