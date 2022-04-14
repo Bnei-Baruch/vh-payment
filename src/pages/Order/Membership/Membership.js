@@ -73,6 +73,7 @@ export default function Membership() {
 
   const planSelected = (membership) => {
     dispatch(setSelectedMembership(membership));
+    navigateToConfirmation();
   };
 
   const navigateToConfirmation = () => {
@@ -172,25 +173,13 @@ export default function Membership() {
                     )}
                   </Grid>
                   <CTAGrid>
-                    {(selectedMembership === undefined ||
-                      selectedMembership !== plan) && (
+                    {(
                         <Button
                           variant="contained"
                           color="secondary"
                           onClick={() => planSelected(plan)}
                         >
                           {planContent.button_label}
-                        </Button>
-                      )}
-                    {selectedMembership !== undefined &&
-                      selectedMembership === plan && (
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          style={{ backgroundColor: 'rgb(52, 168, 83)' }}
-                          onClick={() => navigateToConfirmation(planContent)}
-                        >
-                          {t("common.next")}
                         </Button>
                       )}
                   </CTAGrid>
