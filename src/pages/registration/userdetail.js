@@ -116,7 +116,7 @@ export default function UserDetail() {
         participation_option: participation_option,
         participant_id: participantId,
         event_id: eventData.event.id,
-        notification: 'true',
+        notification: true,
         notification_type: 'confirmation',
         registration_date: new Date().toISOString(),
       };
@@ -148,7 +148,7 @@ export default function UserDetail() {
             participation_option: participation_option,
             participant_id: res.id,
             event_id: eventData.event.id,
-            notification: 'true',
+            notification: true,
             notification_type: 'confirmation',
             registration_date: new Date().toISOString(),
           };
