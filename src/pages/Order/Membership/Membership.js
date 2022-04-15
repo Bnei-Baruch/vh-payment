@@ -73,21 +73,21 @@ export default function Membership() {
 
   const planSelected = (membership) => {
     dispatch(setSelectedMembership(membership));
-    navigateToConfirmation();
+    navigateToConfirmation(membership);
   };
 
-  const navigateToConfirmation = () => {
-    if (selectedMembership.flow.type === "redirect") {
+  const navigateToConfirmation = (membership) => {
+    if (membership.flow.type === "redirect") {
       if (specialOption === '') {
         setErrorMessage(t('errorMessage.pleaseSelectOption'));
         return '';
       }
       const selectedOption =
-        selectedMembership.content[i18n.language] || selectedMembership.content.en;
+        membership.content[i18n.language] || membership.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
-      history.push(`/pay/order/ticket/payment/intersticial/${selectedMembership.name}?isMembership=true`);
-    } else if (selectedMembership.flow.type === "checkout") {
-      history.push("/pay/membership/payment/" + selectedMembership.name);
+      history.push(`/pay/order/ticket/payment/intersticial/${membership.name}?isMembership=true`);
+    } else if (membership.flow.type === "checkout") {
+      history.push("/pay/membership/payment/" + membership.name);
     }
   };
   if (!membership) return <Loader />;

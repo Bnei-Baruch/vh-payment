@@ -90,7 +90,7 @@ export default function Tickets() {
         return '';
       }
       const content =
-        selectedTicket.content[i18n.language] || selectedTicket.content.en;
+        ticket.content[i18n.language] || ticket.content.en;
       const selectedOption = content.options.find(
         (item) => item.name === specialOption
       );
@@ -98,7 +98,7 @@ export default function Tickets() {
       history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
     } else if (name === "membership" && membershipData?.membership !== true) {
       const selectedOption =
-        selectedTicket.content[i18n.language] || selectedTicket.content.en;
+        ticket.content[i18n.language] || ticket.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
       return;
