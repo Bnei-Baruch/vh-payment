@@ -240,13 +240,13 @@ export default function UserDetail() {
                 label={t('userDetail.dateOfBirth')}
                 variant="outlined"
                 type="date"
-                value={profile.date_of_birth}
+                value={profile.date_of_birth || new Date('1900-01-01T00:00:00')}
                 fullWidth
                 InputLabelProps={{
                   shrink: true,
                 }}
                 onChange={(e) => handleChange("date_of_birth", e)}
-                required
+                required={false}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -255,10 +255,10 @@ export default function UserDetail() {
                 id="outlined-basic"
                 label={t('userDetail.phone')}
                 variant="outlined"
-                value={profile.mobile_number}
+                value={profile.mobile_number || '+'}
                 fullWidth
                 onChange={(e) => handleChange("mobile_number", e)}
-                required
+                required={false}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -271,7 +271,7 @@ export default function UserDetail() {
                 value={profile.gender || ""}
                 onChange={(e) => handleChange("gender", e)}
                 selectData={genderData}
-                required={true}
+                required={false}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -295,7 +295,7 @@ export default function UserDetail() {
                 value={profile.country || ""}
                 onChange={(e) => handleChange("country", e)}
                 selectData={countries}
-                required={true}
+                required={false}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -308,7 +308,7 @@ export default function UserDetail() {
                 value={profile.first_language || ""}
                 onChange={(e) => handleChange("first_language", e)}
                 selectData={languages}
-                required={true}
+                required={false}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -329,9 +329,9 @@ export default function UserDetail() {
                 disabled={!isEditable}
                 views={["year"]}
                 label={t('userDetail.startYear')}
-                value={profile && profile.study_start_year ? typeof profile.study_start_year === 'number' ? new Date(profile.study_start_year?.toString()) : profile.study_start_year : ''}
+                value={profile && profile.study_start_year ? typeof profile.study_start_year === 'number' ? new Date(profile.study_start_year?.toString()) : profile.study_start_year : new Date('1990-01-01T00:00:00')}
                 fullWidth
-                required
+                required={false}
                 onChange={(e) => handleChange("study_start_year", e)}
               />
             </Grid>
