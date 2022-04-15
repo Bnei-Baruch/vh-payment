@@ -101,7 +101,6 @@ export default function UserDetail() {
   const saveProfileAndRedirect = async () => {
     const eventData = getEventsProductBySlug(event_slug);
     const data = { ...profile };
-    console.log(data)
     data.date_of_birth =
       typeof data.date_of_birth === "object"
         ? data.date_of_birth?.toISOString()
@@ -241,7 +240,8 @@ export default function UserDetail() {
                 label={t('userDetail.dateOfBirth')}
                 variant="outlined"
                 type="date"
-                value={profile.date_of_birth || new Date('1900-01-01T00:00:00')}
+                defaultValue="1900-01-01"
+                value={profile.date_of_birth || "1900-01-01"}
                 fullWidth
                 InputLabelProps={{
                   shrink: true,
