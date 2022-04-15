@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import * as qs from "query-string";
 import { paymentSuccess } from "../../services/orderservice";
 import {
+  addAParticipant,
   getParticipantByEmail,
 } from "../../services/participants.service";
 import { addPariticpantInEvent } from "../../services/event.service";
