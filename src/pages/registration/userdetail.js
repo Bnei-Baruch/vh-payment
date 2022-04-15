@@ -101,6 +101,7 @@ export default function UserDetail() {
   const saveProfileAndRedirect = async () => {
     const eventData = getEventsProductBySlug(event_slug);
     const data = { ...profile };
+    console.log(data)
     data.date_of_birth =
       typeof data.date_of_birth === "object"
         ? data.date_of_birth?.toISOString()
