@@ -79,6 +79,7 @@ export default function Tickets() {
 
   const planSelected = (ticket) => {
     dispatch(setSelectedTicket(ticket));
+    navigateToConfirmation(ticket);
   };
 
   const navigateToConfirmation = (ticket) => {
@@ -89,7 +90,7 @@ export default function Tickets() {
         return '';
       }
       const content =
-        selectedTicket.content[i18n.language] || selectedTicket.content.en;
+        ticket.content[i18n.language] || ticket.content.en;
       const selectedOption = content.options.find(
         (item) => item.name === specialOption
       );
@@ -97,7 +98,7 @@ export default function Tickets() {
       history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
     } else if (name === "membership" && membershipData?.membership !== true) {
       const selectedOption =
-        selectedTicket.content[i18n.language] || selectedTicket.content.en;
+        ticket.content[i18n.language] || ticket.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
       return;
@@ -161,13 +162,13 @@ export default function Tickets() {
                     {currency.sign + " " + plan.price[currency.id].amount}
                   </CenterTextGrey>
                   <Grid>
-                    <ul>
+                    {planContent && planContent.description && planContent.description.length > 0 && <ul>
                       {planContent.description.map((item, index) => (
                         <li key={index}>
                           <Typography variant="body1">{item}</Typography>
                         </li>
                       ))}
-                    </ul>
+                    </ul>}
                   </Grid>
                   <Grid>
                     {planContent.options && (
@@ -193,26 +194,16 @@ export default function Tickets() {
                     )}
                   </Grid>
                   <CTAGrid>
-                    {(selectedTicket === undefined ||
-                      selectedTicket !== plan) && (
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          onClick={() => planSelected(plan)}
-                        >
-                          {planContent.button_label}
-                        </Button>
-                      )}
-                    {selectedTicket !== undefined && selectedTicket === plan && (
+                    {(
                       <Button
                         variant="contained"
                         color="secondary"
-                        style={{ backgroundColor: 'rgb(52, 168, 83)' }}
-                        onClick={() => navigateToConfirmation(plan)}
+                        onClick={() => planSelected(plan)}
                       >
-                        {t("common.next")}
+                        {planContent.button_label}
                       </Button>
                     )}
+
                   </CTAGrid>
                 </TicketCard>
               </Grid>

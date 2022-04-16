@@ -73,20 +73,21 @@ export default function Membership() {
 
   const planSelected = (membership) => {
     dispatch(setSelectedMembership(membership));
+    navigateToConfirmation(membership);
   };
 
-  const navigateToConfirmation = () => {
-    if (selectedMembership.flow.type === "redirect") {
+  const navigateToConfirmation = (membership) => {
+    if (membership.flow.type === "redirect") {
       if (specialOption === '') {
         setErrorMessage(t('errorMessage.pleaseSelectOption'));
         return '';
       }
       const selectedOption =
-        selectedMembership.content[i18n.language] || selectedMembership.content.en;
+        membership.content[i18n.language] || membership.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
-      history.push(`/pay/order/ticket/payment/intersticial/${selectedMembership.name}?isMembership=true`);
-    } else if (selectedMembership.flow.type === "checkout") {
-      history.push("/pay/membership/payment/" + selectedMembership.name);
+      history.push(`/pay/order/ticket/payment/intersticial/${membership.name}?isMembership=true`);
+    } else if (membership.flow.type === "checkout") {
+      history.push("/pay/membership/payment/" + membership.name);
     }
   };
   if (!membership) return <Loader />;
@@ -137,13 +138,13 @@ export default function Membership() {
                     {currency.sign + " " + plan.price[currency.id].amount}
                   </CenterTextGrey>
                   <Grid>
-                    <ul>
+                    {planContent && planContent.description && planContent.description.length > 0 && <ul>
                       {planContent.description.map((item, index) => (
                         <li key={index}>
                           <Typography variant="body1">{item}</Typography>
                         </li>
                       ))}
-                    </ul>
+                    </ul>}
                   </Grid>
                   <Grid>
                     {planContent.options && (
@@ -172,25 +173,13 @@ export default function Membership() {
                     )}
                   </Grid>
                   <CTAGrid>
-                    {(selectedMembership === undefined ||
-                      selectedMembership !== plan) && (
+                    {(
                         <Button
                           variant="contained"
                           color="secondary"
                           onClick={() => planSelected(plan)}
                         >
                           {planContent.button_label}
-                        </Button>
-                      )}
-                    {selectedMembership !== undefined &&
-                      selectedMembership === plan && (
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          style={{backgroundColor: 'rgb(52, 168, 83)'}}
-                          onClick={() => navigateToConfirmation(planContent)}
-                        >
-                          {t("common.next")}
                         </Button>
                       )}
                   </CTAGrid>
