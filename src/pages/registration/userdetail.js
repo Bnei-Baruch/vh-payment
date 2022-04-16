@@ -24,16 +24,17 @@ export const genderData = [
     label: "Female",
   },
 ];
+let loading = false;
 export default function UserDetail() {
-  const { i18n } = useTranslation();
-  let ManualPayment = getQueryParams("ManualPayment");
-  const { event_slug, participation_option } = useParams();
   const history = useHistory();
-  const [profile, setProfileData] = useState(undefined);
+  const { i18n } = useTranslation();
   const user = useSelector((state) => state.user);
+  const keycloak = useSelector((state) => state.user.keycloak);
+  const { event_slug, participation_option } = useParams();
+  const [profile, setProfileData] = useState(undefined);
   const [participantId, setParticipantId] = useState(undefined);
   const [eventData, setEventData] = useState(undefined);
-  const keycloak = useSelector((state) => state.user.keycloak);
+  let ManualPayment = getQueryParams("ManualPayment");
   React.useEffect(() => {
     const data = getEventsProductBySlug(event_slug);
     if (data) {
@@ -46,7 +47,8 @@ export default function UserDetail() {
   }, []);
 
   React.useEffect(() => {
-    if (keycloak !== null && profile === undefined) {
+    if (keycloak !== null && profile === undefined && !loading) {
+      loading = true;
       getUserProfileData(keycloak.subject).then(res => {
         setProfileData(res);
       }).catch(() => {
@@ -109,7 +111,6 @@ export default function UserDetail() {
     };
     addAParticipant(participantdata).then((res) => {
       if (res) {
-        setParticipantId(res.id);
         const eventBody = {
           //Should be the option of the user pariticpant.
           participation_option: participation_option,
