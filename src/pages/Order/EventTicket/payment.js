@@ -25,6 +25,7 @@ import HeaderLayout from "../../../layouts/HeaderLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
 import Loader from "../../../components/Loader";
+import SomethingWentWrong from "../SomethingWentWrong";
 const PaymentTile = styled.div`
   padding: 20px 20px;
   > span:first-child.left {
@@ -64,6 +65,7 @@ export default function Payment() {
   const [profileData, setUserProfileData] = React.useState(null);
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
   const { dir } = useSelector(state => state.language);
@@ -86,6 +88,16 @@ export default function Payment() {
       setUserProfileData(userProfileData);
     }
   };
+
+  React.useState(() => {
+    if (product) {
+      setLoading(false);
+    } else {
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000)
+    }
+  }, [])
 
   const handlePay = async () => {
     setOnPayClicked(true);
@@ -133,7 +145,7 @@ export default function Payment() {
 
   React.useEffect(() => {
     getUserProfileData();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const proceedToPayment = () => {
@@ -144,7 +156,9 @@ export default function Payment() {
     }
   };
 
-  if (!product) return <Loader />;
+
+  if (loading) return <Loader />;
+  if (!loading && !product) return <><SomethingWentWrong /></>;
   let { content } = product;
   let event = content[i18n.language]
     ? content[i18n.language].title
@@ -162,7 +176,7 @@ export default function Payment() {
             <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
           </>
         )}
-        <Stepper className={ dir === 'rtl' && classes.unaffectedrtl} activeStep={activeStep} alternativeLabel>
+        <Stepper className={dir === 'rtl' && classes.unaffectedrtl} activeStep={activeStep} alternativeLabel>
           {[
             t('payment.ticketStep1'),
             t('payment.step2'),
@@ -178,7 +192,7 @@ export default function Payment() {
             <Grid item xs={12}>
               <SubText>{t("common.amount")}</SubText>
               <PaymentTile>
-                <span className={dir === 'ltr' ? 'left' : 'right' }>{selectedTicket.price[currency.id]?.amount}</span>
+                <span className={dir === 'ltr' ? 'left' : 'right'}>{selectedTicket.price[currency.id]?.amount}</span>
                 <span>
                   {" "}
                   <CurrencyPicker />

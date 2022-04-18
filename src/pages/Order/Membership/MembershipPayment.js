@@ -25,6 +25,7 @@ import HeaderLayout from "../../../layouts/HeaderLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
 import Loader from "../../../components/Loader";
+import SomethingWentWrong from "../SomethingWentWrong";
 const PaymentTile = styled.div`
   padding: 20px 20px;
   > span:first-child.left {
@@ -65,6 +66,7 @@ export default function MembershipPayment() {
   const [profileData, setUserProfileData] = React.useState(null);
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
   const selectedMembership = useSelector(
@@ -87,6 +89,16 @@ export default function MembershipPayment() {
       setUserProfileData(userProfileData);
     }
   };
+
+  React.useState(() => {
+    if (selectedMembership) {
+      setLoading(false);
+    } else {
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000)
+    }
+  }, [])
 
   const handlePay = async () => {
     setOnPayClicked(true);
@@ -144,7 +156,8 @@ export default function MembershipPayment() {
     }
   };
 
-  if (!selectedMembership) return <Loader />
+  if (loading) return <Loader />;
+  if (!loading && !selectedMembership) return <><SomethingWentWrong isMembership={true} /></>;
   let { content } = selectedMembership;
   let event = content[i18n.language]
     ? content[i18n.language].title
@@ -160,7 +173,7 @@ export default function MembershipPayment() {
             <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
           </>
         )}
-        <Stepper className={ dir === 'rtl' && classes.unaffectedrtl} activeStep={activeStep} alternativeLabel>
+        <Stepper className={dir === 'rtl' && classes.unaffectedrtl} activeStep={activeStep} alternativeLabel>
           {[t('payment.membershipStep1'), t('payment.step2'), t('payment.step3')].map((label) => (
             <Step key={label}>
               <StepLabel>
@@ -174,7 +187,7 @@ export default function MembershipPayment() {
             <Grid item xs={12}>
               <SubText>{t("common.amount")}</SubText>
               <PaymentTile>
-                <span className={dir === 'ltr' ? 'left' : 'right' }>{selectedMembership.price[currency.id]?.amount}</span>
+                <span className={dir === 'ltr' ? 'left' : 'right'}>{selectedMembership.price[currency.id]?.amount}</span>
                 <span>
                   {" "}
                   <CurrencyPicker />
