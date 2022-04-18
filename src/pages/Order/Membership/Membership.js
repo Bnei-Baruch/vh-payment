@@ -174,14 +174,14 @@ export default function Membership() {
                   </Grid>
                   <CTAGrid>
                     {(
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          onClick={() => planSelected(plan)}
-                        >
-                          {planContent.button_label}
-                        </Button>
-                      )}
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => planSelected(plan)}
+                      >
+                        {planContent.button_label}
+                      </Button>
+                    )}
                   </CTAGrid>
                 </TicketCard>
               </Grid>

@@ -114,5 +114,11 @@
   },
   "errorMessage" : {
     "pleaseSelectOption": "Tienes que elegir una opción"
+  },
+  "somethingWentWrong": {
+    "header": "Something went wrong",
+    "description": "Something went wrong while processing your request. Please start your registration by clicking below",
+    "return": "Return to Registration",
+    "returnMembership": "Return to Membership"
   }
 }
