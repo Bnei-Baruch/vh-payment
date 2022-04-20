@@ -110,7 +110,7 @@ export default function Tickets() {
 
   const getPlansInSortedFormat = (plans) => {
     let plan = plans.filter(
-      (plan) => plan.membership === true
+      (plan) => plan.membership === membershipData?.membership
     );
     return plan.sort((a, b) => parseInt(a.order) - parseInt(b.order));
   }
