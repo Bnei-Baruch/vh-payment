@@ -105,7 +105,7 @@ export default function UserDetail() {
         : new Date('1900-01-01').toISOString(),
       gender: data.gender || 'male',
       email: data.primary_email || keycloak.profile.email,
-      country: data.country || "MG",
+      country: data.country || "NODATA",
       first_name: data.first_name_vernacular || keycloak.profile.firstName,
       last_name: data.last_name_vernacular || keycloak.profile.lastName,
     };
