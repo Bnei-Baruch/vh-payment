@@ -9,13 +9,20 @@ import { languages } from '../shared/languages'
 import { setLanguage } from '../redux/actions/languageActions'
 import { setCurrency } from '../redux/actions/currencyActions'
 import { currencies } from '../shared/currencies'
-
+import LanguageIcon from '@material-ui/icons/Language';
 const VH_DEFAULT_LANG = 'i18nextLng'
 
 const IconButton = styled(MuiIconButton)`
   svg {
     width: 22px;
     height: 22px;
+  }
+  span {
+    color: #747474;
+    font-size: 14px;
+  }
+  :hover {
+    background-color: transparent !important;
   }
 `
 
@@ -68,16 +75,6 @@ const LanguagePicker = () => {
     setAnchorMenu(null)
   }
 
-  const countryToFlag = (isoCode) => {
-    return typeof String.fromCodePoint !== 'undefined'
-      ? isoCode
-          .toUpperCase()
-          .replace(/./g, (char) =>
-            String.fromCodePoint(char.charCodeAt(0) + 127397)
-          )
-      : isoCode
-  }
-
   return (
     <>
       <IconButton
@@ -86,7 +83,8 @@ const LanguagePicker = () => {
         onClick={toggleMenu}
         color="inherit"
       >
-        {countryToFlag(languages.find((value) => value.id === id).country)}
+        <LanguageIcon /> &nbsp;
+        {id?.toUpperCase()}
       </IconButton>
       <Menu
         id="menu-appbar"
