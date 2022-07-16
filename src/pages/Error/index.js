@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { Box, CardContent, Paper, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-import { useTranslation } from 'react-i18next'
-import Loader from '../../components/Loader'
-import ContentLayout from '../../layouts/ContentLayout'
-import HeaderLayout from '../../layouts/HeaderLayout'
-import * as qs from 'query-string'
+import React, { useEffect, useState } from "react";
+import { Box, CardContent, Paper, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+import { useTranslation } from "react-i18next";
+import Loader from "../../components/Loader";
+import ContentLayout from "../../layouts/ContentLayout";
+import * as qs from "query-string";
 
 const useStyles = makeStyles({
   header: {
     marginBottom: 40,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   body: {
     marginTop: 40,
@@ -20,34 +19,34 @@ const useStyles = makeStyles({
     fontSize: 48,
   },
   actions: {
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   secondaryFont: {
-    fontFamily: 'Abel',
+    fontFamily: "Abel",
   },
   agree: {
-    fontFamily: 'Abel',
+    fontFamily: "Abel",
     fontSize: 16,
   },
   payBtn: {
-    fontFamily: 'Abel',
+    fontFamily: "Abel",
     marginRight: 8,
   },
-})
+});
 
 const Error = () => {
-  const classes = useStyles()
-  const { t } = useTranslation()
+  const classes = useStyles();
+  const { t } = useTranslation();
 
   // const [payMethod, setPayMethod] = useState('card');
-  const [loading, setLoading] = useState(true)
-  const [errorMesg, setErrorMesg] = useState('Unknown Error')
+  const [loading, setLoading] = useState(true);
+  const [errorMesg, setErrorMesg] = useState("Unknown Error");
 
   useEffect(() => {
-    let q = qs.parse(window.location.search)
+    let q = qs.parse(window.location.search);
 
     if (q.error != null && q.error.length > 0) {
-      setErrorMesg(q.error)
+      setErrorMesg(q.error);
     }
 
     // TODO: create backend for this
@@ -60,45 +59,42 @@ const Error = () => {
     // });
 
     setTimeout(() => {
-      setLoading(false)
-    }, 1000)
+      setLoading(false);
+    }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
-    <>
-      <HeaderLayout />
-      <ContentLayout>
-        <Paper elevation={0}>
-          <CardContent>
-            <Box component="header" className={classes.header}>
-              {
-                <Typography
-                  variant="h1"
-                  component="h1"
-                  style={{ fontSize: 36, marginBottom: 20 }}
-                >
-                  {t('order.error')}
-                </Typography>
-              }
-
-              <Typography style={{ fontSize: 18 }}>
-                {t('order.errortext')}
+    <ContentLayout>
+      <Paper elevation={0}>
+        <CardContent>
+          <Box component="header" className={classes.header}>
+            {
+              <Typography
+                variant="h1"
+                component="h1"
+                style={{ fontSize: 36, marginBottom: 20 }}
+              >
+                {t("order.error")}
               </Typography>
-              <Typography style={{ fontSize: 18 }}>{errorMesg}</Typography>
-              <Typography style={{ fontSize: 18, marginTop: 20 }}>
-                {t('order.errortext2')}
-              </Typography>
-            </Box>
-          </CardContent>
-        </Paper>
-      </ContentLayout>
-    </>
-  )
-}
+            }
 
-export default Error
+            <Typography style={{ fontSize: 18 }}>
+              {t("order.errortext")}
+            </Typography>
+            <Typography style={{ fontSize: 18 }}>{errorMesg}</Typography>
+            <Typography style={{ fontSize: 18, marginTop: 20 }}>
+              {t("order.errortext2")}
+            </Typography>
+          </Box>
+        </CardContent>
+      </Paper>
+    </ContentLayout>
+  );
+};
+
+export default Error;

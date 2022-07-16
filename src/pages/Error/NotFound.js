@@ -3,7 +3,6 @@ import { Box, CardContent, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useTranslation } from "react-i18next";
 import ContentLayout from "../../layouts/ContentLayout";
-import HeaderLayout from "../../layouts/HeaderLayout";
 
 const useStyles = makeStyles({
   header: {
@@ -31,8 +30,8 @@ const useStyles = makeStyles({
     fontFamily: "Abel",
     marginRight: 8,
   },
-  headerText : { fontSize: 36, marginBottom: 20 },
-  messageText : { fontSize: 18, marginTop: 20 }
+  headerText: { fontSize: 36, marginBottom: 20 },
+  messageText: { fontSize: 18, marginTop: 20 },
 });
 
 const NotFound = () => {
@@ -40,7 +39,6 @@ const NotFound = () => {
   const { t } = useTranslation();
   return (
     <>
-      <HeaderLayout />
       <ContentLayout>
         <Paper elevation={0}>
           <CardContent>

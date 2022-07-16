@@ -64,6 +64,7 @@ const HeaderLayout = () => {
   const { t } = useTranslation();
   const { dir } = useSelector((state) => state.language);
   const { appbar } = useSelector((state) => state.order);
+  const membershipData = useSelector((state) => state.user.membershipdata);
 
   return (
     <AppBar

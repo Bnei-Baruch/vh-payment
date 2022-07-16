@@ -21,7 +21,6 @@ import { useStyles } from "../index";
 import styled from "styled-components";
 import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
-import HeaderLayout from "../../../layouts/HeaderLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
 import Loader from "../../../components/Loader";
@@ -68,7 +67,7 @@ export default function Payment() {
   const [loading, setLoading] = React.useState(true);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
-  const { dir } = useSelector(state => state.language);
+  const { dir } = useSelector((state) => state.language);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
   const product = useSelector((state) => state.order.ticketProduct);
   const nextStep = () => {
@@ -95,9 +94,9 @@ export default function Payment() {
     } else {
       setTimeout(() => {
         setLoading(false);
-      }, 3000)
+      }, 3000);
     }
-  }, [])
+  }, []);
 
   const handlePay = async () => {
     setOnPayClicked(true);
@@ -156,144 +155,135 @@ export default function Payment() {
     }
   };
 
-
   if (loading) return <Loader />;
-  if (!loading && !product) return <><SomethingWentWrong /></>;
+  if (!loading && !product)
+    return (
+      <>
+        <SomethingWentWrong />
+      </>
+    );
   let { content } = product;
   let event = content[i18n.language]
     ? content[i18n.language].title
     : content.en;
 
-  let ticketDescription = selectedTicket.content ? selectedTicket.content[i18n.language].description : selectedTicket.content.en.description;
+  let ticketDescription = selectedTicket.content
+    ? selectedTicket.content[i18n.language].description
+    : selectedTicket.content.en.description;
   let paymentOption = selectedTicket.payment_options;
 
   return (
-    <>
-      <HeaderLayout />
-      <ContentLayout>
-        {event && (
-          <>
-            <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
-          </>
-        )}
-        <Stepper className={dir === 'rtl' && classes.unaffectedrtl} activeStep={activeStep} alternativeLabel>
-          {[
-            t('payment.ticketStep1'),
-            t('payment.step2'),
-            t('payment.step3'),
-          ].map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        {activeStep === 0 && (
-          <Grid container spacing={6}>
-            <Grid item xs={12}>
-              <SubText>{t("common.amount")}</SubText>
-              <PaymentTile>
-                <span className={dir === 'ltr' ? 'left' : 'right'}>{selectedTicket.price[currency.id]?.amount}</span>
-                <span>
-                  {" "}
-                  <CurrencyPicker />
-                </span>
-              </PaymentTile>
-            </Grid>
-            <Grid item xs={12}>
-              <SubText>
-                <ul style={{ padding: '0px 10px' }}>
-                  {ticketDescription && ticketDescription.map(description => {
-                    return <li>{description}</li>
+    <ContentLayout>
+      {event && <HeaderTitle variant="h3">{event.title}</HeaderTitle>}
+      <br />
+      {activeStep === 0 && (
+        <Grid container spacing={6}>
+          <Grid item xs={12}>
+            <SubText>{t("common.amount")}</SubText>
+            <PaymentTile>
+              <span className={dir === "ltr" ? "left" : "right"}>
+                {selectedTicket.price[currency.id]?.amount}
+              </span>
+              <span>
+                {" "}
+                <CurrencyPicker />
+              </span>
+            </PaymentTile>
+          </Grid>
+          <Grid item xs={12}>
+            <SubText>
+              <ul style={{ padding: "0px 10px" }}>
+                {ticketDescription &&
+                  ticketDescription.map((description) => {
+                    return <li>{description}</li>;
                   })}
-                </ul>
-              </SubText>
-            </Grid>
+              </ul>
+            </SubText>
           </Grid>
-        )}
-        {activeStep === 1 && (
-          <Grid container spacing={6}>
-            <Grid item xs={12}>
-              <Grid style={{ padding: "20px" }}>
-                <FormControl>
-                  <FormLabel id="demo-radio-buttons-group-label">
-                    {t("common.paymentMethod")}
-                  </FormLabel>
-                  <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="creditcard"
-                    name="radio-buttons-group"
-                    value={paymentMethod}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  >
-                    {paymentOption.map(option => (
-                      <FormControlLabel
-                        value={option.name}
-                        control={<Radio />}
-                        label={option.content[i18n.language].label}
-                      />
-                    ))}
-                  </RadioGroup>
-                </FormControl>
-              </Grid>
-            </Grid>
-          </Grid>
-        )}
-        {activeStep === 2 && (
-          <Grid container spacing={6}>
-            <Grid item xs={12}>
-              <SubText>{t("common.amount")}</SubText>
-              <PaymentTile>
-                <span class="lightgrey">
-                  {selectedTicket.price[currency.id]?.amount}
-                </span>
-                <span class="lightgrey">{currency.id?.toUpperCase()}</span>
-              </PaymentTile>
-            </Grid>
-            <Grid item xs={12}>
-              <SubText>{t("common.paymentMethod")}</SubText>
-              <PaymentTile>
-                <span class="lightgrey">
-                  {paymentOption.find(item => item.name === paymentMethod)?.content[i18n.language]?.label}
-                </span>
-              </PaymentTile>
-            </Grid>
-          </Grid>
-        )}
-        <Grid style={{ textAlign: "right" }}>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={payClicked}
-            onClick={activeStep === 2 ? proceedToPayment : nextStep}
-          >
-            {activeStep === 2 ? (
-              payClicked ? (
-                <>
-                  {payClicked && (
-                    <CircularProgress m={2} className={classes.loader} />
-                  )}
-                  &nbsp;
-                  {t("order.processing")}
-                </>
-              ) : (
-                t("common.confirm")
-              )
-            ) : (
-              t("common.next")
-            )}
-          </Button>
-          &nbsp;&nbsp;
-          {(
-            <Button
-              variant="contained"
-              onClick={prevStep}
-              disabled={payClicked}
-            >
-              {t("common.back")}
-            </Button>
-          )}
         </Grid>
-      </ContentLayout>
-    </>
+      )}
+      {activeStep === 1 && (
+        <Grid container spacing={6}>
+          <Grid item xs={12}>
+            <Grid style={{ padding: "20px" }}>
+              <FormControl>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  {t("common.paymentMethod")}
+                </FormLabel>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="creditcard"
+                  name="radio-buttons-group"
+                  value={paymentMethod}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                >
+                  {paymentOption.map((option) => (
+                    <FormControlLabel
+                      value={option.name}
+                      control={<Radio />}
+                      label={option.content[i18n.language].label}
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+          </Grid>
+        </Grid>
+      )}
+      {activeStep === 2 && (
+        <Grid container spacing={6}>
+          <Grid item xs={12}>
+            <SubText>{t("common.amount")}</SubText>
+            <PaymentTile>
+              <span class="lightgrey">
+                {selectedTicket.price[currency.id]?.amount}
+              </span>
+              <span class="lightgrey">{currency.id?.toUpperCase()}</span>
+            </PaymentTile>
+          </Grid>
+          <Grid item xs={12}>
+            <SubText>{t("common.paymentMethod")}</SubText>
+            <PaymentTile>
+              <span class="lightgrey">
+                {
+                  paymentOption.find((item) => item.name === paymentMethod)
+                    ?.content[i18n.language]?.label
+                }
+              </span>
+            </PaymentTile>
+          </Grid>
+        </Grid>
+      )}
+      <Grid style={{ textAlign: "right" }}>
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={payClicked}
+          onClick={activeStep === 2 ? proceedToPayment : nextStep}
+        >
+          {activeStep === 2 ? (
+            payClicked ? (
+              <>
+                {payClicked && (
+                  <CircularProgress m={2} className={classes.loader} />
+                )}
+                &nbsp;
+                {t("order.processing")}
+              </>
+            ) : (
+              t("common.confirm")
+            )
+          ) : (
+            t("common.next")
+          )}
+        </Button>
+        &nbsp;&nbsp;
+        {
+          <Button variant="contained" onClick={prevStep} disabled={payClicked}>
+            {t("common.back")}
+          </Button>
+        }
+      </Grid>
+    </ContentLayout>
   );
 }

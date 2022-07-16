@@ -35,7 +35,7 @@ const SelectElement = ({
   selectData,
   disabled = false,
   tooltipText,
-  required
+  required,
 }) => {
   const classes = useStyles();
 

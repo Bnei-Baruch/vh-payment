@@ -15,6 +15,7 @@ import {
   getUserProfileData,
 } from "../../services/userservice";
 import { useSelector } from "react-redux";
+import HeaderLayout from "../../layouts/HeaderLayout";
 
 const Auth = () => {
   const [auth, setAuth] = useState({ keycloak: null, authenticated: false });
@@ -63,6 +64,7 @@ const Auth = () => {
     if (auth.authenticated) {
       return (
         <Theme>
+          <HeaderLayout />
           <Routes />
         </Theme>
       );

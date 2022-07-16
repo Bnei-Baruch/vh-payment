@@ -30,7 +30,7 @@
     "thanksstep3": "Поздравляем! Вы успешно зарегистрировались на конгресс. Вскоре вы получите электронное письмо с подтверждением вашего участия в конгрессе, а также с подробным описанием программы конгресса и ссылку для подключения.",
     "allGood": "Все хорошо!",
     "closethepage": "Задание выполнено успешно! Вы можете закрыть страницу",
-    "processing" : "Обработка заказа",
+    "processing": "Обработка заказа",
     "returnToPersonalArea": "Вернуться в личный кабинет"
   },
   "userMenu": {
@@ -40,8 +40,8 @@
     "yesBtn": "Да",
     "cancelBtn": "Отменить"
   },
-  "error" : {
-    "page_not_found" : "Page Not found",
+  "error": {
+    "page_not_found": "Page Not found",
     "retry": "Please go back or"
   },
   "common": {
@@ -103,7 +103,7 @@
     "secondLanguage": "Второй язык",
     "startYear": "Год начала"
   },
-  "errorMessage" : {
+  "errorMessage": {
     "pleaseSelectOption": "Вы должны выбрать вариант"
   },
   "somethingWentWrong": {

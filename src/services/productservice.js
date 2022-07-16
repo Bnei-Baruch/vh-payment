@@ -5,7 +5,7 @@ import {
   tickets,
   userfee,
   userfeeonetime,
-  membershipsplans
+  membershipsplans,
 } from "../shared/products";
 
 //Getting the Product.
@@ -39,4 +39,4 @@ export const getEventsProductBySlug = (slug) => {
 
 export const getMembershipProduct = () => {
   return membershipsplans;
-}
+};

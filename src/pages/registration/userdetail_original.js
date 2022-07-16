@@ -92,11 +92,15 @@ export default function UserDetail() {
     data.study_start_year =
       typeof data.study_start_year === "object"
         ? data.study_start_year?.getFullYear()
-        : data.study_start_year ? data.study_start_year : new Date().getFullYear();
+        : data.study_start_year
+        ? data.study_start_year
+        : new Date().getFullYear();
     data.email_language = i18n.language;
-    await saveUserProfileData(data).then(() => setIsEditAble(false)).catch(() => setIsEditAble(false));
+    await saveUserProfileData(data)
+      .then(() => setIsEditAble(false))
+      .catch(() => setIsEditAble(false));
     setIsEditAble(false);
-  }
+  };
 
   const saveProfileAndRedirect = async () => {
     const eventData = getEventsProductBySlug(event_slug);
@@ -108,7 +112,9 @@ export default function UserDetail() {
     data.study_start_year =
       typeof data.study_start_year === "object"
         ? data.study_start_year?.getFullYear()
-        : data.study_start_year ? data.study_start_year : new Date().getFullYear();
+        : data.study_start_year
+        ? data.study_start_year
+        : new Date().getFullYear();
     data.email_language = i18n.language;
     //await saveUserProfileData(data);
     if (participantId) {
@@ -117,7 +123,7 @@ export default function UserDetail() {
         participant_id: participantId,
         event_id: eventData.event.id,
         notification: true,
-        notification_type: 'confirmation',
+        notification_type: "confirmation",
         registration_date: new Date().toISOString(),
       };
       addPariticpantInEvent(eventBody).then(() => {
@@ -149,7 +155,7 @@ export default function UserDetail() {
             participant_id: res.id,
             event_id: eventData.event.id,
             notification: true,
-            notification_type: 'confirmation',
+            notification_type: "confirmation",
             registration_date: new Date().toISOString(),
           };
           addPariticpantInEvent(eventBody).then(() => {
@@ -190,9 +196,9 @@ export default function UserDetail() {
     }
   };
   if (profile) {
-    console.log(typeof profile.study_start_year === 'number')
-    console.log(typeof profile.study_start_year)
-    console.log(new Date(profile.study_start_year))
+    console.log(typeof profile.study_start_year === "number");
+    console.log(typeof profile.study_start_year);
+    console.log(new Date(profile.study_start_year));
   }
   return (
     <form onSubmit={profileSubmit}>
@@ -213,7 +219,7 @@ export default function UserDetail() {
               <TextField
                 disabled={!isEditable}
                 id="outlined-basic"
-                label={t('userDetail.firstName')}
+                label={t("userDetail.firstName")}
                 variant="outlined"
                 fullWidth
                 value={profile.first_name_vernacular}
@@ -225,7 +231,7 @@ export default function UserDetail() {
               <TextField
                 disabled={!isEditable}
                 id="outlined-basic"
-                label={t('userDetail.lastName')}
+                label={t("userDetail.lastName")}
                 variant="outlined"
                 fullWidth
                 value={profile.last_name_vernacular}
@@ -237,7 +243,7 @@ export default function UserDetail() {
               <TextField
                 disabled={!isEditable}
                 id="outlined-basic"
-                label={t('userDetail.dateOfBirth')}
+                label={t("userDetail.dateOfBirth")}
                 variant="outlined"
                 type="date"
                 value={profile.date_of_birth}
@@ -253,7 +259,7 @@ export default function UserDetail() {
               <TextField
                 disabled={!isEditable}
                 id="outlined-basic"
-                label={t('userDetail.phone')}
+                label={t("userDetail.phone")}
                 variant="outlined"
                 value={profile.mobile_number}
                 fullWidth
@@ -265,7 +271,7 @@ export default function UserDetail() {
               <SelectElement
                 disabled={!isEditable}
                 id="outlined-basic"
-                label={t('userDetail.gender')}
+                label={t("userDetail.gender")}
                 variant="outlined"
                 fullWidth
                 value={profile.gender || ""}
@@ -278,7 +284,7 @@ export default function UserDetail() {
               <TextField
                 disabled
                 id="outlined-basic"
-                label={t('userDetail.email')}
+                label={t("userDetail.email")}
                 variant="outlined"
                 fullWidth
                 value={profile.primary_email}
@@ -289,7 +295,7 @@ export default function UserDetail() {
               <SelectElement
                 disabled={!isEditable}
                 id="outlined-basic"
-                label={t('userDetail.country')}
+                label={t("userDetail.country")}
                 variant="outlined"
                 fullWidth
                 value={profile.country || ""}
@@ -302,7 +308,7 @@ export default function UserDetail() {
               <SelectElement
                 disabled={!isEditable}
                 id="outlined-basic"
-                label={t('userDetail.firstLanguage')}
+                label={t("userDetail.firstLanguage")}
                 variant="outlined"
                 fullWidth
                 value={profile.first_language || ""}
@@ -315,7 +321,7 @@ export default function UserDetail() {
               <SelectElement
                 disabled={!isEditable}
                 id="outlined-basic"
-                label={t('userDetail.secondLanguage')}
+                label={t("userDetail.secondLanguage")}
                 variant="outlined"
                 value={profile.other_language_1 || ""}
                 onChange={(e) => handleChange("other_language_1", e)}
@@ -328,22 +334,37 @@ export default function UserDetail() {
               <DatePicker
                 disabled={!isEditable}
                 views={["year"]}
-                label={t('userDetail.startYear')}
-                value={profile && profile.study_start_year ? typeof profile.study_start_year === 'number' ? new Date(profile.study_start_year?.toString()) : profile.study_start_year : ''}
+                label={t("userDetail.startYear")}
+                value={
+                  profile && profile.study_start_year
+                    ? typeof profile.study_start_year === "number"
+                      ? new Date(profile.study_start_year?.toString())
+                      : profile.study_start_year
+                    : ""
+                }
                 fullWidth
                 required
                 onChange={(e) => handleChange("study_start_year", e)}
               />
             </Grid>
-            <Grid item xs={12} md={12} style={{ textAlign: isEditable ? "center" : "right" }}>
-              {!isEditable && <Button
-                variant="contained"
-                color={!isEditable ? "primary" : "default"}
-                style={!isEditable ? { backgroundColor: "rgb(52, 168, 83)" } : {}}
-                onClick={!isEditable ? enableEdit : discardChanges}
-              >
-                {!isEditable ? t("common.edit") : t("common.cancel")}
-              </Button>}
+            <Grid
+              item
+              xs={12}
+              md={12}
+              style={{ textAlign: isEditable ? "center" : "right" }}
+            >
+              {!isEditable && (
+                <Button
+                  variant="contained"
+                  color={!isEditable ? "primary" : "default"}
+                  style={
+                    !isEditable ? { backgroundColor: "rgb(52, 168, 83)" } : {}
+                  }
+                  onClick={!isEditable ? enableEdit : discardChanges}
+                >
+                  {!isEditable ? t("common.edit") : t("common.cancel")}
+                </Button>
+              )}
               &nbsp;&nbsp;
               {!isEditable && (
                 <Button variant="contained" color="primary" type="submit">
@@ -355,12 +376,21 @@ export default function UserDetail() {
                   {t("common.save")}
                 </Button>
               )}
-              {isEditable && <>&nbsp;&nbsp; <Button
-                variant="contained"
-                color={!isEditable ? "primary" : "default"}
-                style={!isEditable ? { backgroundColor: "rgb(52, 168, 83)" } : {}}
-                onClick={!isEditable ? enableEdit : discardChanges}
-              >{!isEditable ? t("common.edit") : t("common.cancel")}</Button> </>}
+              {isEditable && (
+                <>
+                  &nbsp;&nbsp;{" "}
+                  <Button
+                    variant="contained"
+                    color={!isEditable ? "primary" : "default"}
+                    style={
+                      !isEditable ? { backgroundColor: "rgb(52, 168, 83)" } : {}
+                    }
+                    onClick={!isEditable ? enableEdit : discardChanges}
+                  >
+                    {!isEditable ? t("common.edit") : t("common.cancel")}
+                  </Button>{" "}
+                </>
+              )}
             </Grid>
           </ProfileGrid>
         ) : (

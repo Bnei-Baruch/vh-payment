@@ -50,7 +50,10 @@ const Routes = () => (
         from="/pay/order/ticket/payment/others/:event_slug"
         component={OtherPayment}
       />
-      <Route from="/pay/order/register/:participation_option/userdetail" component={UserDetail} />
+      <Route
+        from="/pay/order/register/:participation_option/userdetail"
+        component={UserDetail}
+      />
       <Route from="/pay/success/:pdt" component={Success} />
       <Route from="/pay/success" component={Success} />
       <Route from="/pay/error" component={Error} />

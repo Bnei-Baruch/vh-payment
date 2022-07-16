@@ -30,7 +30,7 @@
     "next": "Siguiente",
     "thanksstep3": "¡Enhorabuena! Te has registrado con éxito para el congreso. Pronto recibirás un correo electrónico confirmando tu participación en el congreso, además de una descripción detallada del programa del congreso y enlaces para conectarte.",
     "allGood": "Todo está correcto",
-    "processing" : "Procesando...",
+    "processing": "Procesando...",
     "returnToPersonalArea": "Volver a la página de inicio"
   },
   "userMenu": {
@@ -40,8 +40,8 @@
     "yesBtn": "Sí",
     "cancelBtn": "Cancelar"
   },
-  "error" : {
-    "page_not_found" : "Page Not found",
+  "error": {
+    "page_not_found": "Page Not found",
     "retry": "Please go back or"
   },
   "common": {
@@ -112,7 +112,7 @@
     "secondLanguage": "Segundo lenguaje",
     "startYear": "Año de inicio"
   },
-  "errorMessage" : {
+  "errorMessage": {
     "pleaseSelectOption": "Tienes que elegir una opción"
   },
   "somethingWentWrong": {
