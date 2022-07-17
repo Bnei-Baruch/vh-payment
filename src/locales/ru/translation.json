@@ -31,7 +31,12 @@
     "allGood": "Все хорошо!",
     "closethepage": "Задание выполнено успешно! Вы можете закрыть страницу",
     "processing": "Обработка заказа",
-    "returnToPersonalArea": "Вернуться в личный кабинет"
+    "returnToPersonalArea": "Вернуться в личный кабинет",
+    "payment_success": "Payment successful",
+    "payment_error": "Your Payment has failed",
+    "error_paid": "We aren't able to process your payment. Please try again.",
+    "successfully_paid": "You have successfully bought a ticket to the event.",
+    "back_to_event": "Back to event"
   },
   "userMenu": {
     "logOut": "Выйти",
@@ -42,7 +47,8 @@
   },
   "error": {
     "page_not_found": "Page Not found",
-    "retry": "Please go back or"
+    "retry": "Please go back or",
+    "try_again": "Try again"
   },
   "common": {
     "confirm": "Подтвердить",

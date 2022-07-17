@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Box, CardContent, Paper, Typography } from "@material-ui/core";
+import { Box, Button, CardContent, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useTranslation } from "react-i18next";
 import Loader from "../../components/Loader";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import WarningIcon from "@material-ui/icons/Warning";
 import ContentLayout from "../../layouts/ContentLayout";
 import * as qs from "query-string";
 
 const useStyles = makeStyles({
   header: {
-    marginBottom: 40,
+    padding: "40px",
     justifyContent: "center",
+    textAlign: "center",
   },
   body: {
     marginTop: 40,
@@ -73,23 +76,36 @@ const Error = () => {
       <Paper elevation={0}>
         <CardContent>
           <Box component="header" className={classes.header}>
-            {
-              <Typography
-                variant="h1"
-                component="h1"
-                style={{ fontSize: 36, marginBottom: 20 }}
-              >
-                {t("order.error")}
-              </Typography>
-            }
-
+            <WarningIcon
+              style={{ color: "red", height: "45px", width: "45px" }}
+            />
+            <Typography
+              variant="h1"
+              component="h1"
+              style={{ fontSize: 36, marginBottom: 20, fontWeight: "normal" }}
+            >
+              {t("order.payment_error")}
+            </Typography>
             <Typography style={{ fontSize: 18 }}>
-              {t("order.errortext")}
+              {t("order.error_paid")}
             </Typography>
-            <Typography style={{ fontSize: 18 }}>{errorMesg}</Typography>
-            <Typography style={{ fontSize: 18, marginTop: 20 }}>
-              {t("order.errortext2")}
-            </Typography>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <Button
+                variant="outlined"
+                color="primary"
+                style={{ marginTop: 20 }}
+              >
+                <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
+                {t("common.back")}
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginTop: 20 }}
+              >
+                {t("error.try_again")}
+              </Button>
+            </div>
           </Box>
         </CardContent>
       </Paper>

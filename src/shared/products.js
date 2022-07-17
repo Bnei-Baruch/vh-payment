@@ -626,23 +626,6 @@ exports.tickets = {
             },
           },
         },
-        {
-          name: "others",
-          content: {
-            en: {
-              label: "Other payment type",
-            },
-            he: {
-              label: "אפשרויות תשלום נוספות",
-            },
-            es: {
-              label: "Otras opciones de pago",
-            },
-            ru: {
-              label: "Другой вид оплаты",
-            },
-          },
-        },
       ],
       name: "regular",
       membership: false,
@@ -790,23 +773,6 @@ exports.tickets = {
             },
             ru: {
               label: "Кредитная / дебетовая карта",
-            },
-          },
-        },
-        {
-          name: "others",
-          content: {
-            en: {
-              label: "Other payment type",
-            },
-            es: {
-              label: "Otras opciones de pago",
-            },
-            he: {
-              label: "אפשרויות תשלום נוספות",
-            },
-            ru: {
-              label: "Другой вид оплаты",
             },
           },
         },
@@ -1317,23 +1283,6 @@ exports.membershipsplans = {
             },
             es: {
               label: "Credit/Debit Card",
-            },
-          },
-        },
-        {
-          name: "others",
-          content: {
-            en: {
-              label: "Other payment type",
-            },
-            he: {
-              label: "Other payment type",
-            },
-            ru: {
-              label: "Other payment type",
-            },
-            es: {
-              label: "Other payment type",
             },
           },
         },
