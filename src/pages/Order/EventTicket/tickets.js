@@ -87,7 +87,8 @@ export default function Tickets() {
 
   const navigateToConfirmation = (ticket) => {
     const { name } = ticket;
-    if (name === "special") {
+    console.log(ticket);
+    if (name === "helphaver") {
       if (specialOption === "") {
         setErrorMessage(t("errorMessage.pleaseSelectOption"));
         return "";
@@ -97,11 +98,22 @@ export default function Tickets() {
         (item) => item.name === specialOption
       );
       dispatch(setSpecialSelectedOption(selectedOption));
-      history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
+      history.push(`/pay/order/ticket/payment/help/${event_slug}`);
+    } else if (name === "special") {
+      if (specialOption === "") {
+        setErrorMessage(t("errorMessage.pleaseSelectOption"));
+        return "";
+      }
+      const content = ticket.content[i18n.language] || ticket.content.en;
+      const selectedOption = content.options.find(
+        (item) => item.name === specialOption
+      );
+      dispatch(setSpecialSelectedOption(selectedOption));
+      history.push(`/pay/order/ticket/payment/help/${event_slug}`);
     } else if (name === "membership" && membershipData?.membership !== true) {
       const selectedOption = ticket.content[i18n.language] || ticket.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
-      history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
+      history.push(`/pay/order/ticket/payment/membership/${event_slug}`);
       return;
     } else {
       history.push(`/pay/order/ticket/payment/${event_slug}`);

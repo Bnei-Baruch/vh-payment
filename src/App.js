@@ -33,6 +33,11 @@ axios.interceptors.request.use((c) => {
 });
 
 const App = () => {
+  React.useEffect(() => {
+    window.process = {
+      ...window.process,
+    };
+  }, []);
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Auth />

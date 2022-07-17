@@ -736,22 +736,38 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: [],
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "Select this Ticket",
         },
         he: {
           name: "כרטיס חבר",
-          description: ["השתתפות בכנס", "נדרשת חברות"],
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto de membresía",
-          description: [],
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "Elige",
         },
         ru: {
           name: "Для постоянных участников сообщества",
-          description: [],
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "Выбрать",
         },
       },
@@ -1185,7 +1201,7 @@ exports.tickets = {
       flow: {
         type: "options",
       },
-      name: "special",
+      name: "helphaver",
       membership: false,
       order: 2,
       price: {
