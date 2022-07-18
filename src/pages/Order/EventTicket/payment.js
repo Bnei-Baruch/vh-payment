@@ -108,6 +108,7 @@ export default function Payment() {
   const [payClicked, setOnPayClicked] = React.useState(false);
   const [profileData, setUserProfileData] = React.useState(null);
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
+  const [termsAccepted, setTermsAccepted] = React.useState(false);
 
   const nextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -314,9 +315,9 @@ export default function Payment() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      // checked={state.checkedB}
-                      // onChange={handleChange}
-                      name="checkedB"
+                      checked={termsAccepted}
+                      onChange={() => setTermsAccepted(!termsAccepted)}
+                      name="termsAccepted"
                       color="primary"
                     />
                   }
@@ -352,7 +353,7 @@ export default function Payment() {
           <Button
             variant="contained"
             color="primary"
-            disabled={payClicked}
+            disabled={payClicked || (activeStep === 1 && !termsAccepted)}
             onClick={activeStep === 1 ? proceedToPayment : nextStep}
           >
             {activeStep === 1 ? (

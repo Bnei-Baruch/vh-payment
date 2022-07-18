@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Typography, useMediaQuery } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
@@ -18,6 +18,7 @@ const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: 25px 20px;
+  margin: 16px;
 
   @media (min-width: 768px) {
     max-width: 350px;
@@ -28,11 +29,11 @@ const Price = styled.div`
   font-weight: bold;
 `;
 const TicketGrid = styled(Grid)`
-  margin: auto;
   padding: 20px;
 
   @media (min-width: 768px) {
     max-width: 80%;
+    margin: auto;
   }
 
   ul {
@@ -68,13 +69,11 @@ export default function Tickets() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { event_slug } = useParams();
+  const isMobile = useMediaQuery("(max-width:767px)");
 
   const product = useSelector((state) => state.order.ticketProduct);
   const currency = useSelector((state) => state.currency);
   const membershipData = useSelector((state) => state.user.membershipdata);
-
-  const [specialOption, setSpecialOption] = React.useState("helphaver");
-  const [errorMessage, setErrorMessage] = React.useState(undefined);
 
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
@@ -88,28 +87,9 @@ export default function Tickets() {
 
   const navigateToConfirmation = (ticket) => {
     const { name } = ticket;
-    console.log(ticket);
     if (name === "helphaver") {
-      if (specialOption === "") {
-        setErrorMessage(t("errorMessage.pleaseSelectOption"));
-        return "";
-      }
-      const content = ticket.content[i18n.language] || ticket.content.en;
-      const selectedOption = content.options.find(
-        (item) => item.name === specialOption
-      );
-      dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/help/${event_slug}`);
     } else if (name === "special") {
-      if (specialOption === "") {
-        setErrorMessage(t("errorMessage.pleaseSelectOption"));
-        return "";
-      }
-      const content = ticket.content[i18n.language] || ticket.content.en;
-      const selectedOption = content.options.find(
-        (item) => item.name === specialOption
-      );
-      dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/special/${event_slug}`);
     } else if (name === "membership" && membershipData?.membership !== true) {
       const selectedOption = ticket.content[i18n.language] || ticket.content.en;
@@ -137,7 +117,7 @@ export default function Tickets() {
       ? content[i18n.language]
       : content["en"];
   return (
-    <TicketGrid container spacing={6}>
+    <TicketGrid container>
       <Grid item xs={12}>
         <br />
         <CenterText variant="h1">{header.title}</CenterText>
@@ -146,12 +126,7 @@ export default function Tickets() {
         <br />
         <CenterText variant="h6">{header.action}</CenterText>
       </Grid>
-      {errorMessage && (
-        <Grid item xs={12}>
-          <div style={{ color: "red" }}>{errorMessage}</div>
-        </Grid>
-      )}
-      <Grid container item xs={12} spacing={6}>
+      <Grid container item xs={12}>
         {plans.map((plan, index) => {
           const planContent =
             typeof plan.content[i18n.language] !== "undefined"
@@ -160,7 +135,13 @@ export default function Tickets() {
           return (
             <Grid key={index} item xs={12} md={6}>
               <TicketCard
-                style={index % 2 === 0 ? marginLeftAuto : marginRightAuto}
+                style={
+                  !isMobile
+                    ? index % 2 === 0
+                      ? marginLeftAuto
+                      : marginRightAuto
+                    : {}
+                }
               >
                 <CenterText variant="h2" style={{ fontWeight: "bold" }}>
                   {planContent.name}
@@ -227,12 +208,14 @@ export default function Tickets() {
           );
         })}
       </Grid>
-      <Grid item xs={12} spacing={6} style={{ textAlign: "center" }}>
-        <Button variant="outlined" color="primary">
-          <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
-          {t("order.back_to_event")}
-        </Button>
-      </Grid>
+      {plans && (
+        <Grid item xs={12} style={{ textAlign: "center", marginTop: "30px" }}>
+          <Button variant="outlined" color="primary">
+            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
+            {t("order.back_to_event")}
+          </Button>
+        </Grid>
+      )}
     </TicketGrid>
   );
 }

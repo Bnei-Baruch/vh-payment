@@ -3,10 +3,8 @@ import { Box, Button, CardContent, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useTranslation } from "react-i18next";
 import Loader from "../../components/Loader";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import WarningIcon from "@material-ui/icons/Warning";
 import ContentLayout from "../../layouts/ContentLayout";
-import * as qs from "query-string";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   header: {
@@ -40,6 +38,9 @@ const useStyles = makeStyles({
 const HelpHaverSuccess = () => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const selectedSpecialOption = useSelector(
+    (state) => state.order.specialSelectedOption
+  );
 
   const [loading, setLoading] = useState(true);
 
@@ -50,16 +51,22 @@ const HelpHaverSuccess = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading) {
+  if (loading || !selectedSpecialOption) {
     return <Loader />;
   }
+
+  const { redirect_url } = selectedSpecialOption;
+
+  const redirectToUrlInNewTab = () => {
+    window.open(redirect_url, "_blank");
+  };
 
   return (
     <ContentLayout>
       <Paper elevation={0}>
         <CardContent>
           <Box component="header" className={classes.header}>
-            <img src="/images/success.svg" />
+            <img src="/images/success.svg" alt="success" />
             <Typography
               variant="h1"
               component="h1"
@@ -75,8 +82,9 @@ const HelpHaverSuccess = () => {
                 variant="contained"
                 color="primary"
                 style={{ marginTop: 40 }}
+                onClick={redirectToUrlInNewTab}
               >
-                {t("order.returnToPersonalArea")}
+                {t("help.enter_details_for_help")}
               </Button>
             </div>
           </Box>

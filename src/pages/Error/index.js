@@ -87,7 +87,8 @@ const Error = () => {
               {t("order.payment_error")}
             </Typography>
             <Typography style={{ fontSize: 18 }}>
-              {t("order.error_paid")}
+              {t("order.error_paid")} <br />
+              {errorMesg}
             </Typography>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Button

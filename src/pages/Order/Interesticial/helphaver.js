@@ -4,10 +4,8 @@ import { Button, Grid, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useTranslation } from "react-i18next";
-import { handlePayment } from "../../../services/orderservice";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getQueryParams } from "../../../utils/common";
 import { useHistory } from "react-router-dom";
 import { getProfile } from "../../../services/userservice";
 import {
@@ -28,16 +26,9 @@ export default function HelpHaver() {
   const { event_slug } = useParams();
   const { t, i18n } = useTranslation();
   const user = useSelector((state) => state.user);
-  let isMembership = getQueryParams("isMembership");
-  // eslint-disable-next-line
-  const [submitted, setSubmitted] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
-  const currency = useSelector((state) => state.currency);
   const [profileData, setUserProfileData] = React.useState(null);
   const [participantId, setParticipantId] = React.useState(undefined);
-  const selectedMembership = useSelector(
-    (state) => state.order.selectedMembership
-  );
   const selectedSpecialOption = useSelector(
     (state) => state.order.specialSelectedOption
   );
@@ -52,44 +43,6 @@ export default function HelpHaver() {
     getUserProfileData();
     // eslint-disable-next-line
   }, []);
-  const handlePay = async (redirect_url) => {
-    const data = {
-      // Account details
-      AccountID: "-",
-      FirstName: user.profile.firstName,
-      LastName: user.profile.lastName,
-      Email: user.profile.email,
-      Phone: profileData?.mobile_number || "",
-      Street: profileData?.street_address || "",
-      City: profileData?.city || "",
-      Postcode: profileData?.postal_code || "",
-      State: profileData?.state_region || "",
-      Country: profileData?.country || "",
-
-      //Product details
-      SKU: selectedMembership.product?.SKU,
-      OrderLanguage: i18n.language?.toUpperCase(),
-      Reference: selectedMembership.product?.reference,
-      Organization: selectedMembership.product?.organization,
-      UserKey: user.keycloak.subject,
-      Currency: currency.id?.toUpperCase(),
-      Amount: selectedMembership.price[currency.id]?.amount,
-      // Amount: 1,
-      Type: selectedMembership.product?.type,
-      ProductType: selectedMembership.product?.productType,
-      RecurringFreq: selectedMembership.product?.recurringFreq,
-      PaymentType: "helphaver",
-      //replace this with routing mechanism
-      successUrl:
-        window.APP_CONFIG.VH_BASE_URL +
-        `/pay/membership/payment/${event_slug}/success?help=true`,
-      cancelUrl: window.APP_CONFIG.VH_BASE_URL,
-      errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
-    };
-    handlePayment(data).then(() => {
-      window.location.href = redirect_url;
-    });
-  };
   const getPariticpantDetail = () => {
     getParticipantByEmail(userProfileData.primary_email)
       .then((res) => {
@@ -125,7 +78,7 @@ export default function HelpHaver() {
           registration_date: new Date().toISOString(),
         };
         addPariticpantInEvent(data).then(() => {
-          window.location.href = redirect_url;
+          history.push(`/pay/order/ticket/payment/help/${event_slug}/success`);
         });
       } else {
         //SetUpdatedObject
@@ -152,23 +105,14 @@ export default function HelpHaver() {
               event_id: eventData.event.id,
               registration_date: new Date().toISOString(),
             };
-            addPariticpantInEvent(data).then((res) => {
-              window.location.href = redirect_url;
+            addPariticpantInEvent(data).then(() => {
+              history.push(
+                `/pay/order/ticket/payment/help/${event_slug}/success`
+              );
             });
           }
         });
       }
-    } else {
-      history.push(
-        `/pay/order/register/${register_status}/userdetail/${event_slug}?Manual=true`
-      );
-    }
-  };
-  const confirmNeedsHelpMembership = async () => {
-    const { type, redirect_url } = selectedSpecialOption;
-    if (isMembership && typeof type === "undefined") {
-      handlePay(redirect_url);
-      return;
     }
   };
   const moveback = () => {
@@ -204,9 +148,7 @@ export default function HelpHaver() {
             disabled={submitting}
             variant="contained"
             color="primary"
-            // onClick={
-            //   !isMembership ? confirmNeedsHelpEvent : confirmNeedsHelpMembership
-            // }
+            onClick={confirmNeedsHelpEvent}
           >
             {t("common.next")} &nbsp;{" "}
             <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />

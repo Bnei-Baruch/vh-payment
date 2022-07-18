@@ -57,6 +57,7 @@ export default function UserDetail() {
           registerPariticpantAddToEvent();
         });
     }
+    // eslint-disable-next-line
   }, [keycloak]);
 
   React.useEffect(() => {
@@ -74,6 +75,7 @@ export default function UserDetail() {
           registerPariticpantAddToEvent();
         });
     }
+    // eslint-disable-next-line
   }, [profile]);
 
   //Adding Participant to Event if already Exists
@@ -93,6 +95,7 @@ export default function UserDetail() {
         );
       });
     }
+    // eslint-disable-next-line
   }, [participantId]);
 
   const registerPariticpantAddToEvent = () => {

@@ -7,9 +7,6 @@ import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { useParams } from "react-router-dom";
-import * as qs from "query-string";
-import { paymentSuccess } from "../../services/orderservice";
 
 const useStyles = makeStyles({
   header: {
@@ -71,12 +68,10 @@ const SpecialOptionSuccess = () => {
               variant="h2"
               style={{ fontSize: 24, margin: 20, fontWeight: "normal" }}
             >
-              {"You have successfully registered for the event!"}
+              {t("specialOption.successTitle")}
             </Typography>
             <Typography style={{ fontSize: 18, color: "rgba(90, 90, 90, 1)" }}>
-              {
-                "After registration, we will send you a ticket to the event by email."
-              }
+              {t("specialOption.successDescription")}
             </Typography>
             <Button
               variant="contained"
