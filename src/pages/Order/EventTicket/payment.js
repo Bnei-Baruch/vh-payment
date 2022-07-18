@@ -1,17 +1,20 @@
 import {
   Button,
-  FormControl,
   FormControlLabel,
-  FormLabel,
   Grid,
   Radio,
   RadioGroup,
-  Step,
-  StepLabel,
   CircularProgress,
-  Stepper,
   Typography,
+  Card,
+  CardContent,
+  Checkbox,
+  FormControl,
+  FormLabel,
 } from "@material-ui/core";
+import CreditCardIcon from "@material-ui/icons/CreditCard";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -21,13 +24,12 @@ import { useStyles } from "../index";
 import styled from "styled-components";
 import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
-import HeaderLayout from "../../../layouts/HeaderLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 const PaymentTile = styled.div`
-  padding: 20px 20px;
+  margin: 20px 0px;
   > span:first-child.left {
     font-size: 80px;
     border-left: 1px dashed #ccc;
@@ -49,31 +51,69 @@ const PaymentTile = styled.div`
     color: #777;
   }
 `;
-const SubText = styled.div`
-  color: #777;
-  padding: 0px 20px;
+const CenterText = styled(Typography)`
+  text-align: center;
+  font-weight: normal;
+`;
+const CenterTextGrey = styled(Typography)`
+  text-align: center;
+  color: #777777;
+  font-weight: normal;
+`;
+const CardSummary = styled(Card)`
+  padding: 20px;
+  margin: 20px 0px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+`;
+const CenteredItem = styled.div`
+  display: flex;
+  align-items: center;
 `;
 const HeaderTitle = styled(Typography)`
-  text-align: center;
+  font-weight: normal;
 `;
+
+const ContentContainer = styled(Grid)`
+  padding: 20px;
+`;
+
+const AmountSummary = styled.div`
+  font-size: 48px;
+  color: #1565c0;
+  font-weight: 300;
+  margin: 20px 0px;
+`;
+
+const Link = styled.a`
+  color: rgba(21, 101, 192, 1);
+  font-weight: bold;
+`;
+
 export default function Payment() {
-  const { t, i18n } = useTranslation();
-  const history = useHistory();
   const classes = useStyles();
+  const history = useHistory();
   const { event_slug } = useParams();
+  const { t, i18n } = useTranslation();
   const user = useSelector((state) => state.user);
-  const [profileData, setUserProfileData] = React.useState(null);
-  const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [loading, setLoading] = React.useState(true);
-  const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
-  const { dir } = useSelector(state => state.language);
   const selectedTicket = useSelector((state) => state.order.selectedTicket);
   const product = useSelector((state) => state.order.ticketProduct);
+
+  const [loading, setLoading] = React.useState(true);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [payClicked, setOnPayClicked] = React.useState(false);
+  const [profileData, setUserProfileData] = React.useState(null);
+  const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
+  const [termsAccepted, setTermsAccepted] = React.useState(false);
+
   const nextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
+
   const prevStep = () => {
     if (activeStep === 0) {
       history.goBack();
@@ -95,9 +135,9 @@ export default function Payment() {
     } else {
       setTimeout(() => {
         setLoading(false);
-      }, 3000)
+      }, 3000);
     }
-  }, [])
+  }, []);
 
   const handlePay = async () => {
     setOnPayClicked(true);
@@ -126,10 +166,7 @@ export default function Payment() {
       Type: selectedTicket.product?.type,
       ProductType: selectedTicket.product?.productType,
       RecurringFreq: selectedTicket.product?.recurringFreq,
-      //replace this with routing mechanism
-      successUrl:
-        window.APP_CONFIG.VH_BASE_URL +
-        `/pay/order/register/${selectedTicket.name}/userdetail/${event_slug}`,
+      successUrl: window.APP_CONFIG.VH_BASE_URL + `/pay/success/${event_slug}`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
@@ -156,67 +193,39 @@ export default function Payment() {
     }
   };
 
-
   if (loading) return <Loader />;
-  if (!loading && !product) return <><SomethingWentWrong /></>;
-  let { content } = product;
-  let event = content[i18n.language]
-    ? content[i18n.language].title
-    : content.en;
+  if (!loading && !product)
+    return (
+      <>
+        <SomethingWentWrong />
+      </>
+    );
 
-  let ticketDescription = selectedTicket.content ? selectedTicket.content[i18n.language].description : selectedTicket.content.en.description;
+  let { content } = product;
+  let event = content[i18n.language] ? content[i18n.language] : content.en;
+
   let paymentOption = selectedTicket.payment_options;
+  const ticketContent =
+    selectedTicket && selectedTicket.content[i18n.language]
+      ? selectedTicket.content[i18n.language]
+      : selectedTicket.content.en;
 
   return (
     <>
-      <HeaderLayout />
+      <Grid item xs={12}>
+        <br />
+        <CenterText variant="h1">{event.title}</CenterText>
+        <CenterTextGrey variant="h6">{event.subtitle}</CenterTextGrey>
+      </Grid>
       <ContentLayout>
-        {event && (
-          <>
-            <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
-          </>
-        )}
-        <Stepper className={dir === 'rtl' && classes.unaffectedrtl} activeStep={activeStep} alternativeLabel>
-          {[
-            t('payment.ticketStep1'),
-            t('payment.step2'),
-            t('payment.step3'),
-          ].map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
         {activeStep === 0 && (
-          <Grid container spacing={6}>
+          <ContentContainer container spacing={6}>
             <Grid item xs={12}>
-              <SubText>{t("common.amount")}</SubText>
+              <HeaderTitle variant="h1">{ticketContent.name}</HeaderTitle>
               <PaymentTile>
-                <span className={dir === 'ltr' ? 'left' : 'right'}>{selectedTicket.price[currency.id]?.amount}</span>
-                <span>
-                  {" "}
-                  <CurrencyPicker />
-                </span>
-              </PaymentTile>
-            </Grid>
-            <Grid item xs={12}>
-              <SubText>
-                <ul style={{ padding: '0px 10px' }}>
-                  {ticketDescription && ticketDescription.map(description => {
-                    return <li>{description}</li>
-                  })}
-                </ul>
-              </SubText>
-            </Grid>
-          </Grid>
-        )}
-        {activeStep === 1 && (
-          <Grid container spacing={6}>
-            <Grid item xs={12}>
-              <Grid style={{ padding: "20px" }}>
-                <FormControl>
-                  <FormLabel id="demo-radio-buttons-group-label">
-                    {t("common.paymentMethod")}
+                <FormControl component="fieldset">
+                  <FormLabel component="legend" style={{ marginBottom: "5px" }}>
+                    {t("order.payMethod")}
                   </FormLabel>
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
@@ -225,74 +234,159 @@ export default function Payment() {
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   >
-                    {paymentOption.map(option => (
+                    {paymentOption.map((option) => (
                       <FormControlLabel
                         value={option.name}
                         control={<Radio />}
-                        label={option.content[i18n.language].label}
+                        label={
+                          <CenteredItem>
+                            <CreditCardIcon /> &nbsp;{" "}
+                            {option.content[i18n.language].label}
+                          </CenteredItem>
+                        }
                       />
                     ))}
                   </RadioGroup>
                 </FormControl>
-              </Grid>
-            </Grid>
-          </Grid>
-        )}
-        {activeStep === 2 && (
-          <Grid container spacing={6}>
-            <Grid item xs={12}>
-              <SubText>{t("common.amount")}</SubText>
+              </PaymentTile>
               <PaymentTile>
-                <span class="lightgrey">
-                  {selectedTicket.price[currency.id]?.amount}
-                </span>
-                <span class="lightgrey">{currency.id?.toUpperCase()}</span>
+                <FormControl component="fieldset">
+                  <FormLabel component="legend" style={{ marginBottom: "5px" }}>
+                    {t("appbar.currency")}
+                  </FormLabel>
+                  <CurrencyPicker
+                    variant="outlined"
+                    style={{ minWidth: "300px" }}
+                  />
+                </FormControl>
+              </PaymentTile>
+              <PaymentTile>
+                <FormControl component="fieldset">
+                  <FormLabel component="legend" style={{ marginBottom: "5px" }}>
+                    {t("common.amount")}
+                  </FormLabel>
+
+                  <HeaderTitle variant="h2">
+                    {currency.sign +
+                      " " +
+                      selectedTicket.price[currency.id]?.amount}
+                  </HeaderTitle>
+                </FormControl>
               </PaymentTile>
             </Grid>
-            <Grid item xs={12}>
-              <SubText>{t("common.paymentMethod")}</SubText>
-              <PaymentTile>
-                <span class="lightgrey">
-                  {paymentOption.find(item => item.name === paymentMethod)?.content[i18n.language]?.label}
-                </span>
-              </PaymentTile>
-            </Grid>
-          </Grid>
+          </ContentContainer>
         )}
-        <Grid style={{ textAlign: "right" }}>
+        {activeStep === 1 && (
+          <ContentContainer container spacing={6}>
+            <Grid item xs={12}>
+              <HeaderTitle variant="h1">{ticketContent.name}</HeaderTitle>
+              <CardSummary>
+                <CardContent>
+                  <FormControl component="fieldset">
+                    <FormLabel
+                      component="legend"
+                      style={{ marginBottom: "5px" }}
+                    >
+                      {t("common.amount")}
+                    </FormLabel>
+                  </FormControl>
+                  <AmountSummary>
+                    {currency.sign}
+                    <span
+                      style={{
+                        fontSize: "64px",
+                        marginLeft: "15px",
+                        fontWeight: "normal",
+                      }}
+                    >
+                      {selectedTicket.price[currency.id]?.amount}
+                    </span>
+                  </AmountSummary>
+                  <CenteredItem>
+                    <CreditCardIcon /> &nbsp; by &nbsp;
+                    {
+                      paymentOption.find((item) => item.name === paymentMethod)
+                        ?.content[i18n.language]?.label
+                    }
+                  </CenteredItem>
+                </CardContent>
+              </CardSummary>
+              <div>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={termsAccepted}
+                      onChange={() => setTermsAccepted(!termsAccepted)}
+                      name="termsAccepted"
+                      color="primary"
+                    />
+                  }
+                  label={
+                    <span>
+                      I Agree with the{" "}
+                      <Link href="/term_and_condition">
+                        Terms and Conditions
+                      </Link>
+                    </span>
+                  }
+                />
+              </div>
+            </Grid>
+          </ContentContainer>
+        )}
+        <ContentContainer
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0px 20px 20px 20px",
+          }}
+        >
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={prevStep}
+            disabled={payClicked}
+          >
+            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
+            {t("common.back")}
+          </Button>
           <Button
             variant="contained"
             color="primary"
-            disabled={payClicked}
-            onClick={activeStep === 2 ? proceedToPayment : nextStep}
+            disabled={payClicked || (activeStep === 1 && !termsAccepted)}
+            onClick={activeStep === 1 ? proceedToPayment : nextStep}
           >
-            {activeStep === 2 ? (
+            {activeStep === 1 ? (
               payClicked ? (
                 <>
-                  {payClicked && (
-                    <CircularProgress m={2} className={classes.loader} />
-                  )}
-                  &nbsp;
                   {t("order.processing")}
+                  &nbsp;
+                  {payClicked ? (
+                    <CircularProgress m={2} className={classes.loader} />
+                  ) : (
+                    <ArrowForwardIosIcon
+                      style={{ height: "12px", width: "12px" }}
+                    />
+                  )}
                 </>
               ) : (
-                t("common.confirm")
+                <>
+                  {t("common.confirm")}
+                  <ArrowForwardIosIcon
+                    style={{ height: "12px", width: "12px" }}
+                  />
+                </>
               )
             ) : (
-              t("common.next")
+              <>
+                {t("common.next")}{" "}
+                <ArrowForwardIosIcon
+                  style={{ height: "12px", width: "12px" }}
+                />
+              </>
             )}
           </Button>
-          &nbsp;&nbsp;
-          {(
-            <Button
-              variant="contained"
-              onClick={prevStep}
-              disabled={payClicked}
-            >
-              {t("common.back")}
-            </Button>
-          )}
-        </Grid>
+        </ContentContainer>
       </ContentLayout>
     </>
   );

@@ -27,7 +27,7 @@ const shadows = [
   createShadow(14),
   createShadow(14),
   createShadow(14),
-  createShadow(14)
+  createShadow(14),
 ];
 
 export default shadows;

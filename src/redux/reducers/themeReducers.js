@@ -1,15 +1,15 @@
-import {SET_THEME} from '../types';
+import { SET_THEME } from "../types";
 
 const DEFAULT = {
-  currentTheme: 0
+  currentTheme: 0,
 };
 
-export default function reducer(state = DEFAULT, {type, payload}) {
+export default function reducer(state = DEFAULT, { type, payload }) {
   switch (type) {
     case SET_THEME:
       return {
         ...state,
-        ...payload
+        ...payload,
       };
     default:
       return state;

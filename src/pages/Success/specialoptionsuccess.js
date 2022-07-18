@@ -7,9 +7,6 @@ import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { useParams } from "react-router-dom";
-import * as qs from "query-string";
-import { paymentSuccess } from "../../services/orderservice";
 
 const useStyles = makeStyles({
   header: {
@@ -40,10 +37,9 @@ const useStyles = makeStyles({
   },
 });
 
-const Success = () => {
+const SpecialOptionSuccess = () => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { pdt } = useParams();
 
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
@@ -53,23 +49,8 @@ const Success = () => {
    * to backend after successful payment completion.
    */
   useEffect(() => {
-    let q = qs.parse(window.location.search);
-    if (user.authenticated) {
-      paymentSuccess(q)
-        .then(() => {
-          if (pdt === "jan2022ticket") {
-            setTimeout(() => {
-              window.location.href = `${window.location.origin}/register/success`;
-            }, 3000);
-          }
-          setLoading(false);
-        })
-        .catch(function (error) {
-          console.error(error);
-          setLoading(false);
-        });
-    }
-  }, [pdt, user]);
+    setLoading(false);
+  }, []);
 
   if (!user.authenticated || loading) {
     return <Loader />;
@@ -84,14 +65,13 @@ const Success = () => {
               style={{ color: "#0D9D0D", height: "45px", width: "45px" }}
             />
             <Typography
-              variant="h1"
-              component="h1"
-              style={{ fontSize: 36, marginBottom: 20, fontWeight: "normal" }}
+              variant="h2"
+              style={{ fontSize: 24, margin: 20, fontWeight: "normal" }}
             >
-              {t("order.payment_success")}
+              {t("specialOption.successTitle")}
             </Typography>
-            <Typography style={{ fontSize: 18 }}>
-              {t("order.successfully_paid")}
+            <Typography style={{ fontSize: 18, color: "rgba(90, 90, 90, 1)" }}>
+              {t("specialOption.successDescription")}
             </Typography>
             <Button
               variant="contained"
@@ -108,4 +88,4 @@ const Success = () => {
   );
 };
 
-export default Success;
+export default SpecialOptionSuccess;
