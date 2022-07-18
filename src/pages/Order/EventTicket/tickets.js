@@ -2,6 +2,7 @@ import { Button, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { getEventsProductBySlug } from "../../../services/productservice";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -109,7 +110,7 @@ export default function Tickets() {
         (item) => item.name === specialOption
       );
       dispatch(setSpecialSelectedOption(selectedOption));
-      history.push(`/pay/order/ticket/payment/help/${event_slug}`);
+      history.push(`/pay/order/ticket/payment/special/${event_slug}`);
     } else if (name === "membership" && membershipData?.membership !== true) {
       const selectedOption = ticket.content[i18n.language] || ticket.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
@@ -168,7 +169,9 @@ export default function Tickets() {
                 <br />
                 <CenterText variant="h2">
                   <Price>
-                    {currency.sign + " " + plan.price[currency.id].amount}
+                    {plan.isFree
+                      ? "For Free"
+                      : currency.sign + " " + plan.price[currency.id].amount}
                   </Price>
                 </CenterText>
                 <Grid>
@@ -223,6 +226,12 @@ export default function Tickets() {
             </Grid>
           );
         })}
+      </Grid>
+      <Grid item xs={12} spacing={6} style={{ textAlign: "center" }}>
+        <Button variant="outlined" color="primary">
+          <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
+          {t("order.back_to_event")}
+        </Button>
       </Grid>
     </TicketGrid>
   );

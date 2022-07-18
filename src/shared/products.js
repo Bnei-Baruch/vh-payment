@@ -823,7 +823,6 @@ exports.tickets = {
           description: [
             "If you live in Ukraine. (The ticket will be free for you).",
             "If you live in Russia. (We have a special options for you).",
-            "If you want to pay offline.",
           ],
           button_label: "Select this Ticket",
           options: [
@@ -1204,6 +1203,7 @@ exports.tickets = {
       name: "helphaver",
       membership: false,
       order: 2,
+      isFree: true,
       price: {
         usd: {
           amount: 10,
@@ -1257,7 +1257,7 @@ exports.membershipsplans = {
         en: {
           name: "Manual Payment",
           description: ["Pay any time of the month", "Offline payment option"],
-          button_label: "Select this Ticket",
+          button_label: "Select this Membership",
         },
         es: {
           name: "Pago manual",
@@ -1345,7 +1345,7 @@ exports.membershipsplans = {
             "Pay any time of the month",
             "Multiple payment solutions",
           ],
-          button_label: "Select this Ticket",
+          button_label: "Select this Membership",
         },
         es: {
           name: "Automatic ES",
@@ -1353,7 +1353,7 @@ exports.membershipsplans = {
             "Pay any time of the month",
             "Multiple payment solutions",
           ],
-          button_label: "Select this Ticket",
+          button_label: "Select this Membership",
         },
         ru: {
           name: "Automatic RU",
@@ -1361,7 +1361,7 @@ exports.membershipsplans = {
             "Pay any time of the month",
             "Multiple payment solutions",
           ],
-          button_label: "Select this Ticket",
+          button_label: "Select this Membership",
         },
         he: {
           name: "Automatic HE",
@@ -1369,7 +1369,7 @@ exports.membershipsplans = {
             "Pay any time of the month",
             "Multiple payment solutions",
           ],
-          button_label: "Select this Ticket",
+          button_label: "Select this Membership",
         },
       },
       flow: {
@@ -1434,7 +1434,7 @@ exports.membershipsplans = {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select this Ticket",
+          button_label: "Select this Membership",
           intersticial: {
             title: "Title",
             body: "Message",
@@ -1447,7 +1447,7 @@ exports.membershipsplans = {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select this Ticket",
+          button_label: "Select this Membership",
           intersticial: {
             title: "Title",
             body: "Message",
@@ -1460,7 +1460,7 @@ exports.membershipsplans = {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select this Ticket",
+          button_label: "Select this Membership",
           intersticial: {
             title: "Title",
             body: "Message",
@@ -1473,7 +1473,7 @@ exports.membershipsplans = {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select this Ticket",
+          button_label: "Select this Membership",
           intersticial: {
             title: "Title",
             body: "Message",

@@ -68,14 +68,15 @@ const SpecialOptionSuccess = () => {
               style={{ color: "#0D9D0D", height: "45px", width: "45px" }}
             />
             <Typography
-              variant="h1"
-              component="h1"
-              style={{ fontSize: 36, marginBottom: 20, fontWeight: "normal" }}
+              variant="h2"
+              style={{ fontSize: 24, margin: 20, fontWeight: "normal" }}
             >
-              {t("order.payment_success")}
+              {"You have successfully registered for the event!"}
             </Typography>
-            <Typography style={{ fontSize: 18 }}>
-              {t("order.successfully_paid")}
+            <Typography style={{ fontSize: 18, color: "rgba(90, 90, 90, 1)" }}>
+              {
+                "After registration, we will send you a ticket to the event by email."
+              }
             </Typography>
             <Button
               variant="contained"

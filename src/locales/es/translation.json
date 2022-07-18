@@ -126,5 +126,12 @@
     "description": "Something went wrong while processing your request. Please start your registration by clicking below",
     "return": "Return to Registration",
     "returnMembership": "Return to Membership"
+  },
+  "specialOption": {
+    "title": "Special Options",
+    "chose_your_option": "Choose your option",
+    "current_situation": "What is the current situation for you?",
+    "ukrain": "I Live in Ukraine",
+    "russia": "I Live in Russia"
   }
 }

@@ -165,10 +165,7 @@ export default function Payment() {
       Type: selectedTicket.product?.type,
       ProductType: selectedTicket.product?.productType,
       RecurringFreq: selectedTicket.product?.recurringFreq,
-      //replace this with routing mechanism
-      successUrl:
-        window.APP_CONFIG.VH_BASE_URL +
-        `/pay/order/register/${selectedTicket.name}/userdetail/${event_slug}`,
+      successUrl: window.APP_CONFIG.VH_BASE_URL + `/pay/success/${event_slug}`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };

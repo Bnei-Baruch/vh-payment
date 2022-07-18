@@ -42,6 +42,11 @@ const Routes = () => (
       />
       <Route
         exact
+        from="/pay/order/ticket/payment/intersticial/:event_slug"
+        component={Intersticial}
+      />
+      <Route
+        exact
         from="/pay/order/ticket/payment/membership/:event_slug"
         component={Intersticial}
       />

@@ -172,6 +172,10 @@ export default function Intersticial() {
   const moveback = () => {
     history.goBack();
   };
+
+  const goToMembership = () => {
+    history.push(`/pay/membership/${event_slug}`);
+  };
   if (!selectedSpecialOption) return <Loader />;
   const { intersticial } = selectedSpecialOption;
   return (
@@ -202,9 +206,7 @@ export default function Intersticial() {
             disabled={submitting}
             variant="contained"
             color="primary"
-            // onClick={
-            //   !isMembership ? confirmNeedsHelpEvent : confirmNeedsHelpMembership
-            // }
+            onClick={!isMembership ? confirmNeedsHelpEvent : goToMembership}
           >
             {t("order.become_a_member")}
           </Button>
