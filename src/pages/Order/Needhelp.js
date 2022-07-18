@@ -1,5 +1,4 @@
 import React from "react";
-import HeaderLayout from "../../layouts/HeaderLayout";
 import ContentLayout from "../../layouts/ContentLayout";
 import {
   Button,
@@ -60,7 +59,6 @@ export default function Needhelp() {
   };
   return (
     <>
-      <HeaderLayout />
       <ContentLayout>
         <Grid container spacing={6}>
           {!submitted ? (

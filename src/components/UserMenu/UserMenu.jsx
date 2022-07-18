@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import { useTranslation } from 'react-i18next';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { Menu, MenuItem, IconButton as MuiIconButton } from '@material-ui/core';
-import styled from 'styled-components';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { PAYMENT_ROUTES } from '../../routes/paymentRoutes';
-import ModalWindow from '../ModalWindow/ModalWindow';
-import { setLoggedInUser } from '../../redux/actions/userActions';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { useTranslation } from "react-i18next";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import { Menu, MenuItem, IconButton as MuiIconButton } from "@material-ui/core";
+import styled from "styled-components";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { PAYMENT_ROUTES } from "../../routes/paymentRoutes";
+import ModalWindow from "../ModalWindow/ModalWindow";
+import { setLoggedInUser } from "../../redux/actions/userActions";
 
 const UserIconButton = styled(MuiIconButton)`
   font-size: 16px !important;
@@ -29,12 +29,12 @@ export const UserMenu = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
-  const state = useSelector(state => state.user);
+  const state = useSelector((state) => state.user);
 
   const [anchorMenu, setAnchorMenu] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleMenu = event => {
+  const toggleMenu = (event) => {
     setAnchorMenu(event.currentTarget);
   };
 
@@ -42,7 +42,7 @@ export const UserMenu = () => {
     setAnchorMenu(null);
   };
 
-  const onMenuItemClick = path => {
+  const onMenuItemClick = (path) => {
     history.push(path);
     closeMenu();
   };
@@ -65,33 +65,33 @@ export const UserMenu = () => {
   return (
     <>
       <UserIconButton
-        aria-owns={anchorMenu ? 'menu-appbar' : undefined}
-        aria-haspopup='true'
+        aria-owns={anchorMenu ? "menu-appbar" : undefined}
+        aria-haspopup="true"
         onClick={toggleMenu}
-        color='inherit'
+        color="inherit"
       >
         <AccountCircleIcon />
         &nbsp;
-        {state.profile.firstName + ' ' + state.profile.lastName}
+        {state.profile.firstName + " " + state.profile.lastName}
         &nbsp; <KeyboardArrowDownIcon />
       </UserIconButton>
       <Menu
-        id='menu-appbar'
+        id="menu-appbar"
         anchorEl={anchorMenu}
         open={Boolean(anchorMenu)}
         onClose={closeMenu}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <MenuItem onClick={() => onMenuItemClick(PAYMENT_ROUTES.Profile)}>
-          {t('userMenu.profile')}
+          {t("userMenu.profile")}
         </MenuItem>
-        <MenuItem onClick={onLogOutClick}>{t('userMenu.logOut')}</MenuItem>
+        <MenuItem onClick={onLogOutClick}>{t("userMenu.logOut")}</MenuItem>
       </Menu>
       <ModalWindow
         open={isModalOpen}
-        contentText={t('userMenu.logOutText')}
-        confirmBtnText={t('userMenu.yesBtn')}
-        closeBtnText={t('userMenu.cancelBtn')}
+        contentText={t("userMenu.logOutText")}
+        confirmBtnText={t("userMenu.yesBtn")}
+        closeBtnText={t("userMenu.cancelBtn")}
         handleClose={handleCloseModal}
         onConfirmation={onAuthLogout}
       />

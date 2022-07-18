@@ -10,12 +10,14 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import HeaderLayout from "../../../layouts/HeaderLayout";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setSelectedMembership, setSpecialSelectedOption } from "../../../redux/actions/orderActions";
+import {
+  setSelectedMembership,
+  setSpecialSelectedOption,
+} from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
 import { getMembershipProduct } from "../../../services/productservice";
 import Loader from "../../../components/Loader";
@@ -78,14 +80,16 @@ export default function Membership() {
 
   const navigateToConfirmation = (membership) => {
     if (membership.flow.type === "redirect") {
-      if (specialOption === '') {
-        setErrorMessage(t('errorMessage.pleaseSelectOption'));
-        return '';
+      if (specialOption === "") {
+        setErrorMessage(t("errorMessage.pleaseSelectOption"));
+        return "";
       }
       const selectedOption =
         membership.content[i18n.language] || membership.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
-      history.push(`/pay/order/ticket/payment/intersticial/${membership.name}?isMembership=true`);
+      history.push(
+        `/pay/order/ticket/payment/intersticial/${membership.name}?isMembership=true`
+      );
     } else if (membership.flow.type === "checkout") {
       history.push("/pay/membership/payment/" + membership.name);
     }
@@ -98,97 +102,100 @@ export default function Membership() {
       ? content[i18n.language]
       : content["en"];
   return (
-    <>
-      <HeaderLayout />
-      <TicketGrid container spacing={6}>
+    <TicketGrid container spacing={6}>
+      <Grid item xs={12}>
+        <br />
+        <CenterText variant="h1">{header.title}</CenterText>
+        <CenterTextGrey variant="h6">{header.subtitle}</CenterTextGrey>
+        <br />
+        <Divider />
+        <br />
+        <CenterText variant="h6">{header.action}</CenterText>
+      </Grid>
+      {errorMessage && (
         <Grid item xs={12}>
-          <br />
-          <CenterText variant="h1">{header.title}</CenterText>
-          <CenterTextGrey variant="h6">{header.subtitle}</CenterTextGrey>
-          <br />
-          <Divider />
-          <br />
-          <CenterText variant="h6">{header.action}</CenterText>
+          <div style={{ color: "red" }}>{errorMessage}</div>
         </Grid>
-        {errorMessage && <Grid item xs={12}>
-          <div style={{ color: 'red' }}>{errorMessage}</div>
-        </Grid>}
-        <Grid container item xs={12} spacing={6}>
-          {plans.map((plan, index) => {
-            const planContent =
-              typeof plan.content[i18n.language] !== "undefined"
-                ? plan.content[i18n.language]
-                : plan.content["en"];
-            return (
-              <Grid key={index} item xs={12} md={4}>
-                <TicketCard
-                  style={
-                    selectedMembership !== undefined
-                      ? selectedMembership === plan
-                        ? selectedStyle
-                        : blurredStyle
-                      : {}
-                  }
-                >
-                  <CenterText variant="h1">{planContent.name}</CenterText>
-                  <br />
-                  <Divider />
-                  <br />
-                  <CenterTextGrey variant="h2">
-                    {currency.sign + " " + plan.price[currency.id].amount}
-                  </CenterTextGrey>
-                  <Grid>
-                    {planContent && planContent.description && planContent.description.length > 0 && <ul>
-                      {planContent.description.map((item, index) => (
-                        <li key={index}>
-                          <Typography variant="body1">{item}</Typography>
-                        </li>
-                      ))}
-                    </ul>}
-                  </Grid>
-                  <Grid>
-                    {planContent.options && (
-                      <FormControl component="fieldset">
-                        <FormLabel component="legend">
-                          {t("common.select_option")}
-                        </FormLabel>
-                        <RadioGroup
-                          aria-label="special"
-                          name="special"
-                          value={specialOption}
-                          onChange={(e) => setSpecialOption(e.target.value)}
-                          style={{ flexDirection: "row" }}
-                        >
-                          {planContent.options.map((item, index) => (
-                            <FormControlLabel
-                              key={index}
-                              value={item.name}
-                              control={<Radio />}
-                              label={item.label}
-                            />
-                          ))}
-                        </RadioGroup>
-                        <br />
-                      </FormControl>
+      )}
+      <Grid container item xs={12} spacing={6}>
+        {plans.map((plan, index) => {
+          const planContent =
+            typeof plan.content[i18n.language] !== "undefined"
+              ? plan.content[i18n.language]
+              : plan.content["en"];
+          return (
+            <Grid key={index} item xs={12} md={4}>
+              <TicketCard
+                style={
+                  selectedMembership !== undefined
+                    ? selectedMembership === plan
+                      ? selectedStyle
+                      : blurredStyle
+                    : {}
+                }
+              >
+                <CenterText variant="h1">{planContent.name}</CenterText>
+                <br />
+                <Divider />
+                <br />
+                <CenterTextGrey variant="h2">
+                  {currency.sign + " " + plan.price[currency.id].amount}
+                </CenterTextGrey>
+                <Grid>
+                  {planContent &&
+                    planContent.description &&
+                    planContent.description.length > 0 && (
+                      <ul>
+                        {planContent.description.map((item, index) => (
+                          <li key={index}>
+                            <Typography variant="body1">{item}</Typography>
+                          </li>
+                        ))}
+                      </ul>
                     )}
-                  </Grid>
-                  <CTAGrid>
-                    {(
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => planSelected(plan)}
+                </Grid>
+                <Grid>
+                  {planContent.options && (
+                    <FormControl component="fieldset">
+                      <FormLabel component="legend">
+                        {t("common.select_option")}
+                      </FormLabel>
+                      <RadioGroup
+                        aria-label="special"
+                        name="special"
+                        value={specialOption}
+                        onChange={(e) => setSpecialOption(e.target.value)}
+                        style={{ flexDirection: "row" }}
                       >
-                        {planContent.button_label}
-                      </Button>
-                    )}
-                  </CTAGrid>
-                </TicketCard>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </TicketGrid>
-    </>
+                        {planContent.options.map((item, index) => (
+                          <FormControlLabel
+                            key={index}
+                            value={item.name}
+                            control={<Radio />}
+                            label={item.label}
+                          />
+                        ))}
+                      </RadioGroup>
+                      <br />
+                    </FormControl>
+                  )}
+                </Grid>
+                <CTAGrid>
+                  {
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => planSelected(plan)}
+                    >
+                      {planContent.button_label}
+                    </Button>
+                  }
+                </CTAGrid>
+              </TicketCard>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </TicketGrid>
   );
 }

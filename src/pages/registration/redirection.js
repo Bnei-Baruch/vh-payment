@@ -13,23 +13,19 @@ export default function Redirection() {
   const goToProfileArea = () => {
     const eventData = getEventsProductBySlug(event_slug);
     window.location.href = `${window.location.origin}/dash/events/tickets/${eventData.event.id}`;
-  }
+  };
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
-        <Typography variant="h4">
-          {t('common.successHeader')}
-        </Typography>
+        <Typography variant="h4">{t("common.successHeader")}</Typography>
       </Grid>
       <Grid container item xs={12} spacing={6}>
         <Grid item xs={12}>
-          <GreyText variant="h6">
-          {t('common.successDescription')}
-          </GreyText>
+          <GreyText variant="h6">{t("common.successDescription")}</GreyText>
         </Grid>
         <Grid item xs={12} md={12} style={{ textAlign: "center" }}>
           <Button variant="contained" color="primary" onClick={goToProfileArea}>
-          {t('common.viewTicket')}
+            {t("common.viewTicket")}
           </Button>
         </Grid>
       </Grid>

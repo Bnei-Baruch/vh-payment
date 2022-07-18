@@ -570,22 +570,38 @@ exports.tickets = {
       content: {
         en: {
           name: "Regular Ticket",
-          description: [],
-          button_label: "Select",
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
+          button_label: "Select this Ticket",
         },
         he: {
           name: "כרטיס רגיל",
-          description: [],
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto común",
-          description: [],
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "elige",
         },
         ru: {
           name: "Для новых участников",
-          description: [],
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "Выбрать",
         },
       },
@@ -607,23 +623,6 @@ exports.tickets = {
             },
             he: {
               label: "כרטיס אשראי/כרטיס חיוב",
-            },
-          },
-        },
-        {
-          name: "others",
-          content: {
-            en: {
-              label: "Other payment type",
-            },
-            he: {
-              label: "אפשרויות תשלום נוספות",
-            },
-            es: {
-              label: "Otras opciones de pago",
-            },
-            ru: {
-              label: "Другой вид оплаты",
             },
           },
         },
@@ -655,8 +654,12 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: [],
-          button_label: "Select",
+          description: [
+            "You get a ticket to this event at a special price.",
+            "You are a member of the community.",
+            "You will still have a video recording of the event.",
+          ],
+          button_label: "Select this Ticket",
           intersticial: {
             title: "Membership Ticket",
             body: "Membership Ticket are discounted ticket for people who pay a monthly membership. In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
@@ -666,7 +669,11 @@ exports.tickets = {
         },
         ru: {
           name: "Для постоянных участников сообщества",
-          description: [],
+          description: [
+            "You get a ticket to this event at a special price.",
+            "You are a member of the community.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "Выбрать",
           intersticial: {
             title: "Для новых участников сообщества",
@@ -677,7 +684,11 @@ exports.tickets = {
         },
         es: {
           name: "Boleto de membresía",
-          description: [],
+          description: [
+            "You get a ticket to this event at a special price.",
+            "You are a member of the community.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "Elige",
           intersticial: {
             title: "Boleto de membresía",
@@ -688,7 +699,11 @@ exports.tickets = {
         },
         he: {
           name: "כרטיס חבר",
-          description: [],
+          description: [
+            "You get a ticket to this event at a special price.",
+            "You are a member of the community.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "לבחור",
           intersticial: {
             title: "כרטיס חבר",
@@ -721,22 +736,38 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: [],
-          button_label: "Select",
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
+          button_label: "Select this Ticket",
         },
         he: {
           name: "כרטיס חבר",
-          description: ["השתתפות בכנס", "נדרשת חברות",],
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto de membresía",
-          description: [],
-          button_label: "Elige"
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
+          button_label: "Elige",
         },
         ru: {
           name: "Для постоянных участников сообщества",
-          description: [],
+          description: [
+            "You get a ticket only this event.",
+            "You don't need a membership for this option.",
+            "You will still have a video recording of the event.",
+          ],
           button_label: "Выбрать",
         },
       },
@@ -758,23 +789,6 @@ exports.tickets = {
             },
             ru: {
               label: "Кредитная / дебетовая карта",
-            },
-          },
-        },
-        {
-          name: "others",
-          content: {
-            en: {
-              label: "Other payment type",
-            },
-            es: {
-              label: "Otras opciones de pago",
-            },
-            he: {
-              label: "אפשרויות תשלום נוספות",
-            },
-            ru: {
-              label: "Другой вид оплаты",
             },
           },
         },
@@ -805,9 +819,12 @@ exports.tickets = {
     {
       content: {
         en: {
-          name: "Financial Help",
-          description: [],
-          button_label: "Select",
+          name: "Special Options",
+          description: [
+            "If you live in Ukraine. (The ticket will be free for you).",
+            "If you live in Russia. (We have a special options for you).",
+          ],
+          button_label: "Select this Ticket",
           options: [
             {
               name: "helphaver",
@@ -817,9 +834,10 @@ exports.tickets = {
                 body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
                 button: "Next",
               },
-              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
-              register_status: "hh-request"
+              register_status: "hh-request",
             },
           ],
         },
@@ -836,9 +854,10 @@ exports.tickets = {
                 body: "Si necesitas ayuda para cubrir el costo de la participación en el congreso, por favor aplica al fondo de Help Haver. Tu boleto será creado pero los detalles del pago dependerán de la respuesta de Help Haver.",
                 button: "Próximo",
               },
-              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
-              register_status: "hh-request"
+              register_status: "hh-request",
             },
           ],
         },
@@ -856,9 +875,10 @@ exports.tickets = {
                 body: "אם נדרשת עזרה לכסות את עלות ההשתתפות של הכנס, נא לפנות לקרן הלפ חבר. הכרטיס שלך יווצר אבל פרטי התשלום יהיו תלויים בתשובה של הלפ חבר.",
                 button: "הבא",
               },
-              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
-              register_status: "hh-request"
+              register_status: "hh-request",
             },
           ],
         },
@@ -876,7 +896,7 @@ exports.tickets = {
                 button: "Дальше",
               },
               type: "special",
-              register_status: "sp-ukraine"
+              register_status: "sp-ukraine",
             },
             {
               label: "Я из России",
@@ -887,7 +907,7 @@ exports.tickets = {
                 button: "Далее",
               },
               type: "special",
-              register_status: "sp-russia"
+              register_status: "sp-russia",
             },
             {
               label: "Финансовая помощь",
@@ -897,9 +917,10 @@ exports.tickets = {
                 body: "Если вам нужна помощь, чтобы оплатить участие в конгрессе: 1. Завершите регистрацию. 2. Пожалуйста обратитесь в фонд Help Haver.",
                 button: "Далее",
               },
-              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
-              register_status: "hh-request"
+              register_status: "hh-request",
             },
           ],
         },
@@ -933,9 +954,13 @@ exports.tickets = {
     {
       content: {
         en: {
-          name: "Financial Help",
-          description: [],
-          button_label: "Select",
+          name: "Help Haver",
+          description: [
+            "We want this service to be available to each of us.",
+            "If you are in a difficult financial situation.",
+            "We are ready to allow you to get a ticket for free.",
+          ],
+          button_label: "Select this Ticket",
           options: [
             {
               name: "helphaver",
@@ -945,9 +970,10 @@ exports.tickets = {
                 body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
                 button: "Next",
               },
-              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
-              register_status: "hh-request"
+              register_status: "hh-request",
             },
           ],
         },
@@ -964,9 +990,10 @@ exports.tickets = {
                 body: "Si necesitas ayuda para cubrir el costo de la participación en el congreso, por favor aplica al fondo de Help Haver. Tu boleto será creado pero los detalles del pago dependerán de la respuesta de Help Haver.",
                 button: "Próximo",
               },
-              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
-              register_status: "hh-request"
+              register_status: "hh-request",
             },
           ],
         },
@@ -984,9 +1011,10 @@ exports.tickets = {
                 body: "אם נדרשת עזרה לכסות את עלות ההשתתפות של הכנס, נא לפנות לקרן הלפ חבר. הכרטיס שלך יווצר אבל פרטי התשלום יהיו תלויים בתשובה של הלפ חבר.",
                 button: "הבא",
               },
-              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
-              register_status: "hh-request"
+              register_status: "hh-request",
             },
           ],
         },
@@ -1004,7 +1032,7 @@ exports.tickets = {
                 button: "Дальше",
               },
               type: "special",
-              register_status: "sp-ukraine"
+              register_status: "sp-ukraine",
             },
             {
               label: "Я из России",
@@ -1015,7 +1043,7 @@ exports.tickets = {
                 button: "Далее",
               },
               type: "special",
-              register_status: "sp-russia"
+              register_status: "sp-russia",
             },
             {
               label: "Финансовая помощь",
@@ -1025,9 +1053,10 @@ exports.tickets = {
                 body: "Если вам нужна помощь, чтобы оплатить участие в конгрессе: 1. Завершите регистрацию. 2. Пожалуйста обратитесь в фонд Help Haver.",
                 button: "Далее",
               },
-              redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
               type: "helphaver",
-              register_status: "hh-request"
+              register_status: "hh-request",
             },
           ],
         },
@@ -1038,6 +1067,143 @@ exports.tickets = {
       name: "special",
       membership: true,
       order: 2,
+      price: {
+        usd: {
+          amount: 0,
+        },
+        nis: {
+          amount: 0,
+        },
+        eur: {
+          amount: 0,
+        },
+      },
+      product: {
+        SKU: "40033",
+        reference: "Convention",
+        type: "helphaver",
+        productType: "t-0522-03-sp",
+        recurringFreq: 0,
+        organization: "ben2",
+      },
+    },
+    {
+      content: {
+        en: {
+          name: "Help Haver",
+          description: [
+            "We want this service to be available to each of us.",
+            "If you are in a difficult financial situation.",
+            "We are ready to allow you to get a ticket for free.",
+          ],
+          button_label: "Select this Ticket",
+          options: [
+            {
+              name: "helphaver",
+              label: "Help Haver",
+              intersticial: {
+                title: "If you need financial help",
+                body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
+                button: "Next",
+              },
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              type: "helphaver",
+              register_status: "hh-request",
+            },
+          ],
+        },
+        es: {
+          name: "Ayuda financiera",
+          description: [],
+          button_label: "Elige",
+          options: [
+            {
+              name: "helphaver",
+              label: "Help Haver",
+              intersticial: {
+                title: "Si necesitas ayuda financiera",
+                body: "Si necesitas ayuda para cubrir el costo de la participación en el congreso, por favor aplica al fondo de Help Haver. Tu boleto será creado pero los detalles del pago dependerán de la respuesta de Help Haver.",
+                button: "Próximo",
+              },
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              type: "helphaver",
+              register_status: "hh-request",
+            },
+          ],
+        },
+
+        he: {
+          name: "עזרה כלכלית",
+          description: [],
+          button_label: "לבחור",
+          options: [
+            {
+              name: "helphaver",
+              label: "הלפ חבר",
+              intersticial: {
+                title: "אם נדרשת עזרה כלכלית",
+                body: "אם נדרשת עזרה לכסות את עלות ההשתתפות של הכנס, נא לפנות לקרן הלפ חבר. הכרטיס שלך יווצר אבל פרטי התשלום יהיו תלויים בתשובה של הלפ חבר.",
+                button: "הבא",
+              },
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              type: "helphaver",
+              register_status: "hh-request",
+            },
+          ],
+        },
+        ru: {
+          name: "Для особых случаев",
+          description: [],
+          button_label: "Выбрать",
+          options: [
+            {
+              label: "Я из Украины",
+              name: "ukraine",
+              intersticial: {
+                title: "Для наших товарищей из Украины",
+                body: "Руководство Международной академии каббалы приняло решение, что участие в этом конгрессе для товарищей из Украины бесплатно.",
+                button: "Дальше",
+              },
+              type: "special",
+              register_status: "sp-ukraine",
+            },
+            {
+              label: "Я из России",
+              name: "russia",
+              intersticial: {
+                title: "Для наших товарищей из России",
+                body: "1.  Пройдите регистрацию до конца.  2. Инструкцию для оплаты за участие в конгрессе в размере 800 рублей, мы пришлём Вам позже",
+                button: "Далее",
+              },
+              type: "special",
+              register_status: "sp-russia",
+            },
+            {
+              label: "Финансовая помощь",
+              name: "helphaver",
+              intersticial: {
+                title: "Если Вы не можете оплатить участие",
+                body: "Если вам нужна помощь, чтобы оплатить участие в конгрессе: 1. Завершите регистрацию. 2. Пожалуйста обратитесь в фонд Help Haver.",
+                button: "Далее",
+              },
+              redirect_url:
+                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+              type: "helphaver",
+              register_status: "hh-request",
+            },
+          ],
+        },
+      },
+      flow: {
+        type: "options",
+      },
+      name: "helphaver",
+      membership: false,
+      order: 2,
+      isFree: true,
       price: {
         usd: {
           amount: 10,
@@ -1060,7 +1226,6 @@ exports.tickets = {
     },
   ],
 };
-
 
 exports.membershipsplans = {
   name: "membership",
@@ -1092,16 +1257,22 @@ exports.membershipsplans = {
         en: {
           name: "Manual Payment",
           description: ["Pay any time of the month", "Offline payment option"],
-          button_label: "Select",
+          button_label: "Select this Membership",
         },
         es: {
           name: "Pago manual",
-          description: ["Pago en cualquier momento del mes", "Soluciones de pago fuera de línea"],
+          description: [
+            "Pago en cualquier momento del mes",
+            "Soluciones de pago fuera de línea",
+          ],
           button_label: "Elige",
         },
         ru: {
           name: "Платить самостоятельно",
-          description: ["Платить в любой день месяца", "Платеж не через интернет"],
+          description: [
+            "Платить в любой день месяца",
+            "Платеж не через интернет",
+          ],
           button_label: "Выбрать",
         },
         he: {
@@ -1128,23 +1299,6 @@ exports.membershipsplans = {
             },
             es: {
               label: "Credit/Debit Card",
-            },
-          },
-        },
-        {
-          name: "others",
-          content: {
-            en: {
-              label: "Other payment type",
-            },
-            he: {
-              label: "Other payment type",
-            },
-            ru: {
-              label: "Other payment type",
-            },
-            es: {
-              label: "Other payment type",
             },
           },
         },
@@ -1187,23 +1341,35 @@ exports.membershipsplans = {
       content: {
         en: {
           name: "Automatic",
-          description: ["Pay any time of the month", "Multiple payment solutions"],
-          button_label: "Select",
+          description: [
+            "Pay any time of the month",
+            "Multiple payment solutions",
+          ],
+          button_label: "Select this Membership",
         },
         es: {
           name: "Automatic ES",
-          description: ["Pay any time of the month", "Multiple payment solutions"],
-          button_label: "Select",
+          description: [
+            "Pay any time of the month",
+            "Multiple payment solutions",
+          ],
+          button_label: "Select this Membership",
         },
         ru: {
           name: "Automatic RU",
-          description: ["Pay any time of the month", "Multiple payment solutions"],
-          button_label: "Select",
+          description: [
+            "Pay any time of the month",
+            "Multiple payment solutions",
+          ],
+          button_label: "Select this Membership",
         },
         he: {
           name: "Automatic HE",
-          description: ["Pay any time of the month", "Multiple payment solutions"],
-          button_label: "Select",
+          description: [
+            "Pay any time of the month",
+            "Multiple payment solutions",
+          ],
+          button_label: "Select this Membership",
         },
       },
       flow: {
@@ -1226,7 +1392,7 @@ exports.membershipsplans = {
               label: "Credit/Debit Card",
             },
           },
-        }
+        },
       ],
       name: "automatic",
       order: 2,
@@ -1268,49 +1434,53 @@ exports.membershipsplans = {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select",
+          button_label: "Select this Membership",
           intersticial: {
             title: "Title",
             body: "Message",
             button: "Next",
           },
-          redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+          redirect_url:
+            "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         ru: {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select",
+          button_label: "Select this Membership",
           intersticial: {
             title: "Title",
             body: "Message",
             button: "Next",
           },
-          redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+          redirect_url:
+            "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         es: {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select",
+          button_label: "Select this Membership",
           intersticial: {
             title: "Title",
             body: "Message",
             button: "Next",
           },
-          redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+          redirect_url:
+            "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         he: {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select",
+          button_label: "Select this Membership",
           intersticial: {
             title: "Title",
             body: "Message",
             button: "Next",
           },
-          redirect_url: "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
+          redirect_url:
+            "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
       },
       flow: {

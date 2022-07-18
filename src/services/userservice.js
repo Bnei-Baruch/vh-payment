@@ -24,8 +24,11 @@ export const getUserProfileData = (keycloakId) => {
     .catch((err) => {
       throw err;
     });
-}
+};
 
 export const saveUserProfileData = (data) => {
-  return axios.patch(`${window.APP_CONFIG.VH_API_BASE_URL}/profile/v1/profile/${data.keycloak_id}`, data);
-}
+  return axios.patch(
+    `${window.APP_CONFIG.VH_API_BASE_URL}/profile/v1/profile/${data.keycloak_id}`,
+    data
+  );
+};

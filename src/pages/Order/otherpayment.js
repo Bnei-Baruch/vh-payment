@@ -18,7 +18,6 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useStyles } from "./index";
 import ContentLayout from "../../layouts/ContentLayout";
-import HeaderLayout from "../../layouts/HeaderLayout";
 import { handlePayment } from "../../services/orderservice";
 import { getProfile } from "../../services/userservice";
 import { useHistory } from "react-router-dom";
@@ -91,70 +90,74 @@ export default function OtherPayment() {
       PaymentMethod: selectedPaymentType,
       ExtraInfo: extraInfo,
       //replace this with routing mechanism
-      successUrl: isMembership ? window.APP_CONFIG.VH_BASE_URL + `/pay/membership/payment/${event_slug}/success?help=true` :
-        window.APP_CONFIG.VH_BASE_URL +
-        `/pay/order/register/${ticketObject.name}/userdetail/${event_slug}`,
+      successUrl: isMembership
+        ? window.APP_CONFIG.VH_BASE_URL +
+          `/pay/membership/payment/${event_slug}/success?help=true`
+        : window.APP_CONFIG.VH_BASE_URL +
+          `/pay/order/register/${ticketObject.name}/userdetail/${event_slug}`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
     handlePayment(data)
       .then(() => {
         if (isMembership) {
-          history.push(`/pay/membership/payment/${event_slug}/success?help=true`);
+          history.push(
+            `/pay/membership/payment/${event_slug}/success?help=true`
+          );
           return;
         }
-        history.push(`/pay/order/register/${selectedTicket.name}/userdetail/${event_slug}?ManualPayment=true`);
+        history.push(
+          `/pay/order/register/${selectedTicket.name}/userdetail/${event_slug}?ManualPayment=true`
+        );
       })
       .catch(() => {
         setOnPayClicked(false);
       });
   };
   return (
-    <>
-      <HeaderLayout />
-      <ContentLayout>
-        <HeaderTitle variant="h3">
-          {t("otherPayments.paymentDetails")}
-        </HeaderTitle>{" "}
-        <br />
-        <Divider /> <br />
-        <form onSubmit={saveDetail}>
-          <Grid container spacing={6}>
-            <Grid item xs={12}>
-              <FormControl>
-                <FormLabel id="demo-radio-buttons-group-label">
-                  {t("otherPayments.howAreYouPaying")}
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  value={selectedPaymentType}
-                  name="radio-buttons-group"
-                  onChange={(e) => setSelectedPaymentType(e.target.value)}
-                >
-                  <FormControlLabel
-                    value="offlinebank"
-                    control={<Radio />}
-                    label={t("otherPayments.offlineBank")}
-                  />
-                  <FormControlLabel
-                    value="localGroup"
-                    control={<Radio />}
-                    label={t("otherPayments.localGroup")}
-                  />
-                  <FormControlLabel
-                    value="cash"
-                    control={<Radio />}
-                    label={t("otherPayments.incash")}
-                  />
-                  <FormControlLabel
-                    value="other"
-                    control={<Radio />}
-                    label={t("common.other")}
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-            {/* <Grid item xs={12}>
+    <ContentLayout>
+      <HeaderTitle variant="h3">
+        {t("otherPayments.paymentDetails")}
+      </HeaderTitle>{" "}
+      <br />
+      <Divider /> <br />
+      <form onSubmit={saveDetail}>
+        <Grid container spacing={6}>
+          <Grid item xs={12}>
+            <FormControl>
+              <FormLabel id="demo-radio-buttons-group-label">
+                {t("otherPayments.howAreYouPaying")}
+              </FormLabel>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                value={selectedPaymentType}
+                name="radio-buttons-group"
+                onChange={(e) => setSelectedPaymentType(e.target.value)}
+              >
+                <FormControlLabel
+                  value="offlinebank"
+                  control={<Radio />}
+                  label={t("otherPayments.offlineBank")}
+                />
+                <FormControlLabel
+                  value="localGroup"
+                  control={<Radio />}
+                  label={t("otherPayments.localGroup")}
+                />
+                <FormControlLabel
+                  value="cash"
+                  control={<Radio />}
+                  label={t("otherPayments.incash")}
+                />
+                <FormControlLabel
+                  value="other"
+                  control={<Radio />}
+                  label={t("common.other")}
+                />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+          {/* <Grid item xs={12}>
             <FormControl>
               <FormLabel id="demo-radio-buttons-group-label">
                 {t("otherPayments.doYouHaveAReciept")}
@@ -173,34 +176,33 @@ export default function OtherPayment() {
               </label>
             </FormControl>
           </Grid> */}
-            <Grid item xs={12}>
-              <TextField
-                id="outlined-basic"
-                multiline
-                label={t("otherPayments.extraInformation")}
-                variant="outlined"
-                fullWidth
-                required
-                value={extraInfo}
-                onChange={(e) => setExtraInfo(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12} style={{ textAlign: "right" }}>
-              <Button
-                disabled={payClicked}
-                variant="contained"
-                color="primary"
-                type={"submit"}
-              >
-                {payClicked && (
-                  <CircularProgress m={2} className={classes.loader} />
-                )}
-                {t("common.confirm")}
-              </Button>
-            </Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="outlined-basic"
+              multiline
+              label={t("otherPayments.extraInformation")}
+              variant="outlined"
+              fullWidth
+              required
+              value={extraInfo}
+              onChange={(e) => setExtraInfo(e.target.value)}
+            />
           </Grid>
-        </form>
-      </ContentLayout>
-    </>
+          <Grid item xs={12} style={{ textAlign: "right" }}>
+            <Button
+              disabled={payClicked}
+              variant="contained"
+              color="primary"
+              type={"submit"}
+            >
+              {payClicked && (
+                <CircularProgress m={2} className={classes.loader} />
+              )}
+              {t("common.confirm")}
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </ContentLayout>
   );
 }

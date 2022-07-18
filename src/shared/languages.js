@@ -5,7 +5,7 @@ class Language {
   flag;
   country;
 
-  constructor(id, country, dir = 'ltr', flag) {
+  constructor(id, country, dir = "ltr", flag) {
     this.id = id;
     this.i18nKey = `languages.${id}`;
     this.dir = dir;
@@ -15,8 +15,8 @@ class Language {
 }
 
 export const languages = [
-  new Language('en', 'gb', 'ltr', 'us.png'),
-  new Language('ru'),
-  new Language('es'),
-  new Language('he', 'il', 'rtl', 'il.png')
+  new Language("en", "gb", "ltr", "us.png"),
+  new Language("ru"),
+  new Language("es"),
+  new Language("he", "il", "rtl", "il.png"),
 ];

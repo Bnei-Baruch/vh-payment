@@ -16,7 +16,6 @@ import { Trans, useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
-import HeaderLayout from "../../layouts/HeaderLayout";
 import CurrencyPicker from "../../components/CurencyPicker";
 import { useParams } from "react-router-dom";
 import { setOrder } from "../../redux/actions/orderActions";
@@ -59,12 +58,12 @@ export const useStyles = makeStyles({
     direction: "ltr !important",
   },
   unaffectedrtl: {
-    '& .MuiStepConnector-horizontal': {
-      '&>span': {
-        borderColor: '#fff !important',
-      }
-    }
-  }
+    "& .MuiStepConnector-horizontal": {
+      "&>span": {
+        borderColor: "#fff !important",
+      },
+    },
+  },
 });
 
 const Order = () => {
@@ -166,7 +165,7 @@ const Order = () => {
    */
   useEffect(() => {
     getUserProfileData();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [user]);
 
   /**
@@ -196,127 +195,120 @@ const Order = () => {
   }
 
   return (
-    <>
-      <HeaderLayout />
-      <ContentLayout>
-        <Paper elevation={0}>
-          <CardContent>
-            <Box component="header" className={classes.header}>
-              {order.header && order.header.title && (
-                <Typography
-                  variant="h1"
-                  component="h1"
-                  style={{ fontSize: 36 }}
-                >
-                  {order.header.title}
-                </Typography>
-              )}
-              {order.header && order.header.subtitle && (
-                <Typography
-                  variant="subtitle1"
-                  component="h2"
-                  gutterBottom
-                  style={{ fontSize: 14 }}
-                >
-                  {order.header.subtitle}
-                </Typography>
-              )}
-              {order.header && order.header.description && (
-                <Typography style={{ fontSize: 18 }}>
-                  {order.header.description}
-                </Typography>
-              )}
-            </Box>
-
-            <Box display="flex" alignItems="flex-start">
-              <Typography variant="h1" component="p" className={classes.picker}>
-                {currency.sign}
-                {order.currency.amount}
+    <ContentLayout>
+      <Paper elevation={0}>
+        <CardContent>
+          <Box component="header" className={classes.header}>
+            {order.header && order.header.title && (
+              <Typography variant="h1" component="h1" style={{ fontSize: 36 }}>
+                {order.header.title}
               </Typography>
-              <CurrencyPicker
-                disableUnderline
-                className={classes.secondaryFont}
-              />
-            </Box>
-
-            {!order.currency.fixed && (
-              <Slider
-                value={order.currency.amount || 0}
-                onChange={(event, newValue) => handleSliderChange(newValue)}
-                aria-labelledby="continuous-slider"
-                min={0}
-                max={order.currency.max || 100}
-                step={order.currency.step || 1}
-              />
             )}
-
-            <Box className={classes.body}>
-              {order.body && order.body.title && (
-                <Typography variant="h5" gutterBottom style={{ fontSize: 18 }}>
-                  {order.body.title}
-                </Typography>
-              )}
-              {order.body && order.body.description && (
-                <Typography style={{ fontSize: 14 }}>
-                  {order.body.description}
-                </Typography>
-              )}
-            </Box>
-
-            {/*<Typography variant="h4" color="textSecondary" component="p">*/}
-            {/*  {t('payment.payMethod')}*/}
-            {/*</Typography>*/}
-
-            {/*<RadioGroup aria-label="payment" name="payment" value={payMethod} onChange={handlePaymentChange}>*/}
-            {/*  <FormControlLabel value="card" control={<Radio/>} label="Card"/>*/}
-            {/*  <FormControlLabel value="paypal" control={<Radio/>} label="Paypal"/>*/}
-            {/*</RadioGroup>*/}
-          </CardContent>
-
-          <Box>
-            <Checkbox
-              checked={agree}
-              color="primary"
-              onClick={() => setAgree(!agree)}
-            />
-            <Typography component="span" className={classes.agree}>
-              <Trans>
-                {t("order.agree")} &nbsp;
-                <Link href={order.termsLink} target="_blank">
-                  {t("order.tos")}
-                </Link>
-              </Trans>
-            </Typography>
+            {order.header && order.header.subtitle && (
+              <Typography
+                variant="subtitle1"
+                component="h2"
+                gutterBottom
+                style={{ fontSize: 14 }}
+              >
+                {order.header.subtitle}
+              </Typography>
+            )}
+            {order.header && order.header.description && (
+              <Typography style={{ fontSize: 18 }}>
+                {order.header.description}
+              </Typography>
+            )}
           </Box>
 
-          <CardActions className={classes.actions}>
-            <Button
-              variant="outlined"
-              color="primary"
-              href={order.cancel.url}
+          <Box display="flex" alignItems="flex-start">
+            <Typography variant="h1" component="p" className={classes.picker}>
+              {currency.sign}
+              {order.currency.amount}
+            </Typography>
+            <CurrencyPicker
+              disableUnderline
               className={classes.secondaryFont}
-            >
-              {order.cancel.text || t("order.cancel")}
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handlePay}
-              disabled={!agree}
-              className={classes.payBtn}
-            >
-              {payClicked && (
-                <CircularProgress m={2} className={classes.loader} />
-              )}{" "}
-              &nbsp;{" "}
-              {!payClicked
-                ? order.buttonText || t("order.pay")
-                : t("order.processing")}
-            </Button>
-          </CardActions>
-        </Paper>
-      </ContentLayout>
-    </>
+            />
+          </Box>
+
+          {!order.currency.fixed && (
+            <Slider
+              value={order.currency.amount || 0}
+              onChange={(event, newValue) => handleSliderChange(newValue)}
+              aria-labelledby="continuous-slider"
+              min={0}
+              max={order.currency.max || 100}
+              step={order.currency.step || 1}
+            />
+          )}
+
+          <Box className={classes.body}>
+            {order.body && order.body.title && (
+              <Typography variant="h5" gutterBottom style={{ fontSize: 18 }}>
+                {order.body.title}
+              </Typography>
+            )}
+            {order.body && order.body.description && (
+              <Typography style={{ fontSize: 14 }}>
+                {order.body.description}
+              </Typography>
+            )}
+          </Box>
+
+          {/*<Typography variant="h4" color="textSecondary" component="p">*/}
+          {/*  {t('payment.payMethod')}*/}
+          {/*</Typography>*/}
+
+          {/*<RadioGroup aria-label="payment" name="payment" value={payMethod} onChange={handlePaymentChange}>*/}
+          {/*  <FormControlLabel value="card" control={<Radio/>} label="Card"/>*/}
+          {/*  <FormControlLabel value="paypal" control={<Radio/>} label="Paypal"/>*/}
+          {/*</RadioGroup>*/}
+        </CardContent>
+
+        <Box>
+          <Checkbox
+            checked={agree}
+            color="primary"
+            onClick={() => setAgree(!agree)}
+          />
+          <Typography component="span" className={classes.agree}>
+            <Trans>
+              {t("order.agree")} &nbsp;
+              <Link href={order.termsLink} target="_blank">
+                {t("order.tos")}
+              </Link>
+            </Trans>
+          </Typography>
+        </Box>
+
+        <CardActions className={classes.actions}>
+          <Button
+            variant="outlined"
+            color="primary"
+            href={order.cancel.url}
+            className={classes.secondaryFont}
+          >
+            {order.cancel.text || t("order.cancel")}
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handlePay}
+            disabled={!agree}
+            className={classes.payBtn}
+          >
+            {payClicked && (
+              <CircularProgress m={2} className={classes.loader} />
+            )}{" "}
+            &nbsp;{" "}
+            {!payClicked
+              ? order.buttonText || t("order.pay")
+              : t("order.processing")}
+          </Button>
+        </CardActions>
+      </Paper>
+    </ContentLayout>
   );
 };
 

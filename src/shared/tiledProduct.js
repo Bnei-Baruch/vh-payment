@@ -1,11 +1,9 @@
 const products = {
-    plans : [
-        {
-            en : {
-
-            }
-        }
-    ]
-}
+  plans: [
+    {
+      en: {},
+    },
+  ],
+};
 
 export default products;

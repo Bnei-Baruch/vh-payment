@@ -1,4 +1,8 @@
-import { SET_LOGGED_IN_USER, SET_MEMBERSHIP_DATA, SET_USER_PROFILE_DATA } from "../types";
+import {
+  SET_LOGGED_IN_USER,
+  SET_MEMBERSHIP_DATA,
+  SET_USER_PROFILE_DATA,
+} from "../types";
 
 const DEFAULT = {
   authenticated: false,

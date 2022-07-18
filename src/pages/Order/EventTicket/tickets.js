@@ -1,18 +1,8 @@
-import {
-  Button,
-  Divider,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  Typography,
-} from "@material-ui/core";
+import { Button, Grid, Typography, useMediaQuery } from "@material-ui/core";
 import React from "react";
-import HeaderLayout from "../../../layouts/HeaderLayout";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { getEventsProductBySlug } from "../../../services/productservice";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -27,12 +17,24 @@ import Loader from "../../../components/Loader";
 const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  padding: 20px;
+  padding: 25px 20px;
+  margin: 16px;
+
+  @media (min-width: 768px) {
+    max-width: 350px;
+  }
+`;
+const Price = styled.div`
+  color: #3376d6;
+  font-weight: bold;
 `;
 const TicketGrid = styled(Grid)`
-  margin: auto;
-  max-width: 80%;
+  padding: 20px;
+
+  @media (min-width: 768px) {
+    max-width: 80%;
+    margin: auto;
+  }
 
   ul {
     padding-left: 20px;
@@ -43,21 +45,23 @@ const TicketGrid = styled(Grid)`
 `;
 const CenterText = styled(Typography)`
   text-align: center;
+  font-weight: normal;
 `;
 const CenterTextGrey = styled(Typography)`
   text-align: center;
   color: #777777;
+  font-weight: normal;
 `;
 const CTAGrid = styled(Grid)`
   text-align: center;
 `;
 
-const selectedStyle = {
-  border: "2px solid #00bcd4",
+const marginLeftAuto = {
+  marginLeft: "auto",
 };
 
-const blurredStyle = {
-  // opacity: "0.3",
+const marginRightAuto = {
+  marginRight: "auto",
 };
 
 export default function Tickets() {
@@ -65,12 +69,11 @@ export default function Tickets() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { event_slug } = useParams();
+  const isMobile = useMediaQuery("(max-width:767px)");
+
   const product = useSelector((state) => state.order.ticketProduct);
   const currency = useSelector((state) => state.currency);
-  const selectedTicket = useSelector((state) => state.order.selectedTicket);
   const membershipData = useSelector((state) => state.user.membershipdata);
-  const [specialOption, setSpecialOption] = React.useState("helphaver");
-  const [errorMessage, setErrorMessage] = React.useState(undefined);
 
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
@@ -84,36 +87,28 @@ export default function Tickets() {
 
   const navigateToConfirmation = (ticket) => {
     const { name } = ticket;
-    if (name === 'special') {
-      if (specialOption === '') {
-        setErrorMessage(t('errorMessage.pleaseSelectOption'));
-        return '';
-      }
-      const content =
-        ticket.content[i18n.language] || ticket.content.en;
-      const selectedOption = content.options.find(
-        (item) => item.name === specialOption
-      );
-      dispatch(setSpecialSelectedOption(selectedOption));
-      history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
+    if (name === "helphaver") {
+      history.push(`/pay/order/ticket/payment/help/${event_slug}`);
+    } else if (name === "special") {
+      history.push(`/pay/order/ticket/payment/special/${event_slug}`);
     } else if (name === "membership" && membershipData?.membership !== true) {
-      const selectedOption =
-        ticket.content[i18n.language] || ticket.content.en;
+      const selectedOption = ticket.content[i18n.language] || ticket.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
-      history.push(`/pay/order/ticket/payment/intersticial/${event_slug}`);
+      history.push(`/pay/order/ticket/payment/membership/${event_slug}`);
       return;
     } else {
       history.push(`/pay/order/ticket/payment/${event_slug}`);
     }
   };
-  if (!product) return <Loader />;
 
   const getPlansInSortedFormat = (plans) => {
     let plan = plans.filter(
       (plan) => plan.membership === membershipData?.membership
     );
     return plan.sort((a, b) => parseInt(a.order) - parseInt(b.order));
-  }
+  };
+
+  if (!product) return <Loader />;
 
   const { content } = product;
   let plans = getPlansInSortedFormat(product.plans);
@@ -122,58 +117,63 @@ export default function Tickets() {
       ? content[i18n.language]
       : content["en"];
   return (
-    <>
-      <HeaderLayout />
-      <TicketGrid container spacing={6}>
-        <Grid item xs={12}>
-          <br />
-          <CenterText variant="h1">{header.title}</CenterText>
-          <CenterTextGrey variant="h6">{header.subtitle}</CenterTextGrey>
-          <br />
-          <Divider />
-          <br />
-          <CenterText variant="h6">{header.action}</CenterText>
-        </Grid>
-        {errorMessage && <Grid item xs={12}>
-          <div style={{ color: 'red' }}>{errorMessage}</div>
-        </Grid>}
-        <Grid container item xs={12} spacing={6}>
-          {plans.map((plan, index) => {
-            const planContent =
-              typeof plan.content[i18n.language] !== "undefined"
-                ? plan.content[i18n.language]
-                : plan.content["en"];
-            return (
-              <Grid key={index} item xs={12} md={4}>
-                <TicketCard
-                  style={
-                    selectedTicket !== undefined
-                      ? selectedTicket === plan
-                        ? selectedStyle
-                        : blurredStyle
-                      : {}
-                  }
-                >
-                  <CenterText variant="h1">{planContent.name}</CenterText>
-                  <br />
-                  <Divider />
-                  <br />
-                  <CenterTextGrey variant="h2">
-                    {currency.sign + " " + plan.price[currency.id].amount}
-                  </CenterTextGrey>
-                  <Grid>
-                    {planContent && planContent.description && planContent.description.length > 0 && <ul>
-                      {planContent.description.map((item, index) => (
-                        <li key={index}>
-                          <Typography variant="body1">{item}</Typography>
-                        </li>
-                      ))}
-                    </ul>}
-                  </Grid>
-                  <Grid>
+    <TicketGrid container>
+      <Grid item xs={12}>
+        <br />
+        <CenterText variant="h1">{header.title}</CenterText>
+        <CenterTextGrey variant="h6">{header.subtitle}</CenterTextGrey>
+        <br />
+        <br />
+        <CenterText variant="h6">{header.action}</CenterText>
+      </Grid>
+      <Grid container item xs={12}>
+        {plans.map((plan, index) => {
+          const planContent =
+            typeof plan.content[i18n.language] !== "undefined"
+              ? plan.content[i18n.language]
+              : plan.content["en"];
+          return (
+            <Grid key={index} item xs={12} md={6}>
+              <TicketCard
+                style={
+                  !isMobile
+                    ? index % 2 === 0
+                      ? marginLeftAuto
+                      : marginRightAuto
+                    : {}
+                }
+              >
+                <CenterText variant="h2" style={{ fontWeight: "bold" }}>
+                  {planContent.name}
+                </CenterText>
+                <br />
+                <br />
+                <CenterText variant="h2">
+                  <Price>
+                    {plan.isFree
+                      ? "For Free"
+                      : currency.sign + " " + plan.price[currency.id].amount}
+                  </Price>
+                </CenterText>
+                <Grid>
+                  {planContent &&
+                    planContent.description &&
+                    planContent.description.length > 0 && (
+                      <ul>
+                        {planContent.description.map((item, index) => (
+                          <li key={index}>
+                            <Typography variant="body1">{item}</Typography>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                </Grid>
+                {/* <Grid>
                     {planContent.options && (
                       <FormControl component="fieldset">
-                        <FormLabel component="legend">{t('common.select_option')}</FormLabel>
+                        <FormLabel component="legend">
+                          {t("common.select_option")}
+                        </FormLabel>
                         <RadioGroup
                           aria-label="gender"
                           name="gender1"
@@ -192,25 +192,30 @@ export default function Tickets() {
                         <br />
                       </FormControl>
                     )}
-                  </Grid>
-                  <CTAGrid>
-                    {(
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => planSelected(plan)}
-                      >
-                        {planContent.button_label}
-                      </Button>
-                    )}
-
-                  </CTAGrid>
-                </TicketCard>
-              </Grid>
-            );
-          })}
+                  </Grid> */}
+                <CTAGrid>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={() => planSelected(plan)}
+                  >
+                    {planContent.button_label}
+                  </Button>
+                </CTAGrid>
+              </TicketCard>
+            </Grid>
+          );
+        })}
+      </Grid>
+      {plans && (
+        <Grid item xs={12} style={{ textAlign: "center", marginTop: "30px" }}>
+          <Button variant="outlined" color="primary">
+            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
+            {t("order.back_to_event")}
+          </Button>
         </Grid>
-      </TicketGrid>
-    </>
+      )}
+    </TicketGrid>
   );
 }

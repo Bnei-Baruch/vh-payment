@@ -11,8 +11,13 @@ import OtherPayment from "../pages/Order/otherpayment";
 import Needhelp from "../pages/Order/Needhelp";
 import Membership from "../pages/Order/Membership/Membership";
 import MembershipPayment from "../pages/Order/Membership/MembershipPayment";
-import Intersticial from "../pages/Order/Intersticial";
 import SuccessMembership from "../pages/Order/Membership/SuccessMembership";
+import HelpHaverSuccess from "../pages/Success/helphaversuccess";
+import Intersticial from "../pages/Order/Interesticial/Intersticial";
+import HelpHaver from "../pages/Order/Interesticial/helphaver";
+import SpecialOption from "../pages/Order/SpecialOption/SpecialOption";
+import SpecialOptionInterestical from "../pages/Order/Interesticial/specialoption";
+import SpecialOptionSuccess from "../pages/Success/specialoptionsuccess";
 
 const Routes = () => (
   <Router>
@@ -42,6 +47,36 @@ const Routes = () => (
       />
       <Route
         exact
+        from="/pay/order/ticket/payment/membership/:event_slug"
+        component={Intersticial}
+      />
+      <Route
+        exact
+        from="/pay/order/ticket/payment/help/:event_slug"
+        component={HelpHaver}
+      />
+      <Route
+        exact
+        from="/pay/order/ticket/payment/special/:event_slug"
+        component={SpecialOption}
+      />
+      <Route
+        exact
+        from="/pay/order/ticket/payment/special/:event_slug/:option"
+        component={SpecialOptionInterestical}
+      />
+      <Route
+        exact
+        from="/pay/order/ticket/payment/special/:event_slug/:option/success"
+        component={SpecialOptionSuccess}
+      />
+      <Route
+        exact
+        from="/pay/order/ticket/payment/help/:event_slug/success"
+        component={HelpHaverSuccess}
+      />
+      <Route
+        exact
         from="/pay/order/ticket/payment/help/:event_slug"
         component={Needhelp}
       />
@@ -50,7 +85,10 @@ const Routes = () => (
         from="/pay/order/ticket/payment/others/:event_slug"
         component={OtherPayment}
       />
-      <Route from="/pay/order/register/:participation_option/userdetail" component={UserDetail} />
+      <Route
+        from="/pay/order/register/:participation_option/userdetail"
+        component={UserDetail}
+      />
       <Route from="/pay/success/:pdt" component={Success} />
       <Route from="/pay/success" component={Success} />
       <Route from="/pay/error" component={Error} />

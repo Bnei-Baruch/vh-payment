@@ -2,7 +2,8 @@
   "appbar": {
     "language": "Язык",
     "currency": "Валюта",
-    "text": "Наш виртуальный дом"
+    "text": "Наш виртуальный дом",
+    "membership": "My Membership Status"
   },
   "languages": {
     "en": "English",
@@ -30,8 +31,13 @@
     "thanksstep3": "Поздравляем! Вы успешно зарегистрировались на конгресс. Вскоре вы получите электронное письмо с подтверждением вашего участия в конгрессе, а также с подробным описанием программы конгресса и ссылку для подключения.",
     "allGood": "Все хорошо!",
     "closethepage": "Задание выполнено успешно! Вы можете закрыть страницу",
-    "processing" : "Обработка заказа",
-    "returnToPersonalArea": "Вернуться в личный кабинет"
+    "processing": "Обработка заказа",
+    "returnToPersonalArea": "Вернуться в личный кабинет",
+    "payment_success": "Payment successful",
+    "payment_error": "Your Payment has failed",
+    "error_paid": "We aren't able to process your payment. Please try again.",
+    "successfully_paid": "You have successfully bought a ticket to the event.",
+    "back_to_event": "Back to event"
   },
   "userMenu": {
     "logOut": "Выйти",
@@ -40,9 +46,10 @@
     "yesBtn": "Да",
     "cancelBtn": "Отменить"
   },
-  "error" : {
-    "page_not_found" : "Page Not found",
-    "retry": "Please go back or"
+  "error": {
+    "page_not_found": "Page Not found",
+    "retry": "Please go back or",
+    "try_again": "Try again"
   },
   "common": {
     "confirm": "Подтвердить",
@@ -81,7 +88,8 @@
     "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
     "submittedHeader": "Запрос отправлен",
     "requestSubmitted": "Ваш запрос отправлен и вскоре будет рассмотрен. По любым вопросам пишите на help@kli.one",
-    "return_to_personal_area": "Вернуться в личный кабинет"
+    "return_to_personal_area": "Вернуться в личный кабинет",
+    "enter_details_for_help": "Click to enter details for help"
   },
   "payment": {
     "membershipStep1": "Цена абонемента",
@@ -103,7 +111,7 @@
     "secondLanguage": "Второй язык",
     "startYear": "Год начала"
   },
-  "errorMessage" : {
+  "errorMessage": {
     "pleaseSelectOption": "Вы должны выбрать вариант"
   },
   "somethingWentWrong": {
@@ -111,5 +119,21 @@
     "description": "Something went wrong while processing your request. Please start your registration by clicking below",
     "return": "Return to Registration",
     "returnMembership": "Return to Membership"
+  },
+  "specialOption": {
+    "title": "Special Options",
+    "chose_your_option": "Choose your option",
+    "current_situation": "What is the current situation for you?",
+    "ukrain": "I Live in Ukraine",
+    "russia": "I Live in Russia",
+    "successTitle": "You have successfully registered for the event!",
+    "successDescription": "After registration, we will send you a ticket to the event by email.",
+    "titleIntersectial": "For our friends from",
+    "descriptionIntersectialUkraine": "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+    "descriptionIntersectialRussia": "Here you can register for the event. After registration, we will send you a ticket to the event by email."
+  },
+  "membership": {
+    "active": "Active",
+    "inactive": "Inactive"
   }
 }

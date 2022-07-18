@@ -49,13 +49,16 @@ export default function UserDetail() {
   React.useEffect(() => {
     if (keycloak !== null && profile === undefined && !loading) {
       loading = true;
-      getUserProfileData(keycloak.subject).then(res => {
-        setProfileData(res);
-      }).catch(() => {
-        registerPariticpantAddToEvent();
-      });
+      getUserProfileData(keycloak.subject)
+        .then((res) => {
+          setProfileData(res);
+        })
+        .catch(() => {
+          registerPariticpantAddToEvent();
+        });
     }
-  }, [keycloak])
+    // eslint-disable-next-line
+  }, [keycloak]);
 
   React.useEffect(() => {
     if (profile && profile.primary_email) {
@@ -72,8 +75,8 @@ export default function UserDetail() {
           registerPariticpantAddToEvent();
         });
     }
+    // eslint-disable-next-line
   }, [profile]);
-
 
   //Adding Participant to Event if already Exists
   React.useEffect(() => {
@@ -83,7 +86,7 @@ export default function UserDetail() {
         participant_id: participantId,
         event_id: eventData.event.id,
         notification: true,
-        notification_type: 'confirmation',
+        notification_type: "confirmation",
         registration_date: new Date().toISOString(),
       };
       addPariticpantInEvent(eventBody).then(() => {
@@ -92,18 +95,19 @@ export default function UserDetail() {
         );
       });
     }
-  }, [participantId])
+    // eslint-disable-next-line
+  }, [participantId]);
 
   const registerPariticpantAddToEvent = () => {
-    const data = profile ? { ...profile } : {}
+    const data = profile ? { ...profile } : {};
     const participantdata = {
       keycloak_id: user.keycloak.subject,
       first_language: data.first_language || i18n.language,
       email_language: i18n.language,
       dob: data.date_of_birth
         ? new Date(data.date_of_birth).toISOString()
-        : new Date('1900-01-01').toISOString(),
-      gender: data.gender || 'male',
+        : new Date("1900-01-01").toISOString(),
+      gender: data.gender || "male",
       email: data.primary_email || keycloak.profile.email,
       country: data.country || "NODATA",
       first_name: data.first_name_vernacular || keycloak.profile.firstName,
@@ -117,7 +121,7 @@ export default function UserDetail() {
           participant_id: res.id,
           event_id: eventData.event.id,
           notification: true,
-          notification_type: 'confirmation',
+          notification_type: "confirmation",
           registration_date: new Date().toISOString(),
         };
         addPariticpantInEvent(eventBody).then(() => {
@@ -127,7 +131,7 @@ export default function UserDetail() {
         });
       }
     });
-  }
+  };
 
   const postSuccessPayment = async () => {
     let q = qs.parse(window.location.search);
@@ -135,5 +139,5 @@ export default function UserDetail() {
       await paymentSuccess(q);
     }
   };
-  return <Loader />
+  return <Loader />;
 }
