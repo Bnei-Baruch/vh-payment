@@ -827,7 +827,7 @@ exports.tickets = {
           button_label: "Select this Ticket",
           options: [
             {
-              name: "helphaver",
+              name: "specialoption",
               label: "Help Haver",
               intersticial: {
                 title: "If you need financial help",
@@ -836,7 +836,7 @@ exports.tickets = {
               },
               redirect_url:
                 "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
-              type: "helphaver",
+              type: "specialoption",
               register_status: "hh-request",
             },
           ],
@@ -847,7 +847,7 @@ exports.tickets = {
           button_label: "Elige",
           options: [
             {
-              name: "helphaver",
+              name: "specialoption",
               label: "Help Haver",
               intersticial: {
                 title: "Si necesitas ayuda financiera",
@@ -868,7 +868,7 @@ exports.tickets = {
           button_label: "לבחור",
           options: [
             {
-              name: "helphaver",
+              name: "specialoption",
               label: "הלפ חבר",
               intersticial: {
                 title: "אם נדרשת עזרה כלכלית",
@@ -877,7 +877,7 @@ exports.tickets = {
               },
               redirect_url:
                 "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
-              type: "helphaver",
+              type: "specialoption",
               register_status: "hh-request",
             },
           ],
@@ -895,7 +895,7 @@ exports.tickets = {
                 body: "Руководство Международной академии каббалы приняло решение, что участие в этом конгрессе для товарищей из Украины бесплатно.",
                 button: "Дальше",
               },
-              type: "special",
+              type: "specialoption",
               register_status: "sp-ukraine",
             },
             {
@@ -906,7 +906,7 @@ exports.tickets = {
                 body: "1.  Пройдите регистрацию до конца.  2. Инструкцию для оплаты за участие в конгрессе в размере 800 рублей, мы пришлём Вам позже",
                 button: "Далее",
               },
-              type: "special",
+              type: "specialoption",
               register_status: "sp-russia",
             },
             {

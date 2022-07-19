@@ -11,7 +11,7 @@ import { getParticipantByEmail } from "../../../services/participants.service";
 import styled from "styled-components";
 const Container = styled(Grid)`
   padding: 40px 20px;
-  background: url(/images/illustration.svg);
+  background: url(/pay/images/illustration.svg);
   background-size: cover;
 `;
 export default function HelpHaver() {

@@ -74,7 +74,7 @@ export default function Tickets() {
   const product = useSelector((state) => state.order.ticketProduct);
   const currency = useSelector((state) => state.currency);
   const membershipData = useSelector((state) => state.user.membershipdata);
-
+  const [specialOption, setSpecialOption] = React.useState("helphaver");
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
     // eslint-disable-next-line
@@ -87,6 +87,12 @@ export default function Tickets() {
 
   const navigateToConfirmation = (ticket) => {
     const { name } = ticket;
+    console.log(ticket);
+    const content = ticket.content[i18n.language] || ticket.content.en;
+    const selectedOption = content.options.find(
+      (item) => item.name === specialOption
+    );
+    dispatch(setSpecialSelectedOption(selectedOption));
     if (name === "helphaver") {
       history.push(`/pay/order/ticket/payment/help/${event_slug}`);
     } else if (name === "special") {
