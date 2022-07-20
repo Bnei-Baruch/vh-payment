@@ -4,7 +4,6 @@ import { Button, Grid, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Loader from "../../../components/Loader";
 import styled from "styled-components";
@@ -29,7 +28,7 @@ export default function MembershipIntersticial() {
 
   if (!selectedSpecialOption) return <Loader />;
 
-  const {intersticial} = selectedSpecialOption
+  const { intersticial } = selectedSpecialOption;
 
   return (
     <ContentLayout>
@@ -40,7 +39,9 @@ export default function MembershipIntersticial() {
           </Typography>
           <br />
           <br />
-          <Typography variant="body1">{intersticial.body}</Typography>
+          <Typography variant="body1">
+            <div dangerouslySetInnerHTML={{ __html: intersticial.body }}></div>
+          </Typography>
         </Grid>
         <Grid
           item

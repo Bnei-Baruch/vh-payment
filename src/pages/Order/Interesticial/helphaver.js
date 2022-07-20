@@ -65,11 +65,7 @@ export default function HelpHaver() {
   const confirmNeedsHelpEvent = async () => {
     setSubmitting(true);
     const eventData = getEventsProductBySlug(event_slug);
-    const { type, register_status, redirect_url } = selectedSpecialOption;
-    if (typeof type === "undefined") {
-      window.location.href = window.location.origin + redirect_url;
-      return;
-    }
+    const { type, register_status } = selectedSpecialOption;
     if (type === "helphaver") {
       if (participantId) {
         const data = {
@@ -130,7 +126,9 @@ export default function HelpHaver() {
           </Typography>
           <br />
           <br />
-          <Typography variant="body1">{intersticial.body}</Typography>
+          <Typography variant="body1">
+            <div dangerouslySetInnerHTML={{ __html: intersticial.body }}></div>
+          </Typography>
         </Grid>
         <Grid
           item

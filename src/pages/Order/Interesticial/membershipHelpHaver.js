@@ -185,7 +185,9 @@ export default function MembershipHelphaver() {
           </Typography>
           <br />
           <br />
-          <Typography variant="body1">{intersticial.body}</Typography>
+          <Typography variant="body1">
+            <div dangerouslySetInnerHTML={{ __html: intersticial.body }}></div>
+          </Typography>
         </Grid>
         <Grid
           item

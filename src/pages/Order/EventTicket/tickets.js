@@ -74,7 +74,7 @@ export default function Tickets() {
   const product = useSelector((state) => state.order.ticketProduct);
   const currency = useSelector((state) => state.currency);
   const membershipData = useSelector((state) => state.user.membershipdata);
-  const [specialOption, setSpecialOption] = React.useState("helphaver");
+
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
     // eslint-disable-next-line
@@ -144,10 +144,15 @@ export default function Tickets() {
               ? plan.content[i18n.language]
               : plan.content["en"];
           return (
-            <Grid key={index} item xs={12} md={6}>
+            <Grid
+              key={index}
+              item
+              xs={12}
+              md={membershipData?.membership ? 4 : 6}
+            >
               <TicketCard
                 style={
-                  !isMobile
+                  !isMobile && !membershipData?.membership
                     ? index % 2 === 0
                       ? marginLeftAuto
                       : marginRightAuto
