@@ -87,15 +87,20 @@ export default function Tickets() {
 
   const navigateToConfirmation = (ticket) => {
     const { name } = ticket;
-    console.log(ticket);
-    const content = ticket.content[i18n.language] || ticket.content.en;
-    const selectedOption = content.options.find(
-      (item) => item.name === specialOption
-    );
-    dispatch(setSpecialSelectedOption(selectedOption));
+
     if (name === "helphaver") {
+      const content = ticket.content[i18n.language] || ticket.content.en;
+      const selectedOption = content.options.find(
+        (item) => item.name === "helphaver"
+      );
+      dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/help/${event_slug}`);
     } else if (name === "special") {
+      const content = ticket.content[i18n.language] || ticket.content.en;
+      const selectedOption = content.options.find(
+        (item) => item.name === "specialoption"
+      );
+      dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/special/${event_slug}`);
     } else if (name === "membership" && membershipData?.membership !== true) {
       const selectedOption = ticket.content[i18n.language] || ticket.content.en;

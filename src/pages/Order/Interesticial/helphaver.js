@@ -61,6 +61,7 @@ export default function HelpHaver() {
     }
     // eslint-disable-next-line
   }, [userProfileData]);
+
   const confirmNeedsHelpEvent = async () => {
     setSubmitting(true);
     const eventData = getEventsProductBySlug(event_slug);

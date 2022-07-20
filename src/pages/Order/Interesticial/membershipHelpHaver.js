@@ -23,7 +23,7 @@ const Container = styled(Grid)`
   background: url(/pay/images/illustration.svg);
   background-size: cover;
 `;
-export default function HelpHaver() {
+export default function MembershipHelphaver() {
   const history = useHistory();
   const { event_slug } = useParams();
   const { t, i18n } = useTranslation();
