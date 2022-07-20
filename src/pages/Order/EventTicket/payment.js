@@ -204,7 +204,25 @@ export default function Payment() {
   let { content } = product;
   let event = content[i18n.language] ? content[i18n.language] : content.en;
 
-  let paymentOption = selectedTicket.payment_options;
+  let paymentOption = [
+    {
+      name: "pelecard",
+      content: {
+        en: {
+          label: "Credit/Debit Card",
+        },
+        ru: {
+          label: "Кредитная / дебетовая карта",
+        },
+        es: {
+          label: "Tarjeta de crédito / débito",
+        },
+        he: {
+          label: "כרטיס אשראי/כרטיס חיוב",
+        },
+      },
+    },
+  ];
   const ticketContent =
     selectedTicket && selectedTicket.content[i18n.language]
       ? selectedTicket.content[i18n.language]

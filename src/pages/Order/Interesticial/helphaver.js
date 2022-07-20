@@ -18,7 +18,7 @@ import Loader from "../../../components/Loader";
 import styled from "styled-components";
 const Container = styled(Grid)`
   padding: 40px 20px;
-  background: url(/images/illustration.svg);
+  background: url(/pay/images/illustration.svg);
   background-size: cover;
 `;
 export default function HelpHaver() {
@@ -61,14 +61,11 @@ export default function HelpHaver() {
     }
     // eslint-disable-next-line
   }, [userProfileData]);
+
   const confirmNeedsHelpEvent = async () => {
     setSubmitting(true);
     const eventData = getEventsProductBySlug(event_slug);
-    const { type, register_status, redirect_url } = selectedSpecialOption;
-    if (typeof type === "undefined") {
-      window.location.href = window.location.origin + redirect_url;
-      return;
-    }
+    const { type, register_status } = selectedSpecialOption;
     if (type === "helphaver") {
       if (participantId) {
         const data = {
@@ -129,7 +126,9 @@ export default function HelpHaver() {
           </Typography>
           <br />
           <br />
-          <Typography variant="body1">{intersticial.body}</Typography>
+          <Typography variant="body1">
+            <div dangerouslySetInnerHTML={{ __html: intersticial.body }}></div>
+          </Typography>
         </Grid>
         <Grid
           item

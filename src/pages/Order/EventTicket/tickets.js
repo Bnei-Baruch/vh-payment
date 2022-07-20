@@ -87,9 +87,20 @@ export default function Tickets() {
 
   const navigateToConfirmation = (ticket) => {
     const { name } = ticket;
+
     if (name === "helphaver") {
+      const content = ticket.content[i18n.language] || ticket.content.en;
+      const selectedOption = content.options.find(
+        (item) => item.name === "helphaver"
+      );
+      dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/help/${event_slug}`);
     } else if (name === "special") {
+      const content = ticket.content[i18n.language] || ticket.content.en;
+      const selectedOption = content.options.find(
+        (item) => item.name === "specialoption"
+      );
+      dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/special/${event_slug}`);
     } else if (name === "membership" && membershipData?.membership !== true) {
       const selectedOption = ticket.content[i18n.language] || ticket.content.en;
@@ -133,10 +144,15 @@ export default function Tickets() {
               ? plan.content[i18n.language]
               : plan.content["en"];
           return (
-            <Grid key={index} item xs={12} md={6}>
+            <Grid
+              key={index}
+              item
+              xs={12}
+              md={membershipData?.membership ? 4 : 6}
+            >
               <TicketCard
                 style={
-                  !isMobile
+                  !isMobile && !membershipData?.membership
                     ? index % 2 === 0
                       ? marginLeftAuto
                       : marginRightAuto

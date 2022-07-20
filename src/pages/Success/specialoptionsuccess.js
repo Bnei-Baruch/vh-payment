@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
   header: {
@@ -40,9 +41,13 @@ const useStyles = makeStyles({
 const SpecialOptionSuccess = () => {
   const classes = useStyles();
   const { t } = useTranslation();
-
-  const user = useSelector((state) => state.user);
+  const { option } = useParams();
   const [loading, setLoading] = useState(false);
+
+  const selectedSpecialOption = useSelector(
+    (state) => state.order.specialSelectedOption
+  );
+  const user = useSelector((state) => state.user);
 
   /**
    * This Useeffect sends the payments detail
@@ -77,9 +82,20 @@ const SpecialOptionSuccess = () => {
               variant="contained"
               color="primary"
               style={{ marginTop: 20 }}
+              onClick={() => {
+                if (option === "ukraine") {
+                  window.location.href = "https://www.google.com/";
+                } else {
+                  window.open(selectedSpecialOption.payment_url);
+                }
+              }}
             >
-              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
-              {t("order.back_to_event")}
+              {option === "ukraine" && (
+                <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+              )}{" "}
+              {option === "ukraine"
+                ? t("order.back_to_event")
+                : t("common.buy_ticket")}
             </Button>
           </Box>
         </CardContent>

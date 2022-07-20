@@ -24,6 +24,7 @@ const Auth = () => {
 
   const fetchUserDetails = async (keycloak) => {
     const membership = await getMembershipStatus(keycloak.profile.email);
+    // membership.membership = true;
     dispatch(setMembershipData(membership));
     const userProfileData = await getUserProfileData(keycloak.subject);
     dispatch(setUserProfileData(userProfileData));
