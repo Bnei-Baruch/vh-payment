@@ -7,27 +7,51 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { getParticipantByEmail } from "../../../services/participants.service";
+import {
+  addAParticipant,
+  getParticipantByEmail,
+} from "../../../services/participants.service";
 import styled from "styled-components";
+import Loader from "../../../components/Loader";
+import { getProfile } from "../../../services/userservice";
+import { addPariticpantInEvent } from "../../../services/event.service";
+import { getEventsProductBySlug } from "../../../services/productservice";
 const Container = styled(Grid)`
   padding: 40px 20px;
-  background: url(/images/illustration.svg);
+  background: url(/pay/images/illustration.svg);
   background-size: cover;
 `;
 export default function HelpHaver() {
   const history = useHistory();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { event_slug, option } = useParams();
+  const user = useSelector((state) => state.user);
+  const [profileData, setUserProfileData] = React.useState(null);
+  const [participantId, setParticipantId] = React.useState(undefined);
+  const selectedSpecialOption = useSelector(
+    (state) => state.order.specialSelectedOption
+  );
 
   const userProfileData = useSelector((state) => state.user.profileData);
+
+  const getUserProfileData = async () => {
+    if (user && user.keycloak && user.keycloak.subject) {
+      const userProfileData = await getProfile(user.keycloak.subject);
+      setUserProfileData(userProfileData);
+    }
+  };
+
+  React.useEffect(() => {
+    getUserProfileData();
+    // eslint-disable-next-line
+  }, []);
 
   const getPariticpantDetail = () => {
     getParticipantByEmail(userProfileData.primary_email)
       .then((res) => {
         if (res) {
           const { id } = res;
-          console.log(id);
-          //setParticipantId(id);
+          setParticipantId(id);
         }
       })
       .catch((ex) => {
@@ -46,24 +70,72 @@ export default function HelpHaver() {
   };
 
   const goToSuccess = () => {
-    //TODO: Save the participant in the event
-    history.push(
-      `/pay/order/ticket/payment/special/${event_slug}/${option}/success`
-    );
+    const eventData = getEventsProductBySlug(event_slug);
+    let { register_status } = selectedSpecialOption;
+    register_status = register_status[option];
+    if (participantId) {
+      const data = {
+        participation_option: register_status,
+        participant_id: participantId,
+        event_id: eventData.event.id,
+        registration_date: new Date().toISOString(),
+      };
+      addPariticpantInEvent(data).then(() => {
+        history.push(
+          `/pay/order/ticket/payment/special/${event_slug}/${option}/success`
+        );
+      });
+    } else {
+      //SetUpdatedObject
+      const data = {
+        keycloak_id: user.keycloak.subject,
+        first_language: profileData.first_language,
+        email_language: i18n.language,
+        dob: profileData.date_of_birth
+          ? new Date(profileData.date_of_birth).toISOString()
+          : new Date().toISOString(),
+        gender: profileData.gender,
+        email: profileData.primary_email,
+        country: profileData.country,
+        first_name: profileData.first_name_vernacular,
+        last_name: profileData.last_name_vernacular,
+      };
+      addAParticipant(data).then((res) => {
+        if (res) {
+          setParticipantId(res.id);
+          const data = {
+            //Should be the option of the user pariticpant.
+            participation_option: register_status,
+            participant_id: res.id,
+            event_id: eventData.event.id,
+            registration_date: new Date().toISOString(),
+          };
+          addPariticpantInEvent(data).then(() => {
+            history.push(
+              `/pay/order/ticket/payment/special/${event_slug}/${option}/success`
+            );
+          });
+        }
+      });
+    }
   };
+
+  if (!selectedSpecialOption) return <Loader />;
+
+  const intersticial =
+    selectedSpecialOption.intersticial[option] ||
+    selectedSpecialOption.intersticial["ukraine"];
   return (
     <ContentLayout>
       <Container container spacing={6}>
         <Grid item xs={12}>
           <Typography variant="h1" style={{ fontWeight: "normal" }}>
-            {t("specialOption.titleIntersectial")} {option}
+            {intersticial.title}
           </Typography>
           <br />
           <br />
           <Typography variant="body1">
-            {option === "ukraine"
-              ? t("specialOption.descriptionIntersectialUkraine")
-              : t("specialOption.descriptionIntersectialRussia")}
+            <div dangerouslySetInnerHTML={{ __html: intersticial.body }}></div>
           </Typography>
         </Grid>
         <Grid
@@ -80,7 +152,7 @@ export default function HelpHaver() {
             {t("common.back")}
           </Button>
           <Button variant="contained" color="primary" onClick={goToSuccess}>
-            {t("common.next")} &nbsp;{" "}
+            {t("common.register")} &nbsp;{" "}
             <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
           </Button>
         </Grid>

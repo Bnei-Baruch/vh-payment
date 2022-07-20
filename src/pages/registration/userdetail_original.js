@@ -195,11 +195,7 @@ export default function UserDetail() {
       saveProfileAndRedirect();
     }
   };
-  if (profile) {
-    console.log(typeof profile.study_start_year === "number");
-    console.log(typeof profile.study_start_year);
-    console.log(new Date(profile.study_start_year));
-  }
+
   return (
     <form onSubmit={profileSubmit}>
       <Grid container spacing={6}>

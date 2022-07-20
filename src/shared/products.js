@@ -605,28 +605,6 @@ exports.tickets = {
           button_label: "Выбрать",
         },
       },
-      flow: {
-        type: "checkout",
-      },
-      payment_options: [
-        {
-          name: "pelecard",
-          content: {
-            en: {
-              label: "Credit/Debit Card",
-            },
-            ru: {
-              label: "Кредитная / дебетовая карта",
-            },
-            es: {
-              label: "Tarjeta de crédito / débito",
-            },
-            he: {
-              label: "כרטיס אשראי/כרטיס חיוב",
-            },
-          },
-        },
-      ],
       name: "regular",
       membership: false,
       order: 1,
@@ -771,28 +749,6 @@ exports.tickets = {
           button_label: "Выбрать",
         },
       },
-      flow: {
-        type: "checkout",
-      },
-      payment_options: [
-        {
-          name: "pelecard",
-          content: {
-            en: {
-              label: "Credit/Debit Card",
-            },
-            es: {
-              label: "Tarjeta de crédito / débito",
-            },
-            he: {
-              label: "כרטיס אשראי/כרטיס חיוב",
-            },
-            ru: {
-              label: "Кредитная / дебетовая карта",
-            },
-          },
-        },
-      ],
       name: "regular",
       membership: true,
       order: 1,
@@ -827,100 +783,115 @@ exports.tickets = {
           button_label: "Select this Ticket",
           options: [
             {
-              name: "helphaver",
-              label: "Help Haver",
+              name: "specialoption",
+              label: "Special Option",
               intersticial: {
-                title: "If you need financial help",
-                body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
-                button: "Next",
+                ukraine: {
+                  title: "For our friends from Ukraine",
+                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                },
+                russia: {
+                  title: "For our friends from Russia",
+                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                },
               },
-              redirect_url:
-                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
-              type: "helphaver",
-              register_status: "hh-request",
+              type: "specialoption",
+              payment_url: "/dash/membership",
+              register_status: {
+                ukraine: "sp-ukraine",
+                russia: "sp-russia",
+              },
             },
           ],
         },
         es: {
           name: "Ayuda financiera",
-          description: [],
+          description: [
+            "If you live in Ukraine. (The ticket will be free for you).",
+            "If you live in Russia. (We have a special options for you).",
+          ],
           button_label: "Elige",
           options: [
             {
-              name: "helphaver",
-              label: "Help Haver",
+              name: "specialoption",
+              label: "Special Option",
               intersticial: {
-                title: "Si necesitas ayuda financiera",
-                body: "Si necesitas ayuda para cubrir el costo de la participación en el congreso, por favor aplica al fondo de Help Haver. Tu boleto será creado pero los detalles del pago dependerán de la respuesta de Help Haver.",
-                button: "Próximo",
+                ukraine: {
+                  title: "For our friends from Ukraine",
+                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                },
+                russia: {
+                  title: "For our friends from Russia",
+                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                },
               },
-              redirect_url:
-                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
-              type: "helphaver",
-              register_status: "hh-request",
+              type: "specialoption",
+              payment_url: "/dash/membership",
+              register_status: {
+                ukraine: "sp-ukraine",
+                russia: "sp-russia",
+              },
             },
           ],
         },
 
         he: {
           name: "עזרה כלכלית",
-          description: [],
+          description: [
+            "If you live in Ukraine. (The ticket will be free for you).",
+            "If you live in Russia. (We have a special options for you).",
+          ],
           button_label: "לבחור",
           options: [
             {
-              name: "helphaver",
-              label: "הלפ חבר",
+              name: "specialoption",
+              label: "Special Option",
               intersticial: {
-                title: "אם נדרשת עזרה כלכלית",
-                body: "אם נדרשת עזרה לכסות את עלות ההשתתפות של הכנס, נא לפנות לקרן הלפ חבר. הכרטיס שלך יווצר אבל פרטי התשלום יהיו תלויים בתשובה של הלפ חבר.",
-                button: "הבא",
+                ukraine: {
+                  title: "For our friends from Ukraine",
+                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                },
+                russia: {
+                  title: "For our friends from Russia",
+                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                },
               },
-              redirect_url:
-                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
-              type: "helphaver",
-              register_status: "hh-request",
+              type: "specialoption",
+              payment_url: "/dash/membership",
+              register_status: {
+                ukraine: "sp-ukraine",
+                russia: "sp-russia",
+              },
             },
           ],
         },
         ru: {
           name: "Для особых случаев",
-          description: [],
+          description: [
+            "If you live in Ukraine. (The ticket will be free for you).",
+            "If you live in Russia. (We have a special options for you).",
+          ],
           button_label: "Выбрать",
           options: [
             {
-              label: "Я из Украины",
-              name: "ukraine",
+              name: "specialoption",
+              label: "Special Option",
               intersticial: {
-                title: "Для наших товарищей из Украины",
-                body: "Руководство Международной академии каббалы приняло решение, что участие в этом конгрессе для товарищей из Украины бесплатно.",
-                button: "Дальше",
+                ukraine: {
+                  title: "For our friends from Ukraine",
+                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                },
+                russia: {
+                  title: "For our friends from Russia",
+                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                },
               },
-              type: "special",
-              register_status: "sp-ukraine",
-            },
-            {
-              label: "Я из России",
-              name: "russia",
-              intersticial: {
-                title: "Для наших товарищей из России",
-                body: "1.  Пройдите регистрацию до конца.  2. Инструкцию для оплаты за участие в конгрессе в размере 800 рублей, мы пришлём Вам позже",
-                button: "Далее",
+              type: "specialoption",
+              payment_url: "/dash/membership",
+              register_status: {
+                ukraine: "sp-ukraine",
+                russia: "sp-russia",
               },
-              type: "special",
-              register_status: "sp-russia",
-            },
-            {
-              label: "Финансовая помощь",
-              name: "helphaver",
-              intersticial: {
-                title: "Если Вы не можете оплатить участие",
-                body: "Если вам нужна помощь, чтобы оплатить участие в конгрессе: 1. Завершите регистрацию. 2. Пожалуйста обратитесь в фонд Help Haver.",
-                button: "Далее",
-              },
-              redirect_url:
-                "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
-              type: "helphaver",
-              register_status: "hh-request",
             },
           ],
         },
@@ -930,6 +901,156 @@ exports.tickets = {
       },
       name: "special",
       membership: false,
+      order: 3,
+      price: {
+        usd: {
+          amount: 30,
+        },
+        nis: {
+          amount: 100,
+        },
+        eur: {
+          amount: 25,
+        },
+      },
+      product: {
+        SKU: "40033",
+        reference: "Convention",
+        type: "regular",
+        productType: "t-0522-02-sp",
+        recurringFreq: 0,
+        organization: "ben2",
+      },
+    },
+    {
+      content: {
+        en: {
+          name: "Special Options",
+          description: [
+            "If you live in Ukraine. (The ticket will be free for you).",
+            "If you live in Russia. (We have a special options for you).",
+          ],
+          button_label: "Select this Ticket",
+          options: [
+            {
+              name: "specialoption",
+              label: "Special Option",
+              intersticial: {
+                ukraine: {
+                  title: "For our friends from Ukraine",
+                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                },
+                russia: {
+                  title: "For our friends from Russia",
+                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                },
+              },
+              type: "specialoption",
+              payment_url: "/dash/membership",
+              register_status: {
+                ukraine: "sp-ukraine",
+                russia: "sp-russia",
+              },
+            },
+          ],
+        },
+        es: {
+          name: "Ayuda financiera",
+          description: [
+            "If you live in Ukraine. (The ticket will be free for you).",
+            "If you live in Russia. (We have a special options for you).",
+          ],
+          button_label: "Elige",
+          options: [
+            {
+              name: "specialoption",
+              label: "Special Option",
+              intersticial: {
+                ukraine: {
+                  title: "For our friends from Ukraine",
+                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                },
+                russia: {
+                  title: "For our friends from Russia",
+                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                },
+              },
+              type: "specialoption",
+              payment_url: "/dash/membership",
+              register_status: {
+                ukraine: "sp-ukraine",
+                russia: "sp-russia",
+              },
+            },
+          ],
+        },
+
+        he: {
+          name: "עזרה כלכלית",
+          description: [
+            "If you live in Ukraine. (The ticket will be free for you).",
+            "If you live in Russia. (We have a special options for you).",
+          ],
+          button_label: "לבחור",
+          options: [
+            {
+              name: "specialoption",
+              label: "Special Option",
+              intersticial: {
+                ukraine: {
+                  title: "For our friends from Ukraine",
+                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                },
+                russia: {
+                  title: "For our friends from Russia",
+                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                },
+              },
+              type: "specialoption",
+              payment_url: "/dash/membership",
+              register_status: {
+                ukraine: "sp-ukraine",
+                russia: "sp-russia",
+              },
+            },
+          ],
+        },
+        ru: {
+          name: "Для особых случаев",
+          description: [
+            "If you live in Ukraine. (The ticket will be free for you).",
+            "If you live in Russia. (We have a special options for you).",
+          ],
+          button_label: "Выбрать",
+          options: [
+            {
+              name: "specialoption",
+              label: "Special Option",
+              intersticial: {
+                ukraine: {
+                  title: "For our friends from Ukraine",
+                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                },
+                russia: {
+                  title: "For our friends from Russia",
+                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                },
+              },
+              type: "specialoption",
+              payment_url: "/dash/membership",
+              register_status: {
+                ukraine: "sp-ukraine",
+                russia: "sp-russia",
+              },
+            },
+          ],
+        },
+      },
+      flow: {
+        type: "options",
+      },
+      name: "special",
+      membership: true,
       order: 3,
       price: {
         usd: {
@@ -1064,24 +1185,25 @@ exports.tickets = {
       flow: {
         type: "options",
       },
-      name: "special",
+      name: "helphaver",
       membership: true,
       order: 2,
+      isFree: true,
       price: {
         usd: {
-          amount: 0,
+          amount: 10,
         },
         nis: {
-          amount: 0,
+          amount: 35,
         },
         eur: {
-          amount: 0,
+          amount: 9,
         },
       },
       product: {
         SKU: "40033",
         reference: "Convention",
-        type: "helphaver",
+        type: "regular",
         productType: "t-0522-03-sp",
         recurringFreq: 0,
         organization: "ben2",

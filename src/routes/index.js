@@ -13,11 +13,12 @@ import Membership from "../pages/Order/Membership/Membership";
 import MembershipPayment from "../pages/Order/Membership/MembershipPayment";
 import SuccessMembership from "../pages/Order/Membership/SuccessMembership";
 import HelpHaverSuccess from "../pages/Success/helphaversuccess";
-import Intersticial from "../pages/Order/Interesticial/Intersticial";
+import MembershipIntersticial from "../pages/Order/Interesticial/membershipIntersticial";
 import HelpHaver from "../pages/Order/Interesticial/helphaver";
 import SpecialOption from "../pages/Order/SpecialOption/SpecialOption";
 import SpecialOptionInterestical from "../pages/Order/Interesticial/specialoption";
 import SpecialOptionSuccess from "../pages/Success/specialoptionsuccess";
+import MembershipHelphaver from "../pages/Order/Interesticial/membershipHelpHaver";
 
 const Routes = () => (
   <Router>
@@ -43,12 +44,12 @@ const Routes = () => (
       <Route
         exact
         from="/pay/order/ticket/payment/intersticial/:event_slug"
-        component={Intersticial}
+        component={MembershipHelphaver}
       />
       <Route
         exact
         from="/pay/order/ticket/payment/membership/:event_slug"
-        component={Intersticial}
+        component={MembershipIntersticial}
       />
       <Route
         exact

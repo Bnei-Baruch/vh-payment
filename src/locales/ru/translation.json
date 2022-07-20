@@ -63,6 +63,8 @@
     "step": "Шаг",
     "amount": "Сумма",
     "ok": "OK",
+    "register": "Register",
+    "buy_ticket": "Buy ticket",
     "paymentMethod": "Способ оплаты",
     "registration": "Регистрация",
     "select_option": "Выбрать",

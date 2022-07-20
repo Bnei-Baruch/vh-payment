@@ -64,6 +64,8 @@
     "step": "Step",
     "amount": "Amount",
     "ok": "Ok",
+    "register": "Register",
+    "buy_ticket": "Buy ticket",
     "paymentMethod": "Payment Method",
     "registration": "Registration",
     "select_option": "Select Option",

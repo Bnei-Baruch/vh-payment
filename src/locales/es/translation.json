@@ -63,6 +63,8 @@
     "step": "Paso",
     "amount": "Monto",
     "ok": "Ok",
+    "register": "Register",
+    "buy_ticket": "Buy ticket",
     "paymentMethod": "Método de pago",
     "registration": "Registro",
     "select_option": "Elige",

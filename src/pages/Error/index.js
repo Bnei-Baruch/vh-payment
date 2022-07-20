@@ -52,15 +52,6 @@ const Error = () => {
       setErrorMesg(q.error);
     }
 
-    // TODO: create backend for this
-    // axios.post( window.APP_CONFIG.VH_ORDER, errinfo)
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-
     setTimeout(() => {
       setLoading(false);
     }, 1000);
