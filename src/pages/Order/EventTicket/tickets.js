@@ -167,22 +167,32 @@ export default function Tickets() {
                 <CenterText variant="h2">
                   <Price>
                     {plan.isFree
-                      ? "For Free"
-                      : currency.sign + " " + plan.price[currency.id].amount}
+                      ? t("help.financial_help")
+                      : `${
+                          plan.name === "special" ? currency.sign + " 0 - " : ""
+                        }` +
+                        currency.sign +
+                        " " +
+                        plan.price[currency.id].amount}
                   </Price>
                 </CenterText>
                 <Grid>
                   {planContent &&
-                    planContent.description &&
-                    planContent.description.length > 0 && (
-                      <ul>
-                        {planContent.description.map((item, index) => (
-                          <li key={index}>
-                            <Typography variant="body1">{item}</Typography>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                  planContent.description &&
+                  planContent.description.length > 0 &&
+                  planContent.description.length > 1 ? (
+                    <ul>
+                      {planContent.description.map((item, index) => (
+                        <li key={index}>
+                          <Typography variant="body1">{item}</Typography>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div style={{ textAlign: "center", margin: "35px 0px" }}>
+                      {planContent.description.join("\n")}
+                    </div>
+                  )}
                 </Grid>
                 {/* <Grid>
                     {planContent.options && (
