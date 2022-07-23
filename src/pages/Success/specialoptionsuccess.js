@@ -83,8 +83,9 @@ const SpecialOptionSuccess = () => {
               color="primary"
               style={{ marginTop: 20 }}
               onClick={() => {
-                if (option === "ukraine") {
-                  window.location.href = "https://www.google.com/";
+                if (option !== "ukraine") {
+                  window.location.href =
+                    window.location.origin + "/dash/events";
                 } else {
                   window.open(selectedSpecialOption.payment_url);
                 }

@@ -541,28 +541,28 @@ exports.tickets = {
   name: "maytickets",
   content: {
     en: {
-      title: "Only the friends",
-      subtitle: "29.4 – 1.5 2022",
+      title: "World Kabbalah Convention",
+      subtitle: "August 27-28 2022",
       action: "Select the type of ticket",
     },
     he: {
-      title: "רק החברים",
-      subtitle: "29.04-01.05.2022",
+      title: "World Kabbalah Convention",
+      subtitle: "August 27-28 2022",
       action: "נא לבחור כרטיס",
     },
     ru: {
-      title: "Только с товарищами",
-      subtitle: "29.04-01.05.2022",
+      title: "World Kabbalah Convention",
+      subtitle: "August 27-28 2022",
       action: "Пожалуйста, выберите вариант оплаты",
     },
     es: {
-      title: "Solo los amigos",
-      subtitle: "29.04-01.05.2022",
+      title: "World Kabbalah Convention",
+      subtitle: "August 27-28 2022",
       action: "Select the type of ticket",
     },
   },
   event: {
-    slug: "may2022",
+    slug: "aug2022",
     id: 1,
   },
   plans: [
@@ -571,37 +571,23 @@ exports.tickets = {
         en: {
           name: "Regular Ticket",
           description: [
-            "You get a ticket only this event.",
-            "You don't need a membership for this option.",
-            "You will still have a video recording of the event.",
+            "This is the standard price to participate in this event",
           ],
           button_label: "Select this Ticket",
         },
         he: {
           name: "כרטיס רגיל",
-          description: [
-            "You get a ticket only this event.",
-            "You don't need a membership for this option.",
-            "You will still have a video recording of the event.",
-          ],
+          description: [""],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto común",
-          description: [
-            "You get a ticket only this event.",
-            "You don't need a membership for this option.",
-            "You will still have a video recording of the event.",
-          ],
+          description: [""],
           button_label: "elige",
         },
         ru: {
           name: "Для новых участников",
-          description: [
-            "You get a ticket only this event.",
-            "You don't need a membership for this option.",
-            "You will still have a video recording of the event.",
-          ],
+          description: [""],
           button_label: "Выбрать",
         },
       },
@@ -633,11 +619,9 @@ exports.tickets = {
         en: {
           name: "Membership Ticket",
           description: [
-            "You get a ticket to this event at a special price.",
-            "You are a member of the community.",
-            "You will still have a video recording of the event.",
+            "In order to choose this ticket you will to activate your membership first",
           ],
-          button_label: "Select this Ticket",
+          button_label: "Activate Membership",
           intersticial: {
             title: "Membership Ticket",
             body: "Membership Ticket are discounted ticket for people who pay a monthly membership. In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
@@ -648,11 +632,9 @@ exports.tickets = {
         ru: {
           name: "Для постоянных участников сообщества",
           description: [
-            "You get a ticket to this event at a special price.",
-            "You are a member of the community.",
-            "You will still have a video recording of the event.",
+            "In order to choose this ticket you will to activate your membership first",
           ],
-          button_label: "Выбрать",
+          button_label: "Activate Membership",
           intersticial: {
             title: "Для новых участников сообщества",
             body: "Вы можете зарегистрироваться на конгресс со скидкой, став постоянным участником сообщества.  Для этого подключительсь к ежемесячной абонентской плате, и вернитесь к регистрации на конгресс",
@@ -663,11 +645,9 @@ exports.tickets = {
         es: {
           name: "Boleto de membresía",
           description: [
-            "You get a ticket to this event at a special price.",
-            "You are a member of the community.",
-            "You will still have a video recording of the event.",
+            "In order to choose this ticket you will to activate your membership first",
           ],
-          button_label: "Elige",
+          button_label: "Activate Membership",
           intersticial: {
             title: "Boleto de membresía",
             body: "Los boletos de membresía son descontados para personas que pagan la membresía mensual. Con el fin de ser elegible para esta opción, primero debes obtener la membresîa, y luego volver para registrarte.",
@@ -678,11 +658,9 @@ exports.tickets = {
         he: {
           name: "כרטיס חבר",
           description: [
-            "You get a ticket to this event at a special price.",
-            "You are a member of the community.",
-            "You will still have a video recording of the event.",
+            "In order to choose this ticket you will to activate your membership first",
           ],
-          button_label: "לבחור",
+          button_label: "Activate Membership",
           intersticial: {
             title: "כרטיס חבר",
             body: "כרטיס חבר הוא כרטיס מוזל עבור אנשים שמשלמים דמי מנוי חודשיים. כדי להיות זכאי לאפשרות זו, עליך לסדר קודם את דמי המנוי שלך, ואז לחזור ולהירשם לאחר שזה מסודר.",
@@ -714,29 +692,17 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: [
-            "You get a ticket only this event.",
-            "You don't need a membership for this option.",
-            "You will still have a video recording of the event.",
-          ],
+          description: [""],
           button_label: "Select this Ticket",
         },
         he: {
           name: "כרטיס חבר",
-          description: [
-            "You get a ticket only this event.",
-            "You don't need a membership for this option.",
-            "You will still have a video recording of the event.",
-          ],
+          description: [""],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto de membresía",
-          description: [
-            "You get a ticket only this event.",
-            "You don't need a membership for this option.",
-            "You will still have a video recording of the event.",
-          ],
+          description: [""],
           button_label: "Elige",
         },
         ru: {
@@ -776,11 +742,8 @@ exports.tickets = {
       content: {
         en: {
           name: "Special Options",
-          description: [
-            "If you live in Ukraine. (The ticket will be free for you).",
-            "If you live in Russia. (We have a special options for you).",
-          ],
-          button_label: "Select this Ticket",
+          description: ["If you live in Ukraine.", "If you live in Russia."],
+          button_label: "Choose an option",
           options: [
             {
               name: "specialoption",
@@ -792,11 +755,11 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles.",
                 },
               },
               type: "specialoption",
-              payment_url: "/dash/membership",
+              payment_url: "https://clck.ru/gBFzz",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -806,11 +769,8 @@ exports.tickets = {
         },
         es: {
           name: "Ayuda financiera",
-          description: [
-            "If you live in Ukraine. (The ticket will be free for you).",
-            "If you live in Russia. (We have a special options for you).",
-          ],
-          button_label: "Elige",
+          description: ["If you live in Ukraine.", "If you live in Russia."],
+          button_label: "Choose an option",
           options: [
             {
               name: "specialoption",
@@ -822,11 +782,11 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
                 },
               },
               type: "specialoption",
-              payment_url: "/dash/membership",
+              payment_url: "https://clck.ru/gBFzz",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -837,11 +797,8 @@ exports.tickets = {
 
         he: {
           name: "עזרה כלכלית",
-          description: [
-            "If you live in Ukraine. (The ticket will be free for you).",
-            "If you live in Russia. (We have a special options for you).",
-          ],
-          button_label: "לבחור",
+          description: ["If you live in Ukraine.", "If you live in Russia."],
+          button_label: "Choose an option",
           options: [
             {
               name: "specialoption",
@@ -853,11 +810,11 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
                 },
               },
               type: "specialoption",
-              payment_url: "/dash/membership",
+              payment_url: "https://clck.ru/gBFzz",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -867,11 +824,8 @@ exports.tickets = {
         },
         ru: {
           name: "Для особых случаев",
-          description: [
-            "If you live in Ukraine. (The ticket will be free for you).",
-            "If you live in Russia. (We have a special options for you).",
-          ],
-          button_label: "Выбрать",
+          description: ["If you live in Ukraine.", "If you live in Russia."],
+          button_label: "Choose an option",
           options: [
             {
               name: "specialoption",
@@ -883,11 +837,11 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles.",
                 },
               },
               type: "specialoption",
-              payment_url: "/dash/membership",
+              payment_url: "https://clck.ru/gBFzz",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -926,11 +880,8 @@ exports.tickets = {
       content: {
         en: {
           name: "Special Options",
-          description: [
-            "If you live in Ukraine. (The ticket will be free for you).",
-            "If you live in Russia. (We have a special options for you).",
-          ],
-          button_label: "Select this Ticket",
+          description: ["If you live in Ukraine.", "If you live in Russia."],
+          button_label: "Choose an option",
           options: [
             {
               name: "specialoption",
@@ -942,11 +893,11 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
                 },
               },
               type: "specialoption",
-              payment_url: "/dash/membership",
+              payment_url: "https://clck.ru/gBFzz",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -956,11 +907,8 @@ exports.tickets = {
         },
         es: {
           name: "Ayuda financiera",
-          description: [
-            "If you live in Ukraine. (The ticket will be free for you).",
-            "If you live in Russia. (We have a special options for you).",
-          ],
-          button_label: "Elige",
+          description: ["If you live in Ukraine.", "If you live in Russia."],
+          button_label: "Choose an option",
           options: [
             {
               name: "specialoption",
@@ -972,11 +920,11 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
                 },
               },
               type: "specialoption",
-              payment_url: "/dash/membership",
+              payment_url: "https://clck.ru/gBFzz",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -987,11 +935,8 @@ exports.tickets = {
 
         he: {
           name: "עזרה כלכלית",
-          description: [
-            "If you live in Ukraine. (The ticket will be free for you).",
-            "If you live in Russia. (We have a special options for you).",
-          ],
-          button_label: "לבחור",
+          description: ["If you live in Ukraine.", "If you live in Russia."],
+          button_label: "Choose an option",
           options: [
             {
               name: "specialoption",
@@ -1003,11 +948,11 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
                 },
               },
               type: "specialoption",
-              payment_url: "/dash/membership",
+              payment_url: "https://clck.ru/gBFzz",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -1017,11 +962,8 @@ exports.tickets = {
         },
         ru: {
           name: "Для особых случаев",
-          description: [
-            "If you live in Ukraine. (The ticket will be free for you).",
-            "If you live in Russia. (We have a special options for you).",
-          ],
-          button_label: "Выбрать",
+          description: ["If you live in Ukraine.", "If you live in Russia."],
+          button_label: "Choose an option",
           options: [
             {
               name: "specialoption",
@@ -1037,7 +979,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "/dash/membership",
+              payment_url: "https://clck.ru/gBFzz",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -1077,18 +1019,16 @@ exports.tickets = {
         en: {
           name: "Help Haver",
           description: [
-            "We want this service to be available to each of us.",
-            "If you are in a difficult financial situation.",
-            "We are ready to allow you to get a ticket for free.",
+            "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help",
           ],
-          button_label: "Select this Ticket",
+          button_label: "Apply for Help",
           options: [
             {
               name: "helphaver",
               label: "Help Haver",
               intersticial: {
-                title: "If you need financial help",
-                body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
+                title: "Help Haver for the Convention",
+                body: "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
                 button: "Next",
               },
               redirect_url:
@@ -1214,18 +1154,16 @@ exports.tickets = {
         en: {
           name: "Help Haver",
           description: [
-            "We want this service to be available to each of us.",
-            "If you are in a difficult financial situation.",
-            "We are ready to allow you to get a ticket for free.",
+            "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help",
           ],
-          button_label: "Select this Ticket",
+          button_label: "Apply for Help",
           options: [
             {
               name: "helphaver",
               label: "Help Haver",
               intersticial: {
-                title: "If you need financial help",
-                body: "If you need help to cover the cost of the participation to the convention, please apply to the Help Haver Fund. Your ticket will be created but payment details will depend on the answer from Help Haver.",
+                title: "Help Haver for the Convention",
+                body: "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
                 button: "Next",
               },
               redirect_url:
