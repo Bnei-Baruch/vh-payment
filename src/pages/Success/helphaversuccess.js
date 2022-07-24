@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
 import { useSelector } from "react-redux";
-
+import SuccessImage from "../../images/success.svg";
 const useStyles = makeStyles({
   header: {
     padding: "40px",
@@ -66,7 +66,7 @@ const HelpHaverSuccess = () => {
       <Paper elevation={0}>
         <CardContent>
           <Box component="header" className={classes.header}>
-            <img src="/images/success.svg" alt="success" />
+            <img src={SuccessImage} alt="success" />
             <Typography
               variant="h1"
               component="h1"

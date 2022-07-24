@@ -18,7 +18,6 @@ import { addPariticpantInEvent } from "../../../services/event.service";
 import { getEventsProductBySlug } from "../../../services/productservice";
 const Container = styled(Grid)`
   padding: 40px 20px;
-  background: url(/pay/images/illustration.svg);
   background-size: cover;
 `;
 export default function HelpHaver() {
@@ -129,13 +128,19 @@ export default function HelpHaver() {
     <ContentLayout>
       <Container container spacing={6}>
         <Grid item xs={12}>
-          <Typography variant="h1" style={{ fontWeight: "normal" }}>
+          <Typography
+            variant="h1"
+            style={{ fontWeight: "normal", textAlign: "center" }}
+          >
             {intersticial.title}
           </Typography>
           <br />
           <br />
           <Typography variant="body1">
-            <div dangerouslySetInnerHTML={{ __html: intersticial.body }}></div>
+            <div
+              style={{ fontWeight: "normal", textAlign: "center" }}
+              dangerouslySetInnerHTML={{ __html: intersticial.body }}
+            ></div>
           </Typography>
         </Grid>
         <Grid

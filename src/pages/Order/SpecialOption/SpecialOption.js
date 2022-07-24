@@ -50,7 +50,7 @@ export default function SpecialOptionInterestical() {
           <br />
           <br />
           <FormControl component="fieldset">
-            <FormLabel component="legend">
+            <FormLabel component="legend" style={{ color: "#000" }}>
               {t("specialOption.current_situation")}
             </FormLabel>
             <RadioGroup
@@ -62,12 +62,12 @@ export default function SpecialOptionInterestical() {
               <FormControlLabel
                 value="ukraine"
                 control={<Radio />}
-                label="Ukraine"
+                label={t("specialOption.ukraine")}
               />
               <FormControlLabel
                 value="russia"
                 control={<Radio />}
-                label="Russia"
+                label={t("specialOption.russia")}
               />
             </RadioGroup>
           </FormControl>

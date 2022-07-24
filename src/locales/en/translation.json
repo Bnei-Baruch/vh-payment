@@ -89,10 +89,11 @@
     "header": "Need Help?",
     "requestHelp": "You cannot afford to pay and you want to request for help?",
     "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-    "submittedHeader": "We have received your request!",
-    "requestSubmitted": "Your request for help have been submitted and soon will be reviewed. For any question or enquires please write to help@kli.one",
+    "submittedHeader": "Complete the form below",
+    "requestSubmitted": "In order to complete your application for financial help, you must complete the form following the link below",
     "return_to_personal_area": "Return to personal area",
-    "enter_details_for_help": "Click to enter details for help"
+    "enter_details_for_help": "Complete Form",
+    "financial_help": "Financial Help"
   },
   "payment": {
     "membershipStep1": "Membership Amount",
@@ -127,7 +128,7 @@
     "title": "Special Options",
     "chose_your_option": "Choose your option",
     "current_situation": "What is the current situation for you?",
-    "ukrain": "I Live in Ukraine",
+    "ukraine": "I Live in Ukraine",
     "russia": "I Live in Russia",
     "successTitle": "You have successfully registered for the event!",
     "successDescription": "After registration, we will send you a ticket to the event by email.",
