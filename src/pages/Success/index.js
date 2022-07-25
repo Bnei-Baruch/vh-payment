@@ -10,6 +10,13 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useParams } from "react-router-dom";
 import * as qs from "query-string";
 import { paymentSuccess } from "../../services/orderservice";
+import {
+  addAParticipant,
+  getParticipantByEmail,
+} from "../../services/participants.service";
+import { getEventsProductBySlug } from "../../services/productservice";
+import { addPariticpantInEvent } from "../../services/event.service";
+import { getProfile } from "../../services/userservice";
 
 const useStyles = makeStyles({
   header: {
@@ -42,10 +49,12 @@ const useStyles = makeStyles({
 
 const Success = () => {
   const classes = useStyles();
-  const { t } = useTranslation();
-  const { pdt } = useParams();
+  const { t, i18n } = useTranslation();
+  const { pdt, option } = useParams();
 
   const user = useSelector((state) => state.user);
+  const userProfileData = useSelector((state) => state.user.profileData);
+
   const [loading, setLoading] = useState(false);
 
   /**
@@ -55,6 +64,7 @@ const Success = () => {
   useEffect(() => {
     let q = qs.parse(window.location.search);
     if (user.authenticated) {
+      const eventData = getEventsProductBySlug(pdt);
       paymentSuccess(q)
         .then(() => {
           if (pdt === "jan2022ticket") {
@@ -63,12 +73,58 @@ const Success = () => {
             }, 3000);
           }
           setLoading(false);
+          getParticipantByEmail(userProfileData.primary_email)
+            .then((res) => {
+              if (res) {
+                const { id } = res;
+                const data = {
+                  participation_option: option,
+                  participant_id: id,
+                  event_id: eventData.event.id,
+                  notification: true,
+                  notification_type: "confirmation",
+                  registration_date: new Date().toISOString(),
+                  confirmed: true,
+                };
+                addPariticpantInEvent(data);
+              }
+            })
+            .catch(async () => {
+              const profileData = await getProfile(user.keycloak.subject);
+              const data = {
+                keycloak_id: user.keycloak.subject,
+                first_language: profileData.first_language,
+                email_language: i18n.language,
+                dob: profileData.date_of_birth
+                  ? new Date(profileData.date_of_birth).toISOString()
+                  : new Date().toISOString(),
+                gender: profileData.gender,
+                email: profileData.primary_email,
+                country: profileData.country,
+                first_name: profileData.first_name_vernacular,
+                last_name: profileData.last_name_vernacular,
+              };
+              addAParticipant(data).then((res) => {
+                if (res) {
+                  const data = {
+                    //Should be the option of the user pariticpant.
+                    participation_option: option,
+                    participant_id: res.id,
+                    event_id: eventData.event.id,
+                    registration_date: new Date().toISOString(),
+                    confirmed: true,
+                  };
+                  addPariticpantInEvent(data);
+                }
+              });
+            });
         })
         .catch(function (error) {
           console.error(error);
           setLoading(false);
         });
     }
+    // eslint-disable-next-line
   }, [pdt, user]);
 
   if (!user.authenticated || loading) {

@@ -166,7 +166,9 @@ export default function Payment() {
       Type: selectedTicket.product?.type,
       ProductType: selectedTicket.product?.productType,
       RecurringFreq: selectedTicket.product?.recurringFreq,
-      successUrl: window.APP_CONFIG.VH_BASE_URL + `/pay/success/${event_slug}`,
+      successUrl:
+        window.APP_CONFIG.VH_BASE_URL +
+        `/pay/success/${event_slug}/${selectedTicket.name}`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
