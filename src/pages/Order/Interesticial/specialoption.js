@@ -78,6 +78,7 @@ export default function HelpHaver() {
         participant_id: participantId,
         event_id: eventData.event.id,
         registration_date: new Date().toISOString(),
+        confirmed: true,
       };
       addPariticpantInEvent(data).then(() => {
         history.push(
@@ -108,6 +109,7 @@ export default function HelpHaver() {
             participant_id: res.id,
             event_id: eventData.event.id,
             registration_date: new Date().toISOString(),
+            confirmed: true,
           };
           addPariticpantInEvent(data).then(() => {
             history.push(
