@@ -83,7 +83,7 @@ const SpecialOptionSuccess = () => {
               color="primary"
               style={{ marginTop: 20 }}
               onClick={() => {
-                if (option !== "ukraine") {
+                if (option === "ukraine") {
                   window.location.href =
                     window.location.origin + "/dash/events";
                 } else {
