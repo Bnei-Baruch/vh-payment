@@ -236,8 +236,14 @@ export default function Tickets() {
       </Grid>
       {plans && (
         <Grid item xs={12} style={{ textAlign: "center", marginTop: "30px" }}>
-          <Button variant="outlined" color="primary">
-            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() =>
+              (window.location.href = window.location.origin + "/dash")
+            }
+          >
+            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
             {t("order.back_to_event")}
           </Button>
         </Grid>
