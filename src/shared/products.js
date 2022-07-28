@@ -715,7 +715,7 @@ exports.tickets = {
           button_label: "Выбрать",
         },
       },
-      name: "regular",
+      name: "membership",
       membership: true,
       order: 1,
       price: {

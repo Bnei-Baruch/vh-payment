@@ -56,6 +56,7 @@ const Success = () => {
   const userProfileData = useSelector((state) => state.user.profileData);
 
   const [loading, setLoading] = useState(false);
+  const [posted, setPosted] = useState(false);
 
   /**
    * This Useeffect sends the payments detail
@@ -63,7 +64,8 @@ const Success = () => {
    */
   useEffect(() => {
     let q = qs.parse(window.location.search);
-    if (user.authenticated) {
+    if (user.authenticated && !posted) {
+      setPosted(true);
       const eventData = getEventsProductBySlug(pdt);
       paymentSuccess(q)
         .then(() => {
