@@ -596,7 +596,7 @@ exports.tickets = {
       order: 1,
       price: {
         usd: {
-          amount: 30,
+          amount: 1,
         },
         nis: {
           amount: 100,
@@ -609,7 +609,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-0522-01",
+        productType: "t-aug2022-rg",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -720,7 +720,7 @@ exports.tickets = {
       order: 1,
       price: {
         usd: {
-          amount: 10,
+          amount: 1,
         },
         nis: {
           amount: 35,
@@ -733,7 +733,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-0522-02",
+        productType: "t-aug2022-mb",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -871,7 +871,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-0522-02-sp",
+        productType: "t-aug2022-sp",
         recurringFreq: 0,
         organization: "ben2",
       },
