@@ -64,7 +64,7 @@ const Success = () => {
    */
   useEffect(() => {
     let q = qs.parse(window.location.search);
-    if (user.authenticated && !posted) {
+    if (user.authenticated && !posted && userProfileData && userProfileData.primary_email) {
       setPosted(true);
       const eventData = getEventsProductBySlug(pdt);
       paymentSuccess(q)
@@ -127,7 +127,7 @@ const Success = () => {
         });
     }
     // eslint-disable-next-line
-  }, [pdt, user]);
+  }, [pdt, user, userProfileData]);
 
   if (!user.authenticated || loading) {
     return <Loader />;
