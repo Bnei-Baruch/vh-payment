@@ -4,8 +4,8 @@ import { makeStyles } from "@material-ui/styles";
 import { useTranslation } from "react-i18next";
 import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { useSelector } from "react-redux";
-import SuccessImage from "../../images/success.svg";
 const useStyles = makeStyles({
   header: {
     padding: "40px",
@@ -66,7 +66,9 @@ const HelpHaverSuccess = () => {
       <Paper elevation={0}>
         <CardContent>
           <Box component="header" className={classes.header}>
-            <img src={SuccessImage} alt="success" />
+            <CheckCircleIcon
+              style={{ color: "#0D9D0D", height: "45px", width: "45px" }}
+            />
             <Typography
               variant="h1"
               component="h1"
