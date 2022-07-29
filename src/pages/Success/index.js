@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useParams } from "react-router-dom";
 import * as qs from "query-string";
 import { paymentSuccess } from "../../services/orderservice";
@@ -158,7 +159,11 @@ const Success = () => {
               color="primary"
               style={{ marginTop: 20 }}
             >
-              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
+                          {i18n.language === "he" ? (
+              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            ) : (
+              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+            )}{" "}
               {t("order.back_to_event")}
             </Button>
           </Box>

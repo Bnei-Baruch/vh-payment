@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -40,7 +41,7 @@ const useStyles = makeStyles({
 
 const SpecialOptionSuccess = () => {
   const classes = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { option } = useParams();
   const [loading, setLoading] = useState(false);
 
@@ -61,6 +62,8 @@ const SpecialOptionSuccess = () => {
     return <Loader />;
   }
 
+  console.log(selectedSpecialOption);
+
   return (
     <ContentLayout>
       <Paper elevation={0}>
@@ -73,10 +76,14 @@ const SpecialOptionSuccess = () => {
               variant="h2"
               style={{ fontSize: 24, margin: 20, fontWeight: "normal" }}
             >
-              {t("specialOption.successTitle")}
+              {option === "ukraine"
+                ? t("specialOption.successTitleUkraine")
+                : t("specialOption.successTitleRussia")}
             </Typography>
             <Typography style={{ fontSize: 18, color: "rgba(90, 90, 90, 1)" }}>
-              {t("specialOption.successDescription")}
+              {option === "ukraine"
+                ? t("specialOption.descriptionIntersectialUkraine")
+                : t("specialOption.descriptionIntersectialRussia")}
             </Typography>
             <Button
               variant="contained"
@@ -91,9 +98,14 @@ const SpecialOptionSuccess = () => {
                 }
               }}
             >
-              {option === "ukraine" && (
-                <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
-              )}{" "}
+              {option === "ukraine" &&
+                (i18n.language === "he" ? (
+                  <ArrowForwardIosIcon
+                    style={{ height: "12px", width: "12px" }}
+                  />
+                ) : (
+                  <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+                ))}{" "}
               {option === "ukraine"
                 ? t("order.back_to_event")
                 : t("common.buy_ticket")}

@@ -230,6 +230,7 @@ export default function Payment() {
       ? selectedTicket.content[i18n.language]
       : selectedTicket.content.en;
 
+  console.log(i18n.language);
   return (
     <>
       <Grid item xs={12}>
@@ -367,7 +368,11 @@ export default function Payment() {
             onClick={prevStep}
             disabled={payClicked}
           >
-            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
+            {i18n.language === "he" ? (
+              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            ) : (
+              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+            )}{" "}
             {t("common.back")}
           </Button>
           <Button
@@ -384,25 +389,26 @@ export default function Payment() {
                   {payClicked ? (
                     <CircularProgress m={2} className={classes.loader} />
                   ) : (
-                    <ArrowForwardIosIcon
-                      style={{ height: "12px", width: "12px" }}
-                    />
+                    i18n.language === "he" ? <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} /> : <ArrowForwardIosIcon
+                    style={{ height: "12px", width: "12px" }}
+                  />
                   )}
                 </>
               ) : (
                 <>
                   {t("common.confirm")}
-                  <ArrowForwardIosIcon
+                  {i18n.language === "he" ? <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} /> : <ArrowForwardIosIcon
                     style={{ height: "12px", width: "12px" }}
-                  />
+                  />}
+                  
                 </>
               )
             ) : (
               <>
                 {t("common.next")}{" "}
-                <ArrowForwardIosIcon
-                  style={{ height: "12px", width: "12px" }}
-                />
+                {i18n.language === "he" ? <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} /> : <ArrowForwardIosIcon
+                    style={{ height: "12px", width: "12px" }}
+                  />}
               </>
             )}
           </Button>

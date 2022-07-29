@@ -2,6 +2,7 @@ import React from "react";
 import ContentLayout from "../../../layouts/ContentLayout";
 import { Button, Grid, Typography } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -12,7 +13,7 @@ const Container = styled(Grid)`
 `;
 export default function MembershipIntersticial() {
   const history = useHistory();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const selectedSpecialOption = useSelector(
     (state) => state.order.specialSelectedOption
@@ -53,7 +54,11 @@ export default function MembershipIntersticial() {
           }}
         >
           <Button variant="outlined" color="primary" onClick={moveback}>
-            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+          {i18n.language === "he" ? (
+              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            ) : (
+              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+            )}
             {t("common.back")}
           </Button>
           <Button variant="contained" color="primary" onClick={goToMembership}>
