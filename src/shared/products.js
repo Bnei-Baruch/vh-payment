@@ -546,49 +546,49 @@ exports.tickets = {
       action: "Select the type of ticket",
     },
     he: {
-      title: "World Kabbalah Convention",
-      subtitle: "August 27-28 2022",
-      action: "נא לבחור כרטיס",
+      title: "כנס קבלה וירטואלי",
+      subtitle: "אוגוסט, 2022",
+      action: "בחר כרטיס",
     },
     ru: {
-      title: "World Kabbalah Convention",
-      subtitle: "August 27-28 2022",
-      action: "Пожалуйста, выберите вариант оплаты",
+      title: "Виртуальный каббалистический конгресс",
+      subtitle: "Август, 2022",
+      action: "Выберите вариант билета",
     },
     es: {
-      title: "World Kabbalah Convention",
-      subtitle: "August 27-28 2022",
-      action: "Select the type of ticket",
+      title: "Congreso virtual de Cabalá",
+      subtitle: "Agosto, 2022",
+      action: "Elige la opción para tu boleto",
     },
   },
   event: {
     slug: "aug2022",
-    id: 6,
+    id: 2,
   },
   plans: [
     {
       content: {
         en: {
-          name: "Regular Ticket",
+          name: "Regular",
           description: [
             "This is the standard price to participate in this event",
           ],
           button_label: "Select this Ticket",
         },
         he: {
-          name: "כרטיס רגיל",
-          description: [""],
-          button_label: "לבחור",
+          name: "רגיל",
+          description: ["זהו המחיר הרגיל להשתתפות באירוע זה"],
+          button_label: "בחר כרטיס זה",
         },
         es: {
-          name: "Boleto común",
-          description: [""],
-          button_label: "elige",
+          name: "Común",
+          description: ["Este es el precio común para participar en este evento"],
+          button_label: "Elige este boleto",
         },
         ru: {
-          name: "Для новых участников",
-          description: [""],
-          button_label: "Выбрать",
+          name: "Стандартный",
+          description: ["Обычная цена за участие в этом мероприятии"],
+          button_label: "Выберите этот билет",
         },
       },
       name: "regular",
@@ -596,7 +596,7 @@ exports.tickets = {
       order: 1,
       price: {
         usd: {
-          amount: 1,
+          amount: 30,
         },
         nis: {
           amount: 100,
@@ -624,47 +624,48 @@ exports.tickets = {
           button_label: "Activate Membership",
           intersticial: {
             title: "Membership Ticket",
-            body: "Membership Ticket are discounted ticket for people who pay a monthly membership. In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
-            button: "Next",
+            body: "Membership tickets are discounted tickets for people who pay a montly subscription the Virtual Home Membership <br/> In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
+            button: "Activate Membership",
           },
           redirect_url: "/dash/membership",
         },
         ru: {
           name: "Для постоянных участников сообщества",
           description: [
-            "In order to choose this ticket you will to activate your membership first",
+            "Чтобы выбрать этот билет, вам нужно сначала активировать свою подписку по оплате за Вирутальный дом",
           ],
-          button_label: "Activate Membership",
+          button_label: "Активировать подписку",
           intersticial: {
-            title: "Для новых участников сообщества",
-            body: "Вы можете зарегистрироваться на конгресс со скидкой, став постоянным участником сообщества.  Для этого подключительсь к ежемесячной абонентской плате, и вернитесь к регистрации на конгресс",
-            button: "Выбрать",
+            title: "Билет для Подписчиков системы Арвут",
+            body: "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут.<br/> Чтобы получить скидку, вам нужно сначала оформить ежемесячную подписку, а затем вернуться и зарегистрироваться, выбрав опцию: Билет для Подписчиков системы Арвут",
+            button: "Активировать подписку",
           },
           redirect_url: "/dash/membership",
         },
         es: {
           name: "Boleto de membresía",
           description: [
-            "In order to choose this ticket you will to activate your membership first",
+            "Para elegir este boleto debes primero activar tu membresía"
           ],
-          button_label: "Activate Membership",
+          button_label: "Activar la membresía",
           intersticial: {
             title: "Boleto de membresía",
-            body: "Los boletos de membresía son descontados para personas que pagan la membresía mensual. Con el fin de ser elegible para esta opción, primero debes obtener la membresîa, y luego volver para registrarte.",
-            button: "Elige",
+            body: "Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual.<br /> Para ser elegible de esta opción, primero necesitas obtener tu membresía, y luego volver para registrarte con la membresía",
+            button: "Activar membresía",
           },
           redirect_url: "/dash/membership",
         },
         he: {
           name: "כרטיס חבר",
           description: [
-            "In order to choose this ticket you will to activate your membership first",
+            "על מנת לבחור סוג כרטיס זה, עליך לרכוש ולהפעיל מנוי קודם לכן",
           ],
-          button_label: "Activate Membership",
+          button_label: "הפעלת מנוי",
           intersticial: {
             title: "כרטיס חבר",
-            body: "כרטיס חבר הוא כרטיס מוזל עבור אנשים שמשלמים דמי מנוי חודשיים. כדי להיות זכאי לאפשרות זו, עליך לסדר קודם את דמי המנוי שלך, ואז לחזור ולהירשם לאחר שזה מסודר.",
-            button: "לבחור",
+            body: " כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי  <br /> על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
+            button: "הרשמה למנוי חדש",
+
           },
           redirect_url: "/dash/membership",
         },
@@ -692,35 +693,33 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: [""],
+          description: ["Membership tickets are discounted tickets for people who pay a montly subscription the Virtual Home Membership"],
           button_label: "Select this Ticket",
         },
         he: {
           name: "כרטיס חבר",
-          description: [""],
+          description: ["כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי"],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto de membresía",
-          description: [""],
+          description: ["Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual."],
           button_label: "Elige",
         },
         ru: {
           name: "Для постоянных участников сообщества",
           description: [
-            "You get a ticket only this event.",
-            "You don't need a membership for this option.",
-            "You will still have a video recording of the event.",
+            "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут."
           ],
           button_label: "Выбрать",
         },
       },
-      name: "regular",
+      name: "membership",
       membership: true,
       order: 1,
       price: {
         usd: {
-          amount: 1,
+          amount: 10,
         },
         nis: {
           amount: 35,
@@ -768,9 +767,9 @@ exports.tickets = {
           ],
         },
         es: {
-          name: "Ayuda financiera",
-          description: ["If you live in Ukraine.", "If you live in Russia."],
-          button_label: "Choose an option",
+          name: "Opciones especiales",
+          description: ["Si vives en Ucrania", "Si vives en Rusia"],
+          button_label: "Elige una opción",
           options: [
             {
               name: "specialoption",
@@ -796,9 +795,9 @@ exports.tickets = {
         },
 
         he: {
-          name: "עזרה כלכלית",
-          description: ["If you live in Ukraine.", "If you live in Russia."],
-          button_label: "Choose an option",
+          name: "אפשרויות רכישה מיוחדות",
+          description: ["אם אתה גר באוקראינה", "אם אתה גר ברוסיה"],
+          button_label: "בחר אפשרות",
           options: [
             {
               name: "specialoption",
@@ -823,9 +822,9 @@ exports.tickets = {
           ],
         },
         ru: {
-          name: "Для особых случаев",
-          description: ["If you live in Ukraine.", "If you live in Russia."],
-          button_label: "Choose an option",
+          name: "Дополнительные возможности",
+          description: ["Для жителей Украины", "Для жителей России"],
+          button_label: "Выберите ваш вариант",
           options: [
             {
               name: "specialoption",
