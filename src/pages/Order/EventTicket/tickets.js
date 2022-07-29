@@ -173,12 +173,9 @@ export default function Tickets() {
                   <Price>
                     {plan.isFree
                       ? t("help.financial_help")
-                      : `${
-                          plan.name === "special" ? currency.sign + " 0 - " : ""
-                        }` +
-                        currency.sign +
-                        " " +
-                        plan.price[currency.id].amount}
+                      : plan.name === "special"
+                      ? `${t("specialOption.chose_your_option")}`
+                      : currency.sign + " " + plan.price[currency.id].amount}
                   </Price>
                 </CenterText>
                 <Grid>
@@ -245,7 +242,7 @@ export default function Tickets() {
             variant="outlined"
             color="primary"
             onClick={() =>
-              (window.location.href = window.location.origin + "/dash")
+              (window.location.href = window.location.origin + "/dash/events")
             }
           >
             {i18n.language === "he" ? (

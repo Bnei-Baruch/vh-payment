@@ -11,7 +11,7 @@ import * as qs from "query-string";
 
 const useStyles = makeStyles({
   header: {
-    padding: "40px",
+    padding: "20px",
     justifyContent: "center",
     textAlign: "center",
   },
@@ -88,11 +88,13 @@ const Error = () => {
                 color="primary"
                 style={{ marginTop: 20 }}
               >
-                            {i18n.language === "he" ? (
-              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
-            ) : (
-              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
-            )}{" "}
+                {i18n.language === "he" ? (
+                  <ArrowForwardIosIcon
+                    style={{ height: "12px", width: "12px" }}
+                  />
+                ) : (
+                  <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+                )}{" "}
                 {t("common.back")}
               </Button>
               <Button

@@ -582,7 +582,9 @@ exports.tickets = {
         },
         es: {
           name: "Común",
-          description: ["Este es el precio común para participar en este evento"],
+          description: [
+            "Este es el precio común para participar en este evento",
+          ],
           button_label: "Elige este boleto",
         },
         ru: {
@@ -645,7 +647,7 @@ exports.tickets = {
         es: {
           name: "Boleto de membresía",
           description: [
-            "Para elegir este boleto debes primero activar tu membresía"
+            "Para elegir este boleto debes primero activar tu membresía",
           ],
           button_label: "Activar la membresía",
           intersticial: {
@@ -665,7 +667,6 @@ exports.tickets = {
             title: "כרטיס חבר",
             body: " כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי  <br /> על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
             button: "הרשמה למנוי חדש",
-
           },
           redirect_url: "/dash/membership",
         },
@@ -693,23 +694,29 @@ exports.tickets = {
       content: {
         en: {
           name: "Membership Ticket",
-          description: ["Membership tickets are discounted tickets for people who pay a montly subscription the Virtual Home Membership"],
+          description: [
+            "Membership tickets are discounted tickets for people who pay a montly subscription the Virtual Home Membership",
+          ],
           button_label: "Select this Ticket",
         },
         he: {
           name: "כרטיס חבר",
-          description: ["כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי"],
+          description: [
+            "כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי",
+          ],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto de membresía",
-          description: ["Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual."],
+          description: [
+            "Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual.",
+          ],
           button_label: "Elige",
         },
         ru: {
           name: "Для постоянных участников сообщества",
           description: [
-            "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут."
+            "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут.",
           ],
           button_label: "Выбрать",
         },
@@ -1040,7 +1047,7 @@ exports.tickets = {
         es: {
           name: "Ayuda financiera",
           description: [
-            "Queremos que este evento esté disponible para cada uno de nosotros. Si te encuentras en una difícil situación financiera, puedes aplicar para una ayuda"
+            "Queremos que este evento esté disponible para cada uno de nosotros. Si te encuentras en una difícil situación financiera, puedes aplicar para una ayuda",
           ],
           button_label: "Aplicar para una ayuda",
           options: [
@@ -1063,7 +1070,7 @@ exports.tickets = {
         he: {
           name: "עזרה כלכלית",
           description: [
-            "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה"
+            "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה",
           ],
           button_label: "פנייה לעזרה",
           options: [
@@ -1085,7 +1092,7 @@ exports.tickets = {
         ru: {
           name: "Помощь из фонда Хелп Хавер",
           description: [
-            "Мы хотим, чтобы это событие было доступно каждому товарищу. Если вы находитесь в сложной финансовой ситуации, вы можете обратиться за помощью"
+            "Мы хотим, чтобы это событие было доступно каждому товарищу. Если вы находитесь в сложной финансовой ситуации, вы можете обратиться за помощью",
           ],
           button_label: "Обратиться за помощью",
           options: [
@@ -1159,7 +1166,7 @@ exports.tickets = {
         es: {
           name: "Ayuda financiera",
           description: [
-            "Queremos que este evento esté disponible para cada uno de nosotros. Si te encuentras en una difícil situación financiera, puedes aplicar para una ayuda"
+            "Queremos que este evento esté disponible para cada uno de nosotros. Si te encuentras en una difícil situación financiera, puedes aplicar para una ayuda",
           ],
           button_label: "Aplicar para una ayuda",
           options: [
@@ -1182,7 +1189,7 @@ exports.tickets = {
         he: {
           name: "עזרה כלכלית",
           description: [
-            "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה"
+            "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה",
           ],
           button_label: "פנייה לעזרה",
           options: [
@@ -1204,7 +1211,7 @@ exports.tickets = {
         ru: {
           name: "Помощь из фонда Хелп Хавер",
           description: [
-            "Мы хотим, чтобы это событие было доступно каждому товарищу. Если вы находитесь в сложной финансовой ситуации, вы можете обратиться за помощью"
+            "Мы хотим, чтобы это событие было доступно каждому товарищу. Если вы находитесь в сложной финансовой ситуации, вы можете обратиться за помощью",
           ],
           button_label: "Обратиться за помощью",
           options: [
