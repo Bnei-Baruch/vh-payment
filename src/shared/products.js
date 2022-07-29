@@ -905,9 +905,9 @@ exports.tickets = {
           ],
         },
         es: {
-          name: "Ayuda financiera",
-          description: ["If you live in Ukraine.", "If you live in Russia."],
-          button_label: "Choose an option",
+          name: "Opciones especiales",
+          description: ["Si vives en Ucrania", "Si vives en Rusia"],
+          button_label: "Elige una opción",
           options: [
             {
               name: "specialoption",
@@ -933,9 +933,9 @@ exports.tickets = {
         },
 
         he: {
-          name: "עזרה כלכלית",
-          description: ["If you live in Ukraine.", "If you live in Russia."],
-          button_label: "Choose an option",
+          name: "אפשרויות רכישה מיוחדות",
+          description: ["אם אתה גר באוקראינה", "אם אתה גר ברוסיה"],
+          button_label: "בחר אפשרות",
           options: [
             {
               name: "specialoption",
@@ -960,9 +960,9 @@ exports.tickets = {
           ],
         },
         ru: {
-          name: "Для особых случаев",
-          description: ["If you live in Ukraine.", "If you live in Russia."],
-          button_label: "Choose an option",
+          name: "Дополнительные возможности",
+          description: ["Для жителей Украины", "Для жителей России"],
+          button_label: "Выберите ваш вариант",
           options: [
             {
               name: "specialoption",
@@ -1039,8 +1039,10 @@ exports.tickets = {
         },
         es: {
           name: "Ayuda financiera",
-          description: [],
-          button_label: "Elige",
+          description: [
+            "Queremos que este evento esté disponible para cada uno de nosotros. Si te encuentras en una difícil situación financiera, puedes aplicar para una ayuda"
+          ],
+          button_label: "Aplicar para una ayuda",
           options: [
             {
               name: "helphaver",
@@ -1060,8 +1062,10 @@ exports.tickets = {
 
         he: {
           name: "עזרה כלכלית",
-          description: [],
-          button_label: "לבחור",
+          description: [
+            "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה"
+          ],
+          button_label: "פנייה לעזרה",
           options: [
             {
               name: "helphaver",
@@ -1079,9 +1083,11 @@ exports.tickets = {
           ],
         },
         ru: {
-          name: "Для особых случаев",
-          description: [],
-          button_label: "Выбрать",
+          name: "Помощь из фонда Хелп Хавер",
+          description: [
+            "Мы хотим, чтобы это событие было доступно каждому товарищу. Если вы находитесь в сложной финансовой ситуации, вы можете обратиться за помощью"
+          ],
+          button_label: "Обратиться за помощью",
           options: [
             {
               label: "Я из Украины",
@@ -1174,8 +1180,10 @@ exports.tickets = {
         },
         es: {
           name: "Ayuda financiera",
-          description: [],
-          button_label: "Elige",
+          description: [
+            "Queremos que este evento esté disponible para cada uno de nosotros. Si te encuentras en una difícil situación financiera, puedes aplicar para una ayuda"
+          ],
+          button_label: "Aplicar para una ayuda",
           options: [
             {
               name: "helphaver",
@@ -1195,8 +1203,10 @@ exports.tickets = {
 
         he: {
           name: "עזרה כלכלית",
-          description: [],
-          button_label: "לבחור",
+          description: [
+            "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה"
+          ],
+          button_label: "פנייה לעזרה",
           options: [
             {
               name: "helphaver",
@@ -1214,9 +1224,11 @@ exports.tickets = {
           ],
         },
         ru: {
-          name: "Для особых случаев",
-          description: [],
-          button_label: "Выбрать",
+          name: "Помощь из фонда Хелп Хавер",
+          description: [
+            "Мы хотим, чтобы это событие было доступно каждому товарищу. Если вы находитесь в сложной финансовой ситуации, вы можете обратиться за помощью"
+          ],
+          button_label: "Обратиться за помощью",
           options: [
             {
               label: "Я из Украины",
