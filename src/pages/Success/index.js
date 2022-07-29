@@ -115,6 +115,8 @@ const Success = () => {
                     event_id: eventData.event.id,
                     registration_date: new Date().toISOString(),
                     confirmed: true,
+                    notification: true,
+                    notification_type: "confirmation",
                   };
                   addPariticpantInEvent(data);
                 }
