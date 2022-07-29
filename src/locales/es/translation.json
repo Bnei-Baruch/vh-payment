@@ -33,11 +33,11 @@
     "allGood": "Todo está correcto",
     "processing": "Procesando...",
     "returnToPersonalArea": "Volver a la página de inicio",
-    "payment_success": "Payment successful",
-    "payment_error": "Your Payment has failed",
-    "error_paid": "We aren't able to process your payment. Please try again.",
-    "successfully_paid": "You have successfully bought a ticket to the event.",
-    "back_to_event": "Back to event"
+    "payment_success": "¡El pago ha sido completado con éxito!",
+    "payment_error": "Tu pago ha fallado",
+    "error_paid": "No hemos podido procesar tu pago. Por favor inténtalo de nuevo",
+    "successfully_paid": "Has adquirido el boleto para el event ",
+    "back_to_event": "Volver a Eventos"
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",
@@ -97,11 +97,11 @@
     "header": "Need Help?",
     "requestHelp": "You cannot afford to pay and you want to request for help?",
     "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-    "submittedHeader": "Complete the form below",
-    "requestSubmitted": "In order to complete your application for financial help, you must complete the form following the link below",
+    "submittedHeader": "Rellene el siguiente formulario",
+    "requestSubmitted": "Para completar su solicitud, de ayuda financiera, debe completar el formulario en el siguiente enlace",
     "return_to_personal_area": "Volver al área personal",
-    "enter_details_for_help": "Complete Form",
-    "financial_help": "Financial Help"
+    "enter_details_for_help": "Completar formulario",
+    "financial_help": "Ayuda financiera"
   },
   "payment": {
     "membershipStep1": "Suma de membresía",
@@ -133,13 +133,13 @@
     "returnMembership": "Return to Membership"
   },
   "specialOption": {
-    "title": "Special Options",
-    "chose_your_option": "Choose your option",
-    "current_situation": "What is the current situation for you?",
-    "ukraine": "I Live in Ukraine",
-    "russia": "I Live in Russia",
-    "successTitle": "You have successfully registered for the event!",
-    "successDescription": "After registration, we will send you a ticket to the event by email.",
+    "title": "Opciones especiales",
+    "chose_your_option": "Elige tu opción",
+    "current_situation": "¿Cuál es tu situación actual?",
+    "ukraine": "Vivo en Ucrania",
+    "russia": "Vivo en Rusia",
+    "successTitle": "Te has inscrito con éxito en el evento.",
+    "successDescription": "Tras la inscripción, te enviaremos una entrada al evento por correo electrónico.",
     "titleIntersectial": "For our friends from",
     "descriptionIntersectialUkraine": "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
     "descriptionIntersectialRussia": "Here you can register for the event. After registration, we will send you a ticket to the event by email."
