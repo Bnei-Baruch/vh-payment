@@ -750,11 +750,11 @@ exports.tickets = {
               intersticial: {
                 ukraine: {
                   title: "For our friends from Ukraine",
-                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                  body: "Due to situation in Ukraine, the participation in this event is free of charge for Ukraian residents",
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles.",
+                  body: "Here you can register for event. <br/> For the payment, you will be provided with a separate link where you can complete your payment of 800 rubles.",
                 },
               },
               type: "specialoption",
@@ -776,12 +776,12 @@ exports.tickets = {
               label: "Special Option",
               intersticial: {
                 ukraine: {
-                  title: "For our friends from Ukraine",
-                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                  title: "Para nuestros amigos de Ucrania",
+                  body: "Debido a la situación en Ucrania, la participación en este evento es gratuita para los residentes ucranianos",
                 },
                 russia: {
-                  title: "For our friends from Russia",
-                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
+                  title: "Para nuestros amigos de Rusia",
+                  body: "Aquí puedes inscribirte en el evento/ Para el pago, se te proporcionará un enlace por separado donde puedes completar tu pago de 800 rublos.",
                 },
               },
               type: "specialoption",
@@ -804,12 +804,12 @@ exports.tickets = {
               label: "Special Option",
               intersticial: {
                 ukraine: {
-                  title: "For our friends from Ukraine",
-                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                  title: "לחברים שלנו מאוקראינה",
+                  body: "עקב המצב באוקראינה,  ההשתתפות באירוע זה היא ללא תשלום לתושבי אוקראינה",
                 },
                 russia: {
-                  title: "For our friends from Russia",
-                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
+                  title: "לחברים שלנו מרוסיה",
+                  body: "כאן תכל להירשם לאירוע . לתשלום יישלח אליך לינק נפרד שבו ניתן להשלים תשלום של 800 רובל",
                 },
               },
               type: "specialoption",
@@ -831,12 +831,12 @@ exports.tickets = {
               label: "Special Option",
               intersticial: {
                 ukraine: {
-                  title: "For our friends from Ukraine",
-                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                  title: "Нашим товарищам из Украины",
+                  body: "В связи с ситуацией на Украине, участие в данном мероприятии для жителей Украины бесплатно.",
                 },
                 russia: {
-                  title: "For our friends from Russia",
-                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles.",
+                  title: "Нашим товарищам из России",
+                  body: "Здесь вы можете зарегистрироваться на мероприятие. Для оплаты Вам будет отправлена ​​отдельная ссылка, по которой Вы сможете совершить платеж на 800 рублей",
                 },
               },
               type: "specialoption",
@@ -888,11 +888,11 @@ exports.tickets = {
               intersticial: {
                 ukraine: {
                   title: "For our friends from Ukraine",
-                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                  body: "Due to situation in Ukraine, the participation in this event is free of charge for Ukraian residents",
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles.",
                 },
               },
               type: "specialoption",
@@ -914,12 +914,12 @@ exports.tickets = {
               label: "Special Option",
               intersticial: {
                 ukraine: {
-                  title: "For our friends from Ukraine",
-                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                  title: "Para nuestros amigos de Ucrania",
+                  body: "Debido a la situación en Ucrania, la participación en este evento es gratuita para los residentes ucranianos",
                 },
                 russia: {
-                  title: "For our friends from Russia",
-                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
+                  title: "Para nuestros amigos de Rusia",
+                  body: "Aquí puedes inscribirte en el evento/ Para el pago, se te proporcionará un enlace por separado donde puedes completar tu pago de 800 rublos.",
                 },
               },
               type: "specialoption",
@@ -942,12 +942,12 @@ exports.tickets = {
               label: "Special Option",
               intersticial: {
                 ukraine: {
-                  title: "For our friends from Ukraine",
-                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                  title: "לחברים שלנו מאוקראינה",
+                  body: "עקב המצב באוקראינה,  ההשתתפות באירוע זה היא ללא תשלום לתושבי אוקראינה",
                 },
                 russia: {
-                  title: "For our friends from Russia",
-                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles",
+                  title: "לחברים שלנו מרוסיה",
+                  body: "כאן תכל להירשם לאירוע . לתשלום יישלח אליך לינק נפרד שבו ניתן להשלים תשלום של 800 רובל",
                 },
               },
               type: "specialoption",
@@ -969,12 +969,12 @@ exports.tickets = {
               label: "Special Option",
               intersticial: {
                 ukraine: {
-                  title: "For our friends from Ukraine",
-                  body: "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
+                  title: "Нашим товарищам из Украины",
+                  body: "В связи с ситуацией на Украине, участие в данном мероприятии для жителей Украины бесплатно.",
                 },
                 russia: {
-                  title: "For our friends from Russia",
-                  body: "Here you can register for the event. After registration, we will send you a ticket to the event by email.",
+                  title: "Нашим товарищам из России",
+                  body: "Здесь вы можете зарегистрироваться на мероприятие. Для оплаты Вам будет отправлена ​​отдельная ссылка, по которой Вы сможете совершить платеж на 800 рублей",
                 },
               },
               type: "specialoption",
@@ -1048,9 +1048,9 @@ exports.tickets = {
               name: "helphaver",
               label: "Help Haver",
               intersticial: {
-                title: "Si necesitas ayuda financiera",
-                body: "Si necesitas ayuda para cubrir el costo de la participación en el congreso, por favor aplica al fondo de Help Haver. Tu boleto será creado pero los detalles del pago dependerán de la respuesta de Help Haver.",
-                button: "Próximo",
+                title: "Help Haver para el congreso",
+                body: "Queremos que este evento esté al alcance de todos. Si se encuentra en una situación financiera difícil, puedes solicitar una ayuda <br /> <br /> Tu inscripción quedará pendiente hasta que tu solicitud haya sido validada",
+                button: "Seguir",
               },
               redirect_url:
                 "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
@@ -1071,8 +1071,8 @@ exports.tickets = {
               name: "helphaver",
               label: "הלפ חבר",
               intersticial: {
-                title: "אם נדרשת עזרה כלכלית",
-                body: "אם נדרשת עזרה לכסות את עלות ההשתתפות של הכנס, נא לפנות לקרן הלפ חבר. הכרטיס שלך יווצר אבל פרטי התשלום יהיו תלויים בתשובה של הלפ חבר.",
+                title: "קרן סיוע ״הלפ חבר״ להרשמה לכנס",
+                body: "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה <br /> <br /> הרשמתך בהמתנה עד לאישור",
                 button: "הבא",
               },
               redirect_url:
@@ -1090,33 +1090,11 @@ exports.tickets = {
           button_label: "Обратиться за помощью",
           options: [
             {
-              label: "Я из Украины",
-              name: "ukraine",
-              intersticial: {
-                title: "Для наших товарищей из Украины",
-                body: "Руководство Международной академии каббалы приняло решение, что участие в этом конгрессе для товарищей из Украины бесплатно.",
-                button: "Дальше",
-              },
-              type: "special",
-              register_status: "sp-ukraine",
-            },
-            {
-              label: "Я из России",
-              name: "russia",
-              intersticial: {
-                title: "Для наших товарищей из России",
-                body: "1.  Пройдите регистрацию до конца.  2. Инструкцию для оплаты за участие в конгрессе в размере 800 рублей, мы пришлём Вам позже",
-                button: "Далее",
-              },
-              type: "special",
-              register_status: "sp-russia",
-            },
-            {
-              label: "Финансовая помощь",
               name: "helphaver",
+              label: "Хелп Хавер",
               intersticial: {
-                title: "Если Вы не можете оплатить участие",
-                body: "Если вам нужна помощь, чтобы оплатить участие в конгрессе: 1. Завершите регистрацию. 2. Пожалуйста обратитесь в фонд Help Haver.",
+                title: "Фонд помощи Хелп Хавер для участия в конгрессе",
+                body: "Мы хотим, чтобы это событие было доступно каждому товарищу. Если вы находитесь в сложной финансовой ситуации, вы можете обратиться за помощью. <br /> <br /> Ваш статус регистрации будет в процессе ожидания до тех пор, пока ваш запрос не будет подтвержден.",
                 button: "Далее",
               },
               redirect_url:
@@ -1189,9 +1167,9 @@ exports.tickets = {
               name: "helphaver",
               label: "Help Haver",
               intersticial: {
-                title: "Si necesitas ayuda financiera",
-                body: "Si necesitas ayuda para cubrir el costo de la participación en el congreso, por favor aplica al fondo de Help Haver. Tu boleto será creado pero los detalles del pago dependerán de la respuesta de Help Haver.",
-                button: "Próximo",
+                title: "Help Haver para el congreso",
+                body: "Queremos que este evento esté al alcance de todos. Si se encuentra en una situación financiera difícil, puedes solicitar una ayuda <br /> <br /> Tu inscripción quedará pendiente hasta que tu solicitud haya sido validada",
+                button: "Seguir",
               },
               redirect_url:
                 "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
@@ -1212,8 +1190,8 @@ exports.tickets = {
               name: "helphaver",
               label: "הלפ חבר",
               intersticial: {
-                title: "אם נדרשת עזרה כלכלית",
-                body: "אם נדרשת עזרה לכסות את עלות ההשתתפות של הכנס, נא לפנות לקרן הלפ חבר. הכרטיס שלך יווצר אבל פרטי התשלום יהיו תלויים בתשובה של הלפ חבר.",
+                title: "קרן סיוע ״הלפ חבר״ להרשמה לכנס",
+                body: "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה <br /> <br /> הרשמתך בהמתנה עד לאישור",
                 button: "הבא",
               },
               redirect_url:
@@ -1231,33 +1209,11 @@ exports.tickets = {
           button_label: "Обратиться за помощью",
           options: [
             {
-              label: "Я из Украины",
-              name: "ukraine",
-              intersticial: {
-                title: "Для наших товарищей из Украины",
-                body: "Руководство Международной академии каббалы приняло решение, что участие в этом конгрессе для товарищей из Украины бесплатно.",
-                button: "Дальше",
-              },
-              type: "special",
-              register_status: "sp-ukraine",
-            },
-            {
-              label: "Я из России",
-              name: "russia",
-              intersticial: {
-                title: "Для наших товарищей из России",
-                body: "1.  Пройдите регистрацию до конца.  2. Инструкцию для оплаты за участие в конгрессе в размере 800 рублей, мы пришлём Вам позже",
-                button: "Далее",
-              },
-              type: "special",
-              register_status: "sp-russia",
-            },
-            {
-              label: "Финансовая помощь",
               name: "helphaver",
+              label: "Хелп Хавер",
               intersticial: {
-                title: "Если Вы не можете оплатить участие",
-                body: "Если вам нужна помощь, чтобы оплатить участие в конгрессе: 1. Завершите регистрацию. 2. Пожалуйста обратитесь в фонд Help Haver.",
+                title: "Фонд помощи Хелп Хавер для участия в конгрессе",
+                body: "Мы хотим, чтобы это событие было доступно каждому товарищу. Если вы находитесь в сложной финансовой ситуации, вы можете обратиться за помощью. <br /> <br /> Ваш статус регистрации будет в процессе ожидания до тех пор, пока ваш запрос не будет подтвержден.",
                 button: "Далее",
               },
               redirect_url:
