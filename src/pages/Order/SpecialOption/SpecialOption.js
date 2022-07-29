@@ -23,7 +23,7 @@ const Container = styled(Grid)`
 export default function SpecialOptionInterestical() {
   const history = useHistory();
   const { event_slug } = useParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selection, setSelection] = React.useState("ukraine");
   const moveback = () => {
     history.goBack();
@@ -82,12 +82,18 @@ export default function SpecialOptionInterestical() {
           }}
         >
           <Button variant="outlined" color="primary" onClick={moveback}>
-            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+          {i18n.language === "he" ? (
+              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            ) : (
+              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+            )}
             {t("common.back")}
           </Button>
           <Button variant="contained" color="primary" onClick={moveToNext}>
             {t("common.next")} &nbsp;{" "}
-            <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            {i18n.language === "he" ? <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} /> : <ArrowForwardIosIcon
+                    style={{ height: "12px", width: "12px" }}
+                  />}
           </Button>
         </Grid>
       </Container>

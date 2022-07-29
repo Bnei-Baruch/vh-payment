@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import { useTranslation } from "react-i18next";
 import Loader from "../../components/Loader";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import WarningIcon from "@material-ui/icons/Warning";
 import ContentLayout from "../../layouts/ContentLayout";
 import * as qs from "query-string";
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
 
 const Error = () => {
   const classes = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // const [payMethod, setPayMethod] = useState('card');
   const [loading, setLoading] = useState(true);
@@ -87,7 +88,11 @@ const Error = () => {
                 color="primary"
                 style={{ marginTop: 20 }}
               >
-                <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />{" "}
+                            {i18n.language === "he" ? (
+              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            ) : (
+              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+            )}{" "}
                 {t("common.back")}
               </Button>
               <Button

@@ -198,7 +198,11 @@ export default function MembershipHelphaver() {
           }}
         >
           <Button variant="outlined" color="primary" onClick={moveback}>
-            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+          {i18n.language === "he" ? (
+              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            ) : (
+              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+            )}
             {t("common.back")}
           </Button>
           <Button
@@ -210,7 +214,9 @@ export default function MembershipHelphaver() {
             }
           >
             {t("common.next")} &nbsp;{" "}
-            <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            {i18n.language === "he" ? <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} /> : <ArrowForwardIosIcon
+                    style={{ height: "12px", width: "12px" }}
+                  />}
           </Button>
         </Grid>
       </Container>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { getEventsProductBySlug } from "../../../services/productservice";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -243,7 +244,11 @@ export default function Tickets() {
               (window.location.href = window.location.origin + "/dash")
             }
           >
-            <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+                        {i18n.language === "he" ? (
+              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            ) : (
+              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+            )}
             {t("order.back_to_event")}
           </Button>
         </Grid>
