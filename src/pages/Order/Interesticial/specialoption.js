@@ -159,7 +159,7 @@ export default function HelpHaver() {
           }}
         >
           <Button variant="outlined" color="primary" onClick={moveback}>
-          {i18n.language === "he" ? (
+            {i18n.language === "he" ? (
               <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
             ) : (
               <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
@@ -168,9 +168,11 @@ export default function HelpHaver() {
           </Button>
           <Button variant="contained" color="primary" onClick={goToSuccess}>
             {t("common.register")} &nbsp;{" "}
-            {i18n.language === "he" ? <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} /> : <ArrowForwardIosIcon
-                    style={{ height: "12px", width: "12px" }}
-                  />}
+            {i18n.language === "he" ? (
+              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+            ) : (
+              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
+            )}
           </Button>
         </Grid>
       </Container>

@@ -4,11 +4,11 @@ import { makeStyles } from "@material-ui/styles";
 import { useTranslation } from "react-i18next";
 import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import InfoIcon from "@material-ui/icons/Info";
 import { useSelector } from "react-redux";
 const useStyles = makeStyles({
   header: {
-    padding: "40px",
+    padding: "40px 20px",
     justifyContent: "center",
     textAlign: "center",
   },
@@ -66,8 +66,8 @@ const HelpHaverSuccess = () => {
       <Paper elevation={0}>
         <CardContent>
           <Box component="header" className={classes.header}>
-            <CheckCircleIcon
-              style={{ color: "#0D9D0D", height: "45px", width: "45px" }}
+            <InfoIcon
+              style={{ color: "#1976d2", height: "45px", width: "45px" }}
             />
             <Typography
               variant="h1"
@@ -80,6 +80,18 @@ const HelpHaverSuccess = () => {
               {t("help.requestSubmitted")}
             </Typography>
             <div style={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                variant="outlined"
+                color="primary"
+                style={{ marginTop: 40 }}
+                onClick={() => {
+                  window.location.href =
+                    window.location.origin + "/dash/events";
+                }}
+              >
+                {t("order.back_to_event")}
+              </Button>{" "}
+              &nbsp;&nbsp;&nbsp;
               <Button
                 variant="contained"
                 color="primary"

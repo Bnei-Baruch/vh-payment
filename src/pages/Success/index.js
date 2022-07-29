@@ -21,7 +21,7 @@ import { getProfile } from "../../services/userservice";
 
 const useStyles = makeStyles({
   header: {
-    padding: "40px",
+    padding: "40px 20px",
     justifyContent: "center",
     textAlign: "center",
   },
@@ -65,7 +65,12 @@ const Success = () => {
    */
   useEffect(() => {
     let q = qs.parse(window.location.search);
-    if (user.authenticated && !posted && userProfileData && userProfileData.primary_email) {
+    if (
+      user.authenticated &&
+      !posted &&
+      userProfileData &&
+      userProfileData.primary_email
+    ) {
       setPosted(true);
       const eventData = getEventsProductBySlug(pdt);
       paymentSuccess(q)
@@ -159,11 +164,13 @@ const Success = () => {
               color="primary"
               style={{ marginTop: 20 }}
             >
-                          {i18n.language === "he" ? (
-              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
-            ) : (
-              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
-            )}{" "}
+              {i18n.language === "he" ? (
+                <ArrowForwardIosIcon
+                  style={{ height: "12px", width: "12px" }}
+                />
+              ) : (
+                <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+              )}{" "}
               {t("order.back_to_event")}
             </Button>
           </Box>
