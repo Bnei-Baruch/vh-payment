@@ -345,9 +345,9 @@ export default function Payment() {
                   label={
                     <span>
                       I Agree with the{" "}
-                      <Link href="/term_and_condition">
+                      <a href={`https://kli.one/term?lang=${i18n.language !== 'he' ? i18n.language: 'il'}`} target="_blank">
                         Terms and Conditions
-                      </Link>
+                      </a>
                     </span>
                   }
                 />
@@ -388,27 +388,40 @@ export default function Payment() {
                   &nbsp;
                   {payClicked ? (
                     <CircularProgress m={2} className={classes.loader} />
+                  ) : i18n.language === "he" ? (
+                    <ArrowBackIosIcon
+                      style={{ height: "12px", width: "12px" }}
+                    />
                   ) : (
-                    i18n.language === "he" ? <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} /> : <ArrowForwardIosIcon
-                    style={{ height: "12px", width: "12px" }}
-                  />
+                    <ArrowForwardIosIcon
+                      style={{ height: "12px", width: "12px" }}
+                    />
                   )}
                 </>
               ) : (
                 <>
                   {t("common.confirm")}
-                  {i18n.language === "he" ? <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} /> : <ArrowForwardIosIcon
-                    style={{ height: "12px", width: "12px" }}
-                  />}
-                  
+                  {i18n.language === "he" ? (
+                    <ArrowBackIosIcon
+                      style={{ height: "12px", width: "12px" }}
+                    />
+                  ) : (
+                    <ArrowForwardIosIcon
+                      style={{ height: "12px", width: "12px" }}
+                    />
+                  )}
                 </>
               )
             ) : (
               <>
                 {t("common.next")}{" "}
-                {i18n.language === "he" ? <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} /> : <ArrowForwardIosIcon
+                {i18n.language === "he" ? (
+                  <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+                ) : (
+                  <ArrowForwardIosIcon
                     style={{ height: "12px", width: "12px" }}
-                  />}
+                  />
+                )}
               </>
             )}
           </Button>

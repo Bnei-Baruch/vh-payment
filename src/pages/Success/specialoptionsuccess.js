@@ -6,13 +6,11 @@ import { useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
   header: {
-    padding: "40px",
+    padding: "40px 20px",
     justifyContent: "center",
     textAlign: "center",
   },
@@ -41,7 +39,7 @@ const useStyles = makeStyles({
 
 const SpecialOptionSuccess = () => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { option } = useParams();
   const [loading, setLoading] = useState(false);
 
@@ -86,30 +84,28 @@ const SpecialOptionSuccess = () => {
                 : t("specialOption.descriptionIntersectialRussia")}
             </Typography>
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
               style={{ marginTop: 20 }}
               onClick={() => {
-                if (option === "ukraine") {
-                  window.location.href =
-                    window.location.origin + "/dash/events";
-                } else {
-                  window.open(selectedSpecialOption.payment_url);
-                }
+                window.location.href = window.location.origin + "/dash/events";
               }}
             >
-              {option === "ukraine" &&
-                (i18n.language === "he" ? (
-                  <ArrowForwardIosIcon
-                    style={{ height: "12px", width: "12px" }}
-                  />
-                ) : (
-                  <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
-                ))}{" "}
-              {option === "ukraine"
-                ? t("order.back_to_event")
-                : t("common.buy_ticket")}
-            </Button>
+              {t("order.back_to_event")}
+            </Button>{" "}
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            {option !== "ukraine" && (
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginTop: 20 }}
+                onClick={() => {
+                  window.open(selectedSpecialOption.payment_url);
+                }}
+              >
+                {t("common.buy_ticket")}
+              </Button>
+            )}
           </Box>
         </CardContent>
       </Paper>
