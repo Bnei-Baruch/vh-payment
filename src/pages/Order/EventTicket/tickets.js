@@ -155,8 +155,12 @@ export default function Tickets() {
                 style={
                   !isMobile && !membershipData?.membership
                     ? index % 2 === 0
-                      ? marginLeftAuto
-                      : marginRightAuto
+                      ? i18n.language !== "he"
+                        ? marginLeftAuto
+                        : marginRightAuto
+                      : i18n.language !== "he"
+                      ? marginRightAuto
+                      : marginLeftAuto
                     : {}
                 }
               >
@@ -244,7 +248,7 @@ export default function Tickets() {
               (window.location.href = window.location.origin + "/dash")
             }
           >
-                        {i18n.language === "he" ? (
+            {i18n.language === "he" ? (
               <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
             ) : (
               <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
