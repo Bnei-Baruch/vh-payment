@@ -107,7 +107,9 @@
     "membershipStep1": "Suma de membresía",
     "ticketStep1": "Suma de entradas",
     "step2": "Selección de método de pago",
-    "step3": "Confirmación de pago"
+    "step3": "Confirmación de pago",
+    "i_agree": "I Agree with the",
+    "terms_and_conditions": "Terms and Conditions"
   },
   "userDetail": {
     "ticketRegistrationDetail": "Detalle de registro de entradas",

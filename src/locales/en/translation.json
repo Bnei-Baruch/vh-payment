@@ -99,7 +99,10 @@
     "membershipStep1": "Membership Amount",
     "ticketStep1": "Ticket Amount",
     "step2": "Payment Method Selection",
-    "step3": "Checkout Confirmation"
+    "step3": "Checkout Confirmation",
+    "i_agree": "I Agree with the",
+    "terms_and_conditions": "Terms and Conditions"
+
   },
   "userDetail": {
     "ticketRegistrationDetail": "Ticket Registration Detail",
