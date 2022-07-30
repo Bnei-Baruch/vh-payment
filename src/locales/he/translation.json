@@ -33,11 +33,11 @@
     "allGood": "!הכל טוב",
     "processing": "מעבד את ההזמנה",
     "returnToPersonalArea": "חזרה לעמוד האישי",
-    "payment_success": "Payment successful",
-    "payment_error": "Your Payment has failed",
-    "error_paid": "We aren't able to process your payment. Please try again.",
-    "successfully_paid": "You have successfully bought a ticket to the event.",
-    "back_to_event": "Back to event"
+    "payment_success": "שולם בהצלחה!",
+    "payment_error": "התשלום נכשל",
+    "error_paid": "החיוב באופן תשלום זה לא הצליח, אנא נסה שוב",
+    "successfully_paid":  "רכשת בהצלחה כרטיס לאירוע",
+    "back_to_event": "חזרה לאיזור אישי / אירועים"
   },
   "userMenu": {
     "logOut": "להתנתק",
@@ -53,7 +53,7 @@
   },
   "common": {
     "confirm": "לאשר",
-    "cancel": "Cancel",
+    "cancel": "לבטל",
     "next": "המשך",
     "back": "חזר",
     "edit": "ערוך",
@@ -62,9 +62,9 @@
     "upload": "Upload",
     "step": "שלב",
     "amount": "סכום",
-    "ok": "Ok",
-    "register": "Register",
-    "buy_ticket": "Buy ticket",
+    "ok": "כן",
+    "register": "הירשם",
+    "buy_ticket": "לקנות כרטיס",
     "paymentMethod": "אמצעי תשלום",
     "registration": "רשום",
     "select_option": "בחר",
@@ -124,17 +124,17 @@
     "returnMembership": "Return to Membership"
   },
   "specialOption": {
-    "title": "Special Options",
-    "chose_your_option": "Choose your option",
-    "current_situation": "What is the current situation for you?",
-    "ukraine": "I Live in Ukraine",
-    "russia": "I Live in Russia",
-    "successTitleUkraine": "You have successfully registered for the event!",
-    "successTitleRussia": "You have successfully registered for the event!",
-    "successDescription": "After registration, we will send you a ticket to the event by email.",
+    "title": "אפשרויות רכישה מיוחדות",
+    "chose_your_option": "בחר אפשרות",
+    "current_situation": "מה מצבך כיום?",
+    "ukraine": "גר באוקראינה",
+    "russia": "גר ברוסיה",
+    "successTitleUkraine": "נרשמת בהצלחה לאירוע!",
+    "successTitleRussia": "נרשמת בהצלחה לאירוע!",
+    "successDescription": "לאחר ההרשמה, נשלח לך את הכרטיס בדואר אלקטרוני",
     "titleIntersectial": "For our friends from",
-    "descriptionIntersectialUkraine": "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
-    "descriptionIntersectialRussia": "Here you can register for the event. After registration, we will send you a ticket to the event by email."
+    "descriptionIntersectialUkraine": "לאחר ההרשמה, נשלח לך את הכרטיס בדואר אלקטרוני",
+    "descriptionIntersectialRussia": "לאחר ההרשמה, נשלח אליך כרטיס בדואר אלקטרוני, אל תשכח להשלים את התשלום שלך בקישור למטה"
   },
   "membership": {
     "active": "Active",
