@@ -345,7 +345,7 @@ export default function Payment() {
                   label={
                     <span>
                       I Agree with the{" "}
-                      <a href={`https://kli.one/term?lang=${i18n.language !== 'he' ? i18n.language: 'il'}`} target="_blank">
+                      <a href={`https://kli.one/terms?lang=${i18n.language !== 'he' ? i18n.language: 'il'}`} target="_blank">
                         Terms and Conditions
                       </a>
                     </span>
