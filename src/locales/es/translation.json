@@ -68,8 +68,8 @@
     "paymentMethod": "Método de pago",
     "registration": "Registro",
     "select_option": "Elige",
-    "successHeader": "Congratulations! You have successfully registered for the event",
-    "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
+    "successHeader": "Te has inscrito con éxito en el evento.",
+    "successDescription": "Después de la inscripción, te enviaremos una entrada al evento por correo electrónico.",
     "viewTicket": "View Event Ticket"
   },
   "paymentMethod": {
@@ -142,8 +142,9 @@
     "successTitleRussia": "Te has inscrito con éxito en el evento.",
     "successDescription": "Tras la inscripción, te enviaremos una entrada al evento por correo electrónico.",
     "titleIntersectial": "For our friends from",
-    "descriptionIntersectialUkraine": "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
-    "descriptionIntersectialRussia": "Here you can register for the event. After registration, we will send you a ticket to the event by email."
+    "descriptionIntersectialUkraine": "Tras la inscripción, te enviaremos una entrada al evento por correo electrónico.",
+    "descriptionIntersectialRussia": "Después de la inscripción, te enviaremos una entrada al evento por correo electrónico.
+No olvides de completar tu pago en el enlace de abajo."
   },
   "membership": {
     "active": "Active",
