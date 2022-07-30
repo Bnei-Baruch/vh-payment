@@ -63,13 +63,13 @@
     "step": "Шаг",
     "amount": "Сумма",
     "ok": "OK",
-    "register": "Register",
-    "buy_ticket": "Buy ticket",
+    "register": "Зарегистрироваться",
+    "buy_ticket": "Оплатить билет",
     "paymentMethod": "Способ оплаты",
     "registration": "Регистрация",
     "select_option": "Выбрать",
-    "successHeader": "Congratulations! You have successfully registered for the event",
-    "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
+    "successHeader": "Вы успешно зарегистрировались на это мероприятие!",
+    "successDescription": "После регистрации мы вышлем ваш билет по электронной почте",
     "viewTicket": "View Event Ticket"
   },
   "paymentMethod": {
@@ -91,8 +91,8 @@
     "submittedHeader": "Complete the form below",
     "requestSubmitted": "Ваш запрос отправлен и вскоре будет рассмотрен. По любым вопросам пишите на help@kli.one",
     "return_to_personal_area": "Вернуться в личный кабинет",
-    "enter_details_for_help": "Complete Form",
-    "financial_help": "Financial Help"
+    "enter_details_for_help": "Заполнить бланк",
+    "financial_help": "Финансовая помощь"
   },
   "payment": {
     "membershipStep1": "Цена абонемента",
@@ -124,17 +124,17 @@
     "returnMembership": "Return to Membership"
   },
   "specialOption": {
-    "title": "Special Options",
-    "chose_your_option": "Choose your option",
-    "current_situation": "What is the current situation for you?",
-    "ukraine": "I Live in Ukraine",
-    "russia": "I Live in Russia",
-    "successTitleUkraine": "You have successfully registered for the event!",
-    "successTitleRussia": "You have successfully registered for the event!",
-    "successDescription": "After registration, we will send you a ticket to the event by email.",
+    "title": "Другие варинаты оплаты",
+    "chose_your_option": "Выберите вариант",
+    "current_situation": "Выберите ваш вариант",
+    "ukraine": "Живу на Украине",
+    "russia": "Живу в России",
+    "successTitleUkraine": "Вы успешно зарегистрировались на мероприятие!",
+    "successTitleRussia": "Вы успешно зарегистрировались на мероприятие!",
+    "successDescription": "После регистрации мы вышлем ваш билет по электронной почте",
     "titleIntersectial": "For our friends from",
-    "descriptionIntersectialUkraine": "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
-    "descriptionIntersectialRussia": "Here you can register for the event. After registration, we will send you a ticket to the event by email."
+    "descriptionIntersectialUkraine": "После регистрации мы вышлем ваш билет по электронной почте",
+    "descriptionIntersectialRussia": "После регистрации, мы вышлем вам билет по электронной почте. Не забудьте завершить оплату по ссылке ниже."
   },
   "membership": {
     "active": "Active",
