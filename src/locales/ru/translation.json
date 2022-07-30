@@ -98,7 +98,9 @@
     "membershipStep1": "Цена абонемента",
     "ticketStep1": "Цена билета",
     "step2": "Выбор способа оплаты",
-    "step3": "Подтверждение оплаты"
+    "step3": "Подтверждение оплаты",
+    "i_agree": "I Agree with the",
+    "terms_and_conditions": "Terms and Conditions"
   },
   "userDetail": {
     "ticketRegistrationDetail": "Детали регистрации билета",

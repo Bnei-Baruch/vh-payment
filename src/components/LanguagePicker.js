@@ -47,7 +47,7 @@ const LanguagePicker = () => {
         dispatch(setLanguage(lang));
         i18n.changeLanguage(langId).catch((err) => console.error(err));
       }
-      if (window.location.search.slice(6) === "he") {
+      if (window.location.search.slice(6) === "he" || i18n.language === "he") {
         changeCurrency();
       }
     }

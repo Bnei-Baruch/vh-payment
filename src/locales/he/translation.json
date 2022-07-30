@@ -98,7 +98,9 @@
     "membershipStep1": "סכום מנוי",
     "ticketStep1": "סכום הכרטיס",
     "step2": "בחירת אמצעי תשלום",
-    "step3": "אישור קופה"
+    "step3": "אישור קופה",
+    "i_agree": "I Agree with the",
+    "terms_and_conditions": "Terms and Conditions"
   },
   "userDetail": {
     "ticketRegistrationDetail": "פרטי רישום כרטיס",
