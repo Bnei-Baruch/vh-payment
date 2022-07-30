@@ -1045,7 +1045,7 @@ exports.tickets = {
           ],
         },
         es: {
-          name: "Ayuda financiera",
+          name: "Help Haver",
           description: [
             "Queremos que este evento esté disponible para cada uno de nosotros. Si te encuentras en una difícil situación financiera, puedes aplicar para una ayuda",
           ],
@@ -1068,7 +1068,7 @@ exports.tickets = {
         },
 
         he: {
-          name: "עזרה כלכלית",
+          name: "קרן עזרה ״הלפ חבר״",
           description: [
             "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה",
           ],
@@ -1164,7 +1164,7 @@ exports.tickets = {
           ],
         },
         es: {
-          name: "Ayuda financiera",
+          name: "Help Haver",
           description: [
             "Queremos que este evento esté disponible para cada uno de nosotros. Si te encuentras en una difícil situación financiera, puedes aplicar para una ayuda",
           ],
@@ -1187,7 +1187,7 @@ exports.tickets = {
         },
 
         he: {
-          name: "עזרה כלכלית",
+          name: "קרן עזרה ״הלפ חבר״",
           description: [
             "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה",
           ],
