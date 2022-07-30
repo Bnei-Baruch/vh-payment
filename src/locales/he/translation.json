@@ -88,10 +88,10 @@
     "header": "זקוק לעזרה?",
     "requestHelp": "You cannot afford to pay and you want to request for help?",
     "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
-    "submittedHeader": "Complete the form below",
-    "requestSubmitted": "In order to complete your application for financial help, you must complete the form following the link below",
+    "submittedHeader": "השלם את הטופס הבא",
+    "requestSubmitted": "להשלמת הבקשה לסיוע כספי, עליך למלא את הטופס, הקלק על הקישור למטה",
     "return_to_personal_area": "Return to personal area",
-    "enter_details_for_help": "Complete Form",
+    "enter_details_for_help": "מילוי הטופס",
     "financial_help": "סיוע כספי להרשמה"
   },
   "payment": {
