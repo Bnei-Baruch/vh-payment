@@ -99,8 +99,8 @@
     "ticketStep1": "Цена билета",
     "step2": "Выбор способа оплаты",
     "step3": "Подтверждение оплаты",
-    "i_agree": "I Agree with the",
-    "terms_and_conditions": "Terms and Conditions"
+    "i_agree": "Я согласен",
+    "terms_and_conditions": "с правилами и условиями"
   },
   "userDetail": {
     "ticketRegistrationDetail": "Детали регистрации билета",

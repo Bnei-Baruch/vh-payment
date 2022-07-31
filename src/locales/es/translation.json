@@ -108,8 +108,8 @@
     "ticketStep1": "Suma de entradas",
     "step2": "Selección de método de pago",
     "step3": "Confirmación de pago",
-    "i_agree": "I Agree with the",
-    "terms_and_conditions": "Terms and Conditions"
+    "i_agree": "estoy de acuerdo con",
+    "terms_and_conditions": "los términos y condiciones "
   },
   "userDetail": {
     "ticketRegistrationDetail": "Detalle de registro de entradas",
