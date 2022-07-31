@@ -765,7 +765,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/gBFzz",
+              payment_url: "https://clck.ru/sRddi",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -792,7 +792,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/gBFzz",
+              payment_url: "https://clck.ru/sRddi",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -820,7 +820,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/gBFzz",
+              payment_url: "https://clck.ru/sRddi",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -847,7 +847,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/gBFzz",
+              payment_url: "https://clck.ru/sRddi",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -903,7 +903,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/gBFzz",
+              payment_url: "https://clck.ru/sRddi",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -930,7 +930,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/gBFzz",
+              payment_url: "https://clck.ru/sRddi",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -958,7 +958,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/gBFzz",
+              payment_url: "https://clck.ru/sRddi",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -985,7 +985,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/gBFzz",
+              payment_url: "https://clck.ru/sRddi",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
