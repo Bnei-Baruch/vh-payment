@@ -563,7 +563,7 @@ exports.tickets = {
   },
   event: {
     slug: "aug2022",
-    id: 2,
+    id: 34,
   },
   plans: [
     {
