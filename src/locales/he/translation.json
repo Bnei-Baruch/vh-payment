@@ -37,7 +37,8 @@
     "payment_error": "התשלום נכשל",
     "error_paid": "החיוב באופן תשלום זה לא הצליח, אנא נסה שוב",
     "successfully_paid":  "רכשת בהצלחה כרטיס לאירוע",
-    "back_to_event": "חזרה לאיזור אישי / אירועים"
+    "back_to_event": "חזרה לאיזור אישי / אירועים",
+    "become_a_member": "Become a member"
   },
   "userMenu": {
     "logOut": "להתנתק",

@@ -37,7 +37,9 @@
     "payment_error": "Tu pago ha fallado",
     "error_paid": "No hemos podido procesar tu pago. Por favor inténtalo de nuevo",
     "successfully_paid": "Has adquirido el boleto para el event ",
-    "back_to_event": "Volver a Eventos"
+    "back_to_event": "Volver a Eventos",
+    "become_a_member": "Become a member"
+
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",
