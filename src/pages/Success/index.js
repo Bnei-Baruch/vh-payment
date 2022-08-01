@@ -163,6 +163,9 @@ const Success = () => {
               variant="contained"
               color="primary"
               style={{ marginTop: 20 }}
+              onClick={() => {
+                window.location.href = window.location.origin + "/dash/events";
+              }}
             >
               {i18n.language === "he" ? (
                 <ArrowForwardIosIcon
