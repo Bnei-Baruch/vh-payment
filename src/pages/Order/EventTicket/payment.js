@@ -230,7 +230,6 @@ export default function Payment() {
       ? selectedTicket.content[i18n.language]
       : selectedTicket.content.en;
 
-  console.log(i18n.language);
   return (
     <>
       <Grid item xs={12}>
@@ -344,9 +343,14 @@ export default function Payment() {
                   }
                   label={
                     <span>
-                      {t('payment.i_agree')}
-                      <Link href={`https://kli.one/terms?lang=${i18n.language !== 'he' ? i18n.language: 'il'}`} target="_blank">
-                      {t('payment.terms_and_conditions')}
+                      {t("payment.i_agree")}
+                      <Link
+                        href={`https://kli.one/terms?lang=${
+                          i18n.language !== "he" ? i18n.language : "il"
+                        }`}
+                        target="_blank"
+                      >
+                        {t("payment.terms_and_conditions")}
                       </Link>
                     </span>
                   }

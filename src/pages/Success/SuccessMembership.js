@@ -3,12 +3,12 @@ import { Box, Button, CardContent, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import Loader from "../../../components/Loader";
-import ContentLayout from "../../../layouts/ContentLayout";
+import ContentLayout from "../../layouts/ContentLayout";
 import { useParams } from "react-router-dom";
 import * as qs from "query-string";
-import { paymentSuccess } from "../../../services/orderservice";
-import { getQueryParams } from "../../../utils/common";
+import { paymentSuccess } from "../../services/orderservice";
+import { getQueryParams } from "../../utils/common";
+import Loader from "../../components/Loader";
 
 const useStyles = makeStyles({
   header: {

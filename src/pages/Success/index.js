@@ -48,7 +48,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Success = () => {
+const Success = (props) => {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
   const { pdt, option } = useParams();
@@ -94,7 +94,7 @@ const Success = () => {
                   registration_date: new Date().toISOString(),
                   confirmed: true,
                 };
-                addPariticpantInEvent(data);
+                addPariticpantInEvent(data).catch((e) => console.log(e));
               }
             })
             .catch(async () => {
@@ -124,7 +124,7 @@ const Success = () => {
                     notification: true,
                     notification_type: "confirmation",
                   };
-                  addPariticpantInEvent(data);
+                  addPariticpantInEvent(data).catch((e) => console.log(e));
                 }
               });
             });
