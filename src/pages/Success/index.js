@@ -75,11 +75,6 @@ const Success = () => {
       const eventData = getEventsProductBySlug(pdt);
       paymentSuccess(q)
         .then(() => {
-          if (pdt === "jan2022ticket") {
-            setTimeout(() => {
-              window.location.href = `${window.location.origin}/register/success`;
-            }, 3000);
-          }
           setLoading(false);
           getParticipantByEmail(userProfileData.primary_email)
             .then((res) => {
@@ -94,7 +89,7 @@ const Success = () => {
                   registration_date: new Date().toISOString(),
                   confirmed: true,
                 };
-                addPariticpantInEvent(data);
+                addPariticpantInEvent(data).catch((e) => console.log(e));
               }
             })
             .catch(async () => {
@@ -124,7 +119,7 @@ const Success = () => {
                     notification: true,
                     notification_type: "confirmation",
                   };
-                  addPariticpantInEvent(data);
+                  addPariticpantInEvent(data).catch((e) => console.log(e));
                 }
               });
             });
@@ -135,7 +130,7 @@ const Success = () => {
         });
     }
     // eslint-disable-next-line
-  }, [pdt, user, userProfileData]);
+  }, [user, userProfileData]);
 
   if (!user.authenticated || loading) {
     return <Loader />;

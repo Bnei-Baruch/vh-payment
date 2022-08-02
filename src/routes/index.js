@@ -11,7 +11,6 @@ import OtherPayment from "../pages/Order/otherpayment";
 import Needhelp from "../pages/Order/Needhelp";
 import Membership from "../pages/Order/Membership/Membership";
 import MembershipPayment from "../pages/Order/Membership/MembershipPayment";
-import SuccessMembership from "../pages/Order/Membership/SuccessMembership";
 import HelpHaverSuccess from "../pages/Success/helphaversuccess";
 import MembershipIntersticial from "../pages/Order/Interesticial/membershipIntersticial";
 import HelpHaver from "../pages/Order/Interesticial/helphaver";
@@ -19,6 +18,7 @@ import SpecialOption from "../pages/Order/SpecialOption/SpecialOption";
 import SpecialOptionInterestical from "../pages/Order/Interesticial/specialoption";
 import SpecialOptionSuccess from "../pages/Success/specialoptionsuccess";
 import MembershipHelphaver from "../pages/Order/Interesticial/membershipHelpHaver";
+import SuccessMembership from "../pages/Success/SuccessMembership";
 
 const Routes = () => (
   <Router>
@@ -91,7 +91,7 @@ const Routes = () => (
         component={UserDetail}
       />
       <Route from="/pay/success/:pdt/:option" component={Success} />
-      <Route from="/pay/success" component={Success} />
+      <Route from="/pay/success" component={SuccessMembership} />
       <Route from="/pay/error" component={Error} />
       <Route from="/" component={NotFound} />
     </Switch>
