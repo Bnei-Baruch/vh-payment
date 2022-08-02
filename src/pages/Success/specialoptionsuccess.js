@@ -60,8 +60,6 @@ const SpecialOptionSuccess = () => {
     return <Loader />;
   }
 
-  console.log(selectedSpecialOption);
-
   return (
     <ContentLayout>
       <Paper elevation={0}>
