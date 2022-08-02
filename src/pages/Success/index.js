@@ -48,7 +48,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Success = (props) => {
+const Success = () => {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
   const { pdt, option } = useParams();
@@ -75,11 +75,6 @@ const Success = (props) => {
       const eventData = getEventsProductBySlug(pdt);
       paymentSuccess(q)
         .then(() => {
-          if (pdt === "jan2022ticket") {
-            setTimeout(() => {
-              window.location.href = `${window.location.origin}/register/success`;
-            }, 3000);
-          }
           setLoading(false);
           getParticipantByEmail(userProfileData.primary_email)
             .then((res) => {
@@ -135,7 +130,7 @@ const Success = (props) => {
         });
     }
     // eslint-disable-next-line
-  }, [pdt, user, userProfileData]);
+  }, [user, userProfileData]);
 
   if (!user.authenticated || loading) {
     return <Loader />;
