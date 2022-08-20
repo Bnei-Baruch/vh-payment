@@ -13,6 +13,9 @@ const useStyles = makeStyles({
     padding: "40px 20px",
     justifyContent: "center",
     textAlign: "center",
+    "@media (max-width: 768px)": {
+      padding: "0px !important",
+    },
   },
   body: {
     marginTop: 40,
@@ -34,6 +37,13 @@ const useStyles = makeStyles({
   payBtn: {
     fontFamily: "Abel",
     marginRight: 8,
+  },
+  actionButtons: {
+    "@media (max-width: 768px)": {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+    },
   },
 });
 
@@ -70,7 +80,7 @@ const SpecialOptionSuccess = () => {
             />
             <Typography
               variant="h2"
-              style={{ fontSize: 24, margin: 20, fontWeight: "normal" }}
+              style={{ fontSize: 24, margin: "20px 0px", fontWeight: "normal" }}
             >
               {option === "ukraine"
                 ? t("specialOption.successTitleUkraine")
@@ -81,29 +91,32 @@ const SpecialOptionSuccess = () => {
                 ? t("specialOption.descriptionIntersectialUkraine")
                 : t("specialOption.descriptionIntersectialRussia")}
             </Typography>
-            <Button
-              variant="outlined"
-              color="primary"
-              style={{ marginTop: 20 }}
-              onClick={() => {
-                window.location.href = window.location.origin + "/dash/events";
-              }}
-            >
-              {t("order.back_to_event")}
-            </Button>{" "}
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            {option !== "ukraine" && (
+            <div className={classes.actionButtons}>
               <Button
-                variant="contained"
+                variant="outlined"
                 color="primary"
                 style={{ marginTop: 20 }}
                 onClick={() => {
-                  window.open(selectedSpecialOption.payment_url);
+                  window.location.href =
+                    window.location.origin + "/dash/events";
                 }}
               >
-                {t("common.buy_ticket")}
-              </Button>
-            )}
+                {t("order.back_to_event")}
+              </Button>{" "}
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              {option !== "ukraine" && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ marginTop: 20 }}
+                  onClick={() => {
+                    window.open(selectedSpecialOption.payment_url);
+                  }}
+                >
+                  {t("common.buy_ticket")}
+                </Button>
+              )}
+            </div>
           </Box>
         </CardContent>
       </Paper>
