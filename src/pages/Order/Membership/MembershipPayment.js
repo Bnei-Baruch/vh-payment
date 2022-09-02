@@ -7,10 +7,9 @@ import {
   Radio,
   RadioGroup,
   CircularProgress,
-  Step,
-  StepLabel,
-  Stepper,
   Typography,
+  Paper,
+  Checkbox,
 } from "@material-ui/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -25,12 +24,16 @@ import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
+import InfoIcon from "@material-ui/icons/Info";
+const Link = styled.a`
+  color: rgba(21, 101, 192, 1);
+  font-weight: bold;
+`;
 const PaymentTile = styled.div`
-  padding: 20px 20px;
+  padding: 20px 10px;
   > span:first-child.left {
-    font-size: 80px;
-    border-left: 1px dashed #ccc;
-    padding-left: 20px;
+    font-size: 32px;
+    font-weight: 600;
   }
   > span:first-child.right {
     font-size: 80px;
@@ -55,22 +58,38 @@ const SubText = styled.div`
 const HeaderTitle = styled(Typography)`
   text-align: center;
 `;
+
+const ElevatedContainer = styled(Paper)`
+  padding: 15px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+`;
+
+const ConfirmGrid = styled(Grid)`
+  width: 60%;
+  margin: auto;
+`;
 export default function MembershipPayment() {
   const { t, i18n } = useTranslation();
+  const { plan } = useParams();
   const history = useHistory();
   const classes = useStyles();
-  const { plan } = useParams();
+
   const user = useSelector((state) => state.user);
   const { dir } = useSelector((state) => state.language);
-  const [profileData, setUserProfileData] = React.useState(null);
-  const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [loading, setLoading] = React.useState(true);
-  const [payClicked, setOnPayClicked] = React.useState(false);
   const currency = useSelector((state) => state.currency);
   const selectedMembership = useSelector(
     (state) => state.order.selectedMembership
   );
+
+  const [profileData, setUserProfileData] = React.useState(null);
+  const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
+  const [termsAccepted, setTermsAccepted] = React.useState(false);
+  const [payClicked, setOnPayClicked] = React.useState(false);
+
   const nextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -170,10 +189,8 @@ export default function MembershipPayment() {
   let event = content[i18n.language]
     ? content[i18n.language].title
     : content.en;
-  let membershipDescription = selectedMembership.content
-    ? selectedMembership.content[i18n.language].description
-    : selectedMembership.content.en.description;
   let paymentOption = selectedMembership.payment_options;
+
   return (
     <ContentLayout>
       {event && (
@@ -181,51 +198,26 @@ export default function MembershipPayment() {
           <HeaderTitle variant="h3">{event.title}</HeaderTitle> <br />
         </>
       )}
-      <Stepper
-        className={dir === "rtl" && classes.unaffectedrtl}
-        activeStep={activeStep}
-        alternativeLabel
-      >
-        {[
-          t("payment.membershipStep1"),
-          t("payment.step2"),
-          t("payment.step3"),
-        ].map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
       {activeStep === 0 && (
-        <Grid container spacing={6}>
+        <Grid container spacing={3}>
           <Grid item xs={12}>
-            <SubText>{t("common.amount")}</SubText>
-            <PaymentTile>
-              <span className={dir === "ltr" ? "left" : "right"}>
-                {selectedMembership.price[currency.id]?.amount}
-              </span>
+            <Typography variant="h6">
+              {" "}
+              {selectedMembership.name === "manual"
+                ? t("membership.monthly_manual_subscription")
+                : t("membership.monthly_auto_subscription")}
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <ElevatedContainer elevation={3}>
+              <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
               <span>
-                {" "}
-                <CurrencyPicker />
+                {selectedMembership.name === "manual"
+                  ? t("membership.manual_subscription_description")
+                  : t("membership.auto_subscription_description")}
               </span>
-            </PaymentTile>
+            </ElevatedContainer>
           </Grid>
-          <Grid item xs={12}>
-            <SubText>
-              <ul style={{ padding: "0px 10px" }}>
-                {membershipDescription &&
-                  membershipDescription.map((description) => {
-                    return <li>{description}</li>;
-                  })}
-              </ul>
-            </SubText>
-            <br />
-            <br />
-          </Grid>
-        </Grid>
-      )}
-      {activeStep === 1 && (
-        <Grid container spacing={6}>
           <Grid item xs={12}>
             <Grid style={{ padding: "20px" }}>
               <FormControl>
@@ -250,64 +242,138 @@ export default function MembershipPayment() {
               </FormControl>
             </Grid>
           </Grid>
+          <Grid item xs={12} container spacing={6}>
+            <Grid item xs={12}>
+              <SubText>{t("common.amount")}</SubText>
+              <PaymentTile>
+                <span>
+                  <CurrencyPicker variant="outlined" />
+                </span>
+              </PaymentTile>
+            </Grid>
+            <Grid item xs={12} container spacing={6}>
+              <Grid item xs={12}>
+                <SubText>{t("common.amount")}</SubText>
+                <PaymentTile>
+                  <span className={dir === "ltr" ? "left" : "right"}>
+                    <span
+                      class="lightgrey"
+                      style={{ textTransform: "uppercase" }}
+                    >
+                      {currency.sign}
+                    </span>
+                    {selectedMembership.price[currency.id]?.amount}
+                  </span>
+                </PaymentTile>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={payClicked}
+              onClick={nextStep}
+            >
+              {t("common.next")}
+            </Button>
+            &nbsp;&nbsp;
+            <Button
+              variant="contained"
+              onClick={prevStep}
+              disabled={payClicked}
+            >
+              {t("common.back")}
+            </Button>
+          </Grid>
         </Grid>
       )}
-      {activeStep === 2 && (
-        <Grid container spacing={6}>
+      {activeStep === 1 && (
+        <ConfirmGrid container spacing={3}>
           <Grid item xs={12}>
-            <SubText>{t("common.amount")}</SubText>
-            <PaymentTile>
-              <span class="lightgrey">
-                {selectedMembership.price[currency.id]?.amount}
-              </span>
-              <span class="lightgrey" style={{ textTransform: "uppercase" }}>
-                {currency.id?.toUpperCase()}
-              </span>
-            </PaymentTile>
+            <ElevatedContainer elevation={3}>
+              <Typography variant="h6">
+                {" "}
+                {selectedMembership.name === "manual"
+                  ? t("membership.monthly_manual_subscription")
+                  : t("membership.monthly_auto_subscription")}
+              </Typography>
+            </ElevatedContainer>
           </Grid>
           <Grid item xs={12}>
-            <SubText>{t("common.paymentMethod")}</SubText>
-            <PaymentTile>
-              <span class="lightgrey">
-                {
-                  paymentOption.find((item) => item.name === paymentMethod)
-                    ?.content[i18n.language]?.label
-                }
+            <ElevatedContainer elevation={3}>
+              <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
+              <span>
+                {selectedMembership.name === "manual"
+                  ? t("membership.manual_payment_confirmation_message")
+                  : t("membership.auto_payment_confirmation_message")}
               </span>
-            </PaymentTile>
+            </ElevatedContainer>
           </Grid>
-        </Grid>
-      )}
-      <Grid style={{ textAlign: "right" }}>
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={payClicked}
-          onClick={activeStep === 2 ? proceedToPayment : nextStep}
-        >
-          {activeStep === 2 ? (
-            payClicked ? (
-              <>
-                {payClicked && (
-                  <CircularProgress m={2} className={classes.loader} />
+          <Grid item xs={12}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={termsAccepted}
+                  onChange={() => setTermsAccepted(!termsAccepted)}
+                  name="termsAccepted"
+                  color="primary"
+                />
+              }
+              label={
+                <span>
+                  {t("payment.i_agree")}{" "}
+                  <Link
+                    href={`https://kli.one/terms?lang=${
+                      i18n.language !== "he" ? i18n.language : "il"
+                    }`}
+                    target="_blank"
+                  >
+                    {t("payment.terms_and_conditions")}
+                  </Link>
+                </span>
+              }
+            />
+          </Grid>
+          <Grid container item xs={12} spacing={3}>
+            <Grid item xs={12}>
+              <Button
+                fullWidth
+                onClick={proceedToPayment}
+                variant="contained"
+                color="primary"
+                disabled={payClicked}
+              >
+                {payClicked ? (
+                  <>
+                    {payClicked && (
+                      <CircularProgress m={2} className={classes.loader} />
+                    )}
+                    &nbsp;
+                    {t("order.processing")}
+                  </>
+                ) : (
+                  t("common.confirm")
                 )}
-                &nbsp;
-                {t("order.processing")}
-              </>
-            ) : (
-              t("common.confirm")
-            )
-          ) : (
-            t("common.next")
-          )}
-        </Button>
-        &nbsp;&nbsp;
-        {
-          <Button variant="contained" onClick={prevStep} disabled={payClicked}>
-            {t("common.back")}
-          </Button>
-        }
-      </Grid>
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                fullWidth
+                variant="contained"
+                onClick={prevStep}
+                disabled={payClicked}
+              >
+                {t("common.back")}
+              </Button>
+            </Grid>
+          </Grid>
+        </ConfirmGrid>
+      )}
     </ContentLayout>
   );
 }
