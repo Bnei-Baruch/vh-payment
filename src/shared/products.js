@@ -1291,7 +1291,7 @@ exports.membershipsplans = {
         en: {
           name: "Manual Payment",
           description: ["Pay any time of the month", "Offline payment option"],
-          button_label: "Select this Membership",
+          button_label: "Select this Plan",
         },
         es: {
           name: "Pago manual",
@@ -1379,7 +1379,7 @@ exports.membershipsplans = {
             "Pay any time of the month",
             "Multiple payment solutions",
           ],
-          button_label: "Select this Membership",
+          button_label: "Select this Plan",
         },
         es: {
           name: "Automatic ES",
@@ -1387,7 +1387,7 @@ exports.membershipsplans = {
             "Pay any time of the month",
             "Multiple payment solutions",
           ],
-          button_label: "Select this Membership",
+          button_label: "Select this Plan",
         },
         ru: {
           name: "Automatic RU",
@@ -1395,7 +1395,7 @@ exports.membershipsplans = {
             "Pay any time of the month",
             "Multiple payment solutions",
           ],
-          button_label: "Select this Membership",
+          button_label: "Select this Plan",
         },
         he: {
           name: "Automatic HE",
@@ -1403,7 +1403,7 @@ exports.membershipsplans = {
             "Pay any time of the month",
             "Multiple payment solutions",
           ],
-          button_label: "Select this Membership",
+          button_label: "Select this Plan",
         },
       },
       flow: {
@@ -1468,7 +1468,7 @@ exports.membershipsplans = {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select this Membership",
+          button_label: "Select this Plan",
           intersticial: {
             title: "Title",
             body: "Message",
@@ -1481,7 +1481,7 @@ exports.membershipsplans = {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select this Membership",
+          button_label: "Select this Plan",
           intersticial: {
             title: "Title",
             body: "Message",
@@ -1494,7 +1494,7 @@ exports.membershipsplans = {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select this Membership",
+          button_label: "Select this Plan",
           intersticial: {
             title: "Title",
             body: "Message",
@@ -1507,7 +1507,7 @@ exports.membershipsplans = {
           name: "helphaver",
           label: "Help Haver",
           description: ["If you have financial issues, you can apply for help"],
-          button_label: "Select this Membership",
+          button_label: "Select this Plan",
           intersticial: {
             title: "Title",
             body: "Message",

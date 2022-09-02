@@ -33,7 +33,10 @@ const Auth = () => {
   useEffect(() => {
     const login = async () => {
       const keycloak = Keycloak(window.APP_CONFIG.KEYCLOAK_CONFIG);
-      const authenticated = await keycloak.init({ onLoad: "login-required", checkLoginIframe: false });
+      const authenticated = await keycloak.init({
+        onLoad: "login-required",
+        checkLoginIframe: false,
+      });
       await keycloak.loadUserProfile();
       const profile = {
         username: keycloak.profile.username,

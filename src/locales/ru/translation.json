@@ -141,6 +141,7 @@
   },
   "membership": {
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "back_to_status": "Back to Status"
   }
 }

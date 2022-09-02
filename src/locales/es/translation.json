@@ -39,7 +39,6 @@
     "successfully_paid": "Has adquirido el boleto para el event ",
     "back_to_event": "Volver a Eventos",
     "become_a_member": "Activar membresía"
-
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",
@@ -151,6 +150,7 @@
   },
   "membership": {
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "back_to_status": "Back to Status"
   }
 }

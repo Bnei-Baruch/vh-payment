@@ -36,7 +36,7 @@
     "payment_success": "שולם בהצלחה!",
     "payment_error": "התשלום נכשל",
     "error_paid": "החיוב באופן תשלום זה לא הצליח, אנא נסה שוב",
-    "successfully_paid":  "רכשת בהצלחה כרטיס לאירוע",
+    "successfully_paid": "רכשת בהצלחה כרטיס לאירוע",
     "back_to_event": "חזרה לאיזור אישי / אירועים",
     "become_a_member": "הרשמה למנוי חדש"
   },
@@ -101,7 +101,7 @@
     "step2": "בחירת אמצעי תשלום",
     "step3": "אישור קופה",
     "i_agree": "אני מסכים עם",
-    "terms_and_conditions":  "תנאי שימוש"
+    "terms_and_conditions": "תנאי שימוש"
   },
   "userDetail": {
     "ticketRegistrationDetail": "פרטי רישום כרטיס",
@@ -141,6 +141,7 @@
   },
   "membership": {
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "back_to_status": "Back to Status"
   }
 }
