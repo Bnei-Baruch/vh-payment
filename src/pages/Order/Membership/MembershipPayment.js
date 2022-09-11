@@ -331,13 +331,13 @@ export default function MembershipPayment() {
             <ElevatedContainer elevation={3}>
               <Grid container>
                 <Grid item xs={12}>
-                <Typography variant="h6">
-                {" "}
-                {selectedMembership.name === "manual"
-                  ? t("membership.monthly_manual_subscription")
-                  : t("membership.monthly_auto_subscription")}
-              </Typography>
-                  </Grid>
+                  <Typography variant="h6">
+                    {" "}
+                    {selectedMembership.name === "manual"
+                      ? t("membership.monthly_manual_subscription")
+                      : t("membership.monthly_auto_subscription")}
+                  </Typography>
+                </Grid>
                 <Grid item xs={12}>
                   {currency.sign +
                     " " +
@@ -357,13 +357,16 @@ export default function MembershipPayment() {
                 )}
 
                 <Grid item xs={12}>
-                  <div>{currency.sign} {selectedMembership.price[currency.id].amount * period}</div>
+                  <div>
+                    {currency.sign}{" "}
+                    {selectedMembership.price[currency.id].amount * period}
+                  </div>
                   <div>Total to Pay</div>
                 </Grid>
               </Grid>
             </ElevatedContainer>
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <ElevatedContainer elevation={3}>
               <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
               <span>
@@ -372,7 +375,7 @@ export default function MembershipPayment() {
                   : t("membership.auto_payment_confirmation_message")}
               </span>
             </ElevatedContainer>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <FormControlLabel
               control={
