@@ -10,6 +10,8 @@ import {
   Typography,
   Paper,
   Checkbox,
+  Select,
+  MenuItem,
 } from "@material-ui/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -70,6 +72,20 @@ const ConfirmGrid = styled(Grid)`
   width: 60%;
   margin: auto;
 `;
+const periods = [
+  { value: 1, name: "1 month" },
+  { value: 2, name: "2 month" },
+  { value: 3, name: "3 month" },
+  { value: 4, name: "4 month" },
+  { value: 5, name: "5 month" },
+  { value: 6, name: "6 month" },
+  { value: 7, name: "7 month" },
+  { value: 8, name: "8 month" },
+  { value: 9, name: "9 month" },
+  { value: 10, name: "10 months" },
+  { value: 11, name: "11 months" },
+  { value: 12, name: "12 months" },
+];
 export default function MembershipPayment() {
   const { t, i18n } = useTranslation();
   const { plan } = useParams();
@@ -84,6 +100,7 @@ export default function MembershipPayment() {
   );
 
   const [profileData, setUserProfileData] = React.useState(null);
+  const [period, setPeriod] = React.useState(1);
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
@@ -241,8 +258,25 @@ export default function MembershipPayment() {
                 </RadioGroup>
               </FormControl>
             </Grid>
-          </Grid>
-          <Grid item xs={12} container spacing={6}>
+            <Grid item xs={12}>
+              <SubText>{t("common.period")}</SubText>
+              <PaymentTile>
+                <span>
+                  <Select
+                    value={period}
+                    variant="outlined"
+                    onChange={(event) => setPeriod(event.target.value)}
+                  >
+                    {periods.map((l) => (
+                      <MenuItem key={l.value} value={l.value}>
+                        {l.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </span>
+                <div>You can choose to pay more than 1 month</div>
+              </PaymentTile>
+            </Grid>
             <Grid item xs={12}>
               <SubText>{t("common.amount")}</SubText>
               <PaymentTile>
@@ -275,19 +309,18 @@ export default function MembershipPayment() {
           >
             <Button
               variant="contained"
+              onClick={prevStep}
+              disabled={payClicked}
+            >
+              {t("common.back")}
+            </Button>
+            <Button
+              variant="contained"
               color="primary"
               disabled={payClicked}
               onClick={nextStep}
             >
               {t("common.next")}
-            </Button>
-            &nbsp;&nbsp;
-            <Button
-              variant="contained"
-              onClick={prevStep}
-              disabled={payClicked}
-            >
-              {t("common.back")}
             </Button>
           </Grid>
         </Grid>
@@ -296,12 +329,38 @@ export default function MembershipPayment() {
         <ConfirmGrid container spacing={3}>
           <Grid item xs={12}>
             <ElevatedContainer elevation={3}>
-              <Typography variant="h6">
+              <Grid container>
+                <Grid item xs={12}>
+                <Typography variant="h6">
                 {" "}
                 {selectedMembership.name === "manual"
                   ? t("membership.monthly_manual_subscription")
                   : t("membership.monthly_auto_subscription")}
               </Typography>
+                  </Grid>
+                <Grid item xs={12}>
+                  {currency.sign +
+                    " " +
+                    selectedMembership.price[currency.id].amount}
+                </Grid>
+                <Grid item xs={12}>
+                  <span>Period : </span> {period}
+                </Grid>
+                <Grid item xs={12}>
+                  <span>Period : </span> {paymentMethod}
+                </Grid>
+
+                {selectedMembership && (
+                  <Grid item xs={12}>
+                    <span>type : </span> {selectedMembership.name.toUpperCase()}
+                  </Grid>
+                )}
+
+                <Grid item xs={12}>
+                  <div>{currency.sign} {selectedMembership.price[currency.id].amount * period}</div>
+                  <div>Total to Pay</div>
+                </Grid>
+              </Grid>
             </ElevatedContainer>
           </Grid>
           <Grid item xs={12}>
