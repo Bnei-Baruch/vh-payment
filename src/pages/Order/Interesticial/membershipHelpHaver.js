@@ -166,7 +166,8 @@ export default function MembershipHelphaver() {
   const confirmNeedsHelpMembership = async () => {
     const { type, redirect_url } = selectedSpecialOption;
     if (isMembership && typeof type === "undefined") {
-      handlePay(redirect_url);
+      //handlePay(redirect_url);
+      history.push(`/pay/order/membership/${event_slug}/userdetail`);
       return;
     }
   };
@@ -209,9 +210,7 @@ export default function MembershipHelphaver() {
             disabled={submitting}
             variant="contained"
             color="primary"
-            onClick={
-              !isMembership ? confirmNeedsHelpEvent : confirmNeedsHelpMembership
-            }
+            onClick={confirmNeedsHelpMembership}
           >
             {t("common.next")} &nbsp;{" "}
             {i18n.language === "he" ? (

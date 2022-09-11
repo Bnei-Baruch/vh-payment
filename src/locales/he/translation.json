@@ -38,6 +38,7 @@
     "error_paid": "החיוב באופן תשלום זה לא הצליח, אנא נסה שוב",
     "successfully_paid": "רכשת בהצלחה כרטיס לאירוע",
     "back_to_event": "חזרה לאיזור אישי / אירועים",
+    "back_to_my_membership": "Back to my membership",
     "become_a_member": "הרשמה למנוי חדש"
   },
   "userMenu": {
@@ -93,7 +94,9 @@
     "requestSubmitted": "להשלמת הבקשה לסיוע כספי, עליך למלא את הטופס, הקלק על הקישור למטה",
     "return_to_personal_area": "Return to personal area",
     "enter_details_for_help": "מילוי הטופס",
-    "financial_help": "סיוע כספי להרשמה"
+    "financial_help": "סיוע כספי להרשמה",
+    "request_received": "We have received your request!",
+    "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
   },
   "payment": {
     "membershipStep1": "סכום מנוי",

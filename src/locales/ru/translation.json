@@ -38,6 +38,7 @@
     "error_paid": "Мы не можем обработать ваш платеж. Пожалуйста, попробуйте еще раз.",
     "successfully_paid": "Поздравляем! Вы зарегистрированы на конгресс",
     "back_to_event": "Вернуться в личный кабинет/события",
+    "back_to_my_membership": "Back to my membership",
     "become_a_member": "Активировать подписку"
   },
   "userMenu": {
@@ -93,7 +94,9 @@
     "requestSubmitted": "Чтобы подать вашу заявку на финансовую помощь, нажмите кнопку ниже и заполните бланк",
     "return_to_personal_area": "Вернуться в личный кабинет",
     "enter_details_for_help": "Заполнить бланк",
-    "financial_help": "Финансовая помощь"
+    "financial_help": "Финансовая помощь",
+    "request_received": "We have received your request!",
+    "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
   },
   "payment": {
     "membershipStep1": "Цена абонемента",

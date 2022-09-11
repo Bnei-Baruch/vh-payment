@@ -19,11 +19,16 @@ import SpecialOptionInterestical from "../pages/Order/Interesticial/specialoptio
 import SpecialOptionSuccess from "../pages/Success/specialoptionsuccess";
 import MembershipHelphaver from "../pages/Order/Interesticial/membershipHelpHaver";
 import SuccessMembership from "../pages/Success/SuccessMembership";
+import UserDetails from "../pages/Order/HelpHaverConfirmation/UserDetails";
+import SucessMembershipHelpHaver from "../pages/Success/SucessMembershipHelpHaver";
 
 const Routes = () => (
   <Router>
     <Switch>
+      {/* Old Membership Route */}
       <Route exact from="/pay/order/:id" component={Order} />
+
+      {/* Membership Routes */}
       <Route exact from="/pay/membership" component={Membership} />
       <Route
         exact
@@ -35,21 +40,31 @@ const Routes = () => (
         from="/pay/membership/payment/:plan/success"
         component={SuccessMembership}
       />
-      <Route exact from="/pay/order/ticket/:event_slug" component={Ticket} />
       <Route
         exact
-        from="/pay/order/ticket/payment/:event_slug"
-        component={Payment}
+        from="/pay/order/membership/payment/intersticial/:event_slug"
+        component={MembershipHelphaver}
       />
       <Route
         exact
-        from="/pay/order/ticket/payment/intersticial/:event_slug"
-        component={MembershipHelphaver}
+        from="/pay/order/membership/:event_slug/userdetail"
+        component={UserDetails}
       />
       <Route
         exact
         from="/pay/order/ticket/payment/membership/:event_slug"
         component={MembershipIntersticial}
+      />
+      <Route exact from="/pay/order/membership/successhelphaver" component={SucessMembershipHelpHaver} />
+      <Route exact from="/pay/success/membership" component={SuccessMembership} />
+
+      {/* Ticket and Events Routes */}
+
+      <Route exact from="/pay/order/ticket/:event_slug" component={Ticket} />
+      <Route
+        exact
+        from="/pay/order/ticket/payment/:event_slug"
+        component={Payment}
       />
       <Route
         exact
@@ -91,7 +106,9 @@ const Routes = () => (
         component={UserDetail}
       />
       <Route from="/pay/success/:pdt/:option" component={Success} />
-      <Route from="/pay/success" component={SuccessMembership} />
+
+      {/* common Routes */}
+
       <Route from="/pay/error" component={Error} />
       <Route from="/" component={NotFound} />
     </Switch>

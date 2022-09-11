@@ -38,8 +38,9 @@
     "error_paid": "We aren't able to process your payment. Please try again.",
     "successfully_paid": "You have successfully bought a ticket to the event.",
     "back_to_event": "Back to event",
+    "back_to_my_membership": "Back to my membership",
     "become_a_member": "Become a member"
-  },
+    },
   "userMenu": {
     "profile": "Profile",
     "logOut": "Log Out",
@@ -93,7 +94,9 @@
     "requestSubmitted": "In order to complete your application for financial help, you must complete the form following the link below",
     "return_to_personal_area": "Return to personal area",
     "enter_details_for_help": "Complete Form",
-    "financial_help": "Financial Help"
+    "financial_help": "Financial Help",
+    "request_received": "We have received your request!",
+    "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
   },
   "payment": {
     "membershipStep1": "Membership Amount",

@@ -1289,8 +1289,8 @@ exports.membershipsplans = {
     {
       content: {
         en: {
-          name: "Manual Payment",
-          description: ["Pay any time of the month", "Offline payment option"],
+          name: "Manual",
+          description: ["You pay manual every time,  there is no automatical renewal. You can also pay ahead for any period of time."],
           button_label: "Select this Plan",
         },
         es: {
@@ -1376,8 +1376,7 @@ exports.membershipsplans = {
         en: {
           name: "Automatic",
           description: [
-            "Pay any time of the month",
-            "Multiple payment solutions",
+            "You will be charged automatically on the 20th of every month"
           ],
           button_label: "Select this Plan",
         },
@@ -1465,13 +1464,13 @@ exports.membershipsplans = {
     {
       content: {
         en: {
-          name: "helphaver",
+          name: "Help Haver",
           label: "Help Haver",
-          description: ["If you have financial issues, you can apply for help"],
+          description: ["If you are in a difficult financial situation, You can apply for help"],
           button_label: "Select this Plan",
           intersticial: {
-            title: "Title",
-            body: "Message",
+            title: "Help Haver for Membership",
+            body: "We want this service to be available to each of us, so if you are in a difficult  financial situation, you can apply for help",
             button: "Next",
           },
           redirect_url:
@@ -1521,6 +1520,7 @@ exports.membershipsplans = {
         type: "redirect",
         intersticial: true,
       },
+      isFree: true,
       name: "membership-hh",
       order: 3,
       price: {

@@ -39,6 +39,12 @@ const TicketGrid = styled(Grid)`
     }
   }
 `;
+
+const Description = styled.div`
+  text-align: center;
+  margin-top: 20px;
+  line-height: 24px;
+`;
 const CenterText = styled(Typography)`
   text-align: center;
 `;
@@ -105,7 +111,7 @@ export default function Membership() {
         membership.content[i18n.language] || membership.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(
-        `/pay/order/ticket/payment/intersticial/${membership.name}?isMembership=true`
+        `/pay/order/membership/payment/intersticial/${membership.name}?isMembership=true`
       );
     } else if (membership.flow.type === "checkout") {
       history.push("/pay/membership/payment/" + membership.name);
@@ -152,20 +158,24 @@ export default function Membership() {
                 <CenterText variant="h1">{planContent.name}</CenterText>
                 <br />
                 <CurrencyText variant="h2">
-                  {currency.sign + " " + plan.price[currency.id].amount + " "}{" "}
-                  <TenureText>month</TenureText>
+                  {plan.isFree ? (
+                    t("help.financial_help")
+                  ) : (
+                    <>
+                      {" "}
+                      {currency.sign +
+                        " " +
+                        plan.price[currency.id].amount +
+                        " "}{" "}
+                      <TenureText>month</TenureText>
+                    </>
+                  )}
                 </CurrencyText>
                 <Grid>
                   {planContent &&
                     planContent.description &&
                     planContent.description.length > 0 && (
-                      <ul>
-                        {planContent.description.map((item, index) => (
-                          <li key={index}>
-                            <Typography variant="body1">{item}</Typography>
-                          </li>
-                        ))}
-                      </ul>
+                      <Description>{planContent.description}</Description>
                     )}
                 </Grid>
                 <Grid>

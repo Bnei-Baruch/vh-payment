@@ -38,6 +38,7 @@
     "error_paid": "No hemos podido procesar tu pago. Por favor inténtalo de nuevo",
     "successfully_paid": "Has adquirido el boleto para el event ",
     "back_to_event": "Volver a Eventos",
+    "back_to_my_membership": "Back to my membership",
     "become_a_member": "Activar membresía"
   },
   "userMenu": {
@@ -102,7 +103,9 @@
     "requestSubmitted": "Para completar su solicitud, de ayuda financiera, debe completar el formulario en el siguiente enlace",
     "return_to_personal_area": "Volver al área personal",
     "enter_details_for_help": "Completar formulario",
-    "financial_help": "Ayuda financiera"
+    "financial_help": "Ayuda financiera",
+    "request_received": "We have received your request!",
+    "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
   },
   "payment": {
     "membershipStep1": "Suma de membresía",
