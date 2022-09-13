@@ -32,7 +32,7 @@ const Link = styled.a`
   font-weight: bold;
 `;
 const PaymentTile = styled.div`
-  padding: 20px 10px;
+  padding: 0px;
   > span:first-child.left {
     font-size: 32px;
     font-weight: 600;
@@ -42,9 +42,6 @@ const PaymentTile = styled.div`
     border-right: 1px dashed #ccc;
     padding-right: 20px;
   }
-  > span:last-child {
-    padding-left: 10px;
-  }
   > span.lightgrey:first-child {
     color: #777;
     font-size: 48px;
@@ -52,10 +49,6 @@ const PaymentTile = styled.div`
   > span.lightgrey:last-child {
     color: #777;
   }
-`;
-const SubText = styled.div`
-  color: #777;
-  padding: 0px 20px;
 `;
 const HeaderTitle = styled(Typography)`
   text-align: center;
@@ -71,6 +64,38 @@ const ElevatedContainer = styled(Paper)`
 const ConfirmGrid = styled(Grid)`
   width: 60%;
   margin: auto;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`;
+
+const SummartyContainer = styled(Grid)`
+  padding: 20px;
+`;
+
+const SummaryCurrency = styled.span`
+  font-size: 34px;
+  color: rgba(21, 101, 192, 1);
+`;
+
+const OrderSummary = styled(Grid)`
+  padding: 20px 0px;
+`;
+
+const OrderFinal = styled(Grid)`
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #dcdcdc;
+`;
+
+const Summarylabel = styled(Grid)`
+  color: #5a5a5a;
+`;
+
+const SummaryGrid = styled(Grid)`
+  padding: 5px 0px;
 `;
 const periods = [
   { value: 1, name: "1 month" },
@@ -235,8 +260,8 @@ export default function MembershipPayment() {
               </span>
             </ElevatedContainer>
           </Grid>
-          <Grid item xs={12}>
-            <Grid style={{ padding: "20px" }}>
+          <Grid container item xs={12} spacing={6}>
+            <Grid item xs={12}>
               <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">
                   {t("common.paymentMethod")}
@@ -259,35 +284,39 @@ export default function MembershipPayment() {
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <SubText>{t("common.period")}</SubText>
-              <PaymentTile>
-                <span>
-                  <Select
-                    value={period}
-                    variant="outlined"
-                    onChange={(event) => setPeriod(event.target.value)}
-                  >
-                    {periods.map((l) => (
-                      <MenuItem key={l.value} value={l.value}>
-                        {l.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </span>
-                <div>You can choose to pay more than 1 month</div>
-              </PaymentTile>
+              <FormControl>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  {t("common.period")}
+                </FormLabel>
+                <Select
+                  value={period}
+                  variant="outlined"
+                  onChange={(event) => setPeriod(event.target.value)}
+                >
+                  {periods.map((l) => (
+                    <MenuItem key={l.value} value={l.value}>
+                      {l.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <Grid>
+                <div>{t("membership.pay_more_than_month")}</div>
+              </Grid>
             </Grid>
             <Grid item xs={12}>
-              <SubText>{t("common.amount")}</SubText>
-              <PaymentTile>
-                <span>
-                  <CurrencyPicker variant="outlined" />
-                </span>
-              </PaymentTile>
+              <FormControl>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  {t("common.currency")}
+                </FormLabel>
+                <CurrencyPicker variant="outlined" />
+              </FormControl>
             </Grid>
-            <Grid item xs={12} container spacing={6}>
-              <Grid item xs={12}>
-                <SubText>{t("common.amount")}</SubText>
+            <Grid item xs={12}>
+              <FormControl>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  {t("common.amount")}
+                </FormLabel>
                 <PaymentTile>
                   <span className={dir === "ltr" ? "left" : "right"}>
                     <span
@@ -299,7 +328,7 @@ export default function MembershipPayment() {
                     {selectedMembership.price[currency.id]?.amount}
                   </span>
                 </PaymentTile>
-              </Grid>
+              </FormControl>
             </Grid>
           </Grid>
           <Grid
@@ -329,44 +358,74 @@ export default function MembershipPayment() {
         <ConfirmGrid container spacing={3}>
           <Grid item xs={12}>
             <ElevatedContainer elevation={3}>
-              <Grid container>
+              <SummartyContainer container>
                 <Grid item xs={12}>
                   <Typography variant="h6">
-                    {" "}
                     {selectedMembership.name === "manual"
                       ? t("membership.monthly_manual_subscription")
                       : t("membership.monthly_auto_subscription")}
                   </Typography>
                 </Grid>
-                <Grid item xs={12}>
-                  {currency.sign +
-                    " " +
-                    selectedMembership.price[currency.id].amount}
-                </Grid>
-                <Grid item xs={12}>
-                  <span>Period : </span> {period}
-                </Grid>
-                <Grid item xs={12}>
-                  <span>Period : </span> {paymentMethod}
-                </Grid>
-
-                {selectedMembership && (
+                <OrderSummary container item xs={12}>
                   <Grid item xs={12}>
-                    <span>type : </span> {selectedMembership.name.toUpperCase()}
+                    <SummaryCurrency>
+                      {currency.sign +
+                        " " +
+                        selectedMembership.price[currency.id].amount}
+                    </SummaryCurrency>{" "}
+                    / {t("common.month")}
                   </Grid>
+                </OrderSummary>
+                <SummaryGrid container item xs={12}>
+                  <Summarylabel item xs={4}>
+                    {t("membership.period")} :{" "}
+                  </Summarylabel>{" "}
+                  <Grid item xs={8}>
+                    {" "}
+                    {period} {t("common.month")}
+                  </Grid>
+                </SummaryGrid>
+                <SummaryGrid container item xs={12}>
+                  <Summarylabel item xs={4}>
+                    {t("membership.method")} :{" "}
+                  </Summarylabel>
+                  <Grid item xs={8}>
+                    {paymentMethod}
+                  </Grid>
+                </SummaryGrid>
+                {selectedMembership && (
+                  <SummaryGrid
+                    container
+                    item
+                    xs={12}
+                    style={{ marginBottom: "20px" }}
+                  >
+                    <Summarylabel item xs={4}>
+                      {t("membership.type")} :{" "}
+                    </Summarylabel>
+                    <Grid item xs={8}>
+                      {selectedMembership.name.toUpperCase()}
+                    </Grid>
+                  </SummaryGrid>
                 )}
 
-                <Grid item xs={12}>
-                  <div>
+                <OrderFinal container item xs={12}>
+                  <Grid
+                    item
+                    xs={6}
+                    style={{ fontSize: "44px", color: "#2F6DC7" }}
+                  >
                     {currency.sign}{" "}
                     {selectedMembership.price[currency.id].amount * period}
-                  </div>
-                  <div>Total to Pay</div>
-                </Grid>
-              </Grid>
+                  </Grid>
+                  <Grid item xs={6} style={{ textAlign: "right" }}>
+                    {t("membership.total_to_pay")}
+                  </Grid>
+                </OrderFinal>
+              </SummartyContainer>
             </ElevatedContainer>
           </Grid>
-          {/* <Grid item xs={12}>
+          <Grid item xs={12}>
             <ElevatedContainer elevation={3}>
               <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
               <span>
@@ -375,7 +434,7 @@ export default function MembershipPayment() {
                   : t("membership.auto_payment_confirmation_message")}
               </span>
             </ElevatedContainer>
-          </Grid> */}
+          </Grid>
           <Grid item xs={12}>
             <FormControlLabel
               control={

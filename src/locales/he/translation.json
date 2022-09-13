@@ -72,7 +72,10 @@
     "select_option": "בחר",
     "successHeader": "Congratulations! You have successfully registered for the event",
     "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
-    "viewTicket": "View Event Ticket"
+    "viewTicket": "View Event Ticket",
+    "period": "Period",
+    "currency": "Currency",
+    "month": "Month(s)"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
@@ -151,6 +154,11 @@
     "manual_subscription_description": "Money will be debeted from your card only under your personal control ",
     "auto_subscription_description": "What does it mean? Your card will be charged $10 monthly automatically. You can cancel your subscription in your personal account at any time.",
     "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
-    "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month. "
+    "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month. ",
+    "pay_more_than_month": "You can choose to pay more than 1 month",
+    "period": "Period",
+    "method": "Method",
+    "type": "Type",
+    "total_to_pay": "Total to pay"
   }
 }

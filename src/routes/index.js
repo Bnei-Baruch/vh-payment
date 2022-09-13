@@ -55,8 +55,16 @@ const Routes = () => (
         from="/pay/order/ticket/payment/membership/:event_slug"
         component={MembershipIntersticial}
       />
-      <Route exact from="/pay/order/membership/successhelphaver" component={SucessMembershipHelpHaver} />
-      <Route exact from="/pay/success/membership" component={SuccessMembership} />
+      <Route
+        exact
+        from="/pay/order/membership/successhelphaver"
+        component={SucessMembershipHelpHaver}
+      />
+      <Route
+        exact
+        from="/pay/success/membership"
+        component={SuccessMembership}
+      />
 
       {/* Ticket and Events Routes */}
 

@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Box, Button, CardContent, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useTranslation } from "react-i18next";
-import Loader from "../../components/Loader";
 import ContentLayout from "../../layouts/ContentLayout";
 import InfoIcon from "@material-ui/icons/Info";
-import { useSelector } from "react-redux";
 const useStyles = makeStyles({
   header: {
     padding: "40px 20px",

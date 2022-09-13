@@ -1290,7 +1290,9 @@ exports.membershipsplans = {
       content: {
         en: {
           name: "Manual",
-          description: ["You pay manual every time,  there is no automatical renewal. You can also pay ahead for any period of time."],
+          description: [
+            "You pay manual every time,  there is no automatical renewal. You can also pay ahead for any period of time.",
+          ],
           button_label: "Select this Plan",
         },
         es: {
@@ -1376,7 +1378,7 @@ exports.membershipsplans = {
         en: {
           name: "Automatic",
           description: [
-            "You will be charged automatically on the 20th of every month"
+            "You will be charged automatically on the 20th of every month",
           ],
           button_label: "Select this Plan",
         },
@@ -1466,7 +1468,9 @@ exports.membershipsplans = {
         en: {
           name: "Help Haver",
           label: "Help Haver",
-          description: ["If you are in a difficult financial situation, You can apply for help"],
+          description: [
+            "If you are in a difficult financial situation, You can apply for help",
+          ],
           button_label: "Select this Plan",
           intersticial: {
             title: "Help Haver for Membership",
