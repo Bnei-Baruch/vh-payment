@@ -15,10 +15,24 @@ import { useHistory } from "react-router-dom";
 import ContentLayout from "../../../layouts/ContentLayout";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+const DetailGrid = styled(Grid)`
+  max-width: 70%;
+  margin: 0 auto;
 
+  & .MuiFormLabel-root {
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
 export default function UserDetails() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
+  const user = useSelector((state) => state.user);
 
   const [activeStep, setActionStep] = React.useState(0);
 
@@ -31,8 +45,8 @@ export default function UserDetails() {
   };
 
   const handleNext = () => {
-    if (activeStep === 2) {
-      setActionStep((prevActiveStep) => prevActiveStep + 1);
+    setActionStep((prevActiveStep) => prevActiveStep + 1);
+    if (!activeStep === 2) {
       return;
     }
     saveDetails();
@@ -54,73 +68,145 @@ export default function UserDetails() {
             ))}
           </Stepper>
         </Grid>
-        <Grid item xs={12}>
+        <DetailGrid container item xs={12} spacing={3}>
           {activeStep === 0 && (
             <>
-              <Typography variant="h3">Contact</Typography>
-              <FormControl fullWidth>
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <TextField id="email" variant="outlined" />
-              </FormControl>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
+              <Grid item xs={12}>
+                <Typography variant="h3">{t("userDetail.personal")}</Typography>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.firstName")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.lastName")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.dateOfBirth")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.gender")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">{t("userDetail.email")}</FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
             </>
           )}
 
           {activeStep === 1 && (
             <>
-              <Typography variant="h3">Contact</Typography>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
+              <Grid item xs={12}>
+                <Typography variant="h3">{t("userDetail.personal")}</Typography>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.firstName")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.lastName")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.dateOfBirth")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.gender")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">{t("userDetail.email")}</FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
             </>
           )}
 
           {activeStep === 2 && (
             <>
-              <Typography variant="h3">Contact</Typography>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <TextField id="email" variant="outlined" />
-              </div>
+              <Grid item xs={12}>
+                <Typography variant="h3">{t("userDetail.personal")}</Typography>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.firstName")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.lastName")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.dateOfBirth")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">
+                    {t("userDetail.gender")}
+                  </FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel htmlFor="email">{t("userDetail.email")}</FormLabel>
+                  <TextField id="email" variant="outlined" />
+                </FormControl>
+              </Grid>
             </>
           )}
-        </Grid>
+        </DetailGrid>
         <Grid
           item
           xs={12}

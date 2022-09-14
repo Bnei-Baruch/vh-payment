@@ -12,6 +12,9 @@ import {
   Checkbox,
   Select,
   MenuItem,
+  InputAdornment,
+  OutlinedInput,
+  FormHelperText,
 } from "@material-ui/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -27,27 +30,38 @@ import { getProfile } from "../../../services/userservice";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
+const FormContainer = styled(Grid)`
+  & .MuiFormLabel-root {
+    margin-bottom: 10px;
+  }
+`;
+
 const Link = styled.a`
   color: rgba(21, 101, 192, 1);
   font-weight: bold;
 `;
 const PaymentTile = styled.div`
   padding: 0px;
-  > span:first-child.left {
-    font-size: 32px;
-    font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  span {
+    padding: 5px 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
   }
-  > span:first-child.right {
-    font-size: 80px;
-    border-right: 1px dashed #ccc;
-    padding-right: 20px;
+  span.grey {
+    background-color: #9b9b9b;
+    color: #fff;
   }
-  > span.lightgrey:first-child {
-    color: #777;
-    font-size: 48px;
+  span.regular {
+    background-color: rgba(21, 101, 192, 1);
+    color: #fff;
   }
-  > span.lightgrey:last-child {
-    color: #777;
+
+  input {
+    width: 50px;
   }
 `;
 const HeaderTitle = styled(Typography)`
@@ -118,7 +132,6 @@ export default function MembershipPayment() {
   const classes = useStyles();
 
   const user = useSelector((state) => state.user);
-  const { dir } = useSelector((state) => state.language);
   const currency = useSelector((state) => state.currency);
   const selectedMembership = useSelector(
     (state) => state.order.selectedMembership
@@ -131,6 +144,8 @@ export default function MembershipPayment() {
   const [loading, setLoading] = React.useState(true);
   const [termsAccepted, setTermsAccepted] = React.useState(false);
   const [payClicked, setOnPayClicked] = React.useState(false);
+
+  const [amount, setAmount] = React.useState(0);
 
   const nextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -182,7 +197,7 @@ export default function MembershipPayment() {
       Organization: selectedMembership.product?.organization,
       UserKey: user.keycloak.subject,
       Currency: currency.id?.toUpperCase(),
-      Amount: selectedMembership.price[currency.id]?.amount,
+      Amount: amount,
       // Amount: 1,
       Type: selectedMembership.product?.type,
       ProductType: selectedMembership.product?.productType,
@@ -220,6 +235,14 @@ export default function MembershipPayment() {
     }
   };
 
+  React.useEffect(() => {
+    if (selectedMembership && selectedMembership.price[currency.id]?.amount) {
+      setAmount(selectedMembership.price[currency.id]?.amount);
+    }
+  }, [currency]);
+
+  console.log(amount);
+
   if (loading) return <Loader />;
   if (!loading && !selectedMembership)
     return (
@@ -241,7 +264,7 @@ export default function MembershipPayment() {
         </>
       )}
       {activeStep === 0 && (
-        <Grid container spacing={3}>
+        <FormContainer container spacing={6}>
           <Grid item xs={12}>
             <Typography variant="h6">
               {" "}
@@ -283,27 +306,32 @@ export default function MembershipPayment() {
                 </RadioGroup>
               </FormControl>
             </Grid>
-            <Grid item xs={12}>
-              <FormControl>
-                <FormLabel id="demo-radio-buttons-group-label">
-                  {t("common.period")}
-                </FormLabel>
-                <Select
-                  value={period}
-                  variant="outlined"
-                  onChange={(event) => setPeriod(event.target.value)}
-                >
-                  {periods.map((l) => (
-                    <MenuItem key={l.value} value={l.value}>
-                      {l.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <Grid>
-                <div>{t("membership.pay_more_than_month")}</div>
+            {selectedMembership.name === "manual" && (
+              <Grid item xs={12}>
+                <FormControl>
+                  <FormLabel id="demo-radio-buttons-group-label">
+                    {t("common.period")}
+                  </FormLabel>
+                  <Select
+                    value={period}
+                    variant="outlined"
+                    onChange={(event) => setPeriod(event.target.value)}
+                  >
+                    {periods.map((l) => (
+                      <MenuItem key={l.value} value={l.value}>
+                        {l.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  <FormHelperText id="filled-weight-helper-text">
+                    {t("membership.pay_more_than_month")}
+                  </FormHelperText>
+                </FormControl>
+                <Grid>
+                  <div></div>
+                </Grid>
               </Grid>
-            </Grid>
+            )}
             <Grid item xs={12}>
               <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">
@@ -318,23 +346,49 @@ export default function MembershipPayment() {
                   {t("common.amount")}
                 </FormLabel>
                 <PaymentTile>
-                  <span className={dir === "ltr" ? "left" : "right"}>
-                    <span
-                      class="lightgrey"
-                      style={{ textTransform: "uppercase" }}
-                    >
-                      {currency.sign}
-                    </span>
-                    {selectedMembership.price[currency.id]?.amount}
+                  <span className="grey" onClick={() => setAmount(amount - 1)}>
+                    -
+                  </span>
+                  <FormControl fullWidth variant="outlined">
+                    <OutlinedInput
+                      id="standard-adornment-amount"
+                      value={amount}
+                      type="number"
+                      onChange={(event) => {
+                        if (!isNaN(parseInt(event.target.value))) {
+                          setAmount(parseInt(event.target.value));
+                        } else {
+                          setAmount("");
+                        }
+                      }}
+                      startAdornment={
+                        <InputAdornment position="start">$</InputAdornment>
+                      }
+                    />
+                    <FormHelperText id="filled-weight-helper-text">
+                      You can pay more than {currency.sign}{" "}
+                      {selectedMembership.price[currency.id]?.amount}
+                    </FormHelperText>
+                  </FormControl>
+                  <span
+                    className="regular"
+                    onClick={() => setAmount(amount + 1)}
+                  >
+                    +
                   </span>
                 </PaymentTile>
+                <div></div>
               </FormControl>
             </Grid>
           </Grid>
           <Grid
             item
             xs={12}
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{
+              display: "flex",
+              marginTop: "25px",
+              justifyContent: "space-between",
+            }}
           >
             <Button
               variant="contained"
@@ -352,7 +406,7 @@ export default function MembershipPayment() {
               {t("common.next")}
             </Button>
           </Grid>
-        </Grid>
+        </FormContainer>
       )}
       {activeStep === 1 && (
         <ConfirmGrid container spacing={3}>
@@ -369,9 +423,7 @@ export default function MembershipPayment() {
                 <OrderSummary container item xs={12}>
                   <Grid item xs={12}>
                     <SummaryCurrency>
-                      {currency.sign +
-                        " " +
-                        selectedMembership.price[currency.id].amount}
+                      {currency.sign + " " + amount}
                     </SummaryCurrency>{" "}
                     / {t("common.month")}
                   </Grid>
@@ -415,8 +467,7 @@ export default function MembershipPayment() {
                     xs={6}
                     style={{ fontSize: "44px", color: "#2F6DC7" }}
                   >
-                    {currency.sign}{" "}
-                    {selectedMembership.price[currency.id].amount * period}
+                    {currency.sign} {amount * period}
                   </Grid>
                   <Grid item xs={6} style={{ textAlign: "right" }}>
                     {t("membership.total_to_pay")}
