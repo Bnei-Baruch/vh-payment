@@ -110,7 +110,8 @@
     "terms_and_conditions": "с правилами и условиями"
   },
   "userDetail": {
-    "personalDetails": "Личные данные",
+    "personal": "Личные данные",
+    "contact": "Контактные данные",
     "ticketRegistrationDetail": "Детали регистрации билета",
     "ticketRegistrationSubtitle": "Для того, чтобы мы могли послать вам билет, подтвердите следующие данные пользователя",
     "firstName": "Имя",

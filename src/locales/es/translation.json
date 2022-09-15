@@ -120,6 +120,7 @@
   },
   "userDetail": {
     "personal": "Personal",
+    "contact": "Contacto",
     "ticketRegistrationDetail": "Detalle de registro de entradas",
     "ticketRegistrationSubtitle": "Para que podamos producir su boleto. Necesitamos que revise los siguientes detalles de usuario",
     "firstName": "Primer nombre",

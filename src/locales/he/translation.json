@@ -111,6 +111,7 @@
   },
   "userDetail": {
     "personal": "פרטים אישיים",
+    "contact": "פרטי קשר",
     "ticketRegistrationDetail": "פרטי רישום כרטיס",
     "ticketRegistrationSubtitle": "על מנת שנוכל להפיק את הכרטיס שלך. אנו צריכים שתבדוק את פרטי המשתמש הבאים",
     "firstName": "שם פרט",
