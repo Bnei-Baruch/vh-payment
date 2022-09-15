@@ -110,6 +110,7 @@
     "terms_and_conditions": "Terms and Conditions"
   },
   "userDetail": {
+    "personal": "Personal",
     "ticketRegistrationDetail": "Ticket Registration Detail",
     "ticketRegistrationSubtitle": "In Order for us to produce your ticket. We need you to review following user details",
     "firstName": "First Name",

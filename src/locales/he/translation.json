@@ -110,6 +110,7 @@
     "terms_and_conditions": "תנאי שימוש"
   },
   "userDetail": {
+    "personal": "פרטים אישיים",
     "ticketRegistrationDetail": "פרטי רישום כרטיס",
     "ticketRegistrationSubtitle": "על מנת שנוכל להפיק את הכרטיס שלך. אנו צריכים שתבדוק את פרטי המשתמש הבאים",
     "firstName": "שם פרט",
