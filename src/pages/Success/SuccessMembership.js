@@ -7,13 +7,14 @@ import ContentLayout from "../../layouts/ContentLayout";
 import { useParams } from "react-router-dom";
 import * as qs from "query-string";
 import { paymentSuccess } from "../../services/orderservice";
-import { getQueryParams } from "../../utils/common";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import Loader from "../../components/Loader";
 
 const useStyles = makeStyles({
   header: {
     marginBottom: 40,
     justifyContent: "center",
+    textAlign: "center",
   },
   body: {
     marginTop: 40,
@@ -41,10 +42,9 @@ const SuccessMembership = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { pdt } = useParams();
-  let help = getQueryParams("help");
 
   const user = useSelector((state) => state.user);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   /**
    * This Useeffect sends the payments detail
@@ -73,7 +73,7 @@ const SuccessMembership = () => {
     return <Loader />;
   }
 
-  const returnToPersonalArea = () => {
+  const returnToMembershipArea = () => {
     window.location.href = window.location.origin + "/dash/membership";
   };
 
@@ -82,35 +82,29 @@ const SuccessMembership = () => {
       <Paper elevation={0}>
         <CardContent>
           <Box component="header" className={classes.header}>
-            {
-              <Typography
-                variant="h1"
-                component="h1"
-                style={{ fontSize: 36, marginBottom: 20 }}
-              >
-                {t("order.thankyou")}
-              </Typography>
-            }
-
-            {help ? (
-              <Typography style={{ fontSize: 18 }}>
-                {t("help.requestSubmitted")}
-              </Typography>
-            ) : (
-              <Typography style={{ fontSize: 18 }}>
-                {t("order.thxtext")}
-              </Typography>
-            )}
+            <CheckCircleIcon
+              style={{ color: "#0D9D0D", height: "45px", width: "45px" }}
+            />
+            <Typography
+              variant="h1"
+              component="h1"
+              style={{ fontSize: 36, marginBottom: 20, fontWeight: "normal" }}
+            >
+              {t("order.payment_success")}
+            </Typography>
+            <Typography style={{ fontSize: 18 }}>
+              {t("order.membershipPaymentSuccess")}
+            </Typography>
             <br />
             <div style={{ textAlign: "center" }}>
               <Button
-                onClick={returnToPersonalArea}
+                onClick={returnToMembershipArea}
                 color="primary"
                 autoFocus
                 style={{ margin: "auto" }}
                 variant="contained"
               >
-                {t("order.returnToPersonalArea")}
+                {t("order.back_to_my_membership")}
               </Button>
             </div>
           </Box>

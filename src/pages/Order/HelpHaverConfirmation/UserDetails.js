@@ -4,8 +4,10 @@ import {
   FormControlLabel,
   FormLabel,
   Grid,
+  MenuItem,
   Radio,
   RadioGroup,
+  Select,
   Step,
   StepLabel,
   Stepper,
@@ -21,6 +23,7 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import MuiPhoneInput from "material-ui-phone-number";
+import countries from "../../../shared/countries";
 const DetailGrid = styled(Grid)`
   max-width: 70%;
   margin: 0 auto;
@@ -33,11 +36,38 @@ const DetailGrid = styled(Grid)`
     width: 100%;
   }
 `;
+
+const language = [
+  { code: "en", label: "English" },
+  { code: "he", label: "Hebrew" },
+  { code: "es", label: "Spanish" },
+  { code: "ru", label: "Russian" },
+  { code: "de", label: "German" },
+];
+
+const periods = [
+  { value: 1, name: "1 month" },
+  { value: 2, name: "2 month" },
+  { value: 3, name: "3 month" },
+  { value: 4, name: "4 month" },
+  { value: 5, name: "5 month" },
+  { value: 6, name: "6 month" },
+  { value: 7, name: "7 month" },
+  { value: 8, name: "8 month" },
+  { value: 9, name: "9 month" },
+  { value: 10, name: "10 months" },
+  { value: 11, name: "11 months" },
+  { value: 12, name: "12 months" },
+];
 export default function UserDetails() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
   const user = useSelector((state) => state.user.profileData);
   const [profileData, setProfiledata] = React.useState(undefined);
+  const [requestData, setRequestData] = React.useState({
+    period: 1,
+    situation: "",
+  });
 
   const [activeStep, setActionStep] = React.useState(0);
 
@@ -182,7 +212,12 @@ export default function UserDetails() {
                     <FormLabel htmlFor="email">
                       {t("userDetail.email")}
                     </FormLabel>
-                    <TextField id="email" variant="outlined" value={profileData.primary_email} disabled/>
+                    <TextField
+                      id="email"
+                      variant="outlined"
+                      value={profileData.primary_email}
+                      disabled
+                    />
                   </FormControl>
                 </Grid>
               </>
@@ -201,41 +236,84 @@ export default function UserDetails() {
                       {t("userDetail.firstName")}
                     </FormLabel>
                     <MuiPhoneInput
-            defaultCountry="us"
-            value={profileData.mobile_number}
-            onChange={(value) => {
-              setProfiledata({
-                ...profileData,
-                phone_number: value,
-              })
-            }}
-            variant="outlined"
-            fullWidth
-          />
+                      defaultCountry="us"
+                      value={profileData.mobile_number}
+                      onChange={(value) => {
+                        setProfiledata({
+                          ...profileData,
+                          phone_number: value,
+                        });
+                      }}
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth variant="outlined">
+                    <FormLabel htmlFor="email">
+                      {t("userDetail.country")}
+                    </FormLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={profileData.country}
+                      variant="outlined"
+                      onChange={(e) => {
+                        setProfiledata({
+                          ...profileData,
+                          country: e.target.value,
+                        });
+                      }}
+                    >
+                      {countries.map((country) => (
+                        <MenuItem key={country.ISO} value={country.ISO}>
+                          {country.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth variant="outlined">
+                    <FormLabel htmlFor="email">
+                      {t("userDetail.firstLanguage")}
+                    </FormLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      variant="outlined"
+                      value={profileData.first_language}
+                      onChange={(e) => {
+                        setProfiledata({
+                          ...profileData,
+                          first_language: e.target.value,
+                        });
+                      }}
+                    >
+                      {language.map((lang) => (
+                        <MenuItem key={lang.code} value={lang.code}>
+                          {lang.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
                     <FormLabel htmlFor="email">
-                      {t("userDetail.dateOfBirth")}
+                      {t("userDetail.tenName")}
                     </FormLabel>
-                    <TextField id="email" variant="outlined" />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
-                      {t("userDetail.gender")}
-                    </FormLabel>
-                    <TextField id="email" variant="outlined" />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
-                      {t("userDetail.email")}
-                    </FormLabel>
-                    <TextField id="email" variant="outlined" />
+                    <TextField
+                      variant="outlined"
+                      value={profileData.name_ten_group}
+                      onChange={(e) => {
+                        setProfiledata({
+                          ...profileData,
+                          name_ten_group: e.target.value,
+                        });
+                      }}
+                    />
                   </FormControl>
                 </Grid>
               </>
@@ -245,47 +323,50 @@ export default function UserDetails() {
               <>
                 <Grid item xs={12}>
                   <Typography variant="h3">
-                    {t("userDetail.personal")}
+                    {t("userDetail.details")}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={12}>
                   <FormControl fullWidth>
                     <FormLabel htmlFor="email">
-                      {t("userDetail.firstName")}
+                      {t("userDetail.month_needed")}
                     </FormLabel>
-                    <TextField id="email" variant="outlined" />
+                    <Select
+                      value={requestData.period}
+                      variant="outlined"
+                      onChange={(event) => {
+                        setRequestData({
+                          ...requestData,
+                          period: event.target.value,
+                        });
+                      }}
+                    >
+                      {periods.map((l) => (
+                        <MenuItem key={l.value} value={l.value}>
+                          {l.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={12}>
                   <FormControl fullWidth>
                     <FormLabel htmlFor="email">
-                      {t("userDetail.lastName")}
+                      {t("userDetail.explain_situation")}
                     </FormLabel>
-                    <TextField id="email" variant="outlined" />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
-                      {t("userDetail.dateOfBirth")}
-                    </FormLabel>
-                    <TextField id="email" variant="outlined" />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
-                      {t("userDetail.gender")}
-                    </FormLabel>
-                    <TextField id="email" variant="outlined" />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
-                      {t("userDetail.email")}
-                    </FormLabel>
-                    <TextField id="email" variant="outlined" />
+                    <TextField
+                      id="email"
+                      variant="outlined"
+                      multiline
+                      rows={4}
+                      value={requestData.situation}
+                      onChange={(e) => {
+                        setRequestData({
+                          ...requestData,
+                          situation: e.target.value,
+                        });
+                      }}
+                    />
                   </FormControl>
                 </Grid>
               </>

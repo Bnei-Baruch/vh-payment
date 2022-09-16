@@ -39,7 +39,8 @@
     "successfully_paid": "רכשת בהצלחה כרטיס לאירוע",
     "back_to_event": "חזרה לאיזור אישי / אירועים",
     "back_to_my_membership": "Back to my membership",
-    "become_a_member": "הרשמה למנוי חדש"
+    "become_a_member": "הרשמה למנוי חדש",
+    "membershipPaymentSuccess": "You have successfully paid for your subscription"
   },
   "userMenu": {
     "logOut": "להתנתק",
@@ -112,6 +113,7 @@
   "userDetail": {
     "personal": "פרטים אישיים",
     "contact": "פרטי קשר",
+    "details": "פרטים",
     "ticketRegistrationDetail": "פרטי רישום כרטיס",
     "ticketRegistrationSubtitle": "על מנת שנוכל להפיק את הכרטיס שלך. אנו צריכים שתבדוק את פרטי המשתמש הבאים",
     "firstName": "שם פרט",
@@ -123,7 +125,10 @@
     "gender": "מגדר",
     "firstLanguage": "שפת אם",
     "secondLanguage": "שפה שניה",
-    "startYear": "באיזו שנה התחלת בבני ברוך?"
+    "startYear": "באיזו שנה התחלת בבני ברוך?",
+    "tenName": "What is your Ten Name?",
+    "month_needed": "Month(s) needed",
+    "explain_situation": "How many month do you need ?"
   },
   "errorMessage": {
     "pleaseSelectOption": "בבקשה בחר אפשרות"

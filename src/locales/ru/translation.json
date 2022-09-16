@@ -39,7 +39,8 @@
     "successfully_paid": "Поздравляем! Вы зарегистрированы на конгресс",
     "back_to_event": "Вернуться в личный кабинет/события",
     "back_to_my_membership": "Back to my membership",
-    "become_a_member": "Активировать подписку"
+    "become_a_member": "Активировать подписку",
+    "membershipPaymentSuccess": "You have successfully paid for your subscription"
   },
   "userMenu": {
     "logOut": "Выйти",
@@ -112,6 +113,7 @@
   "userDetail": {
     "personal": "Личные данные",
     "contact": "Контактные данные",
+    "details": "Детали",
     "ticketRegistrationDetail": "Детали регистрации билета",
     "ticketRegistrationSubtitle": "Для того, чтобы мы могли послать вам билет, подтвердите следующие данные пользователя",
     "firstName": "Имя",
@@ -123,7 +125,10 @@
     "gender": "Пол",
     "firstLanguage": "Родной язык",
     "secondLanguage": "Второй язык",
-    "startYear": "Год начала"
+    "startYear": "Год начала",
+    "tenName": "What is your Ten Name?",
+    "month_needed": "Month(s) needed",
+    "explain_situation": "How many month do you need ?"
   },
   "errorMessage": {
     "pleaseSelectOption": "Вы должны выбрать вариант"

@@ -39,7 +39,8 @@
     "successfully_paid": "Has adquirido el boleto para el event ",
     "back_to_event": "Volver a Eventos",
     "back_to_my_membership": "Back to my membership",
-    "become_a_member": "Activar membresía"
+    "become_a_member": "Activar membresía",
+    "membershipPaymentSuccess": "You have successfully paid for your subscription"
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",
@@ -121,6 +122,7 @@
   "userDetail": {
     "personal": "Personal",
     "contact": "Contacto",
+    "details": "Detalles",
     "ticketRegistrationDetail": "Detalle de registro de entradas",
     "ticketRegistrationSubtitle": "Para que podamos producir su boleto. Necesitamos que revise los siguientes detalles de usuario",
     "firstName": "Primer nombre",
@@ -132,7 +134,10 @@
     "gender": "Género",
     "firstLanguage": "Primer idioma",
     "secondLanguage": "Segundo lenguaje",
-    "startYear": "Año de inicio"
+    "startYear": "Año de inicio",
+    "tenName": "What is your Ten Name?",
+    "month_needed": "Month(s) needed",
+    "explain_situation": "How many month do you need ?"
   },
   "errorMessage": {
     "pleaseSelectOption": "Tienes que elegir una opción"

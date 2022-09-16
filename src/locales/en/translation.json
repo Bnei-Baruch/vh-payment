@@ -39,7 +39,8 @@
     "successfully_paid": "You have successfully bought a ticket to the event.",
     "back_to_event": "Back to event",
     "back_to_my_membership": "Back to my membership",
-    "become_a_member": "Become a member"
+    "become_a_member": "Become a member",
+    "membershipPaymentSuccess": "You have successfully paid for your subscription"
   },
   "userMenu": {
     "profile": "Profile",
@@ -112,6 +113,7 @@
   "userDetail": {
     "personal": "Personal",
     "contact": "Contact",
+    "details": "Details",
     "ticketRegistrationDetail": "Ticket Registration Detail",
     "ticketRegistrationSubtitle": "In Order for us to produce your ticket. We need you to review following user details",
     "firstName": "First Name",
@@ -123,7 +125,10 @@
     "gender": "Gender",
     "firstLanguage": "First Language",
     "secondLanguage": "Second Langugage",
-    "startYear": "What year did you start in Bnei Baruch?"
+    "startYear": "What year did you start in Bnei Baruch?",
+    "tenName": "What is your Ten Name?",
+    "month_needed": "Month(s) needed",
+    "explain_situation": "How many month do you need ?"
   },
   "errorMessage": {
     "pleaseSelectOption": "Please select an option"
