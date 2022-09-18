@@ -21,12 +21,32 @@ import MembershipHelphaver from "../pages/Order/Interesticial/membershipHelpHave
 import SuccessMembership from "../pages/Success/SuccessMembership";
 import UserDetails from "../pages/Order/HelpHaverConfirmation/UserDetails";
 import SucessMembershipHelpHaver from "../pages/Success/SucessMembershipHelpHaver";
+import PreCancellation from "../pages/Cancellation/precancellation";
+import CancelConfirmation from "../pages/Cancellation/cancellationConfirmation";
+import CancellationSuccess from "../pages/Success/cancellationSuccess";
 
 const Routes = () => (
   <Router>
     <Switch>
       {/* Old Membership Route */}
       <Route exact from="/pay/order/:id" component={Order} />
+
+      {/* Membership Cancellation Route */}
+      <Route
+        exact
+        from="/pay/membership/cancellation"
+        component={PreCancellation}
+      />
+      <Route
+        exact
+        from="/pay/membership/cancellation/confirm"
+        component={CancelConfirmation}
+      />
+      <Route
+        exact
+        from="/pay/membership/cancellation/success"
+        component={CancellationSuccess}
+      />
 
       {/* Membership Routes */}
       <Route exact from="/pay/membership" component={Membership} />

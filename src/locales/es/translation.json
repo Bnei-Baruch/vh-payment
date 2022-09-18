@@ -176,5 +176,19 @@
     "method": "Method",
     "type": "Type",
     "total_to_pay": "Total to pay"
+  },
+  "cancellation": {
+    "cancellation_success": "Cancelled succesfully",
+    "cancellation_success_text": "Your membership was cancelled succesfully. You will not be charge anymore.",
+    "membership_cancellation": "Membership Cancellation",
+    "membership_cancellation_text": "Are you sure you want to cancel your membership?",
+    "continue_cancellation": "Continue cancellation",
+    "before_you_go": "Before you go",
+    "precancellation_text": "Could you please tell us why? We might be able to help.",
+    "cancellation_title": "What are you cancelling this subscription?",
+    "financial_problem": "I have a financial problem",
+    "no_longer_stronger": "I am no longer studying",
+    "adding_anything_else": "Is there anything else you'd like to add?",
+    "tell_us_more": "Tell us more..."
   }
 }
