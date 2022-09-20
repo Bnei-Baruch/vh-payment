@@ -16,7 +16,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import ContentLayout from "../../../layouts/ContentLayout";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
@@ -24,6 +24,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import MuiPhoneInput from "material-ui-phone-number";
 import countries from "../../../shared/countries";
+import { handlePayment } from "../../../services/orderservice";
 const DetailGrid = styled(Grid)`
   max-width: 70%;
   margin: 0 auto;
@@ -62,7 +63,17 @@ const periods = [
 export default function UserDetails() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
+  const { event_slug } = useParams();
+
+  const currency = useSelector((state) => state.currency);
   const user = useSelector((state) => state.user.profileData);
+  const selectedMembership = useSelector(
+    (state) => state.order.selectedMembership
+  );
+  const selectedSpecialOption = useSelector(
+    (state) => state.order.specialSelectedOption
+  );
+
   const [profileData, setProfiledata] = React.useState(undefined);
   const [requestData, setRequestData] = React.useState({
     period: 1,
@@ -71,28 +82,72 @@ export default function UserDetails() {
 
   const [activeStep, setActionStep] = React.useState(0);
 
-  const saveDetails = () => {
-    console.log("saveupdateddetails");
-  };
-
   const moveback = () => {
     history.goBack();
   };
 
   const handleNext = () => {
-    setActionStep((prevActiveStep) => prevActiveStep + 1);
-    if (!activeStep === 2) {
+    if (activeStep === 2) {
+      confirmNeedsHelpMembership();
       return;
     }
-    saveDetails();
+    setActionStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handlePay = async () => {
+    const data = {
+      // Account details
+      AccountID: "-",
+      FirstName: user.profile.firstName,
+      LastName: user.profile.lastName,
+      Email: user.profile.email,
+      Phone: profileData?.mobile_number || "",
+      Street: profileData?.street_address || "",
+      City: profileData?.city || "",
+      Postcode: profileData?.postal_code || "",
+      State: profileData?.state_region || "",
+      Country: profileData?.country || "",
+
+      //Product details
+      SKU: selectedMembership.product?.SKU,
+      OrderLanguage: i18n.language?.toUpperCase(),
+      Reference: selectedMembership.product?.reference,
+      Organization: selectedMembership.product?.organization,
+      UserKey: user.keycloak.subject,
+      Currency: currency.id?.toUpperCase(),
+      Amount: selectedMembership.price[currency.id]?.amount,
+      // Amount: 1,
+      Type: selectedMembership.product?.type,
+      ProductType: selectedMembership.product?.productType,
+      RecurringFreq: selectedMembership.product?.recurringFreq,
+      PaymentType: "helphaver",
+      //replace this with routing mechanism
+      successUrl:
+        window.APP_CONFIG.VH_BASE_URL +
+        `/pay/membership/payment/${event_slug}/success?help=true`,
+      cancelUrl: window.APP_CONFIG.VH_BASE_URL,
+      errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
+    };
+    handlePayment(data).then(() => {
+      history.push("/pay/order/membership/successhelphaver");
+    });
   };
 
   React.useEffect(() => {
     if (user && profileData === undefined) {
       setProfiledata(user);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-  console.log(user);
+
+  const confirmNeedsHelpMembership = async () => {
+    const { type } = selectedSpecialOption;
+    if (typeof type === "undefined") {
+      handlePay();
+      return;
+    }
+  };
+
   return (
     <ContentLayout>
       <Grid container spacing={6}>
@@ -121,13 +176,14 @@ export default function UserDetails() {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
+                    <FormLabel htmlFor="firstName">
                       {t("userDetail.firstName")}
                     </FormLabel>
                     <TextField
-                      id="email"
+                      id="firstName"
                       variant="outlined"
                       value={profileData.first_name_vernacular}
+                      disabled
                       onChange={(e) => {
                         setProfiledata({
                           ...profileData,
@@ -139,11 +195,12 @@ export default function UserDetails() {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
+                    <FormLabel htmlFor="lastName">
                       {t("userDetail.lastName")}
                     </FormLabel>
                     <TextField
-                      id="email"
+                      disabled
+                      id="lastName"
                       variant="outlined"
                       value={profileData.last_name_vernacular}
                       onChange={(e) => {
@@ -157,12 +214,13 @@ export default function UserDetails() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
+                    <FormLabel htmlFor="dateofBirth">
                       {t("userDetail.dateOfBirth")}
                     </FormLabel>
                     <TextField
-                      id="date"
+                      id="dateofBirth"
                       type="date"
+                      disabled
                       variant="outlined"
                       value={profileData.date_of_birth}
                       InputLabelProps={{
@@ -179,12 +237,14 @@ export default function UserDetails() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
+                    <FormLabel htmlFor="gender">
                       {t("userDetail.gender")}
                     </FormLabel>
                     <RadioGroup
+                      id="gender"
                       aria-label="gender"
                       name="gender1"
+                      disabled
                       style={{ flexDirection: "row" }}
                       value={profileData.gender}
                       onChange={(e) => {
@@ -214,9 +274,9 @@ export default function UserDetails() {
                     </FormLabel>
                     <TextField
                       id="email"
+                      disabled
                       variant="outlined"
                       value={profileData.primary_email}
-                      disabled
                     />
                   </FormControl>
                 </Grid>
@@ -232,10 +292,12 @@ export default function UserDetails() {
                 </Grid>
                 <Grid item xs={12} md={12}>
                   <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
-                      {t("userDetail.firstName")}
+                    <FormLabel htmlFor="phone">
+                      {t("userDetail.phone")}
                     </FormLabel>
                     <MuiPhoneInput
+                      id="phone"
+                      disabled
                       defaultCountry="us"
                       value={profileData.mobile_number}
                       onChange={(value) => {
@@ -251,12 +313,13 @@ export default function UserDetails() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth variant="outlined">
-                    <FormLabel htmlFor="email">
+                    <FormLabel htmlFor="country">
                       {t("userDetail.country")}
                     </FormLabel>
                     <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
+                      labelId="country"
+                      id="country"
+                      disabled
                       value={profileData.country}
                       variant="outlined"
                       onChange={(e) => {
@@ -276,12 +339,13 @@ export default function UserDetails() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth variant="outlined">
-                    <FormLabel htmlFor="email">
+                    <FormLabel htmlFor="firstLanguage">
                       {t("userDetail.firstLanguage")}
                     </FormLabel>
                     <Select
-                      labelId="demo-simple-select-outlined-label"
-                      id="demo-simple-select-outlined"
+                      labelId="firstLanguage"
+                      id="firstLanguage"
+                      disabled
                       variant="outlined"
                       value={profileData.first_language}
                       onChange={(e) => {
@@ -301,10 +365,12 @@ export default function UserDetails() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
+                    <FormLabel htmlFor="tenName">
                       {t("userDetail.tenName")}
                     </FormLabel>
                     <TextField
+                      id="tenName"
+                      disabled
                       variant="outlined"
                       value={profileData.name_ten_group}
                       onChange={(e) => {

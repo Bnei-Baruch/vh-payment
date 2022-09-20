@@ -127,8 +127,9 @@
     "secondLanguage": "שפה שניה",
     "startYear": "באיזו שנה התחלת בבני ברוך?",
     "tenName": "What is your Ten Name?",
-    "month_needed": "Month(s) needed",
-    "explain_situation": "How many month do you need ?"
+    "month_needed": "How many month do you need ?",
+    "explain_situation": "Explain your situation",
+    "explain_situation_text": "Please explain your financial situation, and please mention you previous contribution (either financial, or volunteering)"
   },
   "errorMessage": {
     "pleaseSelectOption": "בבקשה בחר אפשרות"

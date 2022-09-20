@@ -203,9 +203,7 @@ export default function MembershipPayment() {
       ProductType: selectedMembership.product?.productType,
       RecurringFreq: selectedMembership.product?.recurringFreq,
       //replace this with routing mechanism
-      successUrl:
-        window.APP_CONFIG.VH_BASE_URL +
-        `/pay/membership/payment/${selectedMembership.name}/success`,
+      successUrl: window.APP_CONFIG.VH_BASE_URL + `/pay/success/membership`,
       cancelUrl: window.APP_CONFIG.VH_BASE_URL,
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
@@ -239,6 +237,7 @@ export default function MembershipPayment() {
     if (selectedMembership && selectedMembership.price[currency.id]?.amount) {
       setAmount(selectedMembership.price[currency.id]?.amount);
     }
+    // eslint-disable-next-line
   }, [currency]);
 
   console.log(amount);
@@ -518,7 +517,7 @@ export default function MembershipPayment() {
                 onClick={proceedToPayment}
                 variant="contained"
                 color="primary"
-                disabled={payClicked}
+                disabled={!termsAccepted || payClicked}
               >
                 {payClicked ? (
                   <>
