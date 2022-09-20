@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     marginRight: 8,
   },
 });
-const SuccessMembership = () => {
+const CancellationSuccess = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { pdt } = useParams();
@@ -90,10 +90,10 @@ const SuccessMembership = () => {
               component="h1"
               style={{ fontSize: 36, marginBottom: 20, fontWeight: "normal" }}
             >
-              {t("order.payment_success")}
+              {t("cancellation.cancellation_success")}
             </Typography>
             <Typography style={{ fontSize: 18 }}>
-              {t("order.membershipPaymentSuccess")}
+              {t("cancellation.cancellation_success_text")}
             </Typography>
             <br />
             <div style={{ textAlign: "center" }}>
@@ -114,4 +114,4 @@ const SuccessMembership = () => {
   );
 };
 
-export default SuccessMembership;
+export default CancellationSuccess;
