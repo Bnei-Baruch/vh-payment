@@ -1,6 +1,5 @@
 import {
   Button,
-  Divider,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -27,6 +26,7 @@ const TicketCard = styled(Grid)`
   max-width: 500px;
   padding: 20px;
   min-height: 300px;
+  position: relative;
 `;
 const TicketGrid = styled(Grid)`
   margin: auto;
@@ -39,15 +39,38 @@ const TicketGrid = styled(Grid)`
     }
   }
 `;
+
+const Description = styled.div`
+  text-align: center;
+  margin-top: 20px;
+  line-height: 24px;
+`;
 const CenterText = styled(Typography)`
   text-align: center;
 `;
 const CenterTextGrey = styled(Typography)`
-  text-align: center;
+  font-weight: normal !important;
   color: #777777;
+`;
+const CurrencyText = styled(Typography)`
+  font-weight: 500 !important;
+  color: #2f6dc7;
+  text-align: center;
+`;
+const TenureText = styled.span`
+  font-size: 16px;
 `;
 const CTAGrid = styled(Grid)`
   text-align: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, 0%);
+
+  > button {
+    background-color: #2f6dc7 !important;
+  }
 `;
 
 const selectedStyle = {
@@ -88,7 +111,7 @@ export default function Membership() {
         membership.content[i18n.language] || membership.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(
-        `/pay/order/ticket/payment/intersticial/${membership.name}?isMembership=true`
+        `/pay/order/membership/payment/intersticial/${membership.name}?isMembership=true`
       );
     } else if (membership.flow.type === "checkout") {
       history.push("/pay/membership/payment/" + membership.name);
@@ -105,10 +128,8 @@ export default function Membership() {
     <TicketGrid container spacing={6}>
       <Grid item xs={12}>
         <br />
-        <CenterText variant="h1">{header.title}</CenterText>
+        <Typography variant="h3">{header.title}</Typography>
         <CenterTextGrey variant="h6">{header.subtitle}</CenterTextGrey>
-        <br />
-        <Divider />
         <br />
         <CenterText variant="h6">{header.action}</CenterText>
       </Grid>
@@ -136,22 +157,25 @@ export default function Membership() {
               >
                 <CenterText variant="h1">{planContent.name}</CenterText>
                 <br />
-                <Divider />
-                <br />
-                <CenterTextGrey variant="h2">
-                  {currency.sign + " " + plan.price[currency.id].amount}
-                </CenterTextGrey>
+                <CurrencyText variant="h2">
+                  {plan.isFree ? (
+                    t("help.financial_help")
+                  ) : (
+                    <>
+                      {" "}
+                      {currency.sign +
+                        " " +
+                        plan.price[currency.id].amount +
+                        " "}{" "}
+                      <TenureText>month</TenureText>
+                    </>
+                  )}
+                </CurrencyText>
                 <Grid>
                   {planContent &&
                     planContent.description &&
                     planContent.description.length > 0 && (
-                      <ul>
-                        {planContent.description.map((item, index) => (
-                          <li key={index}>
-                            <Typography variant="body1">{item}</Typography>
-                          </li>
-                        ))}
-                      </ul>
+                      <Description>{planContent.description}</Description>
                     )}
                 </Grid>
                 <Grid>
@@ -181,20 +205,31 @@ export default function Membership() {
                   )}
                 </Grid>
                 <CTAGrid>
-                  {
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={() => planSelected(plan)}
-                    >
-                      {planContent.button_label}
-                    </Button>
-                  }
+                  <Button
+                    style={{ width: "90%" }}
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => planSelected(plan)}
+                  >
+                    {planContent.button_label}
+                  </Button>
                 </CTAGrid>
               </TicketCard>
             </Grid>
           );
         })}
+      </Grid>
+      <Grid item xs={12}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() =>
+            (window.location.href =
+              window.location.origin + "/dash/membership/status")
+          }
+        >
+          {t("membership.back_to_status")}
+        </Button>
       </Grid>
     </TicketGrid>
   );

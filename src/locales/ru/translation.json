@@ -38,7 +38,9 @@
     "error_paid": "Мы не можем обработать ваш платеж. Пожалуйста, попробуйте еще раз.",
     "successfully_paid": "Поздравляем! Вы зарегистрированы на конгресс",
     "back_to_event": "Вернуться в личный кабинет/события",
-    "become_a_member": "Активировать подписку"
+    "back_to_my_membership": "Back to my membership",
+    "become_a_member": "Активировать подписку",
+    "membershipPaymentSuccess": "You have successfully paid for your subscription"
   },
   "userMenu": {
     "logOut": "Выйти",
@@ -71,7 +73,10 @@
     "select_option": "Выбрать",
     "successHeader": "Вы успешно зарегистрировались на это мероприятие!",
     "successDescription": "После регистрации мы вышлем ваш билет по электронной почте",
-    "viewTicket": "View Event Ticket"
+    "viewTicket": "View Event Ticket",
+    "period": "Period",
+    "currency": "Currency",
+    "month": "Month(s)"
   },
   "paymentMethod": {
     "creditCard": "Кредитная"
@@ -93,7 +98,9 @@
     "requestSubmitted": "Чтобы подать вашу заявку на финансовую помощь, нажмите кнопку ниже и заполните бланк",
     "return_to_personal_area": "Вернуться в личный кабинет",
     "enter_details_for_help": "Заполнить бланк",
-    "financial_help": "Финансовая помощь"
+    "financial_help": "Финансовая помощь",
+    "request_received": "We have received your request!",
+    "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
   },
   "payment": {
     "membershipStep1": "Цена абонемента",
@@ -104,6 +111,9 @@
     "terms_and_conditions": "с правилами и условиями"
   },
   "userDetail": {
+    "personal": "Личные данные",
+    "contact": "Контактные данные",
+    "details": "Детали",
     "ticketRegistrationDetail": "Детали регистрации билета",
     "ticketRegistrationSubtitle": "Для того, чтобы мы могли послать вам билет, подтвердите следующие данные пользователя",
     "firstName": "Имя",
@@ -115,7 +125,11 @@
     "gender": "Пол",
     "firstLanguage": "Родной язык",
     "secondLanguage": "Второй язык",
-    "startYear": "Год начала"
+    "startYear": "Год начала",
+    "tenName": "What is your Ten Name?",
+    "month_needed": "How many month do you need ?",
+    "explain_situation": "Explain your situation",
+    "explain_situation_text": "Please explain your financial situation, and please mention you previous contribution (either financial, or volunteering)"
   },
   "errorMessage": {
     "pleaseSelectOption": "Вы должны выбрать вариант"
@@ -141,6 +155,32 @@
   },
   "membership": {
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "back_to_status": "Back to Status",
+    "monthly_manual_subscription": "Monthly Manual Subscription",
+    "monthly_auto_subscription": "Monthly Auto Subscription",
+    "manual_subscription_description": "Money will be debeted from your card only under your personal control ",
+    "auto_subscription_description": "What does it mean? Your card will be charged $10 monthly automatically. You can cancel your subscription in your personal account at any time.",
+    "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
+    "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month. ",
+    "pay_more_than_month": "You can choose to pay more than 1 month",
+    "period": "Period",
+    "method": "Method",
+    "type": "Type",
+    "total_to_pay": "Total to pay"
+  },
+  "cancellation": {
+    "cancellation_success": "Cancelled succesfully",
+    "cancellation_success_text": "Your membership was cancelled succesfully. You will not be charge anymore.",
+    "membership_cancellation": "Membership Cancellation",
+    "membership_cancellation_text": "Are you sure you want to cancel your membership?",
+    "continue_cancellation": "Continue cancellation",
+    "before_you_go": "Before you go",
+    "precancellation_text": "Could you please tell us why? We might be able to help.",
+    "cancellation_title": "What are you cancelling this subscription?",
+    "financial_problem": "I have a financial problem",
+    "no_longer_stronger": "I am no longer studying",
+    "adding_anything_else": "Is there anything else you'd like to add?",
+    "tell_us_more": "Tell us more..."
   }
 }

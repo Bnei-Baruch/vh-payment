@@ -38,7 +38,9 @@
     "error_paid": "We aren't able to process your payment. Please try again.",
     "successfully_paid": "You have successfully bought a ticket to the event.",
     "back_to_event": "Back to event",
-    "become_a_member": "Become a member"
+    "back_to_my_membership": "Back to my membership",
+    "become_a_member": "Become a member",
+    "membershipPaymentSuccess": "You have successfully paid for your subscription"
   },
   "userMenu": {
     "profile": "Profile",
@@ -71,7 +73,10 @@
     "select_option": "Select Option",
     "successHeader": "Congratulations! You have successfully registered for the event",
     "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
-    "viewTicket": "View Event Ticket"
+    "viewTicket": "View Event Ticket",
+    "period": "Period",
+    "currency": "Currency",
+    "month": "Month(s)"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
@@ -93,7 +98,9 @@
     "requestSubmitted": "In order to complete your application for financial help, you must complete the form following the link below",
     "return_to_personal_area": "Return to personal area",
     "enter_details_for_help": "Complete Form",
-    "financial_help": "Financial Help"
+    "financial_help": "Financial Help",
+    "request_received": "We have received your request!",
+    "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
   },
   "payment": {
     "membershipStep1": "Membership Amount",
@@ -104,6 +111,9 @@
     "terms_and_conditions": "Terms and Conditions"
   },
   "userDetail": {
+    "personal": "Personal",
+    "contact": "Contact",
+    "details": "Details",
     "ticketRegistrationDetail": "Ticket Registration Detail",
     "ticketRegistrationSubtitle": "In Order for us to produce your ticket. We need you to review following user details",
     "firstName": "First Name",
@@ -115,7 +125,11 @@
     "gender": "Gender",
     "firstLanguage": "First Language",
     "secondLanguage": "Second Langugage",
-    "startYear": "What year did you start in Bnei Baruch?"
+    "startYear": "What year did you start in Bnei Baruch?",
+    "tenName": "What is your Ten Name?",
+    "month_needed": "How many month do you need ?",
+    "explain_situation": "Explain your situation",
+    "explain_situation_text": "Please explain your financial situation, and please mention you previous contribution (either financial, or volunteering)"
   },
   "errorMessage": {
     "pleaseSelectOption": "Please select an option"
@@ -141,6 +155,32 @@
   },
   "membership": {
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "back_to_status": "Back to Status",
+    "monthly_manual_subscription": "Monthly Manual Subscription",
+    "monthly_auto_subscription": "Monthly Auto Subscription",
+    "manual_subscription_description": "This is a one time payment for the period you choose",
+    "auto_subscription_description": "What does it mean? Your card will be charged $10 monthly automatically. You can cancel your subscription in your personal account at any time.",
+    "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
+    "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month.",
+    "pay_more_than_month": "You can choose to pay more than 1 month",
+    "period": "Period",
+    "method": "Method",
+    "type": "Type",
+    "total_to_pay": "Total to pay"
+  },
+  "cancellation": {
+    "cancellation_success": "Cancelled succesfully",
+    "cancellation_success_text": "Your membership was cancelled succesfully. You will not be charge anymore.",
+    "membership_cancellation": "Membership Cancellation",
+    "membership_cancellation_text": "Are you sure you want to cancel your membership?",
+    "continue_cancellation": "Continue cancellation",
+    "before_you_go": "Before you go",
+    "precancellation_text": "Could you please tell us why? We might be able to help.",
+    "cancellation_title": "What are you cancelling this subscription?",
+    "financial_problem": "I have a financial problem",
+    "no_longer_stronger": "I am no longer studying",
+    "adding_anything_else": "Is there anything else you'd like to add?",
+    "tell_us_more": "Tell us more..."
   }
 }
