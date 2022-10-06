@@ -167,7 +167,7 @@ export default function Membership() {
                         " " +
                         plan.price[currency.id].amount +
                         " "}{" "}
-                      <TenureText>month</TenureText>
+                      <TenureText>{t("common.month_single")}</TenureText>
                     </>
                   )}
                 </CurrencyText>

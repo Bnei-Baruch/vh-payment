@@ -18,7 +18,7 @@
   },
   "order": {
     "title": "ברוך הבא",
-    "payMethod": "אמצעי תשלום",
+    "payMethod": "שיטת תשלום",
     "pay": "שלם",
     "agree": "אני מסכים עם",
     "tos": "תנאי שימוש",
@@ -28,7 +28,7 @@
     "errortext": "התשלום לא עבר עקב השגיאה הבאה",
     "errortext2": "בכל שאלה או בירור ניתן לפנות אל help@kli.one",
     "closethepage": "כל הכבוד! את/ה יכול/ה לסגור את הדף",
-    "next": "המשך",
+    "next": "הלאה",
     "thanksstep3": "מזל טוב! נרשמת בהצלחה לכנס. בקרוב תקבל אימייל המאשר את השתתפותך בכנס כמו גם תיאור מפורט של תוכנית הכנס וקישורים להתחברות.",
     "allGood": "!הכל טוב",
     "processing": "מעבד את ההזמנה",
@@ -57,8 +57,8 @@
   "common": {
     "confirm": "לאשר",
     "cancel": "לבטל",
-    "next": "המשך",
-    "back": "חזר",
+    "next": "הלאה",
+    "back": "חזרה",
     "edit": "ערוך",
     "save": "שמור",
     "other": "Other",
@@ -75,8 +75,9 @@
     "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
     "viewTicket": "View Event Ticket",
     "period": "Period",
-    "currency": "Currency",
-    "month": "Month(s)"
+    "currency": "מטבע",
+    "month": "Month(s)",
+    "month_single": "דולר לחודש"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
@@ -98,7 +99,7 @@
     "requestSubmitted": "להשלמת הבקשה לסיוע כספי, עליך למלא את הטופס, הקלק על הקישור למטה",
     "return_to_personal_area": "Return to personal area",
     "enter_details_for_help": "מילוי הטופס",
-    "financial_help": "סיוע כספי להרשמה",
+    "financial_help": "עזרה כספית",
     "request_received": "We have received your request!",
     "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
   },
@@ -154,16 +155,19 @@
     "descriptionIntersectialRussia": "לאחר ההרשמה, נשלח אליך כרטיס בדואר אלקטרוני, אל תשכח להשלים את התשלום שלך בקישור למטה"
   },
   "membership": {
+    "title": "מנוי",
+    "confirmation": "אישור",
     "active": "Active",
     "inactive": "Inactive",
-    "back_to_status": "Back to Status",
+    "back_to_status": "חזרה לסטטוס",
     "monthly_manual_subscription": "Monthly Manual Subscription",
-    "monthly_auto_subscription": "Monthly Auto Subscription",
+    "monthly_auto_subscription": "מנוי מתחדש אוטומטית",
     "manual_subscription_description": "Money will be debeted from your card only under your personal control ",
-    "auto_subscription_description": "What does it mean? Your card will be charged $10 monthly automatically. You can cancel your subscription in your personal account at any time.",
+    "auto_subscription_description": "כרטיסך יחוייב חודשית באופן אוטומטי. תוכל לבטל את המנוי בכל עת.",
     "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
     "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month. ",
     "pay_more_than_month": "You can choose to pay more than 1 month",
+    "pay_more_than": "אתה יכול לשלם יותר",
     "period": "Period",
     "method": "Method",
     "type": "Type",

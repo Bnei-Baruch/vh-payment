@@ -1,7 +1,7 @@
 {
   "appbar": {
     "language": "Language",
-    "currency": "Currency",
+    "currency": "Moneda",
     "text": "Our Virtual Home",
     "membership": "My Membership Status"
   },
@@ -18,7 +18,7 @@
   },
   "order": {
     "title": "Bienvenido",
-    "payMethod": "Payment method",
+    "payMethod": "Forma de pago",
     "pay": "Pagar",
     "agree": "estoy de acuerdo con",
     "tos": "los términos y condiciones ",
@@ -57,14 +57,14 @@
   "common": {
     "confirm": "Confirmar",
     "cancel": "Cancelar",
-    "next": "Próximo",
-    "back": "Atrás",
+    "next": "Siguiente",
+    "back": "Volver",
     "edit": "Editar",
     "save": "Guardar",
     "other": "Otro",
     "upload": "Subir",
     "step": "Paso",
-    "amount": "Monto",
+    "amount": "Cantidad",
     "ok": "Ok",
     "register": "Register",
     "buy_ticket": "Buy ticket",
@@ -75,8 +75,9 @@
     "successDescription": "Después de la inscripción, te enviaremos una entrada al evento por correo electrónico.",
     "viewTicket": "View Event Ticket",
     "period": "Period",
-    "currency": "Currency",
-    "month": "Month(s)"
+    "currency": "Moneda",
+    "month": "Mes",
+    "month_single": "dólares al mes"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
@@ -163,16 +164,19 @@
     "descriptionIntersectialRussia": "Después de la inscripción, te enviaremos una entrada al evento por correo electrónico. No olvides de completar tu pago en el enlace de abajo."
   },
   "membership": {
+    "title": "Membresía",
+    "confirmation": "Confirmación",
     "active": "Active",
     "inactive": "Inactive",
-    "back_to_status": "Back to Status",
+    "back_to_status": "Volver a Estatus",
     "monthly_manual_subscription": "Monthly Manual Subscription",
-    "monthly_auto_subscription": "Monthly Auto Subscription",
+    "monthly_auto_subscription": "Suscripción automática",
     "manual_subscription_description": "Money will be debeted from your card only under your personal control ",
-    "auto_subscription_description": "What does it mean? Your card will be charged $10 monthly automatically. You can cancel your subscription in your personal account at any time.",
+    "auto_subscription_description": "Su tarjeta se cargará mensualmente de forma automática. Puede cancelar su suscripción en cualquier momento.",
     "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
     "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month. ",
     "pay_more_than_month": "You can choose to pay more than 1 month",
+    "pay_more_than": "Puede pagar más de",
     "period": "Period",
     "method": "Method",
     "type": "Type",

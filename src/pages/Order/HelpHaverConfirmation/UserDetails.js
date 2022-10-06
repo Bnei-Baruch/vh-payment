@@ -123,6 +123,7 @@ export default function UserDetails() {
       ProductType: selectedMembership.product?.productType,
       RecurringFreq: selectedMembership.product?.recurringFreq,
       PaymentType: "helphaver",
+      TerminalId: "ben_helphaver",
       //replace this with routing mechanism
       successUrl:
         window.APP_CONFIG.VH_BASE_URL +

@@ -1270,19 +1270,19 @@ exports.membershipsplans = {
       action: "Select your plan",
     },
     es: {
-      title: "Suscripción",
+      title: "Membresía",
       subtitle: "Suscripción mensual",
-      action: "Selecciona tu plan",
+      action: "Seleccione su plan",
     },
     ru: {
-      title: "Абонемент",
-      subtitle: "Месячная абонентская плата",
-      action: "Выберите удобный для вас способ оплаты",
+      title: "Подписка",
+      subtitle: "Ежемесячная подписка",
+      action: "Выберите свой вариант подписки",
     },
     he: {
-      title: "דמי מנוי",
-      subtitle: " דמי מנוי חודשיים",
-      action: "בחר המסלול המתאים לך",
+      title: "מנוי",
+      subtitle: "מנוי חודשי",
+      action: "בחר תכנית",
     },
   },
   plans: [
@@ -1296,25 +1296,25 @@ exports.membershipsplans = {
           button_label: "Select this Plan",
         },
         es: {
-          name: "Pago manual",
+          name: "Manual",
           description: [
-            "Pago en cualquier momento del mes",
-            "Soluciones de pago fuera de línea",
+            "Pagas manualmente cada vez, no hay renovación automática. También puedes pagar por adelantado cualquier periodo de tiempo.",
           ],
-          button_label: "Elige",
+          button_label: "Seleccione este plan",
         },
         ru: {
-          name: "Платить самостоятельно",
+          name: "Ручной",
           description: [
-            "Платить в любой день месяца",
-            "Платеж не через интернет",
+            "Вы платите каждый раз вручную, автоматического списания средств не будет. Вы также можете оплатить вперед за любой период времени.",
           ],
-          button_label: "Выбрать",
+          button_label: "Выбрать этот варинат",
         },
         he: {
-          name: "תשלום ידני",
-          description: ["שלם בכל עת בחודש", "אפשרויות תשלום לא מקוונות"],
-          button_label: "בחר",
+          name: "ידני",
+          description: [
+            "אתה משלם בכל פעם מחדש, אין חידוש אוטומטי. אתה יכול לשלם לתקופה מראש הכל על.",
+          ],
+          button_label: "בחר תכנית זו",
         },
       },
       flow: {
@@ -1328,19 +1328,20 @@ exports.membershipsplans = {
               label: "Credit/Debit Card",
             },
             ru: {
-              label: "Credit/Debit Card",
+              label: "Банковская карта",
             },
             he: {
-              label: "Credit/Debit Card",
+              label: "כרטיס אשראי",
             },
             es: {
-              label: "Credit/Debit Card",
+              label: "Tarjeta de crédito",
             },
           },
         },
       ],
       name: "manual",
       order: 1,
+      TerminalId: "ben_regular_pelecard",
       price: {
         usd: {
           fixed: false,
@@ -1367,7 +1368,7 @@ exports.membershipsplans = {
       product: {
         SKU: "40037",
         reference: "Membership",
-        type: "recurring",
+        type: "manual",
         productType: "globalmembership",
         recurringFreq: 30,
         organization: "ben2",
@@ -1383,33 +1384,27 @@ exports.membershipsplans = {
           button_label: "Select this Plan",
         },
         es: {
-          name: "Automatic ES",
-          description: [
-            "Pay any time of the month",
-            "Multiple payment solutions",
-          ],
+          name: "Automática",
+          description: ["Se te cobrará automáticamente el día 20 de cada mes"],
           button_label: "Select this Plan",
         },
         ru: {
-          name: "Automatic RU",
+          name: "автоматический",
           description: [
-            "Pay any time of the month",
-            "Multiple payment solutions",
+            "Платёж будет списываться автоматически 20-го числа каждого месяца.",
           ],
           button_label: "Select this Plan",
         },
         he: {
-          name: "Automatic HE",
-          description: [
-            "Pay any time of the month",
-            "Multiple payment solutions",
-          ],
+          name: "מתחדש אוטומטית",
+          description: ["תחוייב אוטומטית ב 20 לכל חודש"],
           button_label: "Select this Plan",
         },
       },
       flow: {
         type: "checkout",
       },
+      TerminalId: "ben_recurring_pelecard",
       payment_options: [
         {
           name: "pelecard",
@@ -1418,13 +1413,13 @@ exports.membershipsplans = {
               label: "Credit/Debit Card",
             },
             ru: {
-              label: "Credit/Debit Card",
+              label: "Банковская карта",
             },
             he: {
-              label: "Credit/Debit Card",
+              label: "כרטיס אשראי",
             },
             es: {
-              label: "Credit/Debit Card",
+              label: "Tarjeta de crédito",
             },
           },
         },
@@ -1481,9 +1476,11 @@ exports.membershipsplans = {
             "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         ru: {
-          name: "helphaver",
+          name: "Хелп Хавер",
           label: "Help Haver",
-          description: ["If you have financial issues, you can apply for help"],
+          description: [
+            "Если вы находитесь в затруднительном финансовом положении, вы можете обратиться за помощью",
+          ],
           button_label: "Select this Plan",
           intersticial: {
             title: "Title",
@@ -1494,9 +1491,11 @@ exports.membershipsplans = {
             "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         es: {
-          name: "helphaver",
+          name: "Help Haver",
           label: "Help Haver",
-          description: ["If you have financial issues, you can apply for help"],
+          description: [
+            "Si se encuentra en una situación financiera difícil, puede solicitar una ayuda",
+          ],
           button_label: "Select this Plan",
           intersticial: {
             title: "Title",
@@ -1507,9 +1506,9 @@ exports.membershipsplans = {
             "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
         he: {
-          name: "helphaver",
+          name: "הלפ חבר",
           label: "Help Haver",
-          description: ["If you have financial issues, you can apply for help"],
+          description: ["אם אתה נזקק לסיוע כספי, תוכל לפנות ל ״הלפ חבר״"],
           button_label: "Select this Plan",
           intersticial: {
             title: "Title",
@@ -1520,6 +1519,7 @@ exports.membershipsplans = {
             "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
         },
       },
+      TerminalId: "ben_helphaver",
       flow: {
         type: "redirect",
         intersticial: true,
@@ -1541,7 +1541,7 @@ exports.membershipsplans = {
       product: {
         SKU: "40037",
         reference: "Membership",
-        type: "recurring",
+        type: "manual",
         productType: "globalmembership",
         recurringFreq: 30,
         organization: "ben2",

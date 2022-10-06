@@ -18,7 +18,7 @@
   },
   "order": {
     "title": "Добро пожаловать",
-    "payMethod": "Метод оплаты",
+    "payMethod": "Способ оплаты",
     "pay": "Платить",
     "agree": "Я согласен",
     "tos": "с правилами и условиями",
@@ -27,7 +27,7 @@
     "error": "Ошибка при оплате",
     "errortext": "Платеж не прошел из-за следующей ошибки:",
     "errortext2": "Вы можете связаться со службой поддержки по адресу help@kli.one.",
-    "next": "Дальше",
+    "next": "продолжить",
     "thanksstep3": "Поздравляем! Вы успешно зарегистрировались на конгресс. Вскоре вы получите электронное письмо с подтверждением вашего участия в конгрессе, а также с подробным описанием программы конгресса и ссылку для подключения.",
     "allGood": "Все хорошо!",
     "closethepage": "Задание выполнено успешно! Вы можете закрыть страницу",
@@ -57,8 +57,8 @@
   "common": {
     "confirm": "Подтвердить",
     "cancel": "Отмена",
-    "next": "Продолжить",
-    "back": "Назад",
+    "next": "продолжить",
+    "back": "вернуться",
     "edit": "Редактировать",
     "save": "Сохранить",
     "other": "Другой",
@@ -75,8 +75,9 @@
     "successDescription": "После регистрации мы вышлем ваш билет по электронной почте",
     "viewTicket": "View Event Ticket",
     "period": "Period",
-    "currency": "Currency",
-    "month": "Month(s)"
+    "currency": "Валюта",
+    "month": "Month(s)",
+    "month_single": "долларов в месяц"
   },
   "paymentMethod": {
     "creditCard": "Кредитная"
@@ -154,16 +155,19 @@
     "descriptionIntersectialRussia": "После регистрации, мы вышлем вам билет по электронной почте. Не забудьте завершить оплату по ссылке ниже."
   },
   "membership": {
+    "title": "Подписка",
+    "confirmation": "Подтверждение",
     "active": "Active",
     "inactive": "Inactive",
-    "back_to_status": "Back to Status",
+    "back_to_status": "Назад",
     "monthly_manual_subscription": "Monthly Manual Subscription",
-    "monthly_auto_subscription": "Monthly Auto Subscription",
+    "monthly_auto_subscription": "Автоматическая подписка",
     "manual_subscription_description": "Money will be debeted from your card only under your personal control ",
-    "auto_subscription_description": "What does it mean? Your card will be charged $10 monthly automatically. You can cancel your subscription in your personal account at any time.",
+    "auto_subscription_description": "С вашей карты оплата будет списываться ежемесячно автоматически. Вы можете отменить подписку в любое время.",
     "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
     "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month. ",
     "pay_more_than_month": "You can choose to pay more than 1 month",
+    "pay_more_than": "Вы можете оплатить более",
     "period": "Period",
     "method": "Method",
     "type": "Type",
