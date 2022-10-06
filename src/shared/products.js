@@ -1368,7 +1368,7 @@ exports.membershipsplans = {
       product: {
         SKU: "40037",
         reference: "Membership",
-        type: "manual",
+        type: "regular",
         productType: "globalmembership",
         recurringFreq: 30,
         organization: "ben2",
@@ -1541,7 +1541,7 @@ exports.membershipsplans = {
       product: {
         SKU: "40037",
         reference: "Membership",
-        type: "manual",
+        type: "regular",
         productType: "globalmembership",
         recurringFreq: 30,
         organization: "ben2",
