@@ -1483,9 +1483,9 @@ exports.membershipsplans = {
           ],
           button_label: "Select this Plan",
           intersticial: {
-            title: "Title",
-            body: "Message",
-            button: "Next",
+            title: "\"Хелп Хавер\" для подписчиков",
+            body: "Мы хотим, чтобы эта услуга была доступна каждому из нас, поэтому, если вы находитесь в сложном финансовом положении, вы можете обратиться за помощью",
+            button: "Продолжить",
           },
           redirect_url:
             "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
@@ -1498,9 +1498,9 @@ exports.membershipsplans = {
           ],
           button_label: "Select this Plan",
           intersticial: {
-            title: "Title",
-            body: "Message",
-            button: "Next",
+            title: "Help Haver para la Membresía",
+            body: "Queremos que este servicio esté al alcance de todos, por lo que si se encuentra en una situación económica difícil, puede solicitar una ayuda",
+            button: "Siguiente",
           },
           redirect_url:
             "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",

@@ -124,6 +124,8 @@
     "dateOfBirth": "Date of Birth",
     "country": "Country",
     "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
     "firstLanguage": "First Language",
     "secondLanguage": "Second Langugage",
     "startYear": "What year did you start in Bnei Baruch?",

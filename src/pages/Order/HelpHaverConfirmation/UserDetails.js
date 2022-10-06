@@ -261,13 +261,13 @@ export default function UserDetails() {
                         value="male"
                         disabled
                         control={<Radio />}
-                        label="Male"
+                        label={t("userDetail.male")}
                       />
                       <FormControlLabel
                         value="female"
                         disabled
                         control={<Radio />}
-                        label="Female"
+                        label={t("userDetail.female")}
                       />
                     </RadioGroup>
                   </FormControl>
