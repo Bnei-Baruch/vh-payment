@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const handlePayment = (data) => {
   return axios
-    .post(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/orders/newandpay`, data)
+    .post(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/transaction`, data)
     .then((response) => response)
     .catch((error) => {
       throw error;

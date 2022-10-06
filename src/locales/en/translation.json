@@ -76,7 +76,8 @@
     "viewTicket": "View Event Ticket",
     "period": "Period",
     "currency": "Currency",
-    "month": "Month(s)"
+    "month": "Month",
+    "month_single": "Month"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
@@ -123,6 +124,8 @@
     "dateOfBirth": "Date of Birth",
     "country": "Country",
     "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
     "firstLanguage": "First Language",
     "secondLanguage": "Second Langugage",
     "startYear": "What year did you start in Bnei Baruch?",
@@ -154,16 +157,19 @@
     "descriptionIntersectialRussia": "Here you can register for the event. After registration, we will send you a ticket to the event by email."
   },
   "membership": {
+    "title": "Membership",
+    "confirmation": "Confirmation",
     "active": "Active",
     "inactive": "Inactive",
     "back_to_status": "Back to Status",
     "monthly_manual_subscription": "Monthly Manual Subscription",
-    "monthly_auto_subscription": "Monthly Auto Subscription",
+    "monthly_auto_subscription": "Automatic Subscription",
     "manual_subscription_description": "This is a one time payment for the period you choose",
-    "auto_subscription_description": "What does it mean? Your card will be charged $10 monthly automatically. You can cancel your subscription in your personal account at any time.",
+    "auto_subscription_description": "Your card will be charged monthly automatically. You can cancel your subscription  at any time.",
     "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
     "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month.",
     "pay_more_than_month": "You can choose to pay more than 1 month",
+    "pay_more_than": "You can choose to pay more than",
     "period": "Period",
     "method": "Method",
     "type": "Type",

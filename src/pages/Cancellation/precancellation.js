@@ -85,7 +85,7 @@ export default function PreCancellation() {
             <br />
             <TextField
               multiline
-              rows={4}
+              minRows={4}
               variant="outlined"
               placeholder={t("cancellation.tell_us_more")}
               value={state.additionalSuggestion}

@@ -1,7 +1,7 @@
 {
   "appbar": {
     "language": "Language",
-    "currency": "Currency",
+    "currency": "Moneda",
     "text": "Our Virtual Home",
     "membership": "My Membership Status"
   },
@@ -18,7 +18,7 @@
   },
   "order": {
     "title": "Bienvenido",
-    "payMethod": "Payment method",
+    "payMethod": "Forma de pago",
     "pay": "Pagar",
     "agree": "estoy de acuerdo con",
     "tos": "los términos y condiciones ",
@@ -57,14 +57,14 @@
   "common": {
     "confirm": "Confirmar",
     "cancel": "Cancelar",
-    "next": "Próximo",
-    "back": "Atrás",
+    "next": "Siguiente",
+    "back": "Volver",
     "edit": "Editar",
     "save": "Guardar",
     "other": "Otro",
     "upload": "Subir",
     "step": "Paso",
-    "amount": "Monto",
+    "amount": "Cantidad",
     "ok": "Ok",
     "register": "Register",
     "buy_ticket": "Buy ticket",
@@ -75,8 +75,9 @@
     "successDescription": "Después de la inscripción, te enviaremos una entrada al evento por correo electrónico.",
     "viewTicket": "View Event Ticket",
     "period": "Period",
-    "currency": "Currency",
-    "month": "Month(s)"
+    "currency": "Moneda",
+    "month": "Mes",
+    "month_single": "dólares al mes"
   },
   "paymentMethod": {
     "creditCard": "Credit Card"
@@ -108,8 +109,8 @@
     "return_to_personal_area": "Volver al área personal",
     "enter_details_for_help": "Completar formulario",
     "financial_help": "Ayuda financiera",
-    "request_received": "We have received your request!",
-    "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
+    "request_received": "¡Hemos recibido su solicitud!",
+    "request_received_text": "Su solicitud ha sido enviada al equipo de Help Haver. Su estado de Membresía se actualizará sólo después de la evaluación. Si todavía tiene preguntas, escriba a help@kli.one"
   },
   "payment": {
     "membershipStep1": "Suma de membresía",
@@ -121,24 +122,26 @@
   },
   "userDetail": {
     "personal": "Personal",
-    "contact": "Contacto",
+    "contact": "Contactar con",
     "details": "Detalles",
     "ticketRegistrationDetail": "Detalle de registro de entradas",
     "ticketRegistrationSubtitle": "Para que podamos producir su boleto. Necesitamos que revise los siguientes detalles de usuario",
-    "firstName": "Primer nombre",
+    "firstName": "Nombre",
     "lastName": "Apellido",
-    "email": "Email",
-    "phone": "Número de móvil",
-    "dateOfBirth": "Fecha de cumpleaños",
+    "email": "Correo electrónico",
+    "phone": "Móvil",
+    "dateOfBirth": "Fecha de nacimiento",
     "country": "País",
     "gender": "Género",
+    "male": "Hombre",
+    "female": "Mujer",
     "firstLanguage": "Primer idioma",
     "secondLanguage": "Segundo lenguaje",
     "startYear": "Año de inicio",
-    "tenName": "What is your Ten Name?",
-    "month_needed": "How many month do you need ?",
-    "explain_situation": "Explain your situation",
-    "explain_situation_text": "Please explain your financial situation, and please mention you previous contribution (either financial, or volunteering)"
+    "tenName": "Nombre de la decena",
+    "month_needed": "¿Cuántos meses necesita?",
+    "explain_situation": "Explique su situación",
+    "explain_situation_text": "Por favor, explique su situación financiera, y por favor mencione su contribución anterior (ya sea financiera o de voluntariado)"
   },
   "errorMessage": {
     "pleaseSelectOption": "Tienes que elegir una opción"
@@ -163,33 +166,36 @@
     "descriptionIntersectialRussia": "Después de la inscripción, te enviaremos una entrada al evento por correo electrónico. No olvides de completar tu pago en el enlace de abajo."
   },
   "membership": {
+    "title": "Membresía",
+    "confirmation": "Confirmación",
     "active": "Active",
     "inactive": "Inactive",
-    "back_to_status": "Back to Status",
-    "monthly_manual_subscription": "Monthly Manual Subscription",
-    "monthly_auto_subscription": "Monthly Auto Subscription",
-    "manual_subscription_description": "Money will be debeted from your card only under your personal control ",
-    "auto_subscription_description": "What does it mean? Your card will be charged $10 monthly automatically. You can cancel your subscription in your personal account at any time.",
+    "back_to_status": "Volver a Estatus",
+    "monthly_manual_subscription": "Suscripción manual",
+    "monthly_auto_subscription": "Suscripción automática",
+    "manual_subscription_description": "Se trata de un pago único por el periodo que elija",
+    "auto_subscription_description": "Su tarjeta se cargará mensualmente de forma automática. Puede cancelar su suscripción en cualquier momento.",
     "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
-    "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month. ",
-    "pay_more_than_month": "You can choose to pay more than 1 month",
-    "period": "Period",
-    "method": "Method",
-    "type": "Type",
-    "total_to_pay": "Total to pay"
+    "auto_payment_confirmation_message": "Después del primer pago, los pagos automáticos se cobran cada mes el día 20, a partir del mes siguiente.",
+    "pay_more_than_month": "Puede elegir pagar más de 1 mes",
+    "pay_more_than": "Puede pagar más de",
+    "period": "Período",
+    "method": "Forma de pago",
+    "type": "Tipo",
+    "total_to_pay": "Total a pagar"
   },
   "cancellation": {
-    "cancellation_success": "Cancelled succesfully",
-    "cancellation_success_text": "Your membership was cancelled succesfully. You will not be charge anymore.",
-    "membership_cancellation": "Membership Cancellation",
-    "membership_cancellation_text": "Are you sure you want to cancel your membership?",
-    "continue_cancellation": "Continue cancellation",
-    "before_you_go": "Before you go",
-    "precancellation_text": "Could you please tell us why? We might be able to help.",
-    "cancellation_title": "What are you cancelling this subscription?",
-    "financial_problem": "I have a financial problem",
-    "no_longer_stronger": "I am no longer studying",
-    "adding_anything_else": "Is there anything else you'd like to add?",
-    "tell_us_more": "Tell us more..."
+    "cancellation_success": "Cancelado con éxito",
+    "cancellation_success_text": "Su Membresía fue cancelada exitosamente. Ya no se le cobrará.",
+    "membership_cancellation": "Cancelación de la Membresía",
+    "membership_cancellation_text": "¿Estás seguro de que quieres cancelar tu Membresía?",
+    "continue_cancellation": "Continuar con la cancelación",
+    "before_you_go": "Antes de que te vayas",
+    "precancellation_text": "¿Podrías decirnos por qué? Tal vez podamos ayudarte.",
+    "cancellation_title": "¿Por qué cancelas esta suscripción?",
+    "financial_problem": "Tengo un problema financiero",
+    "no_longer_stronger": "Ya no estoy estudiando",
+    "adding_anything_else": "¿Hay algo más que le gustaría añadir?",
+    "tell_us_more": "Cuéntanos más..."
   }
 }
