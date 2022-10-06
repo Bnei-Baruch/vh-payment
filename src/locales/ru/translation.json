@@ -18,7 +18,7 @@
   },
   "order": {
     "title": "Добро пожаловать",
-    "payMethod": "Метод оплаты",
+    "payMethod": "Способ оплаты",
     "pay": "Платить",
     "agree": "Я согласен",
     "tos": "с правилами и условиями",
@@ -27,7 +27,7 @@
     "error": "Ошибка при оплате",
     "errortext": "Платеж не прошел из-за следующей ошибки:",
     "errortext2": "Вы можете связаться со службой поддержки по адресу help@kli.one.",
-    "next": "Дальше",
+    "next": "продолжить",
     "thanksstep3": "Поздравляем! Вы успешно зарегистрировались на конгресс. Вскоре вы получите электронное письмо с подтверждением вашего участия в конгрессе, а также с подробным описанием программы конгресса и ссылку для подключения.",
     "allGood": "Все хорошо!",
     "closethepage": "Задание выполнено успешно! Вы можете закрыть страницу",
@@ -57,8 +57,8 @@
   "common": {
     "confirm": "Подтвердить",
     "cancel": "Отмена",
-    "next": "Продолжить",
-    "back": "Назад",
+    "next": "продолжить",
+    "back": "вернуться",
     "edit": "Редактировать",
     "save": "Сохранить",
     "other": "Другой",
@@ -75,8 +75,9 @@
     "successDescription": "После регистрации мы вышлем ваш билет по электронной почте",
     "viewTicket": "View Event Ticket",
     "period": "Period",
-    "currency": "Currency",
-    "month": "Month(s)"
+    "currency": "Валюта",
+    "month": "долларов в месяц",
+    "month_single": "долларов в месяц"
   },
   "paymentMethod": {
     "creditCard": "Кредитная"
@@ -99,8 +100,8 @@
     "return_to_personal_area": "Вернуться в личный кабинет",
     "enter_details_for_help": "Заполнить бланк",
     "financial_help": "Финансовая помощь",
-    "request_received": "We have received your request!",
-    "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
+    "request_received": "Мы получили ваше обращение!",
+    "request_received_text": "Ваш запрос был отправлен команде \"Хелп Хавер\". Ваш статус подписки будет обновлен сразу после проверки. Если у вас остались вопросы, пишите на help@kli.one"
   },
   "payment": {
     "membershipStep1": "Цена абонемента",
@@ -111,25 +112,27 @@
     "terms_and_conditions": "с правилами и условиями"
   },
   "userDetail": {
-    "personal": "Личные данные",
+    "personal": "Данные подписчика",
     "contact": "Контактные данные",
-    "details": "Детали",
+    "details": "Подробности",
     "ticketRegistrationDetail": "Детали регистрации билета",
     "ticketRegistrationSubtitle": "Для того, чтобы мы могли послать вам билет, подтвердите следующие данные пользователя",
     "firstName": "Имя",
     "lastName": "Фамилия",
-    "email": "емайл",
-    "phone": "Номер мобильного телефона",
+    "email": "Эл. адрес",
+    "phone": "Мобильный",
     "dateOfBirth": "Дата рождения",
     "country": "Страна",
     "gender": "Пол",
+    "male": "Мужской",
+    "female": "женский",
     "firstLanguage": "Родной язык",
     "secondLanguage": "Второй язык",
     "startYear": "Год начала",
-    "tenName": "What is your Ten Name?",
-    "month_needed": "How many month do you need ?",
-    "explain_situation": "Explain your situation",
-    "explain_situation_text": "Please explain your financial situation, and please mention you previous contribution (either financial, or volunteering)"
+    "tenName": "Название \"Десятки\"",
+    "month_needed": "Выберите необходимое кол-во месяцев?",
+    "explain_situation": "Объясните свою ситуацию",
+    "explain_situation_text": "Пожалуйста, опишите свое финансовое положение и просьба, укажите свой предыдущий вклад в Бней Барух (финансовый вклад или волонтерство)"
   },
   "errorMessage": {
     "pleaseSelectOption": "Вы должны выбрать вариант"
@@ -154,33 +157,36 @@
     "descriptionIntersectialRussia": "После регистрации, мы вышлем вам билет по электронной почте. Не забудьте завершить оплату по ссылке ниже."
   },
   "membership": {
+    "title": "Подписка",
+    "confirmation": "Подтверждение",
     "active": "Active",
     "inactive": "Inactive",
-    "back_to_status": "Back to Status",
-    "monthly_manual_subscription": "Monthly Manual Subscription",
-    "monthly_auto_subscription": "Monthly Auto Subscription",
-    "manual_subscription_description": "Money will be debeted from your card only under your personal control ",
-    "auto_subscription_description": "What does it mean? Your card will be charged $10 monthly automatically. You can cancel your subscription in your personal account at any time.",
+    "back_to_status": "Назад",
+    "monthly_manual_subscription": "Обычная подписка",
+    "monthly_auto_subscription": "Автоматическая подписка",
+    "manual_subscription_description": "Это единоразовый платеж за выбранный вами период",
+    "auto_subscription_description": "С вашей карты оплата будет списываться ежемесячно автоматически. Вы можете отменить подписку в любое время.",
     "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
-    "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month. ",
-    "pay_more_than_month": "You can choose to pay more than 1 month",
-    "period": "Period",
-    "method": "Method",
-    "type": "Type",
-    "total_to_pay": "Total to pay"
+    "auto_payment_confirmation_message": "После первого платежа, автоматическое списание средств будет ежемесячно 20-го числа, начиная со следующего месяца",
+    "pay_more_than_month": "Вы можете выбрать оплату более 1 месяца",
+    "pay_more_than": "Вы можете оплатить более",
+    "period": "Период оплаты",
+    "method": "Способ оплаты",
+    "type": "Тип подписки",
+    "total_to_pay": "Сумма к оплате"
   },
   "cancellation": {
-    "cancellation_success": "Cancelled succesfully",
-    "cancellation_success_text": "Your membership was cancelled succesfully. You will not be charge anymore.",
-    "membership_cancellation": "Membership Cancellation",
-    "membership_cancellation_text": "Are you sure you want to cancel your membership?",
-    "continue_cancellation": "Continue cancellation",
-    "before_you_go": "Before you go",
-    "precancellation_text": "Could you please tell us why? We might be able to help.",
-    "cancellation_title": "What are you cancelling this subscription?",
-    "financial_problem": "I have a financial problem",
-    "no_longer_stronger": "I am no longer studying",
-    "adding_anything_else": "Is there anything else you'd like to add?",
-    "tell_us_more": "Tell us more..."
+    "cancellation_success": "Отмена прошла успешно",
+    "cancellation_success_text": "Ваша ежемесячная подписка отемнена. У вас больше не будет взиматься оплата.",
+    "membership_cancellation": "Отмена подписки",
+    "membership_cancellation_text": "Вы уверены, что хотите отменить свою подписку?",
+    "continue_cancellation": "Отменить подписку",
+    "before_you_go": "Прежде чем вы выйдите",
+    "precancellation_text": "Не могли бы вы рассказать нам, почему? Мы могли бы помочь..",
+    "cancellation_title": "По какой причине вы отменяете эту подписку?",
+    "financial_problem": "у меня финансовые проблемы",
+    "no_longer_stronger": "я больше не учусь",
+    "adding_anything_else": "Другое...",
+    "tell_us_more": "Расскажите подробнее.."
   }
 }

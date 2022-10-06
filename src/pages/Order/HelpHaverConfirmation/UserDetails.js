@@ -66,7 +66,7 @@ export default function UserDetails() {
   const { event_slug } = useParams();
 
   const currency = useSelector((state) => state.currency);
-  const user = useSelector((state) => state.user.profileData);
+  const user = useSelector((state) => state.user);
   const selectedMembership = useSelector(
     (state) => state.order.selectedMembership
   );
@@ -116,11 +116,14 @@ export default function UserDetails() {
       UserKey: user.keycloak.subject,
       Currency: currency.id?.toUpperCase(),
       Amount: selectedMembership.price[currency.id]?.amount,
+      AmountItem: selectedMembership.price[currency.id]?.amount,
+      Quantity: requestData.period,
       // Amount: 1,
       Type: selectedMembership.product?.type,
       ProductType: selectedMembership.product?.productType,
       RecurringFreq: selectedMembership.product?.recurringFreq,
       PaymentType: "helphaver",
+      TerminalId: "ben_helphaver",
       //replace this with routing mechanism
       successUrl:
         window.APP_CONFIG.VH_BASE_URL +
@@ -134,8 +137,8 @@ export default function UserDetails() {
   };
 
   React.useEffect(() => {
-    if (user && profileData === undefined) {
-      setProfiledata(user);
+    if (user && user.profileData && profileData === undefined) {
+      setProfiledata(user.profileData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -256,13 +259,15 @@ export default function UserDetails() {
                     >
                       <FormControlLabel
                         value="male"
+                        disabled
                         control={<Radio />}
-                        label="Male"
+                        label={t("userDetail.male")}
                       />
                       <FormControlLabel
                         value="female"
+                        disabled
                         control={<Radio />}
-                        label="Female"
+                        label={t("userDetail.female")}
                       />
                     </RadioGroup>
                   </FormControl>
@@ -424,7 +429,7 @@ export default function UserDetails() {
                       id="email"
                       variant="outlined"
                       multiline
-                      rows={4}
+                      minRows={4}
                       value={requestData.situation}
                       onChange={(e) => {
                         setRequestData({
