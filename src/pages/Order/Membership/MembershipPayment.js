@@ -297,6 +297,7 @@ export default function MembershipPayment() {
                 >
                   {paymentOption.map((option) => (
                     <FormControlLabel
+                      key={option.name}
                       value={option.name}
                       control={<Radio />}
                       label={option.content[i18n.language].label}
@@ -441,7 +442,7 @@ export default function MembershipPayment() {
                     {t("membership.method")} :{" "}
                   </Summarylabel>
                   <Grid item xs={8}>
-                    {paymentMethod}
+                    {paymentOption.find(item => item.name === paymentMethod).content[i18n.language].label}
                   </Grid>
                 </SummaryGrid>
                 {selectedMembership && (

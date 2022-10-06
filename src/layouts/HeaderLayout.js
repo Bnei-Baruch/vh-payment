@@ -86,7 +86,7 @@ const MembershipHeaderText = styled(Typography)`
   }
 `;
 const MembershipStatusText = styled(Typography)`
-  color: ${(props) => props.color};
+  color: ${(props) => props.textcolor};
   display: flex;
   align-items: center;
 
@@ -147,12 +147,12 @@ const HeaderLayout = () => {
           </Box>
           <MemberShipContainer item xs>
             <MembershipStatusContainer component="span">
-              <MembershipHeaderText variant="p">
+              <MembershipHeaderText variant="body1">
                 {t("appbar.membership")}
               </MembershipHeaderText>
               <MembershipStatusText
                 variant="body1"
-                color={
+                textcolor={
                   membership?.membership
                     ? "#0d9d0d !important"
                     : "#ff0000 !important"
