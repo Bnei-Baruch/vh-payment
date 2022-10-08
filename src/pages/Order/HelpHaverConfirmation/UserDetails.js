@@ -16,7 +16,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ContentLayout from "../../../layouts/ContentLayout";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
@@ -24,7 +24,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import MuiPhoneInput from "material-ui-phone-number";
 import countries from "../../../shared/countries";
-import { handlePayment } from "../../../services/orderservice";
+import { requestHelpHaver } from "../../../services/userservice";
 const DetailGrid = styled(Grid)`
   max-width: 70%;
   margin: 0 auto;
@@ -63,13 +63,7 @@ const periods = [
 export default function UserDetails() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
-  const { event_slug } = useParams();
-
-  const currency = useSelector((state) => state.currency);
   const user = useSelector((state) => state.user);
-  const selectedMembership = useSelector(
-    (state) => state.order.selectedMembership
-  );
   const selectedSpecialOption = useSelector(
     (state) => state.order.specialSelectedOption
   );
@@ -96,45 +90,21 @@ export default function UserDetails() {
 
   const handlePay = async () => {
     const data = {
-      // Account details
-      AccountID: "-",
-      FirstName: user.profile.firstName,
-      LastName: user.profile.lastName,
-      Email: user.profile.email,
-      Phone: profileData?.mobile_number || "",
-      Street: profileData?.street_address || "",
-      City: profileData?.city || "",
-      Postcode: profileData?.postal_code || "",
-      State: profileData?.state_region || "",
-      Country: profileData?.country || "",
-
-      //Product details
-      SKU: selectedMembership.product?.SKU,
-      OrderLanguage: i18n.language?.toUpperCase(),
-      Reference: selectedMembership.product?.reference,
-      Organization: selectedMembership.product?.organization,
-      UserKey: user.keycloak.subject,
-      Currency: currency.id?.toUpperCase(),
-      Amount: selectedMembership.price[currency.id]?.amount,
-      AmountItem: selectedMembership.price[currency.id]?.amount,
-      Quantity: requestData.period,
-      // Amount: 1,
-      Type: selectedMembership.product?.type,
-      ProductType: selectedMembership.product?.productType,
-      RecurringFreq: selectedMembership.product?.recurringFreq,
-      PaymentType: "helphaver",
-      TerminalId: "ben_helphaver",
-      //replace this with routing mechanism
-      successUrl:
-        window.APP_CONFIG.VH_BASE_URL +
-        `/pay/membership/payment/${event_slug}/success?help=true`,
-      cancelUrl: window.APP_CONFIG.VH_BASE_URL,
-      errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
-    };
-    handlePayment(data).then(() => {
+      name:  user.profile.firstName + " " + user.profile.lastName,
+      keycloak_id: user.keycloak.subject ,
+      status: "REQUESTED",
+      nb_month: requestData.period,
+      request_note: requestData.situation,
+      type: "hhmembership"
+    }
+    requestHelpHaver(data).then(() => {
       history.push("/pay/order/membership/successhelphaver");
-    });
+    }).catch(er => {
+      console.log(er)
+    })
   };
+
+  console.log(user)
 
   React.useEffect(() => {
     if (user && user.profileData && profileData === undefined) {
