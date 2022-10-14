@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import ContentLayout from "../../layouts/ContentLayout";
 import WarningIcon from "@material-ui/icons/Warning";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const BoxContainer = styled(Box)`
   padding: 40px 20px;
@@ -12,6 +13,14 @@ const BoxContainer = styled(Box)`
 `;
 export default function CancelConfirmation() {
   const { t } = useTranslation();
+  const history = useHistory();
+  const moveToMembership = () => {
+    window.location.href = `${window.location.origin}/dash/membership`;
+  };
+  const confirmCancellation = () => {
+    //TODO: API to Cancel The Membership.
+    history.push("/pay/membership/cancellation/success");
+  };
   return (
     <ContentLayout>
       <Paper elevation={0}>
@@ -34,6 +43,7 @@ export default function CancelConfirmation() {
               variant="outlined"
               color="primary"
               style={{ marginTop: 20 }}
+              onClick={moveToMembership}
             >
               {t("common.cancel")}
             </Button>
@@ -42,6 +52,7 @@ export default function CancelConfirmation() {
               variant="contained"
               color="primary"
               style={{ marginTop: 20 }}
+              onClick={confirmCancellation}
             >
               {t("cancellation.continue_cancellation")}
             </Button>
