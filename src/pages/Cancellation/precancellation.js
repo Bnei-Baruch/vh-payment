@@ -32,6 +32,9 @@ export default function PreCancellation() {
   const moveToConfirmationScreen = () => {
     history.push("/pay/membership/cancellation/confirm");
   };
+  const moveToMembership = () => {
+    window.location.href = `${window.location.origin}/dash/membership`;
+  };
   return (
     <ContentLayout>
       <CancellatioContainer container spacing={6}>
@@ -71,10 +74,10 @@ export default function PreCancellation() {
                         financialProblem: !state.financialProblem,
                       });
                     }}
-                    name={t("cancellation.financial_problem")}
+                    name="financialProblem"
                   />
                 }
-                label="I have a financial problem"
+                label={t("cancellation.financial_problem")}
               />
             </FormGroup>
           </FormControl>
@@ -107,11 +110,18 @@ export default function PreCancellation() {
             justifyContent: "space-between",
           }}
         >
-          <Button variant="contained">{t("common.back")}</Button>
+          <Button onClick={moveToMembership} variant="contained">
+            {t("common.back")}
+          </Button>
           <Button
             variant="contained"
             color="primary"
             onClick={moveToConfirmationScreen}
+            disabled={
+              !state.notStudying &&
+              !state.financialProblem &&
+              !state.additionalSuggestion
+            }
           >
             {t("common.next")}
           </Button>

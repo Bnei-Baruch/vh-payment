@@ -35,6 +35,8 @@
     "returnToPersonalArea": "Return to Personal area",
     "payment_success": "Payment successful",
     "payment_error": "Your Payment has failed",
+    "payment_cancel": "Your Payment has been canceled",
+    "payment_cancel_error": "Your payment was cancel. Please try again",
     "error_paid": "We aren't able to process your payment. Please try again.",
     "successfully_paid": "You have successfully bought a ticket to the event.",
     "back_to_event": "Back to event",

@@ -121,7 +121,7 @@ const Order = () => {
         window.APP_CONFIG.VH_BASE_URL +
         "/pay/success/" +
         order.product.productType,
-      cancelUrl: window.APP_CONFIG.VH_BASE_URL,
+      cancelUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
     handlePayment(data)

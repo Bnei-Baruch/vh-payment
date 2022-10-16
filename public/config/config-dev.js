@@ -1,5 +1,5 @@
 window.APP_CONFIG = {
-  VH_BASE_URL: 'https://eurokab.info',
+  VH_BASE_URL: 'http://eurokab.info',
   VH_API_BASE_URL: 'https://api.eurokab.info',
   KEYCLOAK_CONFIG: {
     realm: "master",

@@ -35,6 +35,7 @@ const DetailGrid = styled(Grid)`
 
   @media (max-width: 768px) {
     width: 100%;
+    max-width: 100%;
   }
 `;
 
@@ -90,21 +91,23 @@ export default function UserDetails() {
 
   const handlePay = async () => {
     const data = {
-      name:  user.profile.firstName + " " + user.profile.lastName,
-      keycloak_id: user.keycloak.subject ,
+      name: user.profile.firstName + " " + user.profile.lastName,
+      keycloak_id: user.keycloak.subject,
       status: "REQUESTED",
       nb_month: requestData.period,
       request_note: requestData.situation,
-      type: "hhmembership"
-    }
-    requestHelpHaver(data).then(() => {
-      history.push("/pay/order/membership/successhelphaver");
-    }).catch(er => {
-      console.log(er)
-    })
+      type: "hhmembership",
+    };
+    requestHelpHaver(data)
+      .then(() => {
+        history.push("/pay/order/membership/successhelphaver");
+      })
+      .catch((er) => {
+        console.log(er);
+      });
   };
 
-  console.log(user)
+  console.log(user);
 
   React.useEffect(() => {
     if (user && user.profileData && profileData === undefined) {

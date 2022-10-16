@@ -24,6 +24,8 @@ import SucessMembershipHelpHaver from "../pages/Success/SucessMembershipHelpHave
 import PreCancellation from "../pages/Cancellation/precancellation";
 import CancelConfirmation from "../pages/Cancellation/cancellationConfirmation";
 import CancellationSuccess from "../pages/Success/cancellationSuccess";
+import MembershippaymentCancel from "../pages/Error/MembershippaymentCancel";
+import MembershippaymentError from "../pages/Error/MembershippaymentError";
 
 const Routes = () => (
   <Router>
@@ -137,6 +139,14 @@ const Routes = () => (
 
       {/* common Routes */}
 
+      <Route
+        from="/payment/membership/cancel"
+        component={MembershippaymentCancel}
+      />
+      <Route
+        from="/payment/membership/error"
+        component={MembershippaymentError}
+      />
       <Route from="/pay/error" component={Error} />
       <Route from="/" component={NotFound} />
     </Switch>

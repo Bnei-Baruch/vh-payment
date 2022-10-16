@@ -95,7 +95,7 @@ export default function OtherPayment() {
           `/pay/membership/payment/${event_slug}/success?help=true`
         : window.APP_CONFIG.VH_BASE_URL +
           `/pay/order/register/${ticketObject.name}/userdetail/${event_slug}`,
-      cancelUrl: window.APP_CONFIG.VH_BASE_URL,
+      cancelUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
     handlePayment(data)

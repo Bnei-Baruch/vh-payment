@@ -27,6 +27,10 @@ const TicketCard = styled(Grid)`
   padding: 20px;
   min-height: 300px;
   position: relative;
+
+  @media (max-width: 960px) {
+    margin: auto;
+  }
 `;
 const TicketGrid = styled(Grid)`
   margin: auto;
@@ -224,8 +228,7 @@ export default function Membership() {
           variant="outlined"
           color="primary"
           onClick={() =>
-            (window.location.href =
-              window.location.origin + "/dash/membership/status")
+            (window.location.href = window.location.origin + "/dash/membership")
           }
         >
           {t("membership.back_to_status")}
