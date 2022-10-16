@@ -35,6 +35,8 @@
     "returnToPersonalArea": "חזרה לעמוד האישי",
     "payment_success": "שולם בהצלחה!",
     "payment_error": "התשלום נכשל",
+    "payment_cancel": "Tu pago ha sido cancelado",
+    "payment_cancel_error": "Your payment was cancel. Please try again",
     "error_paid": "החיוב באופן תשלום זה לא הצליח, אנא נסה שוב",
     "successfully_paid": "רכשת בהצלחה כרטיס לאירוע",
     "back_to_event": "חזרה לאיזור אישי / אירועים",

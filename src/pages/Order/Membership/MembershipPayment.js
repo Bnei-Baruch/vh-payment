@@ -148,10 +148,14 @@ export default function MembershipPayment() {
   const [loading, setLoading] = React.useState(true);
   const [termsAccepted, setTermsAccepted] = React.useState(false);
   const [payClicked, setOnPayClicked] = React.useState(false);
+  const [minAmount, setMinAmount] = React.useState(0);
 
   const [amount, setAmount] = React.useState(0);
 
   const nextStep = () => {
+    if (activeStep === 0 && amount < minAmount) {
+      return;
+    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
   const prevStep = () => {
@@ -211,8 +215,8 @@ export default function MembershipPayment() {
       RecurringFreq: selectedMembership.product?.recurringFreq,
       //replace this with routing mechanism
       successUrl: window.APP_CONFIG.VH_BASE_URL + `/pay/success/membership`,
-      cancelUrl: window.APP_CONFIG.VH_BASE_URL,
-      errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
+      cancelUrl: window.APP_CONFIG.VH_BASE_URL + "/payment/membership/cancel",
+      errorUrl: window.APP_CONFIG.VH_BASE_URL + "/payment/membership/error",
     };
     handlePayment(data)
       .then((response) => {
@@ -243,6 +247,7 @@ export default function MembershipPayment() {
   React.useEffect(() => {
     if (selectedMembership && selectedMembership.price[currency.id]?.amount) {
       setAmount(selectedMembership.price[currency.id]?.amount);
+      setMinAmount(selectedMembership.price[currency.id]?.amount);
     }
     // eslint-disable-next-line
   }, [currency]);
@@ -359,7 +364,11 @@ export default function MembershipPayment() {
                   <PaymentTile>
                     <span
                       className="grey"
-                      onClick={() => setAmount(amount - 1)}
+                      onClick={() => {
+                        if (amount > minAmount) {
+                          setAmount(amount - 1);
+                        }
+                      }}
                     >
                       -
                     </span>
@@ -368,6 +377,7 @@ export default function MembershipPayment() {
                         id="standard-adornment-amount"
                         value={amount}
                         type="number"
+                        error={amount < minAmount}
                         onChange={(event) => {
                           if (!isNaN(parseInt(event.target.value))) {
                             setAmount(parseInt(event.target.value));
@@ -375,6 +385,7 @@ export default function MembershipPayment() {
                             setAmount("");
                           }
                         }}
+                        InputProps={{ inputProps: { min: 0, max: 10 } }}
                         startAdornment={
                           <InputAdornment position="start">$</InputAdornment>
                         }
@@ -414,7 +425,7 @@ export default function MembershipPayment() {
               <Button
                 variant="contained"
                 color="primary"
-                disabled={payClicked}
+                disabled={payClicked || amount < minAmount}
                 onClick={nextStep}
               >
                 {t("common.next")}
