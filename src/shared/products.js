@@ -1386,19 +1386,19 @@ exports.membershipsplans = {
         es: {
           name: "Automática",
           description: ["Se te cobrará automáticamente el día 20 de cada mes"],
-          button_label: "Select this Plan",
+          button_label: "Seleccione este plan",
         },
         ru: {
           name: "автоматический",
           description: [
             "Платёж будет списываться автоматически 20-го числа каждого месяца.",
           ],
-          button_label: "Select this Plan",
+          button_label: "Выбрать этот варинат",
         },
         he: {
           name: "מתחדש אוטומטית",
           description: ["תחוייב אוטומטית ב 20 לכל חודש"],
-          button_label: "Select this Plan",
+          button_label: "בחר תכנית זו",
         },
       },
       flow: {
@@ -1481,7 +1481,7 @@ exports.membershipsplans = {
           description: [
             "Если вы находитесь в затруднительном финансовом положении, вы можете обратиться за помощью",
           ],
-          button_label: "Select this Plan",
+          button_label: "Выбрать этот варинат",
           intersticial: {
             title: '"Хелп Хавер" для подписчиков',
             body: "Мы хотим, чтобы эта услуга была доступна каждому из нас, поэтому, если вы находитесь в сложном финансовом положении, вы можете обратиться за помощью",
@@ -1496,7 +1496,7 @@ exports.membershipsplans = {
           description: [
             "Si se encuentra en una situación financiera difícil, puede solicitar una ayuda",
           ],
-          button_label: "Select this Plan",
+          button_label: "Seleccione este plan",
           intersticial: {
             title: "Help Haver para la Membresía",
             body: "Queremos que este servicio esté al alcance de todos, por lo que si se encuentra en una situación económica difícil, puede solicitar una ayuda",
@@ -1509,10 +1509,10 @@ exports.membershipsplans = {
           name: "הלפ חבר",
           label: "Help Haver",
           description: ["אם אתה נזקק לסיוע כספי, תוכל לפנות ל ״הלפ חבר״"],
-          button_label: "Select this Plan",
+          button_label: "בחר תכנית זו",
           intersticial: {
-            title: "Title",
-            body: "Message",
+            title: "Help Haver for Membership",
+            body: "We want this service to be available to each of us, so if you are in a difficult  financial situation, you can apply for help",
             button: "Next",
           },
           redirect_url:

@@ -34,6 +34,10 @@ const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
     margin-bottom: 10px;
   }
+
+  #standard-adornment-amount {
+    width: 100%;
+  }
 `;
 const MainTitle = styled.div`
   margin: 20px 0px 0px 0px;
@@ -55,9 +59,18 @@ const PaymentTile = styled.div`
     margin-left: 10px;
     cursor: pointer;
   }
+  span {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  }
   span.grey {
     background-color: #9b9b9b;
     color: #fff;
+    cursor: not-allowed;
   }
   span.regular {
     background-color: rgba(21, 101, 192, 1);
@@ -265,6 +278,8 @@ export default function MembershipPayment() {
     : content.en;
   let paymentOption = selectedMembership.payment_options;
 
+  console.log(currency)
+
   return (
     <>
       <MainTitle>
@@ -362,8 +377,9 @@ export default function MembershipPayment() {
                     {t("common.amount")}
                   </FormLabel>
                   <PaymentTile>
+                    {console.log("amount", amount >= minAmount)}
                     <span
-                      className="grey"
+                      className={amount <= minAmount ? 'grey' : "regular"}
                       onClick={() => {
                         if (amount > minAmount) {
                           setAmount(amount - 1);
@@ -376,6 +392,10 @@ export default function MembershipPayment() {
                       <OutlinedInput
                         id="standard-adornment-amount"
                         value={amount}
+                        fullWidth
+                        inputProps={{
+                          fullWidth: true,
+                        }}
                         type="number"
                         error={amount < minAmount}
                         onChange={(event) => {
@@ -385,9 +405,8 @@ export default function MembershipPayment() {
                             setAmount("");
                           }
                         }}
-                        InputProps={{ inputProps: { min: 0, max: 10 } }}
                         startAdornment={
-                          <InputAdornment position="start">$</InputAdornment>
+                          <InputAdornment position="start">{currency?.sign || '$'}</InputAdornment>
                         }
                       />
                       <FormHelperText id="filled-weight-helper-text">
