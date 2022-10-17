@@ -34,11 +34,10 @@ export const saveUserProfileData = (data) => {
 };
 
 export const requestHelpHaver = (data) => {
-  return axios.post(
-    `${window.APP_CONFIG.VH_API_BASE_URL}/profile/v1/request`,
-    data
-  ).then(res => res.data)
-  .catch((err) => {
-    throw err;
-  });
-}
+  return axios
+    .post(`${window.APP_CONFIG.VH_API_BASE_URL}/profile/v1/request`, data)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err;
+    });
+};

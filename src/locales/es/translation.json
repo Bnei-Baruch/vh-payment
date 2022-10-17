@@ -35,6 +35,8 @@
     "returnToPersonalArea": "Volver a la página de inicio",
     "payment_success": "¡El pago ha sido completado con éxito!",
     "payment_error": "Tu pago ha fallado",
+    "payment_cancel": "Tu pago ha sido cancelado",
+    "payment_cancel_error": "Your payment was cancel. Please try again",
     "error_paid": "No hemos podido procesar tu pago. Por favor inténtalo de nuevo",
     "successfully_paid": "Has adquirido el boleto para el event ",
     "back_to_event": "Volver a Eventos",

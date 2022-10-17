@@ -35,6 +35,8 @@
     "returnToPersonalArea": "Вернуться в личный кабинет",
     "payment_success": "Оплата прошла успешно",
     "payment_error": "Ваш платеж не выполнен",
+    "payment_cancel": "Tu pago ha sido cancelado",
+    "payment_cancel_error": "Your payment was cancel. Please try again",
     "error_paid": "Мы не можем обработать ваш платеж. Пожалуйста, попробуйте еще раз.",
     "successfully_paid": "Поздравляем! Вы зарегистрированы на конгресс",
     "back_to_event": "Вернуться в личный кабинет/события",
