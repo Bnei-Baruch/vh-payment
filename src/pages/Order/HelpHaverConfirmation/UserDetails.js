@@ -106,9 +106,6 @@ export default function UserDetails() {
         console.log(er);
       });
   };
-
-  console.log(user);
-
   React.useEffect(() => {
     if (user && user.profileData && profileData === undefined) {
       setProfiledata(user.profileData);
