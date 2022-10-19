@@ -1511,9 +1511,9 @@ exports.membershipsplans = {
           description: ["אם אתה נזקק לסיוע כספי, תוכל לפנות ל ״הלפ חבר״"],
           button_label: "בחר תכנית זו",
           intersticial: {
-            title: "Help Haver for Membership",
-            body: "We want this service to be available to each of us, so if you are in a difficult  financial situation, you can apply for help",
-            button: "Next",
+            title: "״הלפ חבר״ למנויים",
+            body: "אנחנו רוצים שהשירות הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה",
+            button: "הבא",
           },
           redirect_url:
             "https://docs.google.com/forms/d/e/1FAIpQLScU0xjKtV4XVJwz2nbv4vTB3p_inw6nhJPNw1-kHG3GzoB6qA/viewform",
