@@ -51,20 +51,6 @@ const language = [
   { code: "de", label: "German" },
 ];
 
-const periods = [
-  { value: 1, name: "1 month" },
-  { value: 2, name: "2 month" },
-  { value: 3, name: "3 month" },
-  { value: 4, name: "4 month" },
-  { value: 5, name: "5 month" },
-  { value: 6, name: "6 month" },
-  { value: 7, name: "7 month" },
-  { value: 8, name: "8 month" },
-  { value: 9, name: "9 month" },
-  { value: 10, name: "10 months" },
-  { value: 11, name: "11 months" },
-  { value: 12, name: "12 months" },
-];
 export default function UserDetails() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
@@ -78,6 +64,21 @@ export default function UserDetails() {
     period: 1,
     situation: "",
   });
+
+  const periods = [
+    { value: 1, name: `1 ${t("common.month")}` },
+    { value: 2, name: `2 ${t("common.month")}` },
+    { value: 3, name: `3 ${t("common.month")}` },
+    { value: 4, name: `4 ${t("common.month")}` },
+    { value: 5, name: `5 ${t("common.month")}` },
+    { value: 6, name: `6 ${t("common.month")}` },
+    { value: 7, name: `7 ${t("common.month")}` },
+    { value: 8, name: `8 ${t("common.month")}` },
+    { value: 9, name: `9 ${t("common.month")}` },
+    { value: 10, name: `10 ${t("common.month")}` },
+    { value: 11, name: `11 ${t("common.month")}` },
+    { value: 12, name: `12 ${t("common.month")}` },
+  ];
 
   const [activeStep, setActionStep] = React.useState(0);
 
@@ -153,7 +154,7 @@ export default function UserDetails() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Stepper activeStep={activeStep} alternativeLabel>
+            <Stepper activeStep={activeStep} alternativeLabel dir="ltr">
               {["1", "2", "3"].map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>
