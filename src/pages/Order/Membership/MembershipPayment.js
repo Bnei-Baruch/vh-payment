@@ -278,8 +278,6 @@ export default function MembershipPayment() {
     : content.en;
   let paymentOption = selectedMembership.payment_options;
 
-  console.log(currency)
-
   return (
     <>
       <MainTitle>
@@ -377,9 +375,8 @@ export default function MembershipPayment() {
                     {t("common.amount")}
                   </FormLabel>
                   <PaymentTile>
-                    {console.log("amount", amount >= minAmount)}
                     <span
-                      className={amount <= minAmount ? 'grey' : "regular"}
+                      className={amount <= minAmount ? "grey" : "regular"}
                       onClick={() => {
                         if (amount > minAmount) {
                           setAmount(amount - 1);
@@ -406,7 +403,9 @@ export default function MembershipPayment() {
                           }
                         }}
                         startAdornment={
-                          <InputAdornment position="start">{currency?.sign || '$'}</InputAdornment>
+                          <InputAdornment position="start">
+                            {currency?.sign || "$"}
+                          </InputAdornment>
                         }
                       />
                       <FormHelperText id="filled-weight-helper-text">
