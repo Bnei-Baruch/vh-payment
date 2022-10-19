@@ -24,7 +24,11 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import MuiPhoneInput from "material-ui-phone-number";
 import countries from "../../../shared/countries";
-import { requestHelpHaver } from "../../../services/userservice";
+import {
+  requestHelpHaver,
+  saveUserProfileData,
+} from "../../../services/userservice";
+import moment from "moment";
 const DetailGrid = styled(Grid)`
   max-width: 70%;
   margin: 0 auto;
@@ -47,20 +51,6 @@ const language = [
   { code: "de", label: "German" },
 ];
 
-const periods = [
-  { value: 1, name: "1 month" },
-  { value: 2, name: "2 month" },
-  { value: 3, name: "3 month" },
-  { value: 4, name: "4 month" },
-  { value: 5, name: "5 month" },
-  { value: 6, name: "6 month" },
-  { value: 7, name: "7 month" },
-  { value: 8, name: "8 month" },
-  { value: 9, name: "9 month" },
-  { value: 10, name: "10 months" },
-  { value: 11, name: "11 months" },
-  { value: 12, name: "12 months" },
-];
 export default function UserDetails() {
   const { t, i18n } = useTranslation();
   const history = useHistory();
@@ -68,21 +58,53 @@ export default function UserDetails() {
   const selectedSpecialOption = useSelector(
     (state) => state.order.specialSelectedOption
   );
-
+  const [originProfileData, setOriginalProfileData] = React.useState(undefined);
   const [profileData, setProfiledata] = React.useState(undefined);
   const [requestData, setRequestData] = React.useState({
     period: 1,
     situation: "",
   });
 
+  const periods = [
+    { value: 1, name: `1 ${t("common.month")}` },
+    { value: 2, name: `2 ${t("common.month")}` },
+    { value: 3, name: `3 ${t("common.month")}` },
+    { value: 4, name: `4 ${t("common.month")}` },
+    { value: 5, name: `5 ${t("common.month")}` },
+    { value: 6, name: `6 ${t("common.month")}` },
+    { value: 7, name: `7 ${t("common.month")}` },
+    { value: 8, name: `8 ${t("common.month")}` },
+    { value: 9, name: `9 ${t("common.month")}` },
+    { value: 10, name: `10 ${t("common.month")}` },
+    { value: 11, name: `11 ${t("common.month")}` },
+    { value: 12, name: `12 ${t("common.month")}` },
+  ];
+
   const [activeStep, setActionStep] = React.useState(0);
 
   const moveback = () => {
-    history.goBack();
+    if (activeStep === 0) {
+      history.goBack();
+    } else {
+      setActionStep(activeStep - 1);
+    }
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.preventDefault();
     if (activeStep === 2) {
+      if (originProfileData !== profileData) {
+        // update profile
+
+        saveUserProfileData({
+          ...originProfileData,
+          ...profileData,
+          date_of_birth: moment(
+            profileData.date_of_birth,
+            "YYYY-MM-DD"
+          ).toISOString(),
+        });
+      }
       confirmNeedsHelpMembership();
       return;
     }
@@ -106,11 +128,9 @@ export default function UserDetails() {
         console.log(er);
       });
   };
-
-  console.log(user);
-
   React.useEffect(() => {
     if (user && user.profileData && profileData === undefined) {
+      setOriginalProfileData(user.profileData);
       setProfiledata(user.profileData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -125,320 +145,326 @@ export default function UserDetails() {
   };
 
   return (
-    <ContentLayout>
-      <Grid container spacing={6}>
-        <Grid item xs={12}>
-          <Typography variant="h1" style={{ textAlign: "center" }}>
-            Help Haver for Membership
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Stepper activeStep={activeStep} alternativeLabel>
-            {["1", "2", "3"].map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-        </Grid>
-        {profileData && (
-          <DetailGrid container item xs={12} spacing={3}>
-            {activeStep === 0 && (
-              <>
-                <Grid item xs={12}>
-                  <Typography variant="h3">
-                    {t("userDetail.personal")}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="firstName">
-                      {t("userDetail.firstName")}
-                    </FormLabel>
-                    <TextField
-                      id="firstName"
-                      variant="outlined"
-                      value={profileData.first_name_vernacular}
-                      disabled
-                      onChange={(e) => {
-                        setProfiledata({
-                          ...profileData,
-                          first_name_vernacular: e.target.value,
-                        });
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="lastName">
-                      {t("userDetail.lastName")}
-                    </FormLabel>
-                    <TextField
-                      disabled
-                      id="lastName"
-                      variant="outlined"
-                      value={profileData.last_name_vernacular}
-                      onChange={(e) => {
-                        setProfiledata({
-                          ...profileData,
-                          last_name_vernacular: e.target.value,
-                        });
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="dateofBirth">
-                      {t("userDetail.dateOfBirth")}
-                    </FormLabel>
-                    <TextField
-                      id="dateofBirth"
-                      type="date"
-                      disabled
-                      variant="outlined"
-                      value={profileData.date_of_birth}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      onChange={(e) => {
-                        setProfiledata({
-                          ...profileData,
-                          date_of_birth: e.target.value,
-                        });
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="gender">
-                      {t("userDetail.gender")}
-                    </FormLabel>
-                    <RadioGroup
-                      id="gender"
-                      aria-label="gender"
-                      name="gender1"
-                      disabled
-                      style={{ flexDirection: "row" }}
-                      value={profileData.gender}
-                      onChange={(e) => {
-                        setProfiledata({
-                          ...profileData,
-                          gender: e.target.value,
-                        });
-                      }}
-                    >
-                      <FormControlLabel
-                        value="male"
-                        disabled
-                        control={<Radio />}
-                        label={t("userDetail.male")}
-                      />
-                      <FormControlLabel
-                        value="female"
-                        disabled
-                        control={<Radio />}
-                        label={t("userDetail.female")}
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
-                      {t("userDetail.email")}
-                    </FormLabel>
-                    <TextField
-                      id="email"
-                      disabled
-                      variant="outlined"
-                      value={profileData.primary_email}
-                    />
-                  </FormControl>
-                </Grid>
-              </>
-            )}
+    <form onSubmit={handleNext}>
+      <ContentLayout>
+        <Grid container spacing={6}>
+          <Grid item xs={12}>
+            <Typography variant="h1" style={{ textAlign: "center" }}>
+              Help Haver for Membership
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Stepper activeStep={activeStep} alternativeLabel dir="ltr">
+              {["1", "2", "3"].map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </Grid>
 
-            {activeStep === 1 && (
-              <>
-                <Grid item xs={12}>
-                  <Typography variant="h3">
-                    {t("userDetail.contact")}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="phone">
-                      {t("userDetail.phone")}
-                    </FormLabel>
-                    <MuiPhoneInput
-                      id="phone"
-                      disabled
-                      defaultCountry="us"
-                      value={profileData.mobile_number}
-                      onChange={(value) => {
-                        setProfiledata({
-                          ...profileData,
-                          phone_number: value,
-                        });
-                      }}
-                      variant="outlined"
-                      fullWidth
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth variant="outlined">
-                    <FormLabel htmlFor="country">
-                      {t("userDetail.country")}
-                    </FormLabel>
-                    <Select
-                      labelId="country"
-                      id="country"
-                      disabled
-                      value={profileData.country}
-                      variant="outlined"
-                      onChange={(e) => {
-                        setProfiledata({
-                          ...profileData,
-                          country: e.target.value,
-                        });
-                      }}
-                    >
-                      {countries.map((country) => (
-                        <MenuItem key={country.ISO} value={country.ISO}>
-                          {country.label}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth variant="outlined">
-                    <FormLabel htmlFor="firstLanguage">
-                      {t("userDetail.firstLanguage")}
-                    </FormLabel>
-                    <Select
-                      labelId="firstLanguage"
-                      id="firstLanguage"
-                      disabled
-                      variant="outlined"
-                      value={profileData.first_language}
-                      onChange={(e) => {
-                        setProfiledata({
-                          ...profileData,
-                          first_language: e.target.value,
-                        });
-                      }}
-                    >
-                      {language.map((lang) => (
-                        <MenuItem key={lang.code} value={lang.code}>
-                          {lang.label}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="tenName">
-                      {t("userDetail.tenName")}
-                    </FormLabel>
-                    <TextField
-                      id="tenName"
-                      disabled
-                      variant="outlined"
-                      value={profileData.name_ten_group}
-                      onChange={(e) => {
-                        setProfiledata({
-                          ...profileData,
-                          name_ten_group: e.target.value,
-                        });
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-              </>
-            )}
+          {profileData && (
+            <DetailGrid container item xs={12} spacing={3}>
+              {activeStep === 0 && (
+                <>
+                  <Grid item xs={12}>
+                    <Typography variant="h3">
+                      {t("userDetail.personal")}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="firstName">
+                        {t("userDetail.firstName")}
+                      </FormLabel>
+                      <TextField
+                        id="firstName"
+                        variant="outlined"
+                        value={profileData.first_name_vernacular}
+                        required
+                        onChange={(e) => {
+                          setProfiledata({
+                            ...profileData,
+                            first_name_vernacular: e.target.value,
+                          });
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="lastName">
+                        {t("userDetail.lastName")}
+                      </FormLabel>
+                      <TextField
+                        id="lastName"
+                        variant="outlined"
+                        required
+                        value={profileData.last_name_vernacular}
+                        onChange={(e) => {
+                          setProfiledata({
+                            ...profileData,
+                            last_name_vernacular: e.target.value,
+                          });
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="dateofBirth">
+                        {t("userDetail.dateOfBirth")}
+                      </FormLabel>
+                      <TextField
+                        id="dateofBirth"
+                        type="date"
+                        variant="outlined"
+                        required
+                        value={profileData.date_of_birth}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        onChange={(e) => {
+                          setProfiledata({
+                            ...profileData,
+                            date_of_birth: e.target.value,
+                          });
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="gender">
+                        {t("userDetail.gender")}
+                      </FormLabel>
+                      <RadioGroup
+                        id="gender"
+                        aria-label="gender"
+                        name="gender1"
+                        required
+                        style={{ flexDirection: "row" }}
+                        value={profileData.gender}
+                        onChange={(e) => {
+                          setProfiledata({
+                            ...profileData,
+                            gender: e.target.value,
+                          });
+                        }}
+                      >
+                        <FormControlLabel
+                          value="male"
+                          control={<Radio />}
+                          label={t("userDetail.male")}
+                        />
+                        <FormControlLabel
+                          value="female"
+                          control={<Radio />}
+                          label={t("userDetail.female")}
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="email">
+                        {t("userDetail.email")}
+                      </FormLabel>
+                      <TextField
+                        id="email"
+                        disabled
+                        variant="outlined"
+                        value={profileData.primary_email}
+                      />
+                    </FormControl>
+                  </Grid>
+                </>
+              )}
 
-            {activeStep === 2 && (
-              <>
-                <Grid item xs={12}>
-                  <Typography variant="h3">
-                    {t("userDetail.details")}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
-                      {t("userDetail.month_needed")}
-                    </FormLabel>
-                    <Select
-                      value={requestData.period}
-                      variant="outlined"
-                      onChange={(event) => {
-                        setRequestData({
-                          ...requestData,
-                          period: event.target.value,
-                        });
-                      }}
-                    >
-                      {periods.map((l) => (
-                        <MenuItem key={l.value} value={l.value}>
-                          {l.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} md={12}>
-                  <FormControl fullWidth>
-                    <FormLabel htmlFor="email">
-                      {t("userDetail.explain_situation")}
-                    </FormLabel>
-                    <TextField
-                      id="email"
-                      variant="outlined"
-                      multiline
-                      minRows={4}
-                      value={requestData.situation}
-                      onChange={(e) => {
-                        setRequestData({
-                          ...requestData,
-                          situation: e.target.value,
-                        });
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-              </>
-            )}
-          </DetailGrid>
-        )}
-        <Grid
-          item
-          xs={12}
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "40px",
-          }}
-        >
-          <Button variant="outlined" color="primary" onClick={moveback}>
-            {i18n.language === "he" ? (
-              <ArrowForwardIosIcon style={{ height: "12px", width: "12px" }} />
-            ) : (
-              <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
-            )}
-            {t("common.back")}
-          </Button>
-          <Button variant="contained" color="primary" onClick={handleNext}>
-            {t("common.next")}
-          </Button>
+              {activeStep === 1 && (
+                <>
+                  <Grid item xs={12}>
+                    <Typography variant="h3">
+                      {t("userDetail.contact")}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={12}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="phone">
+                        {t("userDetail.phone")}
+                      </FormLabel>
+                      <MuiPhoneInput
+                        id="phone"
+                        required
+                        defaultCountry="us"
+                        value={profileData.mobile_number}
+                        onChange={(value) => {
+                          setProfiledata({
+                            ...profileData,
+                            phone_number: value,
+                          });
+                        }}
+                        variant="outlined"
+                        fullWidth
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl fullWidth variant="outlined">
+                      <FormLabel htmlFor="country">
+                        {t("userDetail.country")}
+                      </FormLabel>
+                      <Select
+                        labelId="country"
+                        id="country"
+                        required
+                        value={profileData.country}
+                        variant="outlined"
+                        onChange={(e) => {
+                          setProfiledata({
+                            ...profileData,
+                            country: e.target.value,
+                          });
+                        }}
+                      >
+                        {countries.map((country) => (
+                          <MenuItem key={country.ISO} value={country.ISO}>
+                            {country.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl fullWidth variant="outlined">
+                      <FormLabel htmlFor="firstLanguage">
+                        {t("userDetail.firstLanguage")}
+                      </FormLabel>
+                      <Select
+                        labelId="firstLanguage"
+                        id="firstLanguage"
+                        variant="outlined"
+                        required
+                        value={profileData.first_language}
+                        onChange={(e) => {
+                          setProfiledata({
+                            ...profileData,
+                            first_language: e.target.value,
+                          });
+                        }}
+                      >
+                        {language.map((lang) => (
+                          <MenuItem key={lang.code} value={lang.code}>
+                            {lang.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="tenName">
+                        {t("userDetail.tenName")}
+                      </FormLabel>
+                      <TextField
+                        id="tenName"
+                        variant="outlined"
+                        required
+                        value={profileData.name_ten_group}
+                        onChange={(e) => {
+                          setProfiledata({
+                            ...profileData,
+                            name_ten_group: e.target.value,
+                          });
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                </>
+              )}
+
+              {activeStep === 2 && (
+                <>
+                  <Grid item xs={12}>
+                    <Typography variant="h3">
+                      {t("userDetail.details")}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={12}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="email">
+                        {t("userDetail.month_needed")}
+                      </FormLabel>
+                      <Select
+                        value={requestData.period}
+                        variant="outlined"
+                        required
+                        onChange={(event) => {
+                          setRequestData({
+                            ...requestData,
+                            period: event.target.value,
+                          });
+                        }}
+                      >
+                        {periods.map((l) => (
+                          <MenuItem key={l.value} value={l.value}>
+                            {l.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={12}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="email">
+                        {t("userDetail.explain_situation")}
+                      </FormLabel>
+                      <TextField
+                        id="email"
+                        variant="outlined"
+                        multiline
+                        required
+                        minRows={4}
+                        value={requestData.situation}
+                        onChange={(e) => {
+                          setRequestData({
+                            ...requestData,
+                            situation: e.target.value,
+                          });
+                        }}
+                      />
+                    </FormControl>
+                  </Grid>
+                </>
+              )}
+            </DetailGrid>
+          )}
+
+          <Grid
+            item
+            xs={12}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "40px",
+            }}
+          >
+            <Button variant="outlined" color="primary" onClick={moveback}>
+              {i18n.language === "he" ? (
+                <ArrowForwardIosIcon
+                  style={{ height: "12px", width: "12px" }}
+                />
+              ) : (
+                <ArrowBackIosIcon style={{ height: "12px", width: "12px" }} />
+              )}
+              {t("common.back")}
+            </Button>
+            <Button variant="contained" color="primary" type="submit">
+              {t("common.next")}
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-    </ContentLayout>
+      </ContentLayout>
+    </form>
   );
 }
