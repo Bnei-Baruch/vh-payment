@@ -40,9 +40,9 @@
     "error_paid": "החיוב באופן תשלום זה לא הצליח, אנא נסה שוב",
     "successfully_paid": "רכשת בהצלחה כרטיס לאירוע",
     "back_to_event": "חזרה לאיזור אישי / אירועים",
-    "back_to_my_membership": "Back to my membership",
+    "back_to_my_membership": "חזרה לאיזור האישי",
     "become_a_member": "הרשמה למנוי חדש",
-    "membershipPaymentSuccess": "You have successfully paid for your subscription"
+    "membershipPaymentSuccess": "שילמת בהצלחה  למנוי שלך"
   },
   "userMenu": {
     "logOut": "להתנתק",
@@ -76,13 +76,13 @@
     "successHeader": "Congratulations! You have successfully registered for the event",
     "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
     "viewTicket": "View Event Ticket",
-    "period": "Period",
+    "period": "תקופה",
     "currency": "מטבע",
-    "month": "Month(s)",
+    "month": "חודש",
     "month_single": "דולר לחודש"
   },
   "paymentMethod": {
-    "creditCard": "Credit Card"
+    "creditCard": "ע״י כרטיס אשראי"
   },
   "otherPayments": {
     "paymentDetails": "פרטי תשלום",
@@ -102,8 +102,8 @@
     "return_to_personal_area": "Return to personal area",
     "enter_details_for_help": "מילוי הטופס",
     "financial_help": "עזרה כספית",
-    "request_received": "We have received your request!",
-    "request_received_text": "Your request has been sent to the Help Haver team. Your membership status will be updated only after review. <br/><br/> If you still have questions, write to help@kli.one"
+    "request_received": "קיבלנו את בקשתך!",
+    "request_received_text": "אם יש לך שאלות נוספות, פנה ל help@kli.one בקשתך נשלחה לצוות ״הלפ חבר״. סטטוס המנוי שלך יתעדכן לאחר בדיקה של בקשתך "
   },
   "payment": {
     "membershipStep1": "סכום מנוי",
@@ -126,15 +126,15 @@
     "dateOfBirth": "תאריך לידה",
     "country": "מדינה",
     "gender": "מגדר",
-    "male": "Male",
-    "female": "Female",
+    "male": "זכר",
+    "female": "נקבה",
     "firstLanguage": "שפת אם",
     "secondLanguage": "שפה שניה",
     "startYear": "באיזו שנה התחלת בבני ברוך?",
-    "tenName": "What is your Ten Name?",
-    "month_needed": "How many month do you need ?",
-    "explain_situation": "Explain your situation",
-    "explain_situation_text": "Please explain your financial situation, and please mention you previous contribution (either financial, or volunteering)"
+    "tenName": "שם עשירייה",
+    "month_needed": "לכמה חודשים תרצו לשלם מנוי מראש",
+    "explain_situation": "הסבר את מצבך הכלכלי",
+    "explain_situation_text": "אנא הסבר את מצבך הכלכלי, ספר על תרומותיך עד כה (כספית, התנדבותית)"
   },
   "errorMessage": {
     "pleaseSelectOption": "בבקשה בחר אפשרות"
@@ -143,7 +143,7 @@
     "header": "Something went wrong",
     "description": "Something went wrong while processing your request. Please start your registration by clicking below",
     "return": "Return to Registration",
-    "returnMembership": "Return to Membership"
+    "returnMembership": "חזרה למנוי שלי"
   },
   "specialOption": {
     "title": "אפשרויות רכישה מיוחדות",
@@ -162,15 +162,15 @@
     "title": "מנוי",
     "confirmation": "אישור",
     "active": "Active",
-    "inactive": "Inactive",
+    "inactive": "לא פעיל",
     "back_to_status": "חזרה לסטטוס",
-    "monthly_manual_subscription": "Manual Subscription",
+    "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",
-    "manual_subscription_description": "Money will be debeted from your card only under your personal control ",
+    "manual_subscription_description": "זהו תשלום חדש פעמי לתקופה שאתה בוחר",
     "auto_subscription_description": "כרטיסך יחוייב חודשית באופן אוטומטי. תוכל לבטל את המנוי בכל עת.",
     "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
     "auto_payment_confirmation_message": "אחרי התשלום הראשון, חיוב מתחדש אוטומטי מתבצע ב 20 לכל חודש, החל מהחודש הבא",
-    "pay_more_than_month": "You can choose to pay more than 1 month",
+    "pay_more_than_month": "אתה יכול לבחור בתשלום ליותר מחודש אחד",
     "pay_more_than": "אתה יכול לשלם יותר",
     "period": "תקופה",
     "method": "שיטה",
@@ -178,17 +178,17 @@
     "total_to_pay": "סך הכל לתשלום"
   },
   "cancellation": {
-    "cancellation_success": "Cancelled succesfully",
-    "cancellation_success_text": "Your membership was cancelled succesfully. You will not be charge anymore.",
-    "membership_cancellation": "Membership Cancellation",
-    "membership_cancellation_text": "Are you sure you want to cancel your membership?",
-    "continue_cancellation": "Continue cancellation",
-    "before_you_go": "Before you go",
-    "precancellation_text": "Could you please tell us why? We might be able to help.",
-    "cancellation_title": "What are you cancelling this subscription?",
-    "financial_problem": "I have a financial problem",
-    "no_longer_stronger": "I am no longer studying",
-    "adding_anything_else": "Is there anything else you'd like to add?",
-    "tell_us_more": "Tell us more..."
+    "cancellation_success": "בוטל בהצלחה",
+    "cancellation_success_text": "המנוי שלך בוטל. לא תחוייב בהמשך.",
+    "membership_cancellation": "ביטול מנוי",
+    "membership_cancellation_text": "האם אתה בטוח שתרצה לבטל את המנוי?",
+    "continue_cancellation": "המשך לביטול",
+    "before_you_go": "לפני שאתה עוזב",
+    "precancellation_text": "תוכל לספר לנו למה? אולי נוכל לעזור",
+    "cancellation_title": "מדוע אתה מבטל את המנוי?",
+    "financial_problem": "יש לי בעיה כלכלית",
+    "no_longer_stronger": "אני לא לומד יותר",
+    "adding_anything_else": "יש משהו נוסף שתרצה להוסיף?",
+    "tell_us_more": "ספר לנו עוד..."
   }
 }

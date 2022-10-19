@@ -128,20 +128,6 @@ const Summarylabel = styled(Grid)`
 const SummaryGrid = styled(Grid)`
   padding: 5px 0px;
 `;
-const periods = [
-  { value: 1, name: "1 month" },
-  { value: 2, name: "2 month" },
-  { value: 3, name: "3 month" },
-  { value: 4, name: "4 month" },
-  { value: 5, name: "5 month" },
-  { value: 6, name: "6 month" },
-  { value: 7, name: "7 month" },
-  { value: 8, name: "8 month" },
-  { value: 9, name: "9 month" },
-  { value: 10, name: "10 months" },
-  { value: 11, name: "11 months" },
-  { value: 12, name: "12 months" },
-];
 export default function MembershipPayment() {
   const { t, i18n } = useTranslation();
   const { plan } = useParams();
@@ -153,6 +139,21 @@ export default function MembershipPayment() {
   const selectedMembership = useSelector(
     (state) => state.order.selectedMembership
   );
+
+  const periods = [
+    { value: 1, name: `1 ${t("common.month")}` },
+    { value: 2, name: `2 ${t("common.month")}` },
+    { value: 3, name: `3 ${t("common.month")}` },
+    { value: 4, name: `4 ${t("common.month")}` },
+    { value: 5, name: `5 ${t("common.month")}` },
+    { value: 6, name: `6 ${t("common.month")}` },
+    { value: 7, name: `7 ${t("common.month")}` },
+    { value: 8, name: `8 ${t("common.month")}` },
+    { value: 9, name: `9 ${t("common.month")}` },
+    { value: 10, name: `10 ${t("common.month")}` },
+    { value: 11, name: `11 ${t("common.month")}` },
+    { value: 12, name: `12 ${t("common.month")}` },
+  ];
 
   const [profileData, setUserProfileData] = React.useState(null);
   const [period, setPeriod] = React.useState(1);
@@ -278,8 +279,6 @@ export default function MembershipPayment() {
     : content.en;
   let paymentOption = selectedMembership.payment_options;
 
-  console.log(currency)
-
   return (
     <>
       <MainTitle>
@@ -377,9 +376,8 @@ export default function MembershipPayment() {
                     {t("common.amount")}
                   </FormLabel>
                   <PaymentTile>
-                    {console.log("amount", amount >= minAmount)}
                     <span
-                      className={amount <= minAmount ? 'grey' : "regular"}
+                      className={amount <= minAmount ? "grey" : "regular"}
                       onClick={() => {
                         if (amount > minAmount) {
                           setAmount(amount - 1);
@@ -406,7 +404,9 @@ export default function MembershipPayment() {
                           }
                         }}
                         startAdornment={
-                          <InputAdornment position="start">{currency?.sign || '$'}</InputAdornment>
+                          <InputAdornment position="start">
+                            {currency?.sign || "$"}
+                          </InputAdornment>
                         }
                       />
                       <FormHelperText id="filled-weight-helper-text">
