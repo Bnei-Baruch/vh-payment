@@ -57,6 +57,7 @@
     "try_again": "Try again"
   },
   "common": {
+    "update": "Update",
     "confirm": "Подтвердить",
     "cancel": "Отмена",
     "next": "продолжить",
@@ -175,7 +176,10 @@
     "period": "Период оплаты",
     "method": "Способ оплаты",
     "type": "Тип подписки",
-    "total_to_pay": "Сумма к оплате"
+    "total_to_pay": "Сумма к оплате",
+    "update_automatic_subscription": "Update Automatic Subscription",
+    "succesfully_updated": "Succesfully updated",
+    "succesfully_updated_text": "You have successfully updated your subscription"
   },
   "cancellation": {
     "cancellation_success": "Отмена прошла успешно",

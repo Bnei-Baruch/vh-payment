@@ -41,3 +41,15 @@ export const requestHelpHaver = (data) => {
       throw err;
     });
 };
+
+export const cancelMembership = (data) => {
+  return axios
+    .post(
+      `${window.APP_CONFIG.VH_API_BASE_URL}/profile/v1/membership/cancellation`,
+      data
+    )
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err;
+    });
+};
