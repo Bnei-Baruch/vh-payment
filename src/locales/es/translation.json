@@ -184,7 +184,10 @@
     "period": "Período",
     "method": "Forma de pago",
     "type": "Tipo",
-    "total_to_pay": "Total a pagar"
+    "total_to_pay": "Total a pagar",
+    "update_automatic_subscription": "Update Automatic Subscription",
+    "succesfully_updated": "Succesfully updated",
+    "succesfully_updated_text": "You have successfully updated your subscription"
   },
   "cancellation": {
     "cancellation_success": "Cancelado con éxito",

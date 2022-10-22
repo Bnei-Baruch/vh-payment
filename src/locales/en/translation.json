@@ -175,7 +175,10 @@
     "period": "Period",
     "method": "Method",
     "type": "Type",
-    "total_to_pay": "Total to pay"
+    "total_to_pay": "Total to pay",
+    "update_automatic_subscription": "Update Automatic Subscription",
+    "succesfully_updated": "Succesfully updated",
+    "succesfully_updated_text": "You have successfully updated your subscription"
   },
   "cancellation": {
     "cancellation_success": "Cancelled succesfully",

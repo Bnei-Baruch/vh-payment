@@ -175,7 +175,10 @@
     "period": "תקופה",
     "method": "שיטה",
     "type": "סוג",
-    "total_to_pay": "סך הכל לתשלום"
+    "total_to_pay": "סך הכל לתשלום",
+    "update_automatic_subscription": "Update Automatic Subscription",
+    "succesfully_updated": "Succesfully updated",
+    "succesfully_updated_text": "You have successfully updated your subscription"
   },
   "cancellation": {
     "cancellation_success": "בוטל בהצלחה",

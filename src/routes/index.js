@@ -26,6 +26,8 @@ import CancelConfirmation from "../pages/Cancellation/cancellationConfirmation";
 import CancellationSuccess from "../pages/Success/cancellationSuccess";
 import MembershippaymentCancel from "../pages/Error/MembershippaymentCancel";
 import MembershippaymentError from "../pages/Error/MembershippaymentError";
+import UpdatePayment from "../pages/Order/Membership/UpdatePayment";
+import UpdatePaymentDetailSuccess from "../pages/Success/UpdatePaymentDetailSuccess";
 
 const Routes = () => (
   <Router>
@@ -52,6 +54,16 @@ const Routes = () => (
 
       {/* Membership Routes */}
       <Route exact from="/pay/membership" component={Membership} />
+      <Route
+        exact
+        from="/pay/membership/payment/update/:orderid"
+        component={UpdatePayment}
+      />
+      <Route
+        exact
+        from="/pay/membership/payment/update/:orderid/success"
+        component={UpdatePaymentDetailSuccess}
+      />
       <Route
         exact
         from="/pay/membership/payment/:plan"
