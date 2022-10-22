@@ -11,15 +11,17 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
-import { getTransactionById } from "../../../services/orderservice";
+import { getOrderByID, updateOrderById } from "../../../services/orderservice";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
+import { currencies } from "../../../shared/currencies";
+import { setCurrency } from "../../../redux/actions/currencyActions";
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
     margin-bottom: 10px;
@@ -70,10 +72,11 @@ const ElevatedContainer = styled(Paper)`
 `;
 export default function UpdatePayment() {
   const { t } = useTranslation();
-  const { orderid } = useParams();
+  const history = useHistory();
+  const { orderId } = useParams();
+  const dispatch = useDispatch();
 
   const currency = useSelector((state) => state.currency);
-
   const [orderDetails, setOrderDetails] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [payClicked, setOnPayClicked] = React.useState(false);
@@ -82,7 +85,20 @@ export default function UpdatePayment() {
   const [amount, setAmount] = React.useState(0);
 
   const UpdatePaymentDetails = () => {
+    setOnPayClicked(true);
     //Update the Amount and currency
+    updateOrderById(orderId, {
+      ...orderDetails,
+      Amount: amount,
+      Currency: currency,
+    })
+      .then(() => {
+        setOnPayClicked(false);
+        history.push(`/pay/membership/payment/update/${orderId}/success`);
+      })
+      .catch((err) => {
+        setOnPayClicked(false);
+      });
   };
   const backToMembership = () => {
     window.location.href = window.location.origin + "/dash/membership";
@@ -90,18 +106,29 @@ export default function UpdatePayment() {
 
   const getOrderDetailsById = () => {
     setLoading(false);
-    //Get the order details by Id
-    getTransactionById(orderid).then((res) => {
-      setLoading(false);
-      console.log(res);
-      setOrderDetails(res.data);
-    });
+    getOrderByID(orderId)
+      .then((res) => {
+        setOrderDetails(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   React.useEffect(() => {
     getOrderDetailsById();
     // eslint-disable-next-line
   }, []);
+
+  React.useEffect(() => {
+    if (orderDetails) {
+      setMinAmount(orderDetails.AmountItem);
+      setAmount(orderDetails.Amount);
+      const cr = currencies.find(
+        (l) => l.id === orderDetails.Currency.toLowerCase()
+      );
+      dispatch(setCurrency(cr));
+    }
+    // eslint-disable-next-line
+  }, [orderDetails]);
 
   if (loading) return <Loader />;
   if (!loading && !orderDetails && false)
@@ -212,7 +239,7 @@ export default function UpdatePayment() {
               disabled={payClicked || amount < minAmount}
               onClick={UpdatePaymentDetails}
             >
-              {t("common.next")}
+              {t("common.update")}
             </Button>
           </Grid>
         </FormContainer>

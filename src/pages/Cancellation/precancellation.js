@@ -31,7 +31,7 @@ export default function PreCancellation() {
   });
   const moveToConfirmationScreen = () => {
     history.push("/pay/membership/cancellation/confirm", {
-      state
+      state,
     });
   };
   const moveToMembership = () => {

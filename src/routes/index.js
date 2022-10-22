@@ -56,12 +56,12 @@ const Routes = () => (
       <Route exact from="/pay/membership" component={Membership} />
       <Route
         exact
-        from="/pay/membership/payment/update/:orderid"
+        from="/pay/membership/payment/update/:orderId"
         component={UpdatePayment}
       />
       <Route
         exact
-        from="/pay/membership/payment/update/:orderid/success"
+        from="/pay/membership/payment/update/:orderId/success"
         component={UpdatePaymentDetailSuccess}
       />
       <Route

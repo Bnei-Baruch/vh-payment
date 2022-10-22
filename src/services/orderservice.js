@@ -48,3 +48,15 @@ export const updateStatus = async (data) =>
       data
     )
     .then((res) => res?.data);
+
+export const getOrderByID = async (id) => {
+  return await axios
+    .get(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/order/${id}`)
+    .then((res) => res?.data);
+};
+
+export const updateOrderById = async (id, data) => {
+  return await axios
+    .patch(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/order/${id}`, data)
+    .then((res) => res?.data);
+};
