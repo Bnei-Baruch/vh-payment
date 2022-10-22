@@ -30,7 +30,9 @@ export default function PreCancellation() {
     additionalSuggestion: "",
   });
   const moveToConfirmationScreen = () => {
-    history.push("/pay/membership/cancellation/confirm");
+    history.push("/pay/membership/cancellation/confirm", {
+      state,
+    });
   };
   const moveToMembership = () => {
     window.location.href = `${window.location.origin}/dash/membership`;
