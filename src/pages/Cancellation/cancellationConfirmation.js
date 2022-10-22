@@ -5,21 +5,36 @@ import ContentLayout from "../../layouts/ContentLayout";
 import WarningIcon from "@material-ui/icons/Warning";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { cancelMembership } from "../../services/userservice";
+import { useSelector } from "react-redux";
 
 const BoxContainer = styled(Box)`
   padding: 40px 20px;
   justify-content: center;
   text-align: center;
 `;
-export default function CancelConfirmation() {
+export default function CancelConfirmation(props) {
+  console.log(props);
   const { t } = useTranslation();
   const history = useHistory();
+  const user = useSelector((state) => state.user);
   const moveToMembership = () => {
     window.location.href = `${window.location.origin}/dash/membership`;
   };
   const confirmCancellation = () => {
-    //TODO: API to Cancel The Membership.
-    history.push("/pay/membership/cancellation/success");
+    cancelMembership({
+      email: user.profile.email,
+      cancellation_reason: props.location.state.state.notStudying
+        ? "Not Studying"
+        : "Financial Problem",
+      cancellation_description: props.location.state.state.additionalSuggestion,
+    })
+      .then(() => {
+        history.push("/pay/membership/cancellation/success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <ContentLayout>
