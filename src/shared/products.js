@@ -542,7 +542,7 @@ exports.tickets = {
   content: {
     en: {
       title: "World Kabbalah Convention",
-      subtitle: "August 27-28 2022",
+      subtitle: "December 02-04 2022",
       action: "Select the type of ticket",
     },
     he: {
@@ -562,8 +562,8 @@ exports.tickets = {
     },
   },
   event: {
-    slug: "aug2022",
-    id: 34,
+    slug: "dec2022",
+    id: 46,
   },
   plans: [
     {
@@ -611,7 +611,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-aug2022-rg",
+        productType: "t-dec2022-rg",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -739,7 +739,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-aug2022-mb",
+        productType: "t-dec2022-mb",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -877,7 +877,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-aug2022-sp",
+        productType: "t-dec2022-sp",
         recurringFreq: 0,
         organization: "ben2",
       },
