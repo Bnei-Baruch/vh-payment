@@ -547,23 +547,23 @@ exports.tickets = {
     },
     he: {
       title: "כנס קבלה וירטואלי",
-      subtitle: "אוגוסט, 2022",
+      subtitle: "דצמבר 2022",
       action: "בחר כרטיס",
     },
     ru: {
-      title: "Виртуальный каббалистический конгресс",
-      subtitle: "Август, 2022",
+      title: "Международный каббалистический конгресс",
+      subtitle: "Декабрь 2022",
       action: "Выберите вариант билета",
     },
     es: {
-      title: "Congreso virtual de Cabalá",
-      subtitle: "Agosto, 2022",
+      title: "Congreso mundial de Cabalá",
+      subtitle: "Diciembre 2022",
       action: "Elige la opción para tu boleto",
     },
   },
   event: {
     slug: "dec2022",
-    id: 46,
+    id: 35,
   },
   plans: [
     {
@@ -604,7 +604,7 @@ exports.tickets = {
           amount: 100,
         },
         eur: {
-          amount: 25,
+          amount: 30,
         },
       },
       product: {
@@ -686,7 +686,7 @@ exports.tickets = {
           amount: 35,
         },
         eur: {
-          amount: 9,
+          amount: 10,
         },
       },
     },
@@ -732,7 +732,7 @@ exports.tickets = {
           amount: 35,
         },
         eur: {
-          amount: 9,
+          amount: 10,
         },
       },
       product: {
@@ -870,7 +870,7 @@ exports.tickets = {
           amount: 100,
         },
         eur: {
-          amount: 25,
+          amount: 30,
         },
       },
       product: {
@@ -1008,7 +1008,7 @@ exports.tickets = {
           amount: 100,
         },
         eur: {
-          amount: 25,
+          amount: 30,
         },
       },
       product: {
@@ -1127,7 +1127,7 @@ exports.tickets = {
           amount: 35,
         },
         eur: {
-          amount: 9,
+          amount: 10,
         },
       },
       product: {
@@ -1246,7 +1246,7 @@ exports.tickets = {
           amount: 35,
         },
         eur: {
-          amount: 9,
+          amount: 10,
         },
       },
       product: {
