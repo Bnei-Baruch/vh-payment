@@ -542,7 +542,7 @@ exports.tickets = {
   content: {
     en: {
       title: "World Kabbalah Convention",
-      subtitle: "December 02-04 2022",
+      subtitle: "December 03-04 2022",
       action: "Select the type of ticket",
     },
     he: {
