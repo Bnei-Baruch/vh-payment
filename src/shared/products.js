@@ -765,7 +765,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/sRddi",
+              payment_url: "https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=NF_IPI&InvId=0&Culture=ru&Encoding=utf-8&Description=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B8%20%22%D0%92%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%20%D0%B2%20%D0%BB%D0%B8%D1%88%D0%BC%D0%B0%22%2002-04.12.2022&OutSum=700&SignatureValue=576dcd6db419569781b1b005db9a50bc",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -792,7 +792,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/sRddi",
+              payment_url: "https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=NF_IPI&InvId=0&Culture=ru&Encoding=utf-8&Description=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B8%20%22%D0%92%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%20%D0%B2%20%D0%BB%D0%B8%D1%88%D0%BC%D0%B0%22%2002-04.12.2022&OutSum=700&SignatureValue=576dcd6db419569781b1b005db9a50bc",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -820,7 +820,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/sRddi",
+              payment_url: "https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=NF_IPI&InvId=0&Culture=ru&Encoding=utf-8&Description=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B8%20%22%D0%92%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%20%D0%B2%20%D0%BB%D0%B8%D1%88%D0%BC%D0%B0%22%2002-04.12.2022&OutSum=700&SignatureValue=576dcd6db419569781b1b005db9a50bc",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -847,7 +847,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/sRddi",
+              payment_url: "https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=NF_IPI&InvId=0&Culture=ru&Encoding=utf-8&Description=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B8%20%22%D0%92%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%20%D0%B2%20%D0%BB%D0%B8%D1%88%D0%BC%D0%B0%22%2002-04.12.2022&OutSum=700&SignatureValue=576dcd6db419569781b1b005db9a50bc",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -903,7 +903,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/sRddi",
+              payment_url: "https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=NF_IPI&InvId=0&Culture=ru&Encoding=utf-8&Description=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B8%20%22%D0%92%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%20%D0%B2%20%D0%BB%D0%B8%D1%88%D0%BC%D0%B0%22%2002-04.12.2022&OutSum=700&SignatureValue=576dcd6db419569781b1b005db9a50bc",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -930,7 +930,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/sRddi",
+              payment_url: "https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=NF_IPI&InvId=0&Culture=ru&Encoding=utf-8&Description=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B8%20%22%D0%92%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%20%D0%B2%20%D0%BB%D0%B8%D1%88%D0%BC%D0%B0%22%2002-04.12.2022&OutSum=700&SignatureValue=576dcd6db419569781b1b005db9a50bc",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -958,7 +958,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/sRddi",
+              payment_url: "https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=NF_IPI&InvId=0&Culture=ru&Encoding=utf-8&Description=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B8%20%22%D0%92%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%20%D0%B2%20%D0%BB%D0%B8%D1%88%D0%BC%D0%B0%22%2002-04.12.2022&OutSum=700&SignatureValue=576dcd6db419569781b1b005db9a50bc",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
@@ -985,7 +985,7 @@ exports.tickets = {
                 },
               },
               type: "specialoption",
-              payment_url: "https://clck.ru/sRddi",
+              payment_url: "https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=NF_IPI&InvId=0&Culture=ru&Encoding=utf-8&Description=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0%20%D0%B7%D0%B0%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B8%20%22%D0%92%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%20%D0%B2%20%D0%BB%D0%B8%D1%88%D0%BC%D0%B0%22%2002-04.12.2022&OutSum=700&SignatureValue=576dcd6db419569781b1b005db9a50bc",
               register_status: {
                 ukraine: "sp-ukraine",
                 russia: "sp-russia",
