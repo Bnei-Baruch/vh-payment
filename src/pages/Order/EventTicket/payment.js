@@ -169,7 +169,7 @@ export default function Payment() {
       successUrl:
         window.APP_CONFIG.VH_BASE_URL +
         `/pay/success/${event_slug}/${selectedTicket.name}`,
-      cancelUrl: window.APP_CONFIG.VH_BASE_URL + "/dash",
+      cancelUrl: window.APP_CONFIG.VH_BASE_URL + "/dash/events",
       errorUrl: window.APP_CONFIG.VH_BASE_URL + "/pay/error",
     };
     handlePayment(data)
