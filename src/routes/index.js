@@ -100,6 +100,12 @@ const Routes = () => (
         component={SuccessMembership}
       />
 
+      <Route
+        exact
+        from="/pay/success/globalmembership"
+        component={SuccessMembership}
+      />
+
       {/* Ticket and Events Routes */}
 
       <Route exact from="/pay/order/ticket/:event_slug" component={Ticket} />
