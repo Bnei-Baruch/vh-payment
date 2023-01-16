@@ -542,28 +542,28 @@ exports.tickets = {
   content: {
     en: {
       title: "World Kabbalah Convention",
-      subtitle: "December 03-04 2022",
+      subtitle: "February 2023",
       action: "Select the type of ticket",
     },
     he: {
       title: "כנס קבלה וירטואלי",
-      subtitle: "דצמבר 2022",
+      subtitle: "פברואר 2023",
       action: "בחר כרטיס",
     },
     ru: {
       title: "Международный каббалистический конгресс",
-      subtitle: "Декабрь 2022",
+      subtitle: "Февраль 2023",
       action: "Выберите вариант билета",
     },
     es: {
       title: "Congreso mundial de Cabalá",
-      subtitle: "Diciembre 2022",
+      subtitle: "Febrero 2023",
       action: "Elige la opción para tu boleto",
     },
   },
   event: {
-    slug: "dec2022",
-    id: 35,
+    slug: "feb2023",
+    id: 68,
   },
   plans: [
     {
@@ -611,7 +611,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-dec2022-rg",
+        productType: "t-feb2023-rg",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -739,7 +739,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-dec2022-mb",
+        productType: "t-feb2023-mb",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -877,7 +877,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-dec2022-sp",
+        productType: "t-feb2023-sp",
         recurringFreq: 0,
         organization: "ben2",
       },
