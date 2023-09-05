@@ -3,6 +3,7 @@ services:
   vh-payment:
     container_name: vh-payment
     image: "${IMAGE_NAME}"
+    restart: unless-stopped
     cpus: '0.1'
     mem_limit: 50M
     ports:
