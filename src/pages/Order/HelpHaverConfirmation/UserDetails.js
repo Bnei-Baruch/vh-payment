@@ -137,8 +137,7 @@ export default function UserDetails() {
   }, [user]);
 
   const confirmNeedsHelpMembership = async () => {
-    const { type } = selectedSpecialOption;
-    if (typeof type === "undefined") {
+    if (typeof selectedSpecialOption?.type === "undefined") {
       handlePay();
       return;
     }
