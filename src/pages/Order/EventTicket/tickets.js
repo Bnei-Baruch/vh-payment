@@ -15,6 +15,7 @@ import {
 } from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
 import Loader from "../../../components/Loader";
+
 const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -74,7 +75,10 @@ export default function Tickets() {
 
   const product = useSelector((state) => state.order.ticketProduct);
   const currency = useSelector((state) => state.currency);
-  const membershipData = useSelector((state) => state.user.membershipdata);
+  const membership = useSelector((state) => (
+      window.APP_CONFIG.isMembershipV2 ? state.user.membershipdataV2 : state.user.membershipdata
+  ));
+  const active = window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership;
 
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
@@ -103,7 +107,7 @@ export default function Tickets() {
       );
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/special/${event_slug}`);
-    } else if (name === "membership" && membershipData?.membership !== true) {
+    } else if (name === "membership" && !active) {
       const selectedOption = ticket.content[i18n.language] || ticket.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/membership/${event_slug}`);
@@ -115,7 +119,7 @@ export default function Tickets() {
 
   const getPlansInSortedFormat = (plans) => {
     let plan = plans.filter(
-      (plan) => plan.membership === membershipData?.membership
+      (plan) => plan.membership === active
     );
     return plan.sort((a, b) => parseInt(a.order) - parseInt(b.order));
   };
@@ -149,11 +153,11 @@ export default function Tickets() {
               key={index}
               item
               xs={12}
-              md={membershipData?.membership ? 4 : 6}
+              md={active ? 4 : 6}
             >
               <TicketCard
                 style={
-                  !isMobile && !membershipData?.membership
+                  !isMobile && !active
                     ? index % 2 === 0
                       ? i18n.language !== "he"
                         ? marginLeftAuto

@@ -102,7 +102,10 @@ const HeaderLayout = () => {
   const { t } = useTranslation();
   const { dir } = useSelector((state) => state.language);
   const { appbar } = useSelector((state) => state.order);
-  const membership = useSelector((state) => state.user.membershipdata);
+  const membership = useSelector((state) => (
+      window.APP_CONFIG.isMembershipV2 ? state.user.membershipdataV2 : state.user.membershipdata
+  ));
+  const active = window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership;
 
   return (
     <AppBar
@@ -153,13 +156,13 @@ const HeaderLayout = () => {
               <MembershipStatusText
                 variant="body1"
                 textcolor={
-                  membership?.membership
+                  active
                     ? "#0d9d0d !important"
                     : "#ff0000 !important"
                 }
               >
                 <FiberManualRecordIcon />{" "}
-                {membership?.membership
+                {active
                   ? t("membership.active")
                   : t("membership.inactive")}
               </MembershipStatusText>
