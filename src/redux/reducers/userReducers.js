@@ -1,13 +1,15 @@
 import {
   SET_LOGGED_IN_USER,
   SET_MEMBERSHIP_DATA,
+  SET_MEMBERSHIP_DATA_V2,
   SET_USER_PROFILE_DATA,
 } from "../types";
 
 const DEFAULT = {
   authenticated: false,
   keycloak: null,
-  membershipdata: undefined,
+  membershipdata: {},
+  membershipdataV2: {},
   profileData: undefined,
   profile: {
     email: "",
@@ -30,7 +32,11 @@ export default function reducer(state = DEFAULT, { type, payload }) {
         ...state,
         membershipdata: payload,
       };
-
+    case SET_MEMBERSHIP_DATA_V2:
+      return {
+        ...state,
+        membershipdataV2: payload,
+      };
     case SET_USER_PROFILE_DATA:
       return {
         ...state,
