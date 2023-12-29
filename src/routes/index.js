@@ -33,7 +33,9 @@ const Routes = () => (
   <Router>
     <Switch>
       {/* Old Membership Route */}
-      <Route exact from="/pay/order/:id" component={Order} />
+      {!window.APP_CONFIG.isMembershipV2 &&
+        <Route exact from="/pay/order/:id" component={Order} />
+      }
 
       {/* Membership Cancellation Route */}
       <Route
