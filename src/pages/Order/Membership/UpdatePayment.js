@@ -17,6 +17,7 @@ import styled from "styled-components";
 import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
 import { getOrderByID, updateOrderById } from "../../../services/orderservice";
+import { getMembershipProduct } from "../../../services/productservice";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
@@ -81,8 +82,11 @@ export default function UpdatePayment() {
   const [loading, setLoading] = React.useState(true);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const [minAmount, setMinAmount] = React.useState(0);
-
   const [amount, setAmount] = React.useState(0);
+  const [membership, setMembership] = React.useState(undefined);
+  React.useEffect(() => {
+    setMembership(getMembershipProduct());
+  }, []);
 
   const UpdatePaymentDetails = () => {
     setOnPayClicked(true);
@@ -120,15 +124,24 @@ export default function UpdatePayment() {
 
   React.useEffect(() => {
     if (orderDetails) {
-      setMinAmount(orderDetails.AmountItem);
       setAmount(orderDetails.Amount);
+
       const cr = currencies.find(
         (l) => l.id === orderDetails.Currency.toLowerCase()
       );
-      dispatch(setCurrency(cr));
+      if (cr.id !== currency.id) {
+        dispatch(setCurrency(cr));
+      }
     }
     // eslint-disable-next-line
   }, [orderDetails]);
+
+  React.useEffect(() => {
+    if (membership) {
+      const automatic = membership.plans.find(x => x.name === 'automatic')
+      setMinAmount(automatic.price[currency.id].amount);
+    }
+  }, [membership, currency])
 
   if (loading) return <Loader />;
   if (!loading && !orderDetails && false)
@@ -203,7 +216,7 @@ export default function UpdatePayment() {
                     />
                     <FormHelperText id="filled-weight-helper-text">
                       {t("membership.pay_more_than")} {currency.sign}
-                      {/* {selectedMembership.price[currency.id]?.amount} */}
+                      {minAmount}
                     </FormHelperText>
                   </FormControl>
                   <span
