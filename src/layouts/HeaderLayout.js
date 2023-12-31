@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   AppBar,
   Box,
@@ -105,7 +105,13 @@ const HeaderLayout = () => {
   const membership = useSelector((state) => (
       window.APP_CONFIG.isMembershipV2 ? state.user.membershipdataV2 : state.user.membershipdata
   ));
-  const active = window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership;
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (membership) {
+      setActive(window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership)
+    }
+  }, [membership]);
 
   return (
     <AppBar

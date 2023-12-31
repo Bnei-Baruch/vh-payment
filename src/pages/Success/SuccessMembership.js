@@ -44,6 +44,7 @@ const SuccessMembership = () => {
     const {pdt} = useParams();
     const user = useSelector((state) => state.user);
     const [loading, setLoading] = useState(true);
+    const [paymentSent, setPaymentSent] = useState(false);
 
     /**
      * This Useeffect sends the payments detail
@@ -53,7 +54,8 @@ const SuccessMembership = () => {
         console.log('SuccessMembership useEffect [pdt, user]', pdt, user, window.location.search)
 
         let q = qs.parse(window.location.search);
-        if (user.authenticated && Object.keys(q).length !== 0) {
+        if (!paymentSent && user.authenticated && Object.keys(q).length !== 0) {
+            setPaymentSent(true)
             paymentSuccess(q)
                 .then(() => {
                     if (pdt === "jan2022ticket") {
