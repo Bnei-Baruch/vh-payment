@@ -114,7 +114,7 @@ export default function UpdatePayment() {
       .then((res) => {
         setOrderDetails(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   React.useEffect(() => {
