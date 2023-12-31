@@ -64,7 +64,7 @@ export default function UserDetail() {
           }
         })
         .catch((ex) => {
-          console.log(ex);
+          console.error(ex);
         });
     }
   }, [profileData]);

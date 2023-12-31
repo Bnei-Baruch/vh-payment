@@ -14,7 +14,6 @@ const BoxContainer = styled(Box)`
   text-align: center;
 `;
 export default function CancelConfirmation(props) {
-  console.log(props);
   const { t } = useTranslation();
   const history = useHistory();
   const user = useSelector((state) => state.user);
@@ -33,7 +32,7 @@ export default function CancelConfirmation(props) {
         history.push("/pay/membership/cancellation/success");
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   return (
