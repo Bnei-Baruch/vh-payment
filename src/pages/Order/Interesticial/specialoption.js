@@ -54,7 +54,7 @@ export default function HelpHaver() {
         }
       })
       .catch((ex) => {
-        console.log(ex);
+        console.error(ex);
       });
   };
   React.useEffect(() => {
