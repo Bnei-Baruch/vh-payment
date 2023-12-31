@@ -89,7 +89,7 @@ const Success = () => {
                   registration_date: new Date().toISOString(),
                   confirmed: true,
                 };
-                addPariticpantInEvent(data).catch((e) => console.log(e));
+                addPariticpantInEvent(data).catch((e) => console.error(e));
               }
             })
             .catch(async () => {
@@ -119,7 +119,7 @@ const Success = () => {
                     notification: true,
                     notification_type: "confirmation",
                   };
-                  addPariticpantInEvent(data).catch((e) => console.log(e));
+                  addPariticpantInEvent(data).catch((e) => console.error(e));
                 }
               });
             });
