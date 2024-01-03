@@ -684,13 +684,13 @@ exports.tickets = {
       order: 2,
       price: {
         usd: {
-          amount: 0,
+          amount: 10,
         },
         nis: {
-          amount: 0,
+          amount: 35,
         },
         eur: {
-          amount: 0,
+          amount: 10,
         },
       },
     },
