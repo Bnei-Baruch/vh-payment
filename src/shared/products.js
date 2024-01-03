@@ -626,7 +626,8 @@ exports.tickets = {
           button_label: "Activate Membership",
           intersticial: {
             title: "Membership Ticket",
-            body: "Membership tickets are discounted tickets for people who pay a montly subscription the Virtual Home Membership <br/> In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
+            body: "In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
+            // body: "Membership tickets are discounted tickets for people who pay a monthly subscription the Virtual Home Membership <br/> In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
             button: "Activate Membership",
           },
           redirect_url: "/dash/membership",
@@ -639,7 +640,8 @@ exports.tickets = {
           button_label: "Активировать подписку",
           intersticial: {
             title: "Билет для Подписчиков системы Арвут",
-            body: "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут.<br/> Чтобы получить скидку, вам нужно сначала оформить ежемесячную подписку, а затем вернуться и зарегистрироваться, выбрав опцию: Билет для Подписчиков системы Арвут",
+            body: "Чтобы получить скидку, вам нужно сначала оформить ежемесячную подписку, а затем вернуться и зарегистрироваться, выбрав опцию: Билет для Подписчиков системы Арвут",
+            // body: "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут.<br/> Чтобы получить скидку, вам нужно сначала оформить ежемесячную подписку, а затем вернуться и зарегистрироваться, выбрав опцию: Билет для Подписчиков системы Арвут",
             button: "Активировать подписку",
           },
           redirect_url: "/dash/membership",
@@ -652,7 +654,8 @@ exports.tickets = {
           button_label: "Activar la membresía",
           intersticial: {
             title: "Boleto de membresía",
-            body: "Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual.<br /> Para ser elegible de esta opción, primero necesitas obtener tu membresía, y luego volver para registrarte con la membresía",
+            body: "Para ser elegible de esta opción, primero necesitas obtener tu membresía, y luego volver para registrarte con la membresía",
+            // body: "Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual.<br /> Para ser elegible de esta opción, primero necesitas obtener tu membresía, y luego volver para registrarte con la membresía",
             button: "Activar membresía",
           },
           redirect_url: "/dash/membership",
@@ -665,7 +668,8 @@ exports.tickets = {
           button_label: "הפעלת מנוי",
           intersticial: {
             title: "כרטיס חבר",
-            body: " כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי  <br /> על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
+            body: "על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
+            // body: " כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי  <br /> על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
             button: "הרשמה למנוי חדש",
           },
           redirect_url: "/dash/membership",
@@ -680,13 +684,13 @@ exports.tickets = {
       order: 2,
       price: {
         usd: {
-          amount: 10,
+          amount: 0,
         },
         nis: {
-          amount: 35,
+          amount: 0,
         },
         eur: {
-          amount: 10,
+          amount: 0,
         },
       },
     },

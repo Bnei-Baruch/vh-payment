@@ -44,7 +44,8 @@
     "become_a_member": "Activar membresía",
     "membershipPaymentSuccess": "You have successfully paid for your subscription",
     "processing_event_registration_mb": "Tienes una membresía activa, estamos procesando tu registro.",
-    "successfully_registered": "Te has registrado exitosamente al evento"
+    "successfully_registered": "Te has registrado exitosamente al evento",
+    "free": "Gratis"
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",

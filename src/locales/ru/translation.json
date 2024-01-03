@@ -44,7 +44,8 @@
     "become_a_member": "Активировать подписку",
     "membershipPaymentSuccess": "You have successfully paid for your subscription",
     "processing_event_registration_mb": "У вас активное членство, мы обрабатываем вашу регистрацию.",
-    "successfully_registered": "Вы успешно зарегистрировались на конгресс"
+    "successfully_registered": "Вы успешно зарегистрировались на конгресс",
+    "free": "Бесплатно"
   },
   "userMenu": {
     "logOut": "Выйти",

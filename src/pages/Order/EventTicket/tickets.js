@@ -112,7 +112,6 @@ export default function Tickets() {
       const selectedOption = ticket.content[i18n.language] || ticket.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/membership/${event_slug}`);
-      return;
     } else {
       history.push(`/pay/order/ticket/payment/${event_slug}`);
     }
@@ -124,6 +123,18 @@ export default function Tickets() {
     );
     return plan.sort((a, b) => parseInt(a.order) - parseInt(b.order));
   };
+
+  const planPrice = (plan) => {
+    if (plan.isFree) {
+      return t("help.financial_help")
+    } else if (plan.name === "special") {
+      return t("specialOption.chose_your_option")
+    } else if (plan.name === "membership") {
+      return t("order.free")
+    } else {
+      return currency.sign + " " + plan.price[currency.id].amount
+    }
+  }
 
   if (!product) return <Loader />;
 
@@ -180,13 +191,7 @@ export default function Tickets() {
                 <br />
                 <br />
                 <CenterText variant="h2">
-                  <Price>
-                    {plan.isFree
-                      ? t("help.financial_help")
-                      : plan.name === "special"
-                      ? `${t("specialOption.chose_your_option")}`
-                      : currency.sign + " " + plan.price[currency.id].amount}
-                  </Price>
+                  <Price>{planPrice(plan)}</Price>
                 </CenterText>
                 <Grid>
                   {planContent &&

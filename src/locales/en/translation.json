@@ -44,7 +44,8 @@
     "become_a_member": "Become a member",
     "membershipPaymentSuccess": "You have successfully paid for your subscription",
     "processing_event_registration_mb": "You have an active membership, we are processing your registration.",
-    "successfully_registered": "You have successfully registered to the event"
+    "successfully_registered": "You have successfully registered to the event",
+    "free": "Free"
   },
   "userMenu": {
     "profile": "Profile",
