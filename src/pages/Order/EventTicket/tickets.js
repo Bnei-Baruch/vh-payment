@@ -15,6 +15,7 @@ import {
 } from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
 import Loader from "../../../components/Loader";
+import FastRegistration from "./FastRegistration";
 
 const TicketCard = styled(Grid)`
   background-color: #fff;
@@ -78,7 +79,7 @@ export default function Tickets() {
   const membership = useSelector((state) => (
       window.APP_CONFIG.isMembershipV2 ? state.user.membershipdataV2 : state.user.membershipdata
   ));
-  const active = window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership;
+  const active = !!(window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership);
 
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
@@ -111,7 +112,6 @@ export default function Tickets() {
       const selectedOption = ticket.content[i18n.language] || ticket.content.en;
       dispatch(setSpecialSelectedOption(selectedOption));
       history.push(`/pay/order/ticket/payment/membership/${event_slug}`);
-      return;
     } else {
       history.push(`/pay/order/ticket/payment/${event_slug}`);
     }
@@ -124,6 +124,18 @@ export default function Tickets() {
     return plan.sort((a, b) => parseInt(a.order) - parseInt(b.order));
   };
 
+  const planPrice = (plan) => {
+    if (plan.isFree) {
+      return t("help.financial_help")
+    } else if (plan.name === "special") {
+      return t("specialOption.chose_your_option")
+    } else if (plan.name === "membership") {
+      return t("order.free")
+    } else {
+      return currency.sign + " " + plan.price[currency.id].amount
+    }
+  }
+
   if (!product) return <Loader />;
 
   const { content } = product;
@@ -132,6 +144,11 @@ export default function Tickets() {
     typeof content[i18n.language] !== "undefined"
       ? content[i18n.language]
       : content["en"];
+
+  if (active) {
+    return <FastRegistration />;
+  }
+
   return (
     <TicketGrid container>
       <Grid item xs={12}>
@@ -174,13 +191,7 @@ export default function Tickets() {
                 <br />
                 <br />
                 <CenterText variant="h2">
-                  <Price>
-                    {plan.isFree
-                      ? t("help.financial_help")
-                      : plan.name === "special"
-                      ? `${t("specialOption.chose_your_option")}`
-                      : currency.sign + " " + plan.price[currency.id].amount}
-                  </Price>
+                  <Price>{planPrice(plan)}</Price>
                 </CenterText>
                 <Grid>
                   {planContent &&
@@ -200,31 +211,6 @@ export default function Tickets() {
                     </div>
                   )}
                 </Grid>
-                {/* <Grid>
-                    {planContent.options && (
-                      <FormControl component="fieldset">
-                        <FormLabel component="legend">
-                          {t("common.select_option")}
-                        </FormLabel>
-                        <RadioGroup
-                          aria-label="gender"
-                          name="gender1"
-                          value={specialOption}
-                          onChange={(e) => setSpecialOption(e.target.value)}
-                        >
-                          {planContent.options.map((item, index) => (
-                            <FormControlLabel
-                              key={index}
-                              value={item.name}
-                              control={<Radio />}
-                              label={item.label}
-                            />
-                          ))}
-                        </RadioGroup>
-                        <br />
-                      </FormControl>
-                    )}
-                  </Grid> */}
                 <CTAGrid>
                   <Button
                     fullWidth
