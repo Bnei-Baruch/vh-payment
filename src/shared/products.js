@@ -542,28 +542,28 @@ exports.tickets = {
   content: {
     en: {
       title: "World Kabbalah Convention",
-      subtitle: "October 2023",
+      subtitle: "January 2024",
       action: "Select the type of ticket",
     },
     he: {
       title: "כנס קבלה וירטואלי",
-      subtitle: "אוקטובר 2023",
+      subtitle: "ינואר 2024",
       action: "בחר כרטיס",
     },
     ru: {
       title: "Международный каббалистический конгресс",
-      subtitle: "октябрь 2023 г.",
+      subtitle: "Январь 2024 г.",
       action: "Выберите вариант билета",
     },
     es: {
       title: "Congreso mundial de Cabalá",
-      subtitle: "Octubre 2023",
+      subtitle: "Enero 2024",
       action: "Elige la opción para tu boleto",
     },
   },
   event: {
-    slug: "oct2023",
-    id: 70,
+    slug: "jan2024",
+    id: 103,
   },
   plans: [
     {
@@ -611,7 +611,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-oct2023-rg",
+        productType: "t-jan2024-rg",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -621,7 +621,7 @@ exports.tickets = {
         en: {
           name: "Membership Ticket",
           description: [
-            "In order to choose this ticket you will to activate your membership first",
+            "In order to choose this ticket you will need to activate your membership first",
           ],
           button_label: "Activate Membership",
           intersticial: {
@@ -739,7 +739,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-oct2023-mb",
+        productType: "t-jan2024-mb",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -800,7 +800,6 @@ exports.tickets = {
             },
           ],
         },
-
         he: {
           name: "אפשרויות רכישה מיוחדות",
           description: ["אם אתה גר באוקראינה", "אם אתה גר ברוסיה"],
@@ -877,7 +876,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-oct2023-sp",
+        productType: "t-jan2024-sp",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -938,7 +937,6 @@ exports.tickets = {
             },
           ],
         },
-
         he: {
           name: "אפשרויות רכישה מיוחדות",
           description: ["אם אתה גר באוקראינה", "אם אתה גר ברוסיה"],
@@ -1025,7 +1023,7 @@ exports.tickets = {
         en: {
           name: "Help Haver",
           description: [
-            "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help",
+            "We want this event to be available to each of us. If you are in a difficult financial situation, you can apply for help",
           ],
           button_label: "Apply for Help",
           options: [
@@ -1034,7 +1032,7 @@ exports.tickets = {
               label: "Help Haver",
               intersticial: {
                 title: "Help Haver for the Convention",
-                body: "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
+                body: "We want this event to be available to each of us. If you are in a difficult financial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
                 button: "Next",
               },
               redirect_url:
@@ -1066,7 +1064,6 @@ exports.tickets = {
             },
           ],
         },
-
         he: {
           name: "קרן עזרה ״הלפ חבר״",
           description: [
@@ -1134,7 +1131,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-0723-03-sp",
+        productType: "t-0124-03-sp",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -1144,7 +1141,7 @@ exports.tickets = {
         en: {
           name: "Help Haver",
           description: [
-            "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help",
+            "We want this event to be available to each of us. If you are in a difficult financial situation, you can apply for help",
           ],
           button_label: "Apply for Help",
           options: [
@@ -1153,7 +1150,7 @@ exports.tickets = {
               label: "Help Haver",
               intersticial: {
                 title: "Help Haver for the Convention",
-                body: "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
+                body: "We want this event to be available to each of us. If you are in a difficult financial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
                 button: "Next",
               },
               redirect_url:
@@ -1253,7 +1250,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-1123-03-sp",
+        productType: "t-0124-03-sp",
         recurringFreq: 0,
         organization: "ben2",
       },
