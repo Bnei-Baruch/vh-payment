@@ -542,28 +542,28 @@ exports.tickets = {
   content: {
     en: {
       title: "World Kabbalah Convention",
-      subtitle: "October 2023",
+      subtitle: "January 2024",
       action: "Select the type of ticket",
     },
     he: {
       title: "כנס קבלה וירטואלי",
-      subtitle: "אוקטובר 2023",
+      subtitle: "ינואר 2024",
       action: "בחר כרטיס",
     },
     ru: {
       title: "Международный каббалистический конгресс",
-      subtitle: "октябрь 2023 г.",
+      subtitle: "Январь 2024 г.",
       action: "Выберите вариант билета",
     },
     es: {
       title: "Congreso mundial de Cabalá",
-      subtitle: "Octubre 2023",
+      subtitle: "Enero 2024",
       action: "Elige la opción para tu boleto",
     },
   },
   event: {
-    slug: "oct2023",
-    id: 70,
+    slug: "jan2024",
+    id: 103,
   },
   plans: [
     {
@@ -611,7 +611,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-oct2023-rg",
+        productType: "t-jan2024-rg",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -621,12 +621,13 @@ exports.tickets = {
         en: {
           name: "Membership Ticket",
           description: [
-            "In order to choose this ticket you will to activate your membership first",
+            "In order to choose this ticket you will need to activate your membership first",
           ],
           button_label: "Activate Membership",
           intersticial: {
             title: "Membership Ticket",
-            body: "Membership tickets are discounted tickets for people who pay a montly subscription the Virtual Home Membership <br/> In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
+            body: "In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
+            // body: "Membership tickets are discounted tickets for people who pay a monthly subscription the Virtual Home Membership <br/> In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
             button: "Activate Membership",
           },
           redirect_url: "/dash/membership",
@@ -639,7 +640,8 @@ exports.tickets = {
           button_label: "Активировать подписку",
           intersticial: {
             title: "Билет для Подписчиков системы Арвут",
-            body: "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут.<br/> Чтобы получить скидку, вам нужно сначала оформить ежемесячную подписку, а затем вернуться и зарегистрироваться, выбрав опцию: Билет для Подписчиков системы Арвут",
+            body: "Чтобы получить скидку, вам нужно сначала оформить ежемесячную подписку, а затем вернуться и зарегистрироваться, выбрав опцию: Билет для Подписчиков системы Арвут",
+            // body: "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут.<br/> Чтобы получить скидку, вам нужно сначала оформить ежемесячную подписку, а затем вернуться и зарегистрироваться, выбрав опцию: Билет для Подписчиков системы Арвут",
             button: "Активировать подписку",
           },
           redirect_url: "/dash/membership",
@@ -652,7 +654,8 @@ exports.tickets = {
           button_label: "Activar la membresía",
           intersticial: {
             title: "Boleto de membresía",
-            body: "Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual.<br /> Para ser elegible de esta opción, primero necesitas obtener tu membresía, y luego volver para registrarte con la membresía",
+            body: "Para ser elegible de esta opción, primero necesitas obtener tu membresía, y luego volver para registrarte con la membresía",
+            // body: "Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual.<br /> Para ser elegible de esta opción, primero necesitas obtener tu membresía, y luego volver para registrarte con la membresía",
             button: "Activar membresía",
           },
           redirect_url: "/dash/membership",
@@ -665,7 +668,8 @@ exports.tickets = {
           button_label: "הפעלת מנוי",
           intersticial: {
             title: "כרטיס חבר",
-            body: " כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי  <br /> על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
+            body: "על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
+            // body: " כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי  <br /> על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
             button: "הרשמה למנוי חדש",
           },
           redirect_url: "/dash/membership",
@@ -739,7 +743,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-oct2023-mb",
+        productType: "t-jan2024-mb",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -748,7 +752,8 @@ exports.tickets = {
       content: {
         en: {
           name: "Special Options",
-          description: ["If you live in Ukraine.", "If you live in Russia."],
+          description: ["If you live in Russia"],
+          // description: ["If you live in Ukraine.", "If you live in Russia."],
           button_label: "Choose an option",
           options: [
             {
@@ -761,7 +766,7 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for event. <br/> For the payment, you will be provided with a separate link where you can complete your payment of 700 rubles.",
+                  body: "Here you can register for event. <br/> For the payment, you will be provided with a separate link where you can complete your payment of 800 rubles.",
                 },
               },
               type: "specialoption",
@@ -775,7 +780,8 @@ exports.tickets = {
         },
         es: {
           name: "Opciones especiales",
-          description: ["Si vives en Ucrania", "Si vives en Rusia"],
+          description: ["Si vives en Rusia"],
+          // description: ["Si vives en Ucrania", "Si vives en Rusia"],
           button_label: "Elige una opción",
           options: [
             {
@@ -788,7 +794,7 @@ exports.tickets = {
                 },
                 russia: {
                   title: "Para nuestros amigos de Rusia",
-                  body: "Aquí puedes inscribirte en el evento/ Para el pago, se te proporcionará un enlace por separado donde puedes completar tu pago de 700 rublos.",
+                  body: "Aquí puedes inscribirte en el evento/ Para el pago, se te proporcionará un enlace por separado donde puedes completar tu pago de 800 rublos.",
                 },
               },
               type: "specialoption",
@@ -800,10 +806,10 @@ exports.tickets = {
             },
           ],
         },
-
         he: {
           name: "אפשרויות רכישה מיוחדות",
-          description: ["אם אתה גר באוקראינה", "אם אתה גר ברוסיה"],
+          description: ["אם אתה גר ברוסיה"],
+          // description: ["אם אתה גר באוקראינה", "אם אתה גר ברוסיה"],
           button_label: "בחר אפשרות",
           options: [
             {
@@ -816,7 +822,7 @@ exports.tickets = {
                 },
                 russia: {
                   title: "לחברים שלנו מרוסיה",
-                  body: "כאן תכל להירשם לאירוע . לתשלום יישלח אליך לינק נפרד שבו ניתן להשלים תשלום של 700 רובל",
+                  body: "כאן תכל להירשם לאירוע . לתשלום יישלח אליך לינק נפרד שבו ניתן להשלים תשלום של 800 רובל",
                 },
               },
               type: "specialoption",
@@ -830,7 +836,8 @@ exports.tickets = {
         },
         ru: {
           name: "Дополнительные возможности",
-          description: ["Для жителей Украины", "Для жителей России"],
+          description: ["Для жителей России"],
+          // description: ["Для жителей Украины", "Для жителей России"],
           button_label: "Выберите ваш вариант",
           options: [
             {
@@ -877,7 +884,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-oct2023-sp",
+        productType: "t-jan2024-sp",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -899,7 +906,7 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 700 rubles.",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles.",
                 },
               },
               type: "specialoption",
@@ -938,7 +945,6 @@ exports.tickets = {
             },
           ],
         },
-
         he: {
           name: "אפשרויות רכישה מיוחדות",
           description: ["אם אתה גר באוקראינה", "אם אתה גר ברוסיה"],
@@ -1025,7 +1031,7 @@ exports.tickets = {
         en: {
           name: "Help Haver",
           description: [
-            "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help",
+            "We want this event to be available to each of us. If you are in a difficult financial situation, you can apply for help",
           ],
           button_label: "Apply for Help",
           options: [
@@ -1034,7 +1040,7 @@ exports.tickets = {
               label: "Help Haver",
               intersticial: {
                 title: "Help Haver for the Convention",
-                body: "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
+                body: "We want this event to be available to each of us. If you are in a difficult financial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
                 button: "Next",
               },
               redirect_url:
@@ -1066,7 +1072,6 @@ exports.tickets = {
             },
           ],
         },
-
         he: {
           name: "קרן עזרה ״הלפ חבר״",
           description: [
@@ -1134,7 +1139,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-0723-03-sp",
+        productType: "t-0124-03-sp",
         recurringFreq: 0,
         organization: "ben2",
       },
@@ -1144,7 +1149,7 @@ exports.tickets = {
         en: {
           name: "Help Haver",
           description: [
-            "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help",
+            "We want this event to be available to each of us. If you are in a difficult financial situation, you can apply for help",
           ],
           button_label: "Apply for Help",
           options: [
@@ -1153,7 +1158,7 @@ exports.tickets = {
               label: "Help Haver",
               intersticial: {
                 title: "Help Haver for the Convention",
-                body: "We want this event to be available to each of us. If you are in a difficult finnacial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
+                body: "We want this event to be available to each of us. If you are in a difficult financial situation, you can apply for help. <br /> <br/> Your registration will be pending until your request has been validated.",
                 button: "Next",
               },
               redirect_url:
@@ -1253,7 +1258,7 @@ exports.tickets = {
         SKU: "40033",
         reference: "Convention",
         type: "regular",
-        productType: "t-1123-03-sp",
+        productType: "t-0124-03-sp",
         recurringFreq: 0,
         organization: "ben2",
       },

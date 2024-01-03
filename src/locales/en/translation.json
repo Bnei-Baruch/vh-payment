@@ -42,7 +42,10 @@
     "back_to_event": "Back to event",
     "back_to_my_membership": "Back to my membership",
     "become_a_member": "Become a member",
-    "membershipPaymentSuccess": "You have successfully paid for your subscription"
+    "membershipPaymentSuccess": "You have successfully paid for your subscription",
+    "processing_event_registration_mb": "You have an active membership, we are processing your registration.",
+    "successfully_registered": "You have successfully registered to the event",
+    "free": "Free"
   },
   "userMenu": {
     "profile": "Profile",
@@ -178,12 +181,12 @@
     "type": "Type",
     "total_to_pay": "Total to pay",
     "update_automatic_subscription": "Update Automatic Subscription",
-    "succesfully_updated": "Succesfully updated",
+    "succesfully_updated": "Successfully updated",
     "succesfully_updated_text": "You have successfully updated your subscription"
   },
   "cancellation": {
-    "cancellation_success": "Cancelled succesfully",
-    "cancellation_success_text": "Your membership was cancelled succesfully. You will not be charge anymore.",
+    "cancellation_success": "Cancelled successfully",
+    "cancellation_success_text": "Your membership was cancelled successfully. You will not be charge anymore.",
     "membership_cancellation": "Membership Cancellation",
     "membership_cancellation_text": "Are you sure you want to cancel your membership?",
     "continue_cancellation": "Continue cancellation",
