@@ -59,11 +59,11 @@ export default function SpecialOptionInterestical() {
               value={selection}
               onChange={(e) => setSelection(e.target.value)}
             >
-              <FormControlLabel
-                value="ukraine"
-                control={<Radio />}
-                label={t("specialOption.ukraine")}
-              />
+              {/*<FormControlLabel*/}
+              {/*  value="ukraine"*/}
+              {/*  control={<Radio />}*/}
+              {/*  label={t("specialOption.ukraine")}*/}
+              {/*/>*/}
               <FormControlLabel
                 value="russia"
                 control={<Radio />}
