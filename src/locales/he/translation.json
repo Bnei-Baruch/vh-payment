@@ -42,7 +42,10 @@
     "back_to_event": "חזרה לאיזור אישי / אירועים",
     "back_to_my_membership": "חזרה לאיזור האישי",
     "become_a_member": "הרשמה למנוי חדש",
-    "membershipPaymentSuccess": "שילמת בהצלחה  למנוי שלך"
+    "membershipPaymentSuccess": "שילמת בהצלחה למנוי שלך",
+    "processing_event_registration_mb": "יש לך מנוי פעיל, אנחנו מבצעים את ההרשמה שלך.",
+    "successfully_registered": "הרשמתך התבצעה בהצלחה",
+    "free": "חינם"
   },
   "userMenu": {
     "logOut": "להתנתק",
