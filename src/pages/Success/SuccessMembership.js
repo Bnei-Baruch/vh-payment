@@ -44,18 +44,16 @@ const SuccessMembership = () => {
     const {pdt} = useParams();
     const user = useSelector((state) => state.user);
     const [loading, setLoading] = useState(true);
-    const [paymentSent, setPaymentSent] = useState(false);
+    const [posted, setPosted] = useState(false);
 
     /**
      * This Useeffect sends the payments detail
      * to backend after successful payment completion.
      */
     useEffect(() => {
-        console.log('SuccessMembership useEffect [pdt, user]', pdt, user, window.location.search)
-
         let q = qs.parse(window.location.search);
-        if (!paymentSent && user.authenticated && Object.keys(q).length !== 0) {
-            setPaymentSent(true)
+        if (!posted && user.authenticated && Object.keys(q).length !== 0) {
+            setPosted(true)
             paymentSuccess(q)
                 .then(() => {
                     if (pdt === "jan2022ticket") {
@@ -69,6 +67,7 @@ const SuccessMembership = () => {
                 })
                 .finally(() => setLoading(false));
         }
+        // eslint-disable-next-line
     }, [pdt, user]);
 
     const returnToMembershipArea = () => {

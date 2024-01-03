@@ -42,7 +42,9 @@
     "back_to_event": "Volver a Eventos",
     "back_to_my_membership": "Back to my membership",
     "become_a_member": "Activar membresía",
-    "membershipPaymentSuccess": "You have successfully paid for your subscription"
+    "membershipPaymentSuccess": "You have successfully paid for your subscription",
+    "processing_event_registration_mb": "Tienes una membresía activa, estamos procesando tu registro.",
+    "successfully_registered": "Te has registrado exitosamente al evento"
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",

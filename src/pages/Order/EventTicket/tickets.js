@@ -15,6 +15,7 @@ import {
 } from "../../../redux/actions/orderActions";
 import { useHistory } from "react-router-dom";
 import Loader from "../../../components/Loader";
+import FastRegistration from "./FastRegistration";
 
 const TicketCard = styled(Grid)`
   background-color: #fff;
@@ -78,7 +79,7 @@ export default function Tickets() {
   const membership = useSelector((state) => (
       window.APP_CONFIG.isMembershipV2 ? state.user.membershipdataV2 : state.user.membershipdata
   ));
-  const active = window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership;
+  const active = !!(window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership);
 
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));
@@ -132,6 +133,11 @@ export default function Tickets() {
     typeof content[i18n.language] !== "undefined"
       ? content[i18n.language]
       : content["en"];
+
+  if (active) {
+    return <FastRegistration />;
+  }
+
   return (
     <TicketGrid container>
       <Grid item xs={12}>
@@ -200,31 +206,6 @@ export default function Tickets() {
                     </div>
                   )}
                 </Grid>
-                {/* <Grid>
-                    {planContent.options && (
-                      <FormControl component="fieldset">
-                        <FormLabel component="legend">
-                          {t("common.select_option")}
-                        </FormLabel>
-                        <RadioGroup
-                          aria-label="gender"
-                          name="gender1"
-                          value={specialOption}
-                          onChange={(e) => setSpecialOption(e.target.value)}
-                        >
-                          {planContent.options.map((item, index) => (
-                            <FormControlLabel
-                              key={index}
-                              value={item.name}
-                              control={<Radio />}
-                              label={item.label}
-                            />
-                          ))}
-                        </RadioGroup>
-                        <br />
-                      </FormControl>
-                    )}
-                  </Grid> */}
                 <CTAGrid>
                   <Button
                     fullWidth
