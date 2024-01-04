@@ -766,7 +766,7 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for event. <br/> For the payment, you will be provided with a separate link where you can complete your payment of 800 rubles.",
+                  body: "Here you can register for event. <br/> For the payment, you will be provided with a separate link where you can complete your payment of 2500 rubles.",
                 },
               },
               type: "specialoption",
@@ -794,7 +794,7 @@ exports.tickets = {
                 },
                 russia: {
                   title: "Para nuestros amigos de Rusia",
-                  body: "Aquí puedes inscribirte en el evento/ Para el pago, se te proporcionará un enlace por separado donde puedes completar tu pago de 800 rublos.",
+                  body: "Aquí puedes inscribirte en el evento/ Para el pago, se te proporcionará un enlace por separado donde puedes completar tu pago de 2500 rublos.",
                 },
               },
               type: "specialoption",
@@ -822,7 +822,7 @@ exports.tickets = {
                 },
                 russia: {
                   title: "לחברים שלנו מרוסיה",
-                  body: "כאן תכל להירשם לאירוע . לתשלום יישלח אליך לינק נפרד שבו ניתן להשלים תשלום של 800 רובל",
+                  body: "כאן תכל להירשם לאירוע . לתשלום יישלח אליך לינק נפרד שבו ניתן להשלים תשלום של 2500 רובל",
                 },
               },
               type: "specialoption",
@@ -906,7 +906,7 @@ exports.tickets = {
                 },
                 russia: {
                   title: "For our friends from Russia",
-                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 800 rubles.",
+                  body: "Here you can register for event/ For the payment, you will be provided with a sparate link where you can complete your payment of 2500 rubles.",
                 },
               },
               type: "specialoption",

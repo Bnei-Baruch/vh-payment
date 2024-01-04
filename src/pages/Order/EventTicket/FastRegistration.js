@@ -22,7 +22,7 @@ const BoxContainer = styled(Box)`
 
 export default function FastRegistration() {
     const {t, i18n} = useTranslation();
-    const {pdt} = useParams();
+    const { event_slug } = useParams();
     const user = useSelector((state) => state.user);
     const userProfileData = useSelector((state) => state.user.profileData);
 
@@ -38,7 +38,7 @@ export default function FastRegistration() {
             userProfileData.primary_email
         ) {
             setPosted(true);
-            const eventData = getEventsProductBySlug(pdt);
+            const eventData = getEventsProductBySlug(event_slug);
 
             getParticipantByEmail(userProfileData.primary_email)
                 .then((res) => {
@@ -59,7 +59,8 @@ export default function FastRegistration() {
                             });
                     }
                 })
-                .catch(async () => {
+                .catch(async (e) => {
+                    console.info("participant not found. creating", e)
                     const profileData = await getProfile(user.keycloak.subject);
                     const data = {
                         keycloak_id: user.keycloak.subject,
@@ -101,7 +102,7 @@ export default function FastRegistration() {
                 .finally(() => setLoading(false));
         }
         // eslint-disable-next-line
-    }, [pdt, user, userProfileData])
+    }, [event_slug, user, userProfileData])
 
     if (loading) {
         return (
