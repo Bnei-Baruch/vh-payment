@@ -24,7 +24,7 @@ export default function SpecialOptionInterestical() {
   const history = useHistory();
   const { event_slug } = useParams();
   const { t, i18n } = useTranslation();
-  const [selection, setSelection] = React.useState("ukraine");
+  const [selection, setSelection] = React.useState("russia");
   const moveback = () => {
     history.goBack();
   };
