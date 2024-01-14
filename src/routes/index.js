@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Order from "../pages/Order";
 import Ticket from "../pages/Order/EventTicket/tickets";
 import UserDetail from "../pages/registration";
@@ -35,6 +35,11 @@ const Routes = () => (
       {/* Old Membership Route */}
       {!window.APP_CONFIG.isMembershipV2 &&
         <Route exact from="/pay/order/:id" component={Order} />
+      }
+      {window.APP_CONFIG.isMembershipV2 &&
+          <Route exact from="/pay/order/:id">
+            <Redirect to="/pay/membership" />
+          </Route>
       }
 
       {/* Membership Cancellation Route */}
