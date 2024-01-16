@@ -92,9 +92,8 @@ export default function UpdatePayment() {
     setOnPayClicked(true);
     //Update the Amount and currency
     updateOrderById(orderId, {
-      ...orderDetails,
       Amount: amount,
-      Currency: currency,
+      Currency: currency.id.toUpperCase(),
     })
       .then(() => {
         setOnPayClicked(false);
@@ -102,6 +101,7 @@ export default function UpdatePayment() {
       })
       .catch((err) => {
         setOnPayClicked(false);
+        console.error("update payment details", err)
       });
   };
   const backToMembership = () => {
