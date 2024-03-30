@@ -524,16 +524,14 @@ export default function MembershipPayment() {
                 </SummartyContainer>
               </ElevatedContainer>
             </Grid>
-            <Grid item xs={12}>
-              <ElevatedContainer elevation={3}>
-                <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
-                <span>
-                  {selectedMembership.name === "manual"
-                    ? t("membership.manual_payment_confirmation_message")
-                    : t("membership.auto_payment_confirmation_message")}
-                </span>
-              </ElevatedContainer>
-            </Grid>
+            {selectedMembership.name === "manual" &&
+              <Grid item xs={12}>
+                <ElevatedContainer elevation={3}>
+                  <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
+                  <span>t("membership.auto_payment_confirmation_message")</span>
+                </ElevatedContainer>
+              </Grid>
+            }
             <Grid item xs={12}>
               <FormControlLabel
                 control={

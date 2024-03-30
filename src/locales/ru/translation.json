@@ -2,8 +2,7 @@
   "appbar": {
     "language": "Язык",
     "currency": "Валюта",
-    "text": "Наш виртуальный дом",
-    "membership": "My Membership Status"
+    "membership": "Статус"
   },
   "languages": {
     "en": "English",
@@ -40,7 +39,7 @@
     "error_paid": "Мы не можем обработать ваш платеж. Пожалуйста, попробуйте еще раз.",
     "successfully_paid": "Поздравляем! Вы зарегистрированы на конгресс",
     "back_to_event": "Вернуться в личный кабинет/события",
-    "back_to_my_membership": "Back to my membership",
+    "back_to_my_membership": "вернуться в личный кабинет",
     "become_a_member": "Активировать подписку",
     "membershipPaymentSuccess": "You have successfully paid for your subscription",
     "processing_event_registration_mb": "Статус вашего абонемента активный, мы обрабатываем вашу регистрацию.",
@@ -60,7 +59,7 @@
     "try_again": "Try again"
   },
   "common": {
-    "update": "Update",
+    "update": "Обновлять",
     "confirm": "Подтвердить",
     "cancel": "Отмена",
     "next": "продолжить",
@@ -68,7 +67,6 @@
     "edit": "Редактировать",
     "save": "Сохранить",
     "other": "Другой",
-    "upload": "Загрузить",
     "step": "Шаг",
     "amount": "Сумма",
     "ok": "OK",
@@ -83,10 +81,7 @@
     "period": "Period",
     "currency": "Валюта",
     "month": "долларов в месяц",
-    "month_single": "долларов в месяц"
-  },
-  "paymentMethod": {
-    "creditCard": "Кредитная"
+    "per_month": "в месяц"
   },
   "otherPayments": {
     "paymentDetails": "Детали оплаты",
@@ -94,16 +89,11 @@
     "offlineBank": "Оффлайн банковский перевод",
     "localGroup": "Через региональную группу",
     "incash": "Наличными",
-    "doYouHaveAReciept": "Receipt?",
     "extraInformation": "Дополнительная информация"
   },
   "help": {
-    "header": "Need Help?",
-    "requestHelp": "You cannot afford to pay and you want to request for help?",
-    "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
     "submittedHeader": "Заполните бланк для подачи заявки",
     "requestSubmitted": "Чтобы подать вашу заявку на финансовую помощь, нажмите кнопку ниже и заполните бланк",
-    "return_to_personal_area": "Вернуться в личный кабинет",
     "enter_details_for_help": "Заполнить бланк",
     "financial_help": "Финансовая помощь",
     "request_received": "Мы получили ваше обращение!",
@@ -158,21 +148,19 @@
     "successTitleUkraine": "Вы успешно зарегистрировались на мероприятие!",
     "successTitleRussia": "Вы успешно зарегистрировались на мероприятие!",
     "successDescription": "После регистрации мы вышлем ваш билет по электронной почте",
-    "titleIntersectial": "For our friends from",
     "descriptionIntersectialUkraine": "После регистрации мы вышлем ваш билет по электронной почте",
     "descriptionIntersectialRussia": "Оплатите участие по ссылке ниже"
   },
   "membership": {
     "title": "Подписка",
     "confirmation": "Подтверждение",
-    "active": "Active",
-    "inactive": "Inactive",
+    "active": "Активный",
+    "inactive": "Неактинвый",
     "back_to_status": "Назад",
     "monthly_manual_subscription": "Обычная подписка",
     "monthly_auto_subscription": "Автоматическая подписка",
     "manual_subscription_description": "Это единоразовый платеж за выбранный вами период",
     "auto_subscription_description": "С вашей карты оплата будет списываться ежемесячно автоматически. Вы можете отменить подписку в любое время.",
-    "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
     "auto_payment_confirmation_message": "После первого платежа, автоматическое списание средств будет ежемесячно 20-го числа, начиная со следующего месяца",
     "pay_more_than_month": "Вы можете выбрать оплату более 1 месяца",
     "pay_more_than": "Вы можете оплатить более",
@@ -180,9 +168,9 @@
     "method": "Способ оплаты",
     "type": "Тип подписки",
     "total_to_pay": "Сумма к оплате",
-    "update_automatic_subscription": "Update Automatic Subscription",
-    "succesfully_updated": "Succesfully updated",
-    "succesfully_updated_text": "You have successfully updated your subscription"
+    "update_automatic_subscription": "Обновить автоматическую подписку",
+    "succesfully_updated": "Успешно обновлено",
+    "succesfully_updated_text": "Вы успешно обновили свою подписку"
   },
   "cancellation": {
     "cancellation_success": "Отмена прошла успешно",
