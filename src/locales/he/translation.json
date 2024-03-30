@@ -78,7 +78,7 @@
     "successHeader": "Congratulations! You have successfully registered for the event",
     "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
     "viewTicket": "View Event Ticket",
-    "period": "תקופה",
+    "period": "מספר חודשים",
     "currency": "מטבע",
     "month": "חודש",
     "per_month": "לחודש"
@@ -126,7 +126,8 @@
     "secondLanguage": "שפה שניה",
     "startYear": "באיזו שנה התחלת בבני ברוך?",
     "tenName": "שם עשירייה",
-    "month_needed": "לכמה חודשים תרצו לשלם מנוי מראש",
+    "help_haver_title": "״הלפ חבר״ למנויים",
+    "month_needed": "לכמה חודשים אתה מבקש עזרה ?",
     "explain_situation": "הסבר את מצבך הכלכלי",
     "explain_situation_text": "אנא הסבר את מצבך הכלכלי, ספר על תרומותיך עד כה (כספית, התנדבותית)"
   },
@@ -159,7 +160,7 @@
     "back_to_status": "חזרה לסטטוס",
     "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",
-    "manual_subscription_description": "זהו תשלום חדש פעמי לתקופה שאתה בוחר",
+    "manual_subscription_description": "זהו תשלום חד פעמי לתקופה שאתה בוחר",
     "auto_subscription_description": "כרטיסך יחוייב חודשית באופן אוטומטי. תוכל לבטל את המנוי בכל עת.",
     "auto_payment_confirmation_message": "אחרי התשלום הראשון, חיוב מתחדש אוטומטי מתבצע ב 20 לכל חודש, החל מהחודש הבא",
     "pay_more_than_month": "אתה יכול לבחור בתשלום ליותר מחודש אחד",
