@@ -6,6 +6,8 @@ import {
   FormGroup,
   FormLabel,
   Grid,
+  Radio,
+  RadioGroup,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -25,8 +27,7 @@ export default function PreCancellation() {
   const { t } = useTranslation();
   const history = useHistory();
   const [state, setState] = React.useState({
-    notStudying: false,
-    financialProblem: false,
+    reason: "",
     additionalSuggestion: "",
   });
   const moveToConfirmationScreen = () => {
@@ -53,35 +54,15 @@ export default function PreCancellation() {
             <FormLabel component="legend">
               {t("cancellation.cancellation_title")}
             </FormLabel>
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={state.notStudying}
-                    onChange={() => {
-                      setState({ ...state, notStudying: !state.notStudying });
-                    }}
-                    name="notStudying"
-                  />
-                }
-                label={t("cancellation.no_longer_stronger")}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={state.financialProblem}
-                    onChange={() => {
-                      setState({
-                        ...state,
-                        financialProblem: !state.financialProblem,
-                      });
-                    }}
-                    name="financialProblem"
-                  />
-                }
-                label={t("cancellation.financial_problem")}
-              />
-            </FormGroup>
+            <RadioGroup
+              name="reason"
+              onChange={(event) => {
+                setState({ ...state, reason: event.target.value });
+              }}
+            >
+              <FormControlLabel value="notStudying" control={<Radio />} label={t("cancellation.no_longer_stronger")} />
+              <FormControlLabel value="financialProblem" control={<Radio />} label={t("cancellation.financial_problem")} />
+            </RadioGroup>
           </FormControl>
         </Grid>
         <Grid item xs={12}>
@@ -120,8 +101,7 @@ export default function PreCancellation() {
             color="primary"
             onClick={moveToConfirmationScreen}
             disabled={
-              !state.notStudying &&
-              !state.financialProblem &&
+              !state.reason &&
               !state.additionalSuggestion
             }
           >
