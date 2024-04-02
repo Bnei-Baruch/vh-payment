@@ -139,6 +139,7 @@ export default function UpdatePayment() {
   React.useEffect(() => {
     if (membership) {
       const automatic = membership.plans.find(x => x.name === 'automatic')
+      setAmount(automatic.price[currency.id].amount);
       setMinAmount(automatic.price[currency.id].amount);
     }
   }, [membership, currency])

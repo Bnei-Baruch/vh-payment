@@ -8,7 +8,6 @@ import Error from "../pages/Error";
 import NotFound from "../pages/Error/NotFound";
 import Payment from "../pages/Order/EventTicket/payment";
 import OtherPayment from "../pages/Order/otherpayment";
-import Needhelp from "../pages/Order/Needhelp";
 import Membership from "../pages/Order/Membership/Membership";
 import MembershipPayment from "../pages/Order/Membership/MembershipPayment";
 import HelpHaverSuccess from "../pages/Success/helphaversuccess";
@@ -145,11 +144,6 @@ const Routes = () => (
         exact
         from="/pay/order/ticket/payment/help/:event_slug/success"
         component={HelpHaverSuccess}
-      />
-      <Route
-        exact
-        from="/pay/order/ticket/payment/help/:event_slug"
-        component={Needhelp}
       />
       <Route
         exact

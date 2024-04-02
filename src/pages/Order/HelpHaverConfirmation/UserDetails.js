@@ -66,18 +66,18 @@ export default function UserDetails() {
   });
 
   const periods = [
-    { value: 1, name: `1 ${t("common.month")}` },
-    { value: 2, name: `2 ${t("common.month")}` },
-    { value: 3, name: `3 ${t("common.month")}` },
-    { value: 4, name: `4 ${t("common.month")}` },
-    { value: 5, name: `5 ${t("common.month")}` },
-    { value: 6, name: `6 ${t("common.month")}` },
-    { value: 7, name: `7 ${t("common.month")}` },
-    { value: 8, name: `8 ${t("common.month")}` },
-    { value: 9, name: `9 ${t("common.month")}` },
-    { value: 10, name: `10 ${t("common.month")}` },
-    { value: 11, name: `11 ${t("common.month")}` },
-    { value: 12, name: `12 ${t("common.month")}` },
+    { value: 1, name: "1" },
+    { value: 2, name: "2" },
+    { value: 3, name: "3" },
+    { value: 4, name: "4" },
+    { value: 5, name: "5" },
+    { value: 6, name: "6" },
+    { value: 7, name: "7" },
+    { value: 8, name: "8" },
+    { value: 9, name: "9" },
+    { value: 10, name: "10" },
+    { value: 11, name: "11" },
+    { value: 12, name: "12" },
   ];
 
   const [activeStep, setActionStep] = React.useState(0);
@@ -149,7 +149,7 @@ export default function UserDetails() {
         <Grid container spacing={6}>
           <Grid item xs={12}>
             <Typography variant="h1" style={{ textAlign: "center" }}>
-              Help Haver for Membership
+              {t("userDetail.help_haver_title")}
             </Typography>
           </Grid>
           <Grid item xs={12}>
