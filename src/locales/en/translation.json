@@ -2,7 +2,6 @@
   "appbar": {
     "language": "Language",
     "currency": "Currency",
-    "text": "Our Virtual Home",
     "membership": "My Membership Status"
   },
   "languages": {
@@ -34,8 +33,8 @@
     "processing": "Processing",
     "returnToPersonalArea": "Return to Personal area",
     "payment_success": "Payment successful",
-    "payment_error": "Your Payment has failed",
-    "payment_cancel": "Your Payment has been canceled",
+    "payment_error": "Your payment has failed",
+    "payment_cancel": "Your payment has been canceled",
     "payment_cancel_error": "Your payment was cancel. Please try again",
     "error_paid": "We aren't able to process your payment. Please try again.",
     "successfully_paid": "You have successfully bought a ticket to the event.",
@@ -68,7 +67,6 @@
     "edit": "Edit",
     "save": "Save",
     "other": "Other",
-    "upload": "Upload",
     "step": "Step",
     "amount": "Amount",
     "ok": "Ok",
@@ -80,13 +78,10 @@
     "successHeader": "Congratulations! You have successfully registered for the event",
     "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
     "viewTicket": "View Event Ticket",
-    "period": "Period",
+    "period": "Number of months",
     "currency": "Currency",
     "month": "Month",
-    "month_single": "Month"
-  },
-  "paymentMethod": {
-    "creditCard": "Credit Card"
+    "per_month": "per month"
   },
   "otherPayments": {
     "paymentDetails": "Payment details",
@@ -94,16 +89,11 @@
     "offlineBank": "Offline Bank Transfer",
     "localGroup": "Through Local Group",
     "incash": "In cash",
-    "doYouHaveAReciept": "Do you have a reciept?",
     "extraInformation": "Extra Information"
   },
   "help": {
-    "header": "Need Help?",
-    "requestHelp": "You cannot afford to pay and you want to request for help?",
-    "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
     "submittedHeader": "Complete the form below",
     "requestSubmitted": "In order to complete your application for financial help, you must complete the form following the link below",
-    "return_to_personal_area": "Return to personal area",
     "enter_details_for_help": "Complete Form",
     "financial_help": "Financial Help",
     "request_received": "We have received your request!",
@@ -136,7 +126,8 @@
     "secondLanguage": "Second Langugage",
     "startYear": "What year did you start in Bnei Baruch?",
     "tenName": "What is your Ten Name?",
-    "month_needed": "How many month do you need ?",
+    "help_haver_title": "Help Haver for Membership",
+    "month_needed": "How many months do you need ?",
     "explain_situation": "Explain your situation",
     "explain_situation_text": "Please explain your financial situation, and please mention you previous contribution (either financial, or volunteering)"
   },
@@ -158,7 +149,6 @@
     "successTitleUkraine": "You have successfully registered for the event!",
     "successTitleRussia": "You have successfully registered for the event!",
     "successDescription": "After registration, we will send you a ticket to the event by email.",
-    "titleIntersectial": "For our friends from",
     "descriptionIntersectialUkraine": "The leadership of the International Kabbalah Academy has decided that participation in this event is free for friends from Ukraine. You just need to register for the event.",
     "descriptionIntersectialRussia": "Here you can register for the event. After registration, we will send you a ticket to the event by email."
   },
@@ -172,7 +162,6 @@
     "monthly_auto_subscription": "Automatic Subscription",
     "manual_subscription_description": "This is a one time payment for the period you choose",
     "auto_subscription_description": "Your card will be charged monthly automatically. You can cancel your subscription  at any time.",
-    "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
     "auto_payment_confirmation_message": "After the first payment, automatic payments are charged every month on the 20th, starting from next month.",
     "pay_more_than_month": "You can choose to pay more than 1 month",
     "pay_more_than": "You can choose to pay more than",

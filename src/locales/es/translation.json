@@ -2,8 +2,7 @@
   "appbar": {
     "language": "Language",
     "currency": "Moneda",
-    "text": "Our Virtual Home",
-    "membership": "My Membership Status"
+    "membership": "Estatus"
   },
   "languages": {
     "en": "English",
@@ -40,7 +39,7 @@
     "error_paid": "No hemos podido procesar tu pago. Por favor inténtalo de nuevo",
     "successfully_paid": "Has adquirido el boleto para el event ",
     "back_to_event": "Volver a Eventos",
-    "back_to_my_membership": "Back to my membership",
+    "back_to_my_membership": "Volver a Mi Membresía",
     "become_a_member": "Activar membresía",
     "membershipPaymentSuccess": "You have successfully paid for your subscription",
     "processing_event_registration_mb": "Tienes una membresía activa, estamos procesando tu registro.",
@@ -60,7 +59,7 @@
     "try_again": "Try again"
   },
   "common": {
-    "update": "Update",
+    "update": "Actualizar",
     "confirm": "Confirmar",
     "cancel": "Cancelar",
     "next": "Siguiente",
@@ -68,7 +67,6 @@
     "edit": "Editar",
     "save": "Guardar",
     "other": "Otro",
-    "upload": "Subir",
     "step": "Paso",
     "amount": "Cantidad",
     "ok": "Ok",
@@ -80,22 +78,10 @@
     "successHeader": "Te has inscrito con éxito en el evento.",
     "successDescription": "Después de la inscripción, te enviaremos una entrada al evento por correo electrónico.",
     "viewTicket": "View Event Ticket",
-    "period": "Period",
+    "period": "Número de meses",
     "currency": "Moneda",
     "month": "Mes",
-    "month_single": "dólares al mes"
-  },
-  "paymentMethod": {
-    "creditCard": "Credit Card"
-  },
-  "ssotherPayments": {
-    "paymentDetails": "Payment details",
-    "howAreYouPaying": "How are you paying?",
-    "offlineBank": "Offline Bank Transfer",
-    "localGroup": "Through Local Group",
-    "incash": "In cash",
-    "doYouHaveAReciept": "Do you have a reciept?",
-    "extraInformation": "Extra Information"
+    "per_month": "por al mes"
   },
   "otherPayments": {
     "paymentDetails": "Detalles del pago",
@@ -107,12 +93,8 @@
     "extraInformation": "información adicional"
   },
   "help": {
-    "header": "Need Help?",
-    "requestHelp": "You cannot afford to pay and you want to request for help?",
-    "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
     "submittedHeader": "Rellene el siguiente formulario",
     "requestSubmitted": "Para completar su solicitud, de ayuda financiera, debe completar el formulario en el siguiente enlace",
-    "return_to_personal_area": "Volver al área personal",
     "enter_details_for_help": "Completar formulario",
     "financial_help": "Ayuda financiera",
     "request_received": "¡Hemos recibido su solicitud!",
@@ -145,6 +127,7 @@
     "secondLanguage": "Segundo lenguaje",
     "startYear": "Año de inicio",
     "tenName": "Nombre de la decena",
+    "help_haver_title": "Help Haver para la Membresía",
     "month_needed": "¿Cuántos meses necesita?",
     "explain_situation": "Explique su situación",
     "explain_situation_text": "Por favor, explique su situación financiera, y por favor mencione su contribución anterior (ya sea financiera o de voluntariado)"
@@ -167,21 +150,19 @@
     "successTitleUkraine": "Te has inscrito con éxito en el evento.",
     "successTitleRussia": "Te has inscrito con éxito en el evento.",
     "successDescription": "Tras la inscripción, te enviaremos una entrada al evento por correo electrónico.",
-    "titleIntersectial": "For our friends from",
     "descriptionIntersectialUkraine": "Tras la inscripción, te enviaremos una entrada al evento por correo electrónico.",
     "descriptionIntersectialRussia": "Después de la inscripción, te enviaremos una entrada al evento por correo electrónico. No olvides de completar tu pago en el enlace de abajo."
   },
   "membership": {
     "title": "Membresía",
     "confirmation": "Confirmación",
-    "active": "Active",
-    "inactive": "Inactive",
+    "active": "Activo",
+    "inactive": "Inactivo",
     "back_to_status": "Volver a Estatus",
     "monthly_manual_subscription": "Suscripción manual",
     "monthly_auto_subscription": "Suscripción automática",
     "manual_subscription_description": "Se trata de un pago único por el periodo que elija",
     "auto_subscription_description": "Su tarjeta se cargará mensualmente de forma automática. Puede cancelar su suscripción en cualquier momento.",
-    "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
     "auto_payment_confirmation_message": "Después del primer pago, los pagos automáticos se cobran cada mes el día 20, a partir del mes siguiente.",
     "pay_more_than_month": "Puede elegir pagar más de 1 mes",
     "pay_more_than": "Puede pagar más de",
@@ -189,9 +170,9 @@
     "method": "Forma de pago",
     "type": "Tipo",
     "total_to_pay": "Total a pagar",
-    "update_automatic_subscription": "Update Automatic Subscription",
-    "succesfully_updated": "Succesfully updated",
-    "succesfully_updated_text": "You have successfully updated your subscription"
+    "update_automatic_subscription": "Actualizar suscripción automática",
+    "succesfully_updated": "Actualizado exitosamente",
+    "succesfully_updated_text": "Has actualizado correctamente tu suscripción"
   },
   "cancellation": {
     "cancellation_success": "Cancelado con éxito",

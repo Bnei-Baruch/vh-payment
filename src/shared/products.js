@@ -1075,7 +1075,7 @@ exports.tickets = {
         he: {
           name: "קרן עזרה ״הלפ חבר״",
           description: [
-            "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה",
+            "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו. אם אתה נזקק לסיוע כספי, אתה יכול לפנות לעזרה",
           ],
           button_label: "פנייה לעזרה",
           options: [
@@ -1084,7 +1084,7 @@ exports.tickets = {
               label: "הלפ חבר",
               intersticial: {
                 title: "קרן סיוע ״הלפ חבר״ להרשמה לכנס",
-                body: "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו, אם אתה נזקק לסיוע כספי , אתה יכול לפנות לעזרה <br /> <br /> הרשמתך בהמתנה עד לאישור",
+                body: "אנחנו רוצים שהאירוע הזה יהיה זמין לכל אחד מאיתנו. אם אתה נזקק לסיוע כספי, אתה יכול לפנות לעזרה <br /> <br /> הרשמתך בהמתנה עד לאישור",
                 button: "הבא",
               },
               redirect_url:
@@ -1296,7 +1296,7 @@ exports.membershipsplans = {
         en: {
           name: "Manual",
           description: [
-            "You pay manual every time,  there is no automatical renewal. You can also pay ahead for any period of time.",
+            "You pay manually every time, no automatical renewal. You can also pay in advance for a few months.",
           ],
           button_label: "Select this Plan",
         },
@@ -1317,7 +1317,7 @@ exports.membershipsplans = {
         he: {
           name: "ידני",
           description: [
-            "אתה משלם בכל פעם מחדש, אין חידוש אוטומטי. אתה יכול לשלם לתקופה מראש הכל על.",
+            "אתה משלם בכל פעם מחדש, אין חידוש אוטומטי. אפשר לשלם מראש עבור כמה חודשים.",
           ],
           button_label: "בחר תכנית זו",
         },

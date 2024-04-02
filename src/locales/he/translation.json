@@ -2,8 +2,7 @@
   "appbar": {
     "language": "שפה",
     "currency": "מטבע",
-    "text": "Our Virtual Home",
-    "membership": "My Membership Status"
+    "membership": "סטטוס"
   },
   "languages": {
     "en": "English",
@@ -60,15 +59,14 @@
     "try_again": "Try again"
   },
   "common": {
-    "update": "Update",
+    "update": "עדכן",
     "confirm": "לאשר",
     "cancel": "לבטל",
     "next": "הלאה",
     "back": "חזרה",
     "edit": "ערוך",
     "save": "שמור",
-    "other": "Other",
-    "upload": "Upload",
+    "other": "אחר",
     "step": "שלב",
     "amount": "סכום",
     "ok": "כן",
@@ -80,30 +78,22 @@
     "successHeader": "Congratulations! You have successfully registered for the event",
     "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
     "viewTicket": "View Event Ticket",
-    "period": "תקופה",
+    "period": "מספר חודשים",
     "currency": "מטבע",
     "month": "חודש",
-    "month_single": "דולר לחודש"
-  },
-  "paymentMethod": {
-    "creditCard": "ע״י כרטיס אשראי"
+    "per_month": "לחודש"
   },
   "otherPayments": {
     "paymentDetails": "פרטי תשלום",
     "howAreYouPaying": "איך אתה משלם?",
-    "offlineBank": "Offline Bank Transfer",
+    "offlineBank": "העברה בנקאית",
     "localGroup": "דרך קבוצה מקומית",
     "incash": "במזומן",
-    "doYouHaveAReciept": "Do you have a reciept?",
-    "extraInformation": "Extra Information"
+    "extraInformation": "מידע נוסף"
   },
   "help": {
-    "header": "זקוק לעזרה?",
-    "requestHelp": "You cannot afford to pay and you want to request for help?",
-    "helpDescription": "loreum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
     "submittedHeader": "השלם את הטופס הבא",
     "requestSubmitted": "להשלמת הבקשה לסיוע כספי, עליך למלא את הטופס, הקלק על הקישור למטה",
-    "return_to_personal_area": "Return to personal area",
     "enter_details_for_help": "מילוי הטופס",
     "financial_help": "עזרה כספית",
     "request_received": "קיבלנו את בקשתך!",
@@ -136,7 +126,8 @@
     "secondLanguage": "שפה שניה",
     "startYear": "באיזו שנה התחלת בבני ברוך?",
     "tenName": "שם עשירייה",
-    "month_needed": "לכמה חודשים תרצו לשלם מנוי מראש",
+    "help_haver_title": "״הלפ חבר״ למנויים",
+    "month_needed": "לכמה חודשים אתה מבקש עזרה ?",
     "explain_situation": "הסבר את מצבך הכלכלי",
     "explain_situation_text": "אנא הסבר את מצבך הכלכלי, ספר על תרומותיך עד כה (כספית, התנדבותית)"
   },
@@ -158,21 +149,19 @@
     "successTitleUkraine": "נרשמת בהצלחה לאירוע!",
     "successTitleRussia": "נרשמת בהצלחה לאירוע!",
     "successDescription": "לאחר ההרשמה, נשלח לך את הכרטיס בדואר אלקטרוני",
-    "titleIntersectial": "For our friends from",
     "descriptionIntersectialUkraine": "לאחר ההרשמה, נשלח לך את הכרטיס בדואר אלקטרוני",
     "descriptionIntersectialRussia": "לאחר ההרשמה, נשלח אליך כרטיס בדואר אלקטרוני, אל תשכח להשלים את התשלום שלך בקישור למטה"
   },
   "membership": {
     "title": "מנוי",
     "confirmation": "אישור",
-    "active": "Active",
+    "active": "פעיל",
     "inactive": "לא פעיל",
     "back_to_status": "חזרה לסטטוס",
     "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",
-    "manual_subscription_description": "זהו תשלום חדש פעמי לתקופה שאתה בוחר",
+    "manual_subscription_description": "זהו תשלום חד פעמי לתקופה שאתה בוחר",
     "auto_subscription_description": "כרטיסך יחוייב חודשית באופן אוטומטי. תוכל לבטל את המנוי בכל עת.",
-    "manual_payment_confirmation_message": "We'll remind you when it's time to update your subscription.",
     "auto_payment_confirmation_message": "אחרי התשלום הראשון, חיוב מתחדש אוטומטי מתבצע ב 20 לכל חודש, החל מהחודש הבא",
     "pay_more_than_month": "אתה יכול לבחור בתשלום ליותר מחודש אחד",
     "pay_more_than": "אתה יכול לשלם יותר",
@@ -180,9 +169,9 @@
     "method": "שיטה",
     "type": "סוג",
     "total_to_pay": "סך הכל לתשלום",
-    "update_automatic_subscription": "Update Automatic Subscription",
-    "succesfully_updated": "Succesfully updated",
-    "succesfully_updated_text": "You have successfully updated your subscription"
+    "update_automatic_subscription": "עדכון מנוי אוטומטי",
+    "succesfully_updated": "עודכן בהצלחה",
+    "succesfully_updated_text": "פרטי המנוי שלך עודכנו בהצלחה"
   },
   "cancellation": {
     "cancellation_success": "בוטל בהצלחה",

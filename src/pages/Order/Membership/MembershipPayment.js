@@ -141,18 +141,18 @@ export default function MembershipPayment() {
   );
 
   const periods = [
-    { value: 1, name: `1 ${t("common.month")}` },
-    { value: 2, name: `2 ${t("common.month")}` },
-    { value: 3, name: `3 ${t("common.month")}` },
-    { value: 4, name: `4 ${t("common.month")}` },
-    { value: 5, name: `5 ${t("common.month")}` },
-    { value: 6, name: `6 ${t("common.month")}` },
-    { value: 7, name: `7 ${t("common.month")}` },
-    { value: 8, name: `8 ${t("common.month")}` },
-    { value: 9, name: `9 ${t("common.month")}` },
-    { value: 10, name: `10 ${t("common.month")}` },
-    { value: 11, name: `11 ${t("common.month")}` },
-    { value: 12, name: `12 ${t("common.month")}` },
+    { value: 1, name: "1" },
+    { value: 2, name: "2" },
+    { value: 3, name: "3" },
+    { value: 4, name: "4" },
+    { value: 5, name: "5" },
+    { value: 6, name: "6" },
+    { value: 7, name: "7" },
+    { value: 8, name: "8" },
+    { value: 9, name: "9" },
+    { value: 10, name: "10" },
+    { value: 11, name: "11" },
+    { value: 12, name: "12" },
   ];
 
   const [profileData, setUserProfileData] = React.useState(null);
@@ -524,16 +524,14 @@ export default function MembershipPayment() {
                 </SummartyContainer>
               </ElevatedContainer>
             </Grid>
-            <Grid item xs={12}>
-              <ElevatedContainer elevation={3}>
-                <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
-                <span>
-                  {selectedMembership.name === "manual"
-                    ? t("membership.manual_payment_confirmation_message")
-                    : t("membership.auto_payment_confirmation_message")}
-                </span>
-              </ElevatedContainer>
-            </Grid>
+            {selectedMembership.name === "manual" &&
+              <Grid item xs={12}>
+                <ElevatedContainer elevation={3}>
+                  <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
+                  <span>t("membership.auto_payment_confirmation_message")</span>
+                </ElevatedContainer>
+              </Grid>
+            }
             <Grid item xs={12}>
               <FormControlLabel
                 control={
