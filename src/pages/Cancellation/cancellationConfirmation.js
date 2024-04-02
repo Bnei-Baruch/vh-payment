@@ -23,9 +23,7 @@ export default function CancelConfirmation(props) {
   const confirmCancellation = () => {
     cancelMembership({
       email: user.profile.email,
-      cancellation_reason: props.location.state.state.notStudying
-        ? "Not Studying"
-        : "Financial Problem",
+      cancellation_reason: props.location.state.state.reason,
       cancellation_description: props.location.state.state.additionalSuggestion,
     })
       .then(() => {

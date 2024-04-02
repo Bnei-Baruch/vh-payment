@@ -157,25 +157,6 @@ export default function OtherPayment() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          {/* <Grid item xs={12}>
-            <FormControl>
-              <FormLabel id="demo-radio-buttons-group-label">
-                {t("otherPayments.doYouHaveAReciept")}
-              </FormLabel>
-              <br />
-              <label htmlFor="contained-button-file">
-                <Input
-                  accept="image/*"
-                  id="contained-button-file"
-                  multiple
-                  type="file"
-                />
-                <Button variant="contained" color="primary" component="span">
-                  {t("common.upload")}
-                </Button>
-              </label>
-            </FormControl>
-          </Grid> */}
           <Grid item xs={12}>
             <TextField
               id="outlined-basic"
