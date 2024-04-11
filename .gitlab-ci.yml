@@ -13,8 +13,6 @@ variables:
 build_staging:
   image: docker:latest
   stage: build
-  tags:
-    - staging
   services:
     - docker:26.0.0-dind
   script:
