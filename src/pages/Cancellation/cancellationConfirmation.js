@@ -22,7 +22,7 @@ export default function CancelConfirmation(props) {
   };
   const confirmCancellation = () => {
     cancelMembership({
-      email: user.profile.email,
+      keycloak_id :user.keycloak.subject,
       cancellation_reason: props.location.state.state.reason,
       cancellation_description: props.location.state.state.additionalSuggestion,
     })
