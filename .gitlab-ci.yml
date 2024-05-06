@@ -68,7 +68,7 @@ deploy_production:
     - for variable in "${!DYN_PROD@}"; do echo "${variable#DYN_PROD_}"="${!variable}"; export "${variable#DYN_PROD_}"="${!variable}"; done;
     - gomplate --input-dir=config-templates --output-map="/opt/$CI_PROJECT_PATH/public/config/{{ .in | strings.ReplaceAll \".js\" \"-${CI_COMMIT_SHORT_SHA}.js\" }}"
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - IMAGE_NAME=$PROD_IMAGE docker-compose up -d
+    - IMAGE_NAME=$PROD_IMAGE docker compose up -d
   only:
     - tags
   when: manual
