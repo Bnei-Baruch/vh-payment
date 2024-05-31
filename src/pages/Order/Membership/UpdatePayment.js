@@ -8,21 +8,32 @@ import {
   InputAdornment,
   OutlinedInput,
   FormHelperText,
+  Box,
+  Tooltip,
 } from "@material-ui/core";
-import React from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
-import { getOrderByID, updateOrderById } from "../../../services/orderservice";
+import {
+  getOrderByID,
+  updateOrderById,
+  updateCard,
+  cardSuccessfullyUpdated,
+} from "../../../services/orderservice";
 import { getMembershipProduct } from "../../../services/productservice";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
 import { currencies } from "../../../shared/currencies";
 import { setCurrency } from "../../../redux/actions/currencyActions";
+import EditIcon from "@material-ui/icons/Edit";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
     margin-bottom: 10px;
@@ -71,12 +82,26 @@ const ElevatedContainer = styled(Paper)`
   display: flex;
   align-items: center;
 `;
+
+const NotificationContainer = styled(Paper)`
+  padding: 8px 15px;
+  margin-left: 12px;
+  color: #fff;
+  background: ${(props) => props.color};
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+`;
+
 export default function UpdatePayment() {
   const { t } = useTranslation();
   const history = useHistory();
   const { orderId } = useParams();
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.user);
+  const language = useSelector((state) => state.language);
   const currency = useSelector((state) => state.currency);
   const [orderDetails, setOrderDetails] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
@@ -84,6 +109,12 @@ export default function UpdatePayment() {
   const [minAmount, setMinAmount] = React.useState(0);
   const [amount, setAmount] = React.useState(0);
   const [membership, setMembership] = React.useState(undefined);
+
+  const cardUpdateStatus = useMemo(
+    () => new URLSearchParams(window.location.search).get("card_update_status"),
+    []
+  );
+
   React.useEffect(() => {
     setMembership(getMembershipProduct());
   }, []);
@@ -101,7 +132,7 @@ export default function UpdatePayment() {
       })
       .catch((err) => {
         setOnPayClicked(false);
-        console.error("update payment details", err)
+        console.error("update payment details", err);
       });
   };
   const backToMembership = () => {
@@ -119,6 +150,13 @@ export default function UpdatePayment() {
 
   React.useEffect(() => {
     getOrderDetailsById();
+
+    if (cardUpdateStatus === "success") {
+      cardSuccessfullyUpdated({ orderId }).catch((e) => {
+        console.error(e);
+      });
+    }
+
     // eslint-disable-next-line
   }, []);
 
@@ -138,11 +176,31 @@ export default function UpdatePayment() {
 
   React.useEffect(() => {
     if (membership) {
-      const automatic = membership.plans.find(x => x.name === 'automatic')
+      const automatic = membership.plans.find((x) => x.name === "automatic");
       setAmount(automatic.price[currency.id].amount);
       setMinAmount(automatic.price[currency.id].amount);
     }
-  }, [membership, currency])
+  }, [membership, currency]);
+
+  const handleUpdateCard = async () => {
+    const data = {
+      Language: language.id.toUpperCase(),
+      UserKey: user.keycloak.subject,
+      Amount: amount,
+      Currency: currency.id.toUpperCase(),
+      successUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_status=success`,
+      cancelUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_status=failed`,
+      errorUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_status=failed`,
+    };
+
+    updateCard(data)
+      .then((resp) => {
+        window.location.href = resp.data.url;
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
 
   if (loading) return <Loader />;
   if (!loading && !orderDetails && false)
@@ -161,6 +219,25 @@ export default function UpdatePayment() {
               {t("membership.update_automatic_subscription")}
             </Typography>
           </Grid>
+          {cardUpdateStatus && (
+            <NotificationContainer
+              color={cardUpdateStatus === "success" ? "#4caf50" : "#f44336"}
+            >
+              {cardUpdateStatus === "success" ? (
+                <CheckCircleOutlineIcon />
+              ) : (
+                <ErrorOutlineIcon />
+              )}
+              &nbsp;{" "}
+              <span>
+                {t(
+                  cardUpdateStatus === "success"
+                    ? "membership.succesfully_updated_card"
+                    : "membership.failed_to_update_card"
+                )}
+              </span>
+            </NotificationContainer>
+          )}
           <Grid item xs={12}>
             <ElevatedContainer elevation={3}>
               <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
@@ -168,7 +245,7 @@ export default function UpdatePayment() {
             </ElevatedContainer>
           </Grid>
           <Grid container item xs={12} spacing={6}>
-            <Grid item xs={12}>
+            <Grid item xs={4}>
               <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">
                   {t("common.currency")}
@@ -176,7 +253,7 @@ export default function UpdatePayment() {
                 <CurrencyPicker variant="outlined" />
               </FormControl>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={8}>
               <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">
                   {t("common.amount")}
@@ -231,6 +308,31 @@ export default function UpdatePayment() {
               </FormControl>
             </Grid>
           </Grid>
+          <Tooltip
+            arrow
+            title={t("membership.update_card")}
+            placement="right"
+            style={{ cursor: "pointer" }}
+            onClick={handleUpdateCard}
+          >
+            <Box
+              m={3}
+              p={3}
+              mr={5}
+              border={2}
+              borderRadius={8}
+              borderColor="#1976d2"
+              display="flex"
+              flexDirection="column"
+              alignItems="end"
+            >
+              <EditIcon style={{ color: "#1976d2", paddingBottom: 8 }} />
+              <Typography variant="h5">**** **** **** 9172</Typography>
+              <Typography style={{ marginTop: 7 }} variant="button">
+                **/**
+              </Typography>
+            </Box>
+          </Tooltip>
           <Grid
             item
             xs={12}
