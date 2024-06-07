@@ -55,7 +55,10 @@ export const updateOrderById = async (id, data) => {
 
 export const updateCard = async (data) => {
   return await axios
-    .post(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/new_token`, data)
+    .post(
+      `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/transaction/new_token`,
+      data
+    )
     .then((response) => response)
     .catch((error) => {
       throw error;

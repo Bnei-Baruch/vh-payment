@@ -11,7 +11,7 @@ import {
   Box,
   Tooltip,
 } from "@material-ui/core";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -33,6 +33,7 @@ import { setCurrency } from "../../../redux/actions/currencyActions";
 import EditIcon from "@material-ui/icons/Edit";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import { getProfile } from "../../../services/userservice";
 
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
@@ -103,6 +104,7 @@ export default function UpdatePayment() {
   const user = useSelector((state) => state.user);
   const language = useSelector((state) => state.language);
   const currency = useSelector((state) => state.currency);
+  const order = useSelector((state) => state.order);
   const [orderDetails, setOrderDetails] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [payClicked, setOnPayClicked] = React.useState(false);
@@ -110,12 +112,18 @@ export default function UpdatePayment() {
   const [amount, setAmount] = React.useState(0);
   const [membership, setMembership] = React.useState(undefined);
 
-  const cardUpdateStatus = useMemo(
-    () => new URLSearchParams(window.location.search).get("card_update_status"),
+  const paramX = useMemo(
+    () => new URLSearchParams(window.location.search).get("paramX"),
     []
   );
 
-  React.useEffect(() => {
+  const cardUpdateIsFailed = useMemo(
+    () =>
+      new URLSearchParams(window.location.search).get("card_update_is_failed"),
+    []
+  );
+
+  useEffect(() => {
     setMembership(getMembershipProduct());
   }, []);
 
@@ -148,19 +156,25 @@ export default function UpdatePayment() {
       .catch((err) => console.error(err));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     getOrderDetailsById();
-
-    if (cardUpdateStatus === "success") {
-      cardSuccessfullyUpdated({ orderId }).catch((e) => {
-        console.error(e);
-      });
-    }
-
     // eslint-disable-next-line
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (paramX && user?.keycloak?.subject) {
+      cardSuccessfullyUpdated({
+        orderId,
+        userKey: user?.keycloak?.subject,
+        paramX,
+        token: new URLSearchParams(window.location.search).get("token"),
+      }).catch((e) => {
+        console.error(e);
+      });
+    }
+  }, [user]);
+
+  useEffect(() => {
     if (orderDetails) {
       setAmount(orderDetails.Amount);
 
@@ -174,7 +188,7 @@ export default function UpdatePayment() {
     // eslint-disable-next-line
   }, [orderDetails]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (membership) {
       const automatic = membership.plans.find((x) => x.name === "automatic");
       setAmount(automatic.price[currency.id].amount);
@@ -183,16 +197,23 @@ export default function UpdatePayment() {
   }, [membership, currency]);
 
   const handleUpdateCard = async () => {
+    const profileData = await getProfile(user.keycloak.subject);
     const data = {
       Language: language.id.toUpperCase(),
       UserKey: user.keycloak.subject,
-      Amount: amount,
       Currency: currency.id.toUpperCase(),
-      successUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_status=success`,
-      cancelUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_status=failed`,
-      errorUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_status=failed`,
+      Reference: order.product.reference,
+      Organization: orderDetails?.Organization,
+      SKU: order.product.SKU,
+      FirstName: user.profile.firstName,
+      LastName: user.profile.lastName,
+      Email: user.profile.email,
+      Phone: profileData?.mobile_number || "",
+      Country: profileData?.country || "",
+      successUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}`,
+      cancelUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_is_failed=true`,
+      errorUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_is_failed=true`,
     };
-
     updateCard(data)
       .then((resp) => {
         window.location.href = resp.data.url;
@@ -219,25 +240,19 @@ export default function UpdatePayment() {
               {t("membership.update_automatic_subscription")}
             </Typography>
           </Grid>
-          {cardUpdateStatus && (
-            <NotificationContainer
-              color={cardUpdateStatus === "success" ? "#4caf50" : "#f44336"}
-            >
-              {cardUpdateStatus === "success" ? (
-                <CheckCircleOutlineIcon />
-              ) : (
-                <ErrorOutlineIcon />
-              )}
+          {cardUpdateIsFailed || paramX ? (
+            <NotificationContainer color={paramX ? "#4caf50" : "#f44336"}>
+              {paramX ? <CheckCircleOutlineIcon /> : <ErrorOutlineIcon />}
               &nbsp;{" "}
               <span>
                 {t(
-                  cardUpdateStatus === "success"
+                  paramX
                     ? "membership.succesfully_updated_card"
                     : "membership.failed_to_update_card"
                 )}
               </span>
             </NotificationContainer>
-          )}
+          ) : null}
           <Grid item xs={12}>
             <ElevatedContainer elevation={3}>
               <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
@@ -327,7 +342,12 @@ export default function UpdatePayment() {
               alignItems="end"
             >
               <EditIcon style={{ color: "#1976d2", paddingBottom: 8 }} />
-              <Typography variant="h5">**** **** **** 9172</Typography>
+              <Typography variant="h5">
+                **** **** ****{" "}
+                {user?.membershipdataV2?.details?.payment?.payment_method?.slice(
+                  -4
+                ) ?? "****"}
+              </Typography>
               <Typography style={{ marginTop: 7 }} variant="button">
                 **/**
               </Typography>
