@@ -528,7 +528,7 @@ export default function MembershipPayment() {
               <Grid item xs={12}>
                 <ElevatedContainer elevation={3}>
                   <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
-                  <span>t("membership.auto_payment_confirmation_message")</span>
+                  <span>{t("membership.auto_payment_confirmation_message")}</span>
                 </ElevatedContainer>
               </Grid>
             }
