@@ -171,7 +171,10 @@
     "total_to_pay": "סך הכל לתשלום",
     "update_automatic_subscription": "עדכון מנוי אוטומטי",
     "succesfully_updated": "עודכן בהצלחה",
-    "succesfully_updated_text": "פרטי המנוי שלך עודכנו בהצלחה"
+    "succesfully_updated_text": "פרטי המנוי שלך עודכנו בהצלחה",
+    "update_card": "עדכן פרטי כרטיס",
+    "succesfully_updated_card": "פרטי הכרטיס עודכנו בהצלחה",
+    "failed_to_update_card": "עדכון פרטי הכרטיס נכשל"
   },
   "cancellation": {
     "cancellation_success": "בוטל בהצלחה",
