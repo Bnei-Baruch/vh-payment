@@ -11,7 +11,7 @@ import {
   Box,
   Tooltip,
 } from "@material-ui/core";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -23,6 +23,7 @@ import {
   updateOrderById,
   updateCard,
   cardSuccessfullyUpdated,
+  getCardDetails,
 } from "../../../services/orderservice";
 import { getMembershipProduct } from "../../../services/productservice";
 import Loader from "../../../components/Loader";
@@ -105,21 +106,24 @@ export default function UpdatePayment() {
   const language = useSelector((state) => state.language);
   const currency = useSelector((state) => state.currency);
   const order = useSelector((state) => state.order);
-  const [orderDetails, setOrderDetails] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
-  const [payClicked, setOnPayClicked] = React.useState(false);
-  const [minAmount, setMinAmount] = React.useState(0);
-  const [amount, setAmount] = React.useState(0);
-  const [membership, setMembership] = React.useState(undefined);
+  const [orderDetails, setOrderDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [payClicked, setOnPayClicked] = useState(false);
+  const [minAmount, setMinAmount] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [membership, setMembership] = useState();
+  const [updateStatus, setUpdateStatus] = useState(
+    new URLSearchParams(window.location.search).get("card_update_is_failed")
+      ? "failed"
+      : undefined
+  );
+  const [cardDetails, setCardDetails] = useState({
+    number: "****************",
+    expDate: "****",
+  });
 
   const paramX = useMemo(
     () => new URLSearchParams(window.location.search).get("paramX"),
-    []
-  );
-
-  const cardUpdateIsFailed = useMemo(
-    () =>
-      new URLSearchParams(window.location.search).get("card_update_is_failed"),
     []
   );
 
@@ -152,6 +156,19 @@ export default function UpdatePayment() {
     getOrderByID(orderId)
       .then((res) => {
         setOrderDetails(res.data);
+
+        if (res.data.CardId) {
+          getCardDetails(res.data.CardId)
+            .then((r) => {
+              if (r.data.cc_number && r.data.cc_expdate) {
+                setCardDetails({
+                  number: r.data.cc_number,
+                  expDate: r.data.cc_expdate,
+                });
+              }
+            })
+            .catch((e) => console.error(e));
+        }
       })
       .catch((err) => console.error(err));
   };
@@ -163,14 +180,31 @@ export default function UpdatePayment() {
 
   useEffect(() => {
     if (paramX && user?.keycloak?.subject) {
+      const cc_number = new URLSearchParams(window.location.search).get(
+        "CreditCardNumber"
+      );
+      const cc_expdate = new URLSearchParams(window.location.search).get(
+        "CreditCardExpDate"
+      );
+
       cardSuccessfullyUpdated({
         orderId,
+        cc_number,
+        cc_expdate,
         userKey: user?.keycloak?.subject,
         paramX,
         token: new URLSearchParams(window.location.search).get("token"),
-      }).catch((e) => {
-        console.error(e);
-      });
+      })
+        .then(() => {
+          setUpdateStatus("success");
+          setCardDetails({
+            number: cc_number,
+            expDate: cc_expdate,
+          });
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     }
   }, [user]);
 
@@ -240,13 +274,19 @@ export default function UpdatePayment() {
               {t("membership.update_automatic_subscription")}
             </Typography>
           </Grid>
-          {cardUpdateIsFailed || paramX ? (
-            <NotificationContainer color={paramX ? "#4caf50" : "#f44336"}>
-              {paramX ? <CheckCircleOutlineIcon /> : <ErrorOutlineIcon />}
+          {updateStatus ? (
+            <NotificationContainer
+              color={updateStatus === "success" ? "#4caf50" : "#f44336"}
+            >
+              {updateStatus === "success" ? (
+                <CheckCircleOutlineIcon />
+              ) : (
+                <ErrorOutlineIcon />
+              )}
               &nbsp;{" "}
               <span>
                 {t(
-                  paramX
+                  updateStatus === "success"
                     ? "membership.succesfully_updated_card"
                     : "membership.failed_to_update_card"
                 )}
@@ -343,13 +383,10 @@ export default function UpdatePayment() {
             >
               <EditIcon style={{ color: "#1976d2", paddingBottom: 8 }} />
               <Typography variant="h5">
-                **** **** ****{" "}
-                {user?.membershipdataV2?.details?.payment?.payment_method?.slice(
-                  -4
-                ) ?? "****"}
+                {cardDetails.number.match(/.{1,4}/g).join(" ")}
               </Typography>
               <Typography style={{ marginTop: 7 }} variant="button">
-                **/**
+                {cardDetails.expDate.match(/.{1,2}/g).join("/")}
               </Typography>
             </Box>
           </Tooltip>

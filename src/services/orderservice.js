@@ -76,3 +76,12 @@ export const cardSuccessfullyUpdated = async (data) => {
       throw error;
     });
 };
+
+export const getCardDetails = async (id) => {
+  return await axios
+    .get(`pay/v2/card_detail/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+};
