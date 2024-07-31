@@ -171,7 +171,10 @@
     "total_to_pay": "Сумма к оплате",
     "update_automatic_subscription": "Обновить автоматическую подписку",
     "succesfully_updated": "Успешно обновлено",
-    "succesfully_updated_text": "Вы успешно обновили свою подписку"
+    "succesfully_updated_text": "Вы успешно обновили свою подписку",
+    "update_card": "Обновить карту",
+    "succesfully_updated_card": "Данные карты успешно обновлены",
+    "failed_to_update_card": "Не удалось обновить данные карты"
   },
   "cancellation": {
     "cancellation_success": "Отмена прошла успешно",

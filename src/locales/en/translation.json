@@ -171,7 +171,10 @@
     "total_to_pay": "Total to pay",
     "update_automatic_subscription": "Update Automatic Subscription",
     "succesfully_updated": "Successfully updated",
-    "succesfully_updated_text": "You have successfully updated your subscription"
+    "succesfully_updated_text": "You have successfully updated your subscription",
+    "update_card": "Update Card",
+    "succesfully_updated_card": "Card details updated successfully",
+    "failed_to_update_card": "Failed to update card details"
   },
   "cancellation": {
     "cancellation_success": "Cancelled successfully",
