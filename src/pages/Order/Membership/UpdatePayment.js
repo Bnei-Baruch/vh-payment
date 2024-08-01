@@ -158,8 +158,8 @@ export default function UpdatePayment() {
       .then((res) => {
         setOrderDetails(res.data);
 
-        if (res.data.CardId) {
-          getCardDetails(res.data.CardId)
+        if (res.data.card_details_id && res.data.card_details_id !== 0) {
+          getCardDetails(res.data.card_details_id)
             .then((r) => {
               if (r.data.cc_number && r.data.cc_expdate) {
                 setCardDetails({
@@ -180,20 +180,20 @@ export default function UpdatePayment() {
   }, []);
 
   useEffect(() => {
-    if (paramX && user?.keycloak?.subject & !cardDetailsPosted) {
+    if (paramX && user?.keycloak?.subject && !cardDetailsPosted) {
       setCardDetailsPosted(true);
-      
+
       const searchParams = new URLSearchParams(window.location.search);
       const cc_number = searchParams.get("CreditCardNumber");
       const cc_expdate = searchParams.get("CreditCardExpDate");
       const token = searchParams.get("token");
-      
+
       cardSuccessfullyUpdated({
         order_id: parseInt(orderId, 10),
         card_number: cc_number,
         card_exp: cc_expdate,
         param_x: paramX,
-        token
+        token,
       })
         .then(() => {
           setUpdateStatus("success");
