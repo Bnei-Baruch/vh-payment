@@ -231,10 +231,10 @@ export default function UpdatePayment() {
   const handleUpdateCard = async () => {
     const profileData = await getProfile(user.keycloak.subject);
     const data = {
-      Language: language.id.toUpperCase(),
+      OrderLanguage: language.id.toUpperCase(),
       UserKey: user.keycloak.subject,
       Currency: currency.id.toUpperCase(),
-      Reference: order.product.reference,
+      Reference: "new_token_" + orderId,
       Organization: orderDetails?.Organization,
       SKU: order.product.SKU,
       FirstName: user.profile.firstName,
@@ -242,9 +242,9 @@ export default function UpdatePayment() {
       Email: user.profile.email,
       Phone: profileData?.mobile_number || "",
       Country: profileData?.country || "",
-      successUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}`,
-      cancelUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_is_failed=true`,
-      errorUrl: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_is_failed=true`,
+      SuccessURL: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}`,
+      CancelURL: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_is_failed=true`,
+      ErrorURL: `${window.APP_CONFIG.VH_BASE_URL}${window.location.pathname}?card_update_is_failed=true`,
     };
     updateCard(data)
       .then((resp) => {
