@@ -180,20 +180,17 @@ export default function UpdatePayment() {
 
   useEffect(() => {
     if (paramX && user?.keycloak?.subject) {
-      const cc_number = new URLSearchParams(window.location.search).get(
-        "CreditCardNumber"
-      );
-      const cc_expdate = new URLSearchParams(window.location.search).get(
-        "CreditCardExpDate"
-      );
-
+      const searchParams = new URLSearchParams(window.location.search);
+      const cc_number = searchParams.get("CreditCardNumber");
+      const cc_expdate = searchParams.get("CreditCardExpDate");
+      const token = searchParams.get("token");
+      
       cardSuccessfullyUpdated({
-        orderId,
-        cc_number,
-        cc_expdate,
-        userKey: user?.keycloak?.subject,
-        paramX,
-        token: new URLSearchParams(window.location.search).get("token"),
+        order_id: parseInt(orderId, 10),
+        card_number: cc_number,
+        card_exp: cc_expdate,
+        param_x: paramX,
+        token
       })
         .then(() => {
           setUpdateStatus("success");
@@ -203,6 +200,7 @@ export default function UpdatePayment() {
           });
         })
         .catch((e) => {
+          setUpdateStatus("fail");
           console.error(e);
         });
     }
