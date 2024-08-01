@@ -121,6 +121,7 @@ export default function UpdatePayment() {
     number: "****************",
     expDate: "****",
   });
+  const [cardDetailsPosted, setCardDetailsPosted] = useState(false);
 
   const paramX = useMemo(
     () => new URLSearchParams(window.location.search).get("paramX"),
@@ -179,7 +180,9 @@ export default function UpdatePayment() {
   }, []);
 
   useEffect(() => {
-    if (paramX && user?.keycloak?.subject) {
+    if (paramX && user?.keycloak?.subject & !cardDetailsPosted) {
+      setCardDetailsPosted(true);
+      
       const searchParams = new URLSearchParams(window.location.search);
       const cc_number = searchParams.get("CreditCardNumber");
       const cc_expdate = searchParams.get("CreditCardExpDate");
