@@ -172,7 +172,10 @@
     "total_to_pay": "Total a pagar",
     "update_automatic_subscription": "Actualizar suscripción automática",
     "succesfully_updated": "Actualizado exitosamente",
-    "succesfully_updated_text": "Has actualizado correctamente tu suscripción"
+    "succesfully_updated_text": "Has actualizado correctamente tu suscripción",
+    "update_card": "Actualizar la tarjeta",
+    "succesfully_updated_card": "Detalles de la tarjeta actualizados exitosamente",
+    "failed_to_update_card": "No se pudieron actualizar los detalles de la tarjeta"
   },
   "cancellation": {
     "cancellation_success": "Cancelado con éxito",

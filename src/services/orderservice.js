@@ -52,3 +52,36 @@ export const updateOrderById = async (id, data) => {
     .patch(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/order/${id}`, data)
     .then((res) => res?.data);
 };
+
+export const updateCard = async (data) => {
+  return await axios
+    .post(
+      `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/transaction/new_token`,
+      data
+    )
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const cardSuccessfullyUpdated = async (data) => {
+  return await axios
+    .post(
+      `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/order/update_token`,
+      data
+    )
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const getCardDetails = async (id) => {
+  return await axios
+    .get(`pay/v2/card_detail/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+};
