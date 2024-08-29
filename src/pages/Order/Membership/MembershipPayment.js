@@ -156,22 +156,24 @@ export default function MembershipPayment() {
   ];
 
   const [profileData, setUserProfileData] = React.useState(null);
-  const [period, setPeriod] = React.useState(1);
+  const [period, setPeriod] = React.useState();
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
   const [termsAccepted, setTermsAccepted] = React.useState(false);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const [minAmount, setMinAmount] = React.useState(0);
-
+  const [nextClicked, setNextAmount] = React.useState(false);
   const [amount, setAmount] = React.useState(0);
 
   const nextStep = () => {
-    if (activeStep === 0 && amount < minAmount) {
+    setNextAmount(true);
+    if (activeStep === 0 && (amount < minAmount || !period)) {
       return;
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
+
   const prevStep = () => {
     if (activeStep === 0) {
       history.goBack();
@@ -345,6 +347,7 @@ export default function MembershipPayment() {
                     <Select
                       value={period}
                       variant="outlined"
+                      error={!period && nextClicked}
                       onChange={(event) => setPeriod(event.target.value)}
                     >
                       {periods.map((l) => (
@@ -524,14 +527,16 @@ export default function MembershipPayment() {
                 </SummartyContainer>
               </ElevatedContainer>
             </Grid>
-            {selectedMembership.name === "manual" &&
+            {selectedMembership.name === "manual" && (
               <Grid item xs={12}>
                 <ElevatedContainer elevation={3}>
                   <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
-                  <span>{t("membership.auto_payment_confirmation_message")}</span>
+                  <span>
+                    {t("membership.auto_payment_confirmation_message")}
+                  </span>
                 </ElevatedContainer>
               </Grid>
-            }
+            )}
             <Grid item xs={12}>
               <FormControlLabel
                 control={
