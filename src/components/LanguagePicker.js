@@ -38,7 +38,7 @@ const LanguagePicker = () => {
     localStorage.setItem("VH_DEFAULT_CURRENCY", "he");
   };
   useEffect(() => {
-    const langId = localStorage.getItem(VH_DEFAULT_LANG);
+    const langId = localStorage.getItem(VH_DEFAULT_LANG) || i18n.language;
 
     if (langId) {
       const lang = languages.find((l) => l.id === langId);
