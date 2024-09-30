@@ -18,6 +18,7 @@ import {
 } from "../../services/userservice";
 import { useSelector } from "react-redux";
 import HeaderLayout from "../../layouts/HeaderLayout";
+import GlassixWidget from "../Glassix";
 
 const Auth = () => {
   const [auth, setAuth] = useState({ keycloak: null, authenticated: false });
@@ -77,6 +78,7 @@ const Auth = () => {
         <Theme>
           <HeaderLayout />
           <Routes />
+          <GlassixWidget />
         </Theme>
       );
     }
