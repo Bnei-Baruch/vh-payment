@@ -16,7 +16,7 @@ import {
   OutlinedInput,
   FormHelperText,
 } from "@material-ui/core";
-import React from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -165,10 +165,17 @@ export default function MembershipPayment() {
   const [minAmount, setMinAmount] = React.useState(0);
   const [nextClicked, setNextAmount] = React.useState(false);
   const [amount, setAmount] = React.useState(0);
+  const totalToPay = useMemo(
+    () => (selectedMembership.name === "manual" ? amount * period : amount),
+    [amount, period, selectedMembership.name]
+  );
 
   const nextStep = () => {
     setNextAmount(true);
-    if (activeStep === 0 && (amount < minAmount || !period)) {
+    if (
+      activeStep === 0 &&
+      (amount < minAmount || (selectedMembership.name === "manual" && !period))
+    ) {
       return;
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -518,7 +525,7 @@ export default function MembershipPayment() {
                       xs={6}
                       style={{ fontSize: "44px", color: "#2F6DC7" }}
                     >
-                      {currency.sign} {amount * period}
+                      {currency.sign} {totalToPay}
                     </Grid>
                     <Grid item xs={6} style={{ textAlign: "right" }}>
                       {t("membership.total_to_pay")}
