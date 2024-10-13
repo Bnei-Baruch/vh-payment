@@ -228,7 +228,7 @@ export default function MembershipPayment() {
       Organization: selectedMembership.product?.organization,
       UserKey: user.keycloak.subject,
       Currency: currency.id?.toUpperCase(),
-      Amount: amount * period,
+      Amount: totalToPay,
       AmountItem: amount,
       Quantity: period,
       TerminalId: selectedMembership.TerminalId,
