@@ -534,7 +534,7 @@ export default function MembershipPayment() {
                 </SummartyContainer>
               </ElevatedContainer>
             </Grid>
-            {selectedMembership.name === "manual" && (
+            {selectedMembership.name === "automatic" && (
               <Grid item xs={12}>
                 <ElevatedContainer elevation={3}>
                   <InfoIcon style={{ color: "#1976d2" }} /> &nbsp;{" "}
