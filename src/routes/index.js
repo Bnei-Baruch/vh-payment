@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Order from "../pages/Order";
 import Ticket from "../pages/Order/EventTicket/tickets";
+import MembershipOnlyTickets from "../pages/Order/EventTicket/MembershipOnlyTickets";
 import UserDetail from "../pages/registration";
 import Success from "../pages/Success";
 import Error from "../pages/Error";
@@ -114,7 +115,7 @@ const Routes = () => (
 
       {/* Ticket and Events Routes */}
 
-      <Route exact from="/pay/order/ticket/:event_slug" component={Ticket} />
+      <Route exact from="/pay/order/ticket/:event_slug" component={MembershipOnlyTickets} />
       <Route
         exact
         from="/pay/order/ticket/payment/:event_slug"

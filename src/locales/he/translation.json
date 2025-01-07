@@ -44,7 +44,9 @@
     "membershipPaymentSuccess": "שילמת בהצלחה למנוי שלך",
     "processing_event_registration_mb": "יש לך מנוי פעיל, אנחנו מבצעים את ההרשמה שלך.",
     "successfully_registered": "הרשמתך התבצעה בהצלחה",
-    "free": "חינם"
+    "free": "חינם",
+    "tickets_needs_membership": "כדי להירשם לאירוע יש צורך במנוי פעיל. לאחר הפעלת המנוי, ניתן לחזור לדף זה ולהשלים את ההרשמה.",
+    "tickets_activate_membership": "להפעלת המנוי - יש ללחוץ כאן"
   },
   "userMenu": {
     "logOut": "להתנתק",
