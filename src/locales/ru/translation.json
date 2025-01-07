@@ -44,7 +44,9 @@
     "membershipPaymentSuccess": "You have successfully paid for your subscription",
     "processing_event_registration_mb": "Статус вашего абонемента активный, мы обрабатываем вашу регистрацию.",
     "successfully_registered": "Вы успешно зарегистрировались на конгресс",
-    "free": "Бесплатно"
+    "free": "Бесплатно",
+    "tickets_needs_membership": "Для регистрации на мероприятие необходимо активировать подписку. После активации подписки вы можете вернуться на эту страницу и завершить регистрацию.",
+    "tickets_activate_membership": "Чтобы активировать подписку, нажмите здесь"
   },
   "userMenu": {
     "logOut": "Выйти",

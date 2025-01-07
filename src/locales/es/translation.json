@@ -44,7 +44,9 @@
     "membershipPaymentSuccess": "You have successfully paid for your subscription",
     "processing_event_registration_mb": "Tienes una membresía activa, estamos procesando tu registro.",
     "successfully_registered": "Te has registrado exitosamente al evento",
-    "free": "Gratis"
+    "free": "Gratis",
+    "tickets_needs_membership": "Necesita una membresía activa para inscribirse en el evento. Una vez activada su membresía, puede volver a esta página y completar su inscripción.",
+    "tickets_activate_membership": "Active su membresía aquí"
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",
