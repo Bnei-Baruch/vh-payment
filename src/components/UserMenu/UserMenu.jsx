@@ -82,7 +82,7 @@ export const UserMenu = () => {
         onClose={closeMenu}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
-        <MenuItem onClick={() => onMenuItemClick(PAYMENT_ROUTES.Profile)}>
+        <MenuItem onClick={() => window.location.href = window.location.origin + "/dash/profile"}>
           {t("userMenu.profile")}
         </MenuItem>
         <MenuItem onClick={onLogOutClick}>{t("userMenu.logOut")}</MenuItem>

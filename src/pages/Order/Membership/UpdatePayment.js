@@ -128,6 +128,29 @@ export default function UpdatePayment() {
     []
   );
 
+  const isDefaultAmount = useMemo(() => {
+    if (orderDetails && amount === orderDetails?.Amount) return true;
+
+    if (
+      membership &&
+      amount ===
+        membership?.plans?.find((x) => x.name === "automatic")?.price[
+          currency.id
+        ]?.amount
+    )
+      return true;
+
+    return false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [amount, orderDetails, membership]);
+
+  const isUpdateBtnEnabled =
+    !payClicked &&
+    amount >= minAmount &&
+    (!isDefaultAmount ||
+      updateStatus === "success" ||
+      currency?.id !== orderDetails?.Currency?.toLowerCase());
+
   useEffect(() => {
     setMembership(getMembershipProduct());
   }, []);
@@ -410,7 +433,7 @@ export default function UpdatePayment() {
             <Button
               variant="contained"
               color="primary"
-              disabled={payClicked || amount < minAmount}
+              disabled={!isUpdateBtnEnabled}
               onClick={UpdatePaymentDetails}
             >
               {t("common.update")}
