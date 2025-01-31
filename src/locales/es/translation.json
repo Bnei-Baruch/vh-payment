@@ -176,7 +176,7 @@
     "succesfully_updated": "Actualizado exitosamente",
     "succesfully_updated_text": "Has actualizado correctamente tu suscripción",
     "update_card": "Actualizar la tarjeta",
-    "succesfully_updated_card": "Detalles de la tarjeta actualizados exitosamente",
+    "succesfully_updated_card": "¡Tus datos se han actualizado correctamente! El próximo pago se realizará el día 21 del mes con la información de pago actualizada.",
     "failed_to_update_card": "No se pudieron actualizar los detalles de la tarjeta"
   },
   "cancellation": {

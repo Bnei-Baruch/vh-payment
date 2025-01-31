@@ -436,7 +436,7 @@ export default function UpdatePayment() {
               disabled={!isUpdateBtnEnabled}
               onClick={UpdatePaymentDetails}
             >
-              {t("common.update")}
+              {t("common.confirm")}
             </Button>
           </Grid>
         </FormContainer>
