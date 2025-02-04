@@ -175,7 +175,7 @@
     "succesfully_updated": "Successfully updated",
     "succesfully_updated_text": "You have successfully updated your subscription",
     "update_card": "Update Card",
-    "succesfully_updated_card": "Card details updated successfully",
+    "succesfully_updated_card": "Your details have been updated successfully! The next payment will be on the 21st of the month, with your updated payment information.",
     "failed_to_update_card": "Failed to update card details"
   },
   "cancellation": {

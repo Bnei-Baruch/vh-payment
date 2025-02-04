@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import { useTranslation } from "react-i18next";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import { Menu, MenuItem, IconButton as MuiIconButton } from "@material-ui/core";
@@ -28,7 +27,6 @@ const UserIconButton = styled(MuiIconButton)`
 export const UserMenu = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const history = useHistory();
   const state = useSelector((state) => state.user);
 
   const [anchorMenu, setAnchorMenu] = useState(null);
@@ -42,9 +40,8 @@ export const UserMenu = () => {
     setAnchorMenu(null);
   };
 
-  const onMenuItemClick = (path) => {
-    history.push(path);
-    closeMenu();
+  const onProfileClick = () => {
+    window.location.href = window.location.origin + PAYMENT_ROUTES.Profile
   };
 
   const onLogOutClick = () => {
@@ -82,7 +79,7 @@ export const UserMenu = () => {
         onClose={closeMenu}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
-        <MenuItem onClick={() => onMenuItemClick(PAYMENT_ROUTES.Profile)}>
+        <MenuItem onClick={onProfileClick}>
           {t("userMenu.profile")}
         </MenuItem>
         <MenuItem onClick={onLogOutClick}>{t("userMenu.logOut")}</MenuItem>
