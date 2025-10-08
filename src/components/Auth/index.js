@@ -26,6 +26,7 @@ const Auth = () => {
   const dispatch = useDispatch();
 
   const fetchUserDetails = async (keycloak) => {
+    console.log('fetchUserDetails', 'isMembershipV2', window.APP_CONFIG.isMembershipV2);
     if (window.APP_CONFIG.isMembershipV2) {
       const membership = await getMembershipStatusV2(keycloak.subject);
       dispatch(setMembershipDataV2(membership));

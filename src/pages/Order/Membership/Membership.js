@@ -89,6 +89,7 @@ export default function Membership() {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
+  const keycloak = useSelector((state) => state.user.keycloak);
   const currency = useSelector((state) => state.currency);
   const [errorMessage, setErrorMessage] = React.useState(undefined);
   const selectedMembership = useSelector(
@@ -97,8 +98,13 @@ export default function Membership() {
   const [specialOption, setSpecialOption] = React.useState("Help Haver");
   const [membership, setMembership] = React.useState(undefined);
   React.useEffect(() => {
-    setMembership(getMembershipProduct());
-  }, []);
+    const fetch = async () => {
+      setMembership(await getMembershipProduct(keycloak.subject));
+    };
+    if (keycloak) {
+      fetch();
+    }
+  }, [keycloak]);
 
   const planSelected = (membership) => {
     dispatch(setSelectedMembership(membership));
