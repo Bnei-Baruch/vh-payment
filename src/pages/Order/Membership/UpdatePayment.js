@@ -152,8 +152,10 @@ export default function UpdatePayment() {
       currency?.id !== orderDetails?.Currency?.toLowerCase());
 
   useEffect(() => {
-    setMembership(getMembershipProduct());
-  }, []);
+    if (user?.keycloak?.subject) {
+      setMembership(getMembershipProduct(user?.keycloak?.subject));
+    }
+  }, [user?.keycloak?.subject]);
 
   const UpdatePaymentDetails = () => {
     setOnPayClicked(true);

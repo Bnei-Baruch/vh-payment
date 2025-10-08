@@ -1,9 +1,10 @@
 window.APP_CONFIG = {
-  VH_BASE_URL: 'http://eurokab.info',
-  VH_API_BASE_URL: 'https://api.eurokab.info',
+  VH_BASE_URL: 'https://vh-api.bbdev1.kbb1.com',
+  VH_API_BASE_URL: 'https://vh-api.bbdev1.kbb1.com',
   KEYCLOAK_CONFIG: {
     realm: "master",
-    url: "https://auth.2serv.eu/auth/",
-    clientId: "membership_pay_dev",
+    url: "https://auth.bbdev1.kbb1.com",
+    clientId: "kolman-dev-pricing-frontend",
   },
+  isMembershipV2: true,
 };
