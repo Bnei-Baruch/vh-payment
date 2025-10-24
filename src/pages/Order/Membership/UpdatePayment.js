@@ -35,6 +35,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { getProfile } from "../../../services/userservice";
+import { getDebugUser, shouldShowCurrencyPicker } from "../../../shared/featureFlags";
+import CurrencyPicker from "../../../components/CurencyPicker";
 
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
@@ -152,8 +154,15 @@ export default function UpdatePayment() {
       currency?.id !== orderDetails?.Currency?.toLowerCase());
 
   useEffect(() => {
-    setMembership(getMembershipProduct());
-  }, []);
+    if (user?.keycloak?.subject) {
+      const fetch = async () => {
+        const debugUser = getDebugUser();
+        const userId = debugUser || user.keycloak.subject;
+        setMembership(await getMembershipProduct(userId));
+      };
+      fetch();
+    }
+  }, [user?.keycloak?.subject]);
 
   const UpdatePaymentDetails = () => {
     setOnPayClicked(true);
@@ -324,15 +333,17 @@ export default function UpdatePayment() {
             </ElevatedContainer>
           </Grid>
           <Grid container item xs={12} spacing={6}>
-            <Grid item xs={4}>
-              <FormControl>
-                <FormLabel id="demo-radio-buttons-group-label">
-                  {t("common.currency")}
-                </FormLabel>
-                <CurrencyPicker variant="outlined" />
-              </FormControl>
-            </Grid>
-            <Grid item xs={8}>
+            {shouldShowCurrencyPicker() && (
+              <Grid item xs={4}>
+                <FormControl>
+                  <FormLabel id="demo-radio-buttons-group-label">
+                    {t("common.currency")}
+                  </FormLabel>
+                  <CurrencyPicker variant="outlined" />
+                </FormControl>
+              </Grid>
+            )}
+            <Grid item xs={shouldShowCurrencyPicker() ? 8 : 12}>
               <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">
                   {t("common.amount")}

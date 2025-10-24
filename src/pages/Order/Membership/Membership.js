@@ -8,7 +8,7 @@ import {
   RadioGroup,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -17,9 +17,13 @@ import {
   setSelectedMembership,
   setSpecialSelectedOption,
 } from "../../../redux/actions/orderActions";
+import { setCurrency } from "../../../redux/actions/currencyActions";
+import { currencies } from "../../../shared/currencies";
+
 import { useHistory } from "react-router-dom";
 import { getMembershipProduct } from "../../../services/productservice";
 import Loader from "../../../components/Loader";
+
 const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -89,6 +93,7 @@ export default function Membership() {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
+  const keycloak = useSelector((state) => state.user.keycloak);
   const currency = useSelector((state) => state.currency);
   const [errorMessage, setErrorMessage] = React.useState(undefined);
   const selectedMembership = useSelector(
@@ -96,9 +101,30 @@ export default function Membership() {
   );
   const [specialOption, setSpecialOption] = React.useState("Help Haver");
   const [membership, setMembership] = React.useState(undefined);
-  React.useEffect(() => {
-    setMembership(getMembershipProduct());
-  }, []);
+  useEffect(() => {
+    if (!membership && keycloak) {
+      const fetch = async () => {
+        setMembership(await getMembershipProduct(keycloak.subject));
+      };
+      fetch();
+    }
+  }, [membership, keycloak]);
+
+  useEffect(() => {
+    const { plans } = membership || { plans: [] };
+    const planCurrencies = new Set();
+    plans.forEach((plan) => {
+      for (const cur of Object.keys(plan.price)) {
+        planCurrencies.add(cur);
+      }
+    });
+    // Auto-detect currency from backend response
+    if (planCurrencies.size && !planCurrencies.has(currency.id)) {
+      const cr = currencies.find((l) => l.id === planCurrencies.values().next().value);
+      dispatch(setCurrency(cr));
+    }
+  }, [dispatch, currency, membership]);
+
 
   const planSelected = (membership) => {
     dispatch(setSelectedMembership(membership));
@@ -167,10 +193,11 @@ export default function Membership() {
                   ) : (
                     <>
                       {" "}
-                      {currency.sign +
-                        " " +
-                        plan.price[currency.id].amount +
-                        " "}{" "}
+                      {
+                        currency.id in plan.price ?
+                        (currency.sign + " " + plan.price[currency.id].amount + " ") : ""
+                      }
+                      {" "}
                       <TenureText>{t("common.per_month")}</TenureText>
                     </>
                   )}

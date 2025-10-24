@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { UserMenu } from "../components/UserMenu/UserMenu";
 import styled from "styled-components";
+import { shouldShowCurrencyPicker } from "../shared/featureFlags";
 
 const useStyles = makeStyles({
   appbar: {
@@ -132,19 +133,21 @@ const HeaderLayout = () => {
         </Box>
 
         <Box className={classes.menu}>
-          <Box
-            display="flex"
-            alignItems="center"
-            className={classes.mobileHidden}
-          >
-            <InputLabel style={{ color: "#000" }}>
-              {t("appbar.currency")} :{" "}
-            </InputLabel>{" "}
-            &nbsp;
-            <FormControl>
-              <CurrencyPicker />
-            </FormControl>
-          </Box>
+          {shouldShowCurrencyPicker() && (
+            <Box
+              display="flex"
+              alignItems="center"
+              className={classes.mobileHidden}
+            >
+              <InputLabel style={{ color: "#000" }}>
+                {t("appbar.currency")} :{" "}
+              </InputLabel>{" "}
+              &nbsp;
+              <FormControl>
+                <CurrencyPicker />
+              </FormControl>
+            </Box>
+          )}
           <MemberShipContainer item xs>
             <MembershipStatusContainer component="span">
               <MembershipHeaderText variant="body1">

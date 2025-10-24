@@ -18,7 +18,7 @@ import {
 } from "@material-ui/core";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useStyles } from "../index";
@@ -27,10 +27,13 @@ import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
+import { getMembershipProduct } from "../../../services/productservice";
+import { setSelectedMembership } from "../../../redux/actions/orderActions";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import { getDebugUser, shouldShowCurrencyPicker } from "../../../shared/featureFlags";
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
     margin-bottom: 10px;
@@ -140,6 +143,7 @@ const SummaryGrid = styled(Grid)`
 `;
 export default function MembershipPayment() {
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
   const { plan } = useParams();
   const history = useHistory();
   const classes = useStyles();
@@ -166,7 +170,7 @@ export default function MembershipPayment() {
   ];
 
   const [profileData, setUserProfileData] = React.useState(null);
-  const [period, setPeriod] = React.useState();
+  const [period, setPeriod] = React.useState('');
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
@@ -177,8 +181,15 @@ export default function MembershipPayment() {
   const [nextClicked, setNextAmount] = React.useState(false);
   const [amount, setAmount] = React.useState(0);
   const totalToPay = useMemo(
-    () => (selectedMembership.name === "manual" ? amount * period : amount),
-    [amount, period, selectedMembership.name]
+    () => {
+      if (!selectedMembership) {
+        return 0;
+      } else if (selectedMembership.name === "manual") {
+        return amount * (period || 1);
+      }
+      return amount;
+    },
+    [amount, period, selectedMembership]
   );
 
   const nextStep = () => {
@@ -265,6 +276,19 @@ export default function MembershipPayment() {
   };
 
   React.useEffect(() => {
+    if (!selectedMembership && user && user.keycloak && user.keycloak.subject) {
+      const fetch = async () => {
+        const debugUser = getDebugUser();
+        const userId = debugUser || user.keycloak.subject;
+        const membership = await getMembershipProduct(userId);
+        const selectedPlan = membership.plans.find(plan => window.location.pathname.endsWith(plan.name));
+        dispatch(setSelectedMembership(selectedPlan));
+      };
+      fetch();
+    }
+  }, [selectedMembership, user, dispatch]);
+
+  React.useEffect(() => {
     getUserProfileData();
     // eslint-disable-next-line
   }, []);
@@ -284,8 +308,7 @@ export default function MembershipPayment() {
       setAmount(selectedMembership.price[currency.id]?.amount);
       setMinAmount(selectedMembership.price[currency.id]?.amount);
     }
-    // eslint-disable-next-line
-  }, [currency]);
+  }, [currency, selectedMembership]);
 
   if (loading) return <Loader />;
   if (!loading && !selectedMembership)
@@ -384,18 +407,20 @@ export default function MembershipPayment() {
                   </Grid>
                 </Grid>
               )}
+              {shouldShowCurrencyPicker() && (
+                <Grid item xs={12}>
+                  <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">
+                      {t("common.currency")}
+                    </FormLabel>
+                    <CurrencyPicker variant="outlined" />
+                  </FormControl>
+                </Grid>
+              )}
               <Grid item xs={12}>
                 <FormControl>
                   <FormLabel id="demo-radio-buttons-group-label">
-                    {t("common.currency")}
-                  </FormLabel>
-                  <CurrencyPicker variant="outlined" />
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl>
-                  <FormLabel id="demo-radio-buttons-group-label">
-                    {t("common.amount")}
+                    {t("common.amount")} {t("common.per_month")}
                   </FormLabel>
                   <PaymentTile>
                     <span
@@ -413,9 +438,6 @@ export default function MembershipPayment() {
                         id="standard-adornment-amount"
                         value={amount}
                         fullWidth
-                        inputProps={{
-                          fullWidth: true,
-                        }}
                         type="number"
                         error={amount < minAmount}
                         onChange={(event) => {

@@ -18,6 +18,7 @@ import {
 import { useSelector } from "react-redux";
 import HeaderLayout from "../../layouts/HeaderLayout";
 import GlassixWidget from "../Glassix";
+import { getDebugUser } from "../../shared/featureFlags";
 
 const Auth = () => {
   const [auth, setAuth] = useState({ keycloak: null, authenticated: false });
@@ -52,6 +53,26 @@ const Auth = () => {
         email: keycloak.profile.email,
         username: keycloak.profile.username,
       });
+
+      // Debug mode: Override keycloak subject if debug_user is set
+      const debugUser = getDebugUser();
+      if (debugUser) {
+        console.warn('[Debug Mode] 🔧 Overriding keycloak.subject globally');
+        console.warn('[Debug Mode] 📝 Original:', keycloak.subject);
+        console.warn('[Debug Mode] 📝 Debug User:', debugUser);
+        console.warn('[Debug Mode] ⚠️  Backend will reject this unless bypass is enabled!');
+
+        // Override the subject property
+        const originalSubject = keycloak.subject;
+        Object.defineProperty(keycloak, 'subject', {
+          get: () => debugUser,
+          configurable: true
+        });
+
+        // Store original for reference
+        keycloak._originalSubject = originalSubject;
+        keycloak._isDebugMode = true;
+      }
 
       setAuth({
         keycloak,

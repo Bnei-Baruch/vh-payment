@@ -8,6 +8,9 @@ import {
   membershipsplans,
 } from "../shared/products";
 
+import axios from "axios";
+import { getPricingVersion } from "../shared/featureFlags";
+
 //Getting the Product.
 /**
  * This is a service to get the product can be replace later
@@ -37,6 +40,95 @@ export const getEventsProductBySlug = (slug) => {
   if (tickets.event.slug === slug) return tickets;
 };
 
-export const getMembershipProduct = () => {
-  return membershipsplans;
+/**
+ * Fetch monthly membership pricing from the orders API
+ * @param {string} kc_id - Keycloak user subject ID
+ * @returns {Promise<Object|null>} Pricing object with {currency, amount} or null on error
+ */
+export const getMembershipMonthlyPricing = async (kc_id) => {
+  // Read user's preferred currency from localStorage
+  const preferredCurrency = localStorage.getItem("VH_DEFAULT_CURRENCY") || "";
+
+  // Get pricing version from URL parameter (v1, v2, t1)
+  // Defaults to v1 (static pricing) if not specified
+  const pricingVersion = getPricingVersion();
+
+  // Build API URL with parameters
+  const params = new URLSearchParams();
+  if (preferredCurrency) params.append("currency", preferredCurrency);
+  if (pricingVersion) params.append("pricingVersion", pricingVersion);
+
+  const apiUrl = `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/pricing/monthly/${kc_id}?${params.toString()}`;
+
+  try {
+    console.log('[Pricing] Fetching pricing for user:', kc_id,
+                'version:', pricingVersion || 'v1 (default)',
+                'currency:', preferredCurrency || '(not set)');
+    const response = await axios.get(apiUrl);
+
+    if (response.data && response.data.data) {
+      console.log('[Pricing] Successfully fetched pricing:', response.data.data);
+      return response.data.data;
+    } else {
+      console.warn('[Pricing] Invalid response format:', response.data);
+      return null;
+    }
+  } catch (err) {
+    // Log detailed error information for debugging
+    if (err.response) {
+      // Server responded with error status
+      console.warn(
+        `[Pricing] API error ${err.response.status}:`,
+        err.response.data?.message || err.response.statusText,
+        '\nUsing fallback pricing'
+      );
+    } else if (err.request) {
+      // Request made but no response received
+      console.warn('[Pricing] No response from API. Network error or server down. Using fallback pricing');
+    } else {
+      // Error setting up request
+      console.warn('[Pricing] Request setup error:', err.message, '\nUsing fallback pricing');
+    }
+
+    return null;
+  }
+}
+
+/**
+ * Get membership product with pricing
+ * Fetches pricing from backend API which handles version logic (v1/v2/t1)
+ * Falls back to static pricing from products.js if API fails
+ *
+ * @param {string} kc_id - Keycloak user subject ID
+ * @returns {Promise<Object>} Product object with pricing
+ */
+export const getMembershipProduct = async (kc_id) => {
+  const price = await getMembershipMonthlyPricing(kc_id);
+
+  if (!price) {
+    // Fallback to static pricing if API fails
+    console.log('[Pricing] Using static pricing as fallback');
+    return membershipsplans;
+  }
+
+  // Validate pricing data
+  if (!price.currency || !price.amount) {
+    console.warn('[Pricing] Invalid pricing data, missing currency or amount:', price);
+    console.log('[Pricing] Using static pricing as fallback');
+    return membershipsplans;
+  }
+
+  console.log(`[Pricing] Applying price: ${price.amount} ${price.currency.toUpperCase()}`);
+
+  const copy = structuredClone(membershipsplans);
+  copy.plans.forEach((plan) => {
+    plan.price = {
+      [price.currency.toLowerCase()]: {
+        amount: price.amount,
+        fixed: true,
+      }
+    };
+  });
+
+  return copy;
 };
