@@ -215,7 +215,7 @@ exports.conventiontest = {
         title: "TEST PAYMENT",
         subtitle: "recurring",
         description:
-          "From 10 to 1 - World Kabbalah Convention 2021 - 4-6 June 2021 - Arvut Hall, Virtual Home",
+          "From 10 to 1 - World Kabbalah Convention 2021 - 4-6 June 2021 - Arvut Hall, Kabbalah Community platform",
       },
       body: {
         title: "Description",
@@ -320,14 +320,14 @@ exports.userfee = {
     en: {
       header: {
         title: "Maintenance Fee",
-        subtitle: "Virtual Home",
+        subtitle: "Kabbalah Community",
         description:
-          "A minimum user fee per month is necessary to sustain our Virtual Home. ",
+          "A minimum user fee per month is necessary to sustain our learning platforms of the organization. ",
       },
       body: {
         title: "Description",
         description:
-          "Payment is through auto debit - renewed automatically every month after the 20th of the month. An invoice will be emailed within two days of making the payment. If you would like to increase your monthly payment to expand our Virtual Home’s operations and to express extra appreciation for our efforts toward our common goal, you may use our Pay What You Wish system. We welcome extra contributions from those who are able to afford more. ",
+          "Payment is through auto debit - renewed automatically every month after the 20th of the month. An invoice will be emailed within two days of making the payment. If you would like to increase your monthly payment to expand our learning platform’s operations and to express extra appreciation for our efforts toward our common goal, you may use our Pay What You Wish system. We welcome extra contributions from those who are able to afford more. ",
       },
       cancel: {
         text: "Cancel",
@@ -339,13 +339,13 @@ exports.userfee = {
     ru: {
       header: {
         title: "Абонентская плата",
-        subtitle: "Виртуальный дом",
-        description: "Абонентская плата, необходимая для поддержания системы",
+        subtitle: "Kabbalah Community",
+        description: "Абонентская плата, необходимая для поддержания учебных платформ организации",
       },
       body: {
         title: "Описание",
         description:
-          "Этот платеж производится методом прямого списания со счета и автоматически взимается ежемесячно с 20-го числа, до конца месяца. Квитанция будет отправлена по электронной почте в течение двух дней с момента оплаты. У вас есть возможность увеличить эту сумму, если вы хотите помочь нам в дальнейшем развитии системы и выразить признательность за наши усилия. Мы используем функцию «Платите, сколько пожелаете» для тех, кто может позволить себе больше.",
+          "Этот платеж производится методом прямого списания со счета и автоматически взимается ежемесячно с 20-го числа, до конца месяца. Квитанция будет отправлена по электронной почте в течение двух дней с момента оплаты. У вас есть возможность увеличить эту сумму, если вы хотите помочь нам в дальнейшем развитии учебных платформ организации и выразить признательность за наши усилия. Мы используем функцию «Платите, сколько пожелаете» для тех, кто может позволить себе больше.",
       },
       cancel: {
         text: "Cancel",
@@ -357,14 +357,14 @@ exports.userfee = {
     es: {
       header: {
         title: "Tarifa de usuario",
-        subtitle: "Hogar Virtual",
+        subtitle: "Kabbalah Community",
         description:
-          "Una tarifa de usuario es necesaria para mantener nuestro Hogar Virtual.",
+          "Una tarifa de usuario es necesaria para mantener nuestras plataformas de aprendizaje de la organización.",
       },
       body: {
         title: "Descripción",
         description:
-          'El pago se realiza mediante débito directo: se renueva automáticamente cada mes después del día 20 del mes. Recibirá una factura por correo electrónico dentro de los dos días posteriores a la realización del pago. Si desea aumentar la tarifa mensual de usuario para expandir las operaciones y plataformas de nuestro Hogar Virtual como un agradecimiento adicional por nuestros esfuerzos hacia la meta común, puede utilizar el sistema "Paga lo que desees", de manera que quienes puedan pagar más lo hagan.',
+          'El pago se realiza mediante débito directo: se renueva automáticamente cada mes después del día 20 del mes. Recibirá una factura por correo electrónico dentro de los dos días posteriores a la realización del pago. Si desea aumentar la tarifa mensual de usuario para expandir las operaciones de nuestras plataformas de aprendizaje de la organización como un agradecimiento adicional por nuestros esfuerzos hacia la meta común, puede utilizar el sistema "Paga lo que desees", de manera que quienes puedan pagar más lo hagan.',
       },
       cancel: {
         text: "Cancel",
@@ -376,7 +376,7 @@ exports.userfee = {
     he: {
       header: {
         title: "דמי מנוי",
-        subtitle: "הבית הוויטואלי",
+        subtitle: "קהילת לומדי קבלה",
         description: "תשלום של דמי משתמש חודשי לצורך קיום המערכת",
       },
       body: {
@@ -432,14 +432,14 @@ exports.userfeeonetime = {
     en: {
       header: {
         title: "Maintenance Fee",
-        subtitle: "Virtual Home",
+        subtitle: "Kabbalah Community",
         description:
-          "A minimum user fee per month is necessary to sustain our Virtual Home. ",
+          "A minimum user fee per month is necessary to sustain our learning platforms of the organization. ",
       },
       body: {
         title: "Description",
         description:
-          "An invoice will be emailed within two days of making the payment. If you would like to increase your monthly payment to expand our Virtual Home’s operations and to express extra appreciation for our efforts toward our common goal, you may use our Pay What You Wish system. We welcome extra contributions from those who are able to afford more. ",
+          "An invoice will be emailed within two days of making the payment. If you would like to increase your monthly payment to expand our learning platform’s operations and to express extra appreciation for our efforts toward our common goal, you may use our Pay What You Wish system. We welcome extra contributions from those who are able to afford more. ",
       },
       cancel: {
         text: "Cancel",
@@ -451,13 +451,13 @@ exports.userfeeonetime = {
     ru: {
       header: {
         title: "Абонентская плата",
-        subtitle: "Виртуальный дом",
-        description: "Абонентская плата, необходимая для поддержания системы",
+        subtitle: "Kabbalah Community",
+        description: "Абонентская плата, необходимая для поддержания учебных платформ организации",
       },
       body: {
         title: "Описание",
         description:
-          "Квитанция будет отправлена по электронной почте в течение двух дней с момента оплаты. У вас есть возможность увеличить эту сумму, если вы хотите помочь нам в дальнейшем развитии системы и выразить признательность за наши усилия. Мы используем функцию «Платите, сколько пожелаете» для тех, кто может позволить себе больше.",
+          "Квитанция будет отправлена по электронной почте в течение двух дней с момента оплаты. У вас есть возможность увеличить эту сумму, если вы хотите помочь нам в дальнейшем развитии учебных платформ организации и выразить признательность за наши усилия. Мы используем функцию «Платите, сколько пожелаете» для тех, кто может позволить себе больше.",
       },
       cancel: {
         text: "Cancel",
@@ -469,14 +469,14 @@ exports.userfeeonetime = {
     es: {
       header: {
         title: "Tarifa de usuario",
-        subtitle: "Hogar Virtual",
+        subtitle: "Kabbalah Community",
         description:
-          "Una tarifa de usuario es necesaria para mantener nuestro Hogar Virtual.",
+          "Una tarifa de usuario es necesaria para mantener nuestras plataformas de aprendizaje de la organización.",
       },
       body: {
         title: "Descripción",
         description:
-          'Recibirá una factura por correo electrónico dentro de los dos días posteriores a la realización del pago. Si desea aumentar la tarifa mensual de usuario para expandir las operaciones y plataformas de nuestro Hogar Virtual como un agradecimiento adicional por nuestros esfuerzos hacia la meta común, puede utilizar el sistema "Paga lo que desees", de manera que quienes puedan pagar más lo hagan.',
+          'Recibirá una factura por correo electrónico dentro de los dos días posteriores a la realización del pago. Si desea aumentar la tarifa mensual de usuario para expandir las operaciones de nuestras plataformas de aprendizaje de la organización como un agradecimiento adicional por nuestros esfuerzos hacia la meta común, puede utilizar el sistema "Paga lo que desees", de manera que quienes puedan pagar más lo hagan.',
       },
       cancel: {
         text: "Cancel",
@@ -488,7 +488,7 @@ exports.userfeeonetime = {
     he: {
       header: {
         title: "דמי מנוי",
-        subtitle: "הבית הוויטואלי",
+        subtitle: "קהילת לומדי קבלה",
         description: "תשלום של דמי משתמש חודשי לצורך קיום המערכת",
       },
       body: {
@@ -627,7 +627,6 @@ exports.tickets = {
           intersticial: {
             title: "Membership Ticket",
             body: "In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
-            // body: "Membership tickets are discounted tickets for people who pay a monthly subscription the Virtual Home Membership <br/> In order to be eligible for this option, you need to sort your membership first, and then come back to register once it is sorted",
             button: "Activate Membership",
           },
           redirect_url: "/dash/membership",
@@ -641,7 +640,6 @@ exports.tickets = {
           intersticial: {
             title: "Билет для Подписчиков системы Арвут",
             body: "Чтобы получить скидку, вам нужно сначала оформить ежемесячную подписку, а затем вернуться и зарегистрироваться, выбрав опцию: Билет для Подписчиков системы Арвут",
-            // body: "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут.<br/> Чтобы получить скидку, вам нужно сначала оформить ежемесячную подписку, а затем вернуться и зарегистрироваться, выбрав опцию: Билет для Подписчиков системы Арвут",
             button: "Активировать подписку",
           },
           redirect_url: "/dash/membership",
@@ -655,7 +653,6 @@ exports.tickets = {
           intersticial: {
             title: "Boleto de membresía",
             body: "Para ser elegible de esta opción, primero necesitas obtener tu membresía, y luego volver para registrarte con la membresía",
-            // body: "Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual.<br /> Para ser elegible de esta opción, primero necesitas obtener tu membresía, y luego volver para registrarte con la membresía",
             button: "Activar membresía",
           },
           redirect_url: "/dash/membership",
@@ -669,7 +666,6 @@ exports.tickets = {
           intersticial: {
             title: "כרטיס חבר",
             body: "על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
-            // body: " כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי  <br /> על מנת להיות מורשה לאפשרות זו, עליך להסדיר את המנוי שלך ולחזור שוב לטופס הרשמה לאחר מכן ",
             button: "הרשמה למנוי חדש",
           },
           redirect_url: "/dash/membership",
@@ -699,28 +695,28 @@ exports.tickets = {
         en: {
           name: "Membership Ticket",
           description: [
-            "Membership tickets are discounted tickets for people who pay a montly subscription the Virtual Home Membership",
+            "Membership tickets are discounted tickets for for users with an active monthly membership",
           ],
           button_label: "Select this Ticket",
         },
         he: {
           name: "כרטיס חבר",
           description: [
-            "כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי לבית הוירטואלי",
+            "כרטיסי חברות מוזלים מיועדים למשלמים מנוי חודשי.",
           ],
           button_label: "לבחור",
         },
         es: {
           name: "Boleto de membresía",
           description: [
-            "Boletos de membresía tienen descuento para aquellas personas que pagan la suscripción mensual de la Casa Virtual.",
+            "Los boletos de membresía tienen descuento para aquellas personas que pagan una suscripción mensual.",
           ],
           button_label: "Elige",
         },
         ru: {
           name: "Для постоянных участников сообщества",
           description: [
-            "Билет для Подписчиков системы Арвут — это билет со скидкой для людей, у которых есть ежемесячная подписка по оплате за Виртуальном дом/Арвут.",
+            "Билет со скидкой предназначен для участников с активной ежемесячной подпиской.",
           ],
           button_label: "Выбрать",
         },
@@ -753,7 +749,6 @@ exports.tickets = {
         en: {
           name: "Special Options",
           description: ["If you live in Russia"],
-          // description: ["If you live in Ukraine.", "If you live in Russia."],
           button_label: "Choose an option",
           options: [
             {
@@ -781,7 +776,6 @@ exports.tickets = {
         es: {
           name: "Opciones especiales",
           description: ["Si vives en Rusia"],
-          // description: ["Si vives en Ucrania", "Si vives en Rusia"],
           button_label: "Elige una opción",
           options: [
             {
@@ -809,7 +803,6 @@ exports.tickets = {
         he: {
           name: "אפשרויות רכישה מיוחדות",
           description: ["אם אתה גר ברוסיה"],
-          // description: ["אם אתה גר באוקראינה", "אם אתה גר ברוסיה"],
           button_label: "בחר אפשרות",
           options: [
             {
@@ -837,7 +830,6 @@ exports.tickets = {
         ru: {
           name: "Дополнительные возможности",
           description: ["Для жителей России"],
-          // description: ["Для жителей Украины", "Для жителей России"],
           button_label: "Выберите ваш вариант",
           options: [
             {

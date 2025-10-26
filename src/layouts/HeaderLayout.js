@@ -9,7 +9,8 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import logo from "../images/tree.svg";
+import hebLogo from "../images/heb-logo.png";
+import enLogo from "../images/en-logo.png";
 import { makeStyles } from "@material-ui/styles";
 import LanguagePicker from "../components/LanguagePicker";
 import CurrencyPicker from "../components/CurencyPicker";
@@ -100,12 +101,15 @@ const MembershipStatusText = styled(Typography)`
 const HeaderLayout = () => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { dir } = useSelector((state) => state.language);
+  const { dir, id: languageId } = useSelector((state) => state.language);
   const { appbar } = useSelector((state) => state.order);
   const membership = useSelector((state) => (
       window.APP_CONFIG.isMembershipV2 ? state.user.membershipdataV2 : state.user.membershipdata
   ));
   const [active, setActive] = useState(false);
+
+  // Choose logo based on language
+  const currentLogo = languageId === 'he' ? hebLogo : enLogo;
 
   useEffect(() => {
     if (membership) {
@@ -124,20 +128,9 @@ const HeaderLayout = () => {
         <Box className={classes.logoWrapper}>
           <img
             className={classes.image}
-            src={appbar.logo || logo}
-            alt="BB Logo"
+            src={appbar.logo || currentLogo}
+            alt="Logo"
           />
-          <Hidden xsDown>
-            <Box ml={1}>
-              <Typography
-                className={classes.text}
-                style={{ color: appbar.textColor || "#00457c" }}
-              >
-                BNEI BARUCH
-              </Typography>
-              <Box className={classes.subtitle}>VIRTUAL HOME</Box>
-            </Box>
-          </Hidden>
         </Box>
 
         <Box className={classes.menu}>
