@@ -1,4 +1,5 @@
 import axios from "axios";
+import { handleAxiosError } from "./errorHandler";
 
 export const addPariticpantInEvent = (data) => {
   return axios
@@ -6,5 +7,6 @@ export const addPariticpantInEvent = (data) => {
       `${window.APP_CONFIG.VH_API_BASE_URL}/events/v1/participation-status`,
       data
     )
-    .then((res) => res.data.data);
+    .then((res) => res.data.data)
+    .catch(handleAxiosError);
 };
