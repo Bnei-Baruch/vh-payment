@@ -103,9 +103,7 @@ const HeaderLayout = () => {
   const { t } = useTranslation();
   const { dir, id: languageId } = useSelector((state) => state.language);
   const { appbar } = useSelector((state) => state.order);
-  const membership = useSelector((state) => (
-      window.APP_CONFIG.isMembershipV2 ? state.user.membershipdataV2 : state.user.membershipdata
-  ));
+  const membership = useSelector((state) => state.user.membershipdataV2);
   const [active, setActive] = useState(false);
 
   // Choose logo based on language
@@ -113,7 +111,7 @@ const HeaderLayout = () => {
 
   useEffect(() => {
     if (membership) {
-      setActive(window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership)
+      setActive(membership.active);
     }
   }, [membership]);
 

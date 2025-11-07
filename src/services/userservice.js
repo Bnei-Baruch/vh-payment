@@ -10,13 +10,6 @@ export const getProfile = (keycloakId) => {
     .catch(handleAxiosError);
 };
 
-export const getMembershipStatus = (email) => {
-  return axios
-    .get(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/status/${email}`)
-    .then((res) => res.data)
-    .catch(handleAxiosError);
-};
-
 export const getMembershipStatusV2 = (kc_id) => {
   return axios
     .get(`${window.APP_CONFIG.VH_API_BASE_URL}/profile/v1/membership/kcid/${kc_id}`)

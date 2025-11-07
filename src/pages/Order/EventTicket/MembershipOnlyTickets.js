@@ -34,10 +34,8 @@ export default function MembershipOnlyTickets() {
   const classes = useStyles();
 
   const product = useSelector((state) => state.order.ticketProduct);
-  const membership = useSelector((state) => (
-    window.APP_CONFIG.isMembershipV2 ? state.user.membershipdataV2 : state.user.membershipdata
-  ));
-  const active = !!(window.APP_CONFIG.isMembershipV2 ? membership.active : membership.membership);
+  const membership = useSelector((state) => state.user.membershipdataV2);
+  const active = !!membership.active;
 
   React.useEffect(() => {
     dispatch(setProduct(getEventsProductBySlug(event_slug)));

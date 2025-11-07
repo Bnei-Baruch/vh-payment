@@ -5,26 +5,26 @@ import axios from "axios";
 import store from "./redux/store";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-let token;
-store.subscribe(listener);
 
-//Token Middleware implmentation for the Application.
-function getToken(state) {
-  if (state && state.user && state.user.keycloak && state.user.keycloak.token)
-    return state.user.keycloak.token;
-}
-
-function listener() {
-  token = getToken(store.getState());
-}
-axios.interceptors.request.use((c) => {
+/**
+ * Axios interceptor for token updation
+ * and appending token in api's
+ */
+axios.interceptors.request.use(async (c) => {
+  if (c && c.url && c.url.includes("heartbeat")) {
+    return c;
+  }
+  const state = store.getState();
   if (
-    token &&
-    c.url &&
-    c.url.includes(window.APP_CONFIG.VH_BASE_URL.replace(/(^\w+:|^)\/\//, ""))
+    state.user.keycloak &&
+    state.user.keycloak.isTokenExpired()
   ) {
+    await state.user.keycloak.updateToken(30).success();
+  }
+  //fetch token and pass here
+  if (state.user.keycloak.token) {
     let header = {
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + state.user.keycloak.token,
       Accept: "application/json",
     };
     c.headers = header;

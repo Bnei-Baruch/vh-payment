@@ -9,6 +9,5 @@ window.APP_CONFIG = {
         url: '{{env.Getenv "KEYCLOAK_URL" "https://auth.2serv.eu/auth/"}}',
         clientId: '{{env.Getenv "KEYCLOAK_CLIENT_ID" "membership_pay_dev"}}'
     },
-    isMembershipV2: {{eq (env.Getenv "IS_MEMBERSHIP_V2" "false") "true"}},
     GLASSIX_API_KEY: '{{env.Getenv "GLASSIX_API_KEY" ""}}'
 };
