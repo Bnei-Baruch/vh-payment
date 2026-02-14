@@ -180,6 +180,7 @@ export default function MembershipPayment() {
   const [minAmount, setMinAmount] = React.useState(0);
   const [nextClicked, setNextAmount] = React.useState(false);
   const [amount, setAmount] = React.useState(0);
+  const [pricingVersion, setPricingVersion] = React.useState(null);
   const totalToPay = useMemo(
     () => {
       if (!selectedMembership) {
@@ -282,6 +283,7 @@ export default function MembershipPayment() {
         const userId = debugUser || user.keycloak.subject;
         const membership = await getMembershipProduct(userId);
         if (membership) {
+          setPricingVersion(membership.pricingVersion);
           const selectedPlan = membership.plans.find(plan => window.location.pathname.endsWith(plan.name));
           dispatch(setSelectedMembership(selectedPlan));
         }
@@ -410,7 +412,7 @@ export default function MembershipPayment() {
                   </Grid>
                 </Grid>
               )}
-              {shouldShowCurrencyPicker() && (
+              {shouldShowCurrencyPicker(pricingVersion) && (
                 <Grid item xs={12}>
                   <FormControl>
                     <FormLabel id="demo-radio-buttons-group-label">

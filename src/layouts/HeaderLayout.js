@@ -19,7 +19,8 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { UserMenu } from "../components/UserMenu/UserMenu";
 import styled from "styled-components";
-import { shouldShowCurrencyPicker } from "../shared/featureFlags";
+import { shouldShowCurrencyPicker, getDebugUser } from "../shared/featureFlags";
+import { getMembershipProduct } from "../services/productservice";
 
 const useStyles = makeStyles({
   appbar: {
@@ -105,7 +106,9 @@ const HeaderLayout = () => {
   const { dir, id: languageId } = useSelector((state) => state.language);
   const { appbar } = useSelector((state) => state.order);
   const membership = useSelector((state) => state.user.membershipdataV2);
+  const user = useSelector((state) => state.user);
   const [active, setActive] = useState(false);
+  const [pricingVersion, setPricingVersion] = useState(null);
 
   // Choose logo based on language
   const currentLogo = languageId === 'he' ? hebLogo : enLogo;
@@ -115,6 +118,21 @@ const HeaderLayout = () => {
       setActive(membership.active);
     }
   }, [membership]);
+
+  // Fetch pricing version for currency picker visibility
+  useEffect(() => {
+    if (user?.keycloak?.subject && !pricingVersion) {
+      const fetch = async () => {
+        const debugUser = getDebugUser();
+        const userId = debugUser || user.keycloak.subject;
+        const membershipProduct = await getMembershipProduct(userId);
+        if (membershipProduct) {
+          setPricingVersion(membershipProduct.pricingVersion);
+        }
+      };
+      fetch();
+    }
+  }, [user, pricingVersion]);
 
   return (
     <AppBar
@@ -133,7 +151,7 @@ const HeaderLayout = () => {
         </Box>
 
         <Box className={classes.menu}>
-          {shouldShowCurrencyPicker() && (
+          {shouldShowCurrencyPicker(pricingVersion) && (
             <Box
               display="flex"
               alignItems="center"

@@ -9,7 +9,7 @@ import {
 } from "../shared/products";
 
 import axios from "axios";
-import { getPricingVersion } from "../shared/featureFlags";
+import { getForcedPricingVersion } from "../shared/featureFlags";
 
 //Getting the Product.
 /**
@@ -43,31 +43,35 @@ export const getEventsProductBySlug = (slug) => {
 /**
  * Fetch monthly membership pricing from the orders API
  * @param {string} kc_id - Keycloak user subject ID
- * @returns {Promise<Object|null>} Pricing object with {currency, amount} or null on error
+ * @returns {Promise<Object|null>} Pricing object with {currency, amount, pricingVersion} or null on error
  */
 export const getMembershipMonthlyPricing = async (kc_id) => {
   // Read user's preferred currency from localStorage
   const preferredCurrency = localStorage.getItem("VH_DEFAULT_CURRENCY") || "";
 
-  // Get pricing version from URL parameter (v1, v2, t1)
-  // Defaults to v1 (static pricing) if not specified
-  const pricingVersion = getPricingVersion();
+  // Get forced pricing version from URL parameter (if set)
+  // null (default) = backend automatically determines appropriate version (RECOMMENDED)
+  const forcedPricingVersion = getForcedPricingVersion();
 
   // Build API URL with parameters
   const params = new URLSearchParams();
   if (preferredCurrency) params.append("currency", preferredCurrency);
-  if (pricingVersion) params.append("pricingVersion", pricingVersion);
+  if (forcedPricingVersion) params.append("pricingVersion", forcedPricingVersion);
 
   const apiUrl = `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/pricing/monthly/${kc_id}?${params.toString()}`;
 
   try {
     console.log('[Pricing] Fetching pricing for user:', kc_id,
-                'version:', pricingVersion || 'v1 (default)',
+                'requested version:', forcedPricingVersion || 'auto (backend decides)',
                 'currency:', preferredCurrency || '(not set)');
     const response = await axios.get(apiUrl);
 
     if (response.data && response.data.data) {
-      console.log('[Pricing] Successfully fetched pricing:', response.data.data);
+      const { amount, currency, pricingVersion } = response.data.data;
+      console.log('[Pricing] Backend returned:',
+                  'version:', pricingVersion,
+                  'amount:', amount,
+                  'currency:', currency);
       return response.data.data;
     } else {
       console.warn('[Pricing] Invalid response format:', response.data);
@@ -111,12 +115,12 @@ export const getMembershipProduct = async (kc_id) => {
   }
 
   // Validate pricing data
-  if (!price.currency || !price.amount) {
-    console.error('[Pricing] Invalid pricing data, missing currency or amount:', price);
+  if (!price.currency || !price.amount || !price.pricingVersion) {
+    console.error('[Pricing] Invalid pricing data, missing required fields:', price);
     return null;
   }
 
-  console.log(`[Pricing] Applying price: ${price.amount} ${price.currency.toUpperCase()}`);
+  console.log(`[Pricing] Applying price: ${price.amount} ${price.currency.toUpperCase()} (version: ${price.pricingVersion})`);
 
   const copy = structuredClone(membershipsplans);
   copy.plans.forEach((plan) => {
@@ -127,6 +131,10 @@ export const getMembershipProduct = async (kc_id) => {
       }
     };
   });
+
+  // Attach pricing metadata to the product
+  copy.pricingVersion = price.pricingVersion;
+  copy.pricingCurrency = price.currency;
 
   return copy;
 };

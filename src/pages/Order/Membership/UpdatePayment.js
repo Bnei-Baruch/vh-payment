@@ -36,7 +36,6 @@ import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { getProfile } from "../../../services/userservice";
 import { getDebugUser, shouldShowCurrencyPicker } from "../../../shared/featureFlags";
-import CurrencyPicker from "../../../components/CurencyPicker";
 
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
@@ -339,7 +338,7 @@ export default function UpdatePayment() {
             </ElevatedContainer>
           </Grid>
           <Grid container item xs={12} spacing={6}>
-            {shouldShowCurrencyPicker() && (
+            {shouldShowCurrencyPicker(membership?.pricingVersion) && (
               <Grid item xs={4}>
                 <FormControl>
                   <FormLabel id="demo-radio-buttons-group-label">
@@ -349,7 +348,7 @@ export default function UpdatePayment() {
                 </FormControl>
               </Grid>
             )}
-            <Grid item xs={shouldShowCurrencyPicker() ? 8 : 12}>
+            <Grid item xs={shouldShowCurrencyPicker(membership?.pricingVersion) ? 8 : 12}>
               <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">
                   {t("common.amount")}
