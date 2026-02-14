@@ -281,8 +281,11 @@ export default function MembershipPayment() {
         const debugUser = getDebugUser();
         const userId = debugUser || user.keycloak.subject;
         const membership = await getMembershipProduct(userId);
-        const selectedPlan = membership.plans.find(plan => window.location.pathname.endsWith(plan.name));
-        dispatch(setSelectedMembership(selectedPlan));
+        if (membership) {
+          const selectedPlan = membership.plans.find(plan => window.location.pathname.endsWith(plan.name));
+          dispatch(setSelectedMembership(selectedPlan));
+        }
+        // If membership is null, selectedMembership will remain null and SomethingWentWrong will be shown
       };
       fetch();
     }

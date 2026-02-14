@@ -1339,29 +1339,7 @@ exports.membershipsplans = {
       name: "manual",
       order: 1,
       TerminalId: "ben_regular_pelecard",
-      price: {
-        usd: {
-          fixed: false,
-          amount: 20,
-          min: 20,
-          max: 240,
-          step: 1,
-        },
-        eur: {
-          fixed: false,
-          amount: 20,
-          min: 20,
-          max: 240,
-          step: 1,
-        },
-        nis: {
-          fixed: false,
-          amount: 80,
-          min: 80,
-          max: 960,
-          step: 5,
-        },
-      },
+      // price: removed - fetched from backend API
       product: {
         SKU: "40037",
         reference: "Membership",
@@ -1423,29 +1401,7 @@ exports.membershipsplans = {
       ],
       name: "automatic",
       order: 2,
-      price: {
-        usd: {
-          fixed: false,
-          amount: 20,
-          min: 20,
-          max: 240,
-          step: 1,
-        },
-        eur: {
-          fixed: false,
-          amount: 20,
-          min: 20,
-          max: 240,
-          step: 1,
-        },
-        nis: {
-          fixed: false,
-          amount: 80,
-          min: 80,
-          max: 960,
-          step: 5,
-        },
-      },
+      // price: removed - fetched from backend API
       product: {
         SKU: "40037",
         reference: "Membership",
@@ -1524,17 +1480,7 @@ exports.membershipsplans = {
       isFree: true,
       name: "membership-hh",
       order: 3,
-      price: {
-        usd: {
-          amount: 0,
-        },
-        nis: {
-          amount: 100,
-        },
-        eur: {
-          amount: 25,
-        },
-      },
+      // price: removed - fetched from backend API
       product: {
         SKU: "40037",
         reference: "Membership",

@@ -97,25 +97,23 @@ export const getMembershipMonthlyPricing = async (kc_id) => {
 /**
  * Get membership product with pricing
  * Fetches pricing from backend API which handles version logic (v1/v2/t1)
- * Falls back to static pricing from products.js if API fails
+ * Returns null if API fails - caller must handle error
  *
  * @param {string} kc_id - Keycloak user subject ID
- * @returns {Promise<Object>} Product object with pricing
+ * @returns {Promise<Object|null>} Product object with pricing, or null on error
  */
 export const getMembershipProduct = async (kc_id) => {
   const price = await getMembershipMonthlyPricing(kc_id);
 
   if (!price) {
-    // Fallback to static pricing if API fails
-    console.log('[Pricing] Using static pricing as fallback');
-    return membershipsplans;
+    console.error('[Pricing] Failed to fetch pricing from API');
+    return null;
   }
 
   // Validate pricing data
   if (!price.currency || !price.amount) {
-    console.warn('[Pricing] Invalid pricing data, missing currency or amount:', price);
-    console.log('[Pricing] Using static pricing as fallback');
-    return membershipsplans;
+    console.error('[Pricing] Invalid pricing data, missing currency or amount:', price);
+    return null;
   }
 
   console.log(`[Pricing] Applying price: ${price.amount} ${price.currency.toUpperCase()}`);

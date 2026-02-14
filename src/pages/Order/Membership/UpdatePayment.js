@@ -291,6 +291,12 @@ export default function UpdatePayment() {
   };
 
   if (loading) return <Loader />;
+  if (!loading && !membership)
+    return (
+      <>
+        <SomethingWentWrong isMembership={true} />
+      </>
+    );
   if (!loading && !orderDetails && false)
     return (
       <>

@@ -23,6 +23,7 @@ import { currencies } from "../../../shared/currencies";
 import { useHistory } from "react-router-dom";
 import { getMembershipProduct } from "../../../services/productservice";
 import Loader from "../../../components/Loader";
+import SomethingWentWrong from "../SomethingWentWrong";
 
 const TicketCard = styled(Grid)`
   background-color: #fff;
@@ -101,14 +102,21 @@ export default function Membership() {
   );
   const [specialOption, setSpecialOption] = React.useState("Help Haver");
   const [membership, setMembership] = React.useState(undefined);
+  const [pricingError, setPricingError] = React.useState(false);
+
   useEffect(() => {
-    if (!membership && keycloak) {
+    if (!membership && keycloak && !pricingError) {
       const fetch = async () => {
-        setMembership(await getMembershipProduct(keycloak.subject));
+        const result = await getMembershipProduct(keycloak.subject);
+        if (result === null) {
+          setPricingError(true);
+        } else {
+          setMembership(result);
+        }
       };
       fetch();
     }
-  }, [membership, keycloak]);
+  }, [membership, keycloak, pricingError]);
 
   useEffect(() => {
     const { plans } = membership || { plans: [] };
@@ -147,6 +155,11 @@ export default function Membership() {
       history.push("/pay/membership/payment/" + membership.name);
     }
   };
+
+  if (pricingError) {
+    return <SomethingWentWrong />;
+  }
+
   if (!membership) return <Loader />;
 
   const { content, plans } = membership;
