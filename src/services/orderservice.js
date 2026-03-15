@@ -1,6 +1,26 @@
 import axios from "axios";
 import { handleAxiosError } from "./errorHandler";
 
+/**
+ * Retries an async function with exponential backoff.
+ * Only retries if error.isRetryable is true (set by errorHandler).
+ */
+export const retryWithBackoff = async (fn, maxRetries = 3) => {
+  let lastError;
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      lastError = error;
+      if (!error.isRetryable || attempt === maxRetries) {
+        throw error;
+      }
+      await new Promise((resolve) => setTimeout(resolve, 1000 * Math.pow(2, attempt)));
+    }
+  }
+  throw lastError;
+};
+
 export const handlePayment = (data) => {
   return axios
     .post(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/transaction`, data)

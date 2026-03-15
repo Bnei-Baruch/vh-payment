@@ -46,7 +46,12 @@
     "successfully_registered": "Te has registrado exitosamente al evento",
     "free": "Gratis",
     "tickets_needs_membership": "Necesita una membresía activa para inscribirse en el evento. Una vez activada su membresía, puede volver a esta página y completar su inscripción.",
-    "tickets_activate_membership": "Active su membresía aquí"
+    "tickets_activate_membership": "Active su membresía aquí",
+    "payment_initiation_failed": "No se pudo iniciar el pago. Por favor, inténtalo de nuevo.",
+    "confirming_payment": "Confirmando tu pago...",
+    "confirmation_failed": "Tu pago fue procesado pero no pudimos confirmarlo. Por favor contacta soporte en help@kli.one o inténtalo de nuevo.",
+    "confirmation_failed_title": "Problema de confirmación",
+    "session_expired": "Tu sesión ha expirado. Por favor, vuelve a membresía e inténtalo de nuevo."
   },
   "userMenu": {
     "logOut": "Cerrar la sesión",
