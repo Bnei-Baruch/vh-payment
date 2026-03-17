@@ -11,6 +11,7 @@ const sentryDsn = window.APP_CONFIG?.SENTRY_DSN;
 if (sentryDsn) {
   Sentry.init({
     dsn: sentryDsn,
+    release: window.APP_CONFIG?.REG_BRANCH,
     environment: window.APP_CONFIG?.SENTRY_ENVIRONMENT || "production",
   });
 }
