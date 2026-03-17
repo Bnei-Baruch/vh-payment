@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Box,
   Button,
@@ -16,8 +16,6 @@ import * as qs from "query-string";
 import { paymentSuccess, retryWithBackoff } from "../../services/orderservice";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import WarningIcon from "@material-ui/icons/Warning";
-import * as Sentry from "@sentry/react";
-
 const useStyles = makeStyles({
   header: {
     marginBottom: 40,
@@ -26,8 +24,6 @@ const useStyles = makeStyles({
   },
 });
 
-const SESSION_TIMEOUT_MS = 10000;
-
 const SuccessMembership = () => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -35,8 +31,7 @@ const SuccessMembership = () => {
   const user = useSelector((state) => state.user);
 
   // null = pending, true = succeeded, false = failed
-  const [confirmationStatus, setConfirmationStatus] = useState(null);
-  const [timedOut, setTimedOut] = useState(false);
+  const [confirmationStatus, setConfirmationStatus] = React.useState(null);
   const posted = useRef(false);
 
   const returnToMembershipArea = () => {
@@ -54,44 +49,22 @@ const SuccessMembership = () => {
           }, 3000);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         setConfirmationStatus(false);
-        Sentry.captureException(error, {
-          tags: { flow: "membership_payment_confirmation" },
-        });
       });
   };
 
+  const q = React.useMemo(() => qs.parse(window.location.search), []);
+  const hasParams = Object.keys(q).length !== 0;
+
   useEffect(() => {
-    const q = qs.parse(window.location.search);
-    const hasParams = Object.keys(q).length !== 0;
-
-    if (!hasParams) {
-      // No Pelecard params — session issue or direct navigation
-      setTimedOut(true);
-      return;
-    }
-
-    if (posted.current) return;
-
-    if (user.authenticated) {
-      confirmPayment(q);
-      return;
-    }
-
-    // Wait for auth to resolve, with a fallback timeout
-    const timer = setTimeout(() => {
-      if (!posted.current) {
-        setTimedOut(true);
-      }
-    }, SESSION_TIMEOUT_MS);
-
-    return () => clearTimeout(timer);
+    if (!hasParams || posted.current || !user.authenticated) return;
+    confirmPayment(q);
     // eslint-disable-next-line
   }, [user]);
 
-  // --- Timed out / no params ---
-  if (timedOut) {
+  // --- No query params (direct navigation) ---
+  if (!hasParams) {
     return (
       <ContentLayout>
         <Paper elevation={0}>
@@ -146,7 +119,6 @@ const SuccessMembership = () => {
 
   // --- Confirmation failed ---
   if (confirmationStatus === false) {
-    const q = qs.parse(window.location.search);
     return (
       <ContentLayout>
         <Paper elevation={0}>

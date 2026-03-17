@@ -12,17 +12,26 @@ if (sentryDsn) {
   Sentry.init({
     dsn: sentryDsn,
     environment: window.APP_CONFIG?.SENTRY_ENVIRONMENT || "production",
-    integrations: [new Sentry.BrowserTracing()],
-    tracesSampleRate: 0.2,
   });
 }
 
+const AppRoot = sentryDsn ? (
+  <Sentry.ErrorBoundary
+    fallback={
+      <div style={{ textAlign: "center", padding: 40 }}>
+        <p>An unexpected error occurred.</p>
+        <button onClick={() => window.location.reload()}>Reload page</button>
+      </div>
+    }
+  >
+    <App />
+  </Sentry.ErrorBoundary>
+) : (
+  <App />
+);
+
 ReactDOM.render(
-  <Provider store={store}>
-    <Sentry.ErrorBoundary fallback={<p>An unexpected error occurred.</p>}>
-      <App />
-    </Sentry.ErrorBoundary>
-  </Provider>,
+  <Provider store={store}>{AppRoot}</Provider>,
   document.getElementById("root")
 );
 
