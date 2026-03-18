@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/react";
+
 // Enhanced error handler that adds classification properties
 export const enhanceError = (error) => {
   if (error.response) {
@@ -15,7 +17,19 @@ export const enhanceError = (error) => {
     error.isRetryable = false;
     error.errorType = 'config_error';
   }
-  
+
+  // Report to Sentry — skip auth errors handled by Keycloak
+  const skipSentry = error.statusCode === 401 || error.statusCode === 403;
+  if (!skipSentry) {
+    Sentry.captureException(error, {
+      extra: {
+        errorType: error.errorType,
+        statusCode: error.statusCode,
+        isRetryable: error.isRetryable,
+      },
+    });
+  }
+
   return error;
 };
 

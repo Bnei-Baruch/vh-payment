@@ -31,5 +31,7 @@ window.APP_CONFIG = {
     url: "https://accounts.kab.info/auth/",
     clientId: "membership_pay",
   },
-  GLASSIX_API_KEY: 'glassix-api-key'
+  GLASSIX_API_KEY: 'glassix-api-key',
+  SENTRY_DSN: '',
+  SENTRY_ENVIRONMENT: 'development'
 };
