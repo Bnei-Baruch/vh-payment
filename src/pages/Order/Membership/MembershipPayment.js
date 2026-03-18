@@ -30,6 +30,7 @@ import { getProfile } from "../../../services/userservice";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
     margin-bottom: 10px;
@@ -83,6 +84,15 @@ const PaymentTile = styled.div`
 `;
 const HeaderTitle = styled(Typography)`
   text-align: center;
+`;
+
+const ErrorNotification = styled(Paper)`
+  padding: 12px 15px;
+  background-color: #f44336;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
 `;
 
 const ElevatedContainer = styled(Paper)`
@@ -162,6 +172,7 @@ export default function MembershipPayment() {
   const [loading, setLoading] = React.useState(true);
   const [termsAccepted, setTermsAccepted] = React.useState(false);
   const [payClicked, setOnPayClicked] = React.useState(false);
+  const [payError, setPayError] = React.useState(null);
   const [minAmount, setMinAmount] = React.useState(0);
   const [nextClicked, setNextAmount] = React.useState(false);
   const [amount, setAmount] = React.useState(0);
@@ -196,7 +207,7 @@ export default function MembershipPayment() {
     }
   };
 
-  React.useState(() => {
+  React.useEffect(() => {
     if (selectedMembership) {
       setLoading(false);
     } else {
@@ -208,6 +219,7 @@ export default function MembershipPayment() {
 
   const handlePay = async () => {
     setOnPayClicked(true);
+    setPayError(null);
     const data = {
       // Account details
       AccountID: "-",
@@ -248,7 +260,7 @@ export default function MembershipPayment() {
       })
       .catch((error) => {
         setOnPayClicked(false);
-        console.error(error);
+        setPayError(t("order.payment_initiation_failed"));
       });
   };
 
@@ -590,6 +602,12 @@ export default function MembershipPayment() {
                     t("common.confirm")
                   )}
                 </Button>
+                {payError && (
+                  <ErrorNotification elevation={0}>
+                    <ErrorOutlineIcon style={{ marginRight: 8 }} />
+                    <span>{payError}</span>
+                  </ErrorNotification>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <Button
