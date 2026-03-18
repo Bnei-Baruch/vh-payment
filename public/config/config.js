@@ -5,5 +5,7 @@ window.APP_CONFIG = {
         realm: 'main',
         url: 'https://accounts.kab.info/auth/',
         clientId: 'membership_pay'
-      }
+      },
+    SENTRY_DSN: '',
+    SENTRY_ENVIRONMENT: 'production'
 };

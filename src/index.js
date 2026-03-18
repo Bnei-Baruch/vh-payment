@@ -5,11 +5,34 @@ import App from "./App";
 // import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import * as Sentry from "@sentry/react";
+
+const sentryDsn = window.APP_CONFIG?.SENTRY_DSN;
+if (sentryDsn) {
+  Sentry.init({
+    dsn: sentryDsn,
+    release: window.APP_CONFIG?.REG_BRANCH,
+    environment: window.APP_CONFIG?.SENTRY_ENVIRONMENT || "production",
+  });
+}
+
+const AppRoot = sentryDsn ? (
+  <Sentry.ErrorBoundary
+    fallback={
+      <div style={{ textAlign: "center", padding: 40 }}>
+        <p>An unexpected error occurred.</p>
+        <button onClick={() => window.location.reload()}>Reload page</button>
+      </div>
+    }
+  >
+    <App />
+  </Sentry.ErrorBoundary>
+) : (
+  <App />
+);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Provider store={store}>{AppRoot}</Provider>,
   document.getElementById("root")
 );
 

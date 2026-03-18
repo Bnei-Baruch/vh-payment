@@ -46,7 +46,12 @@
     "successfully_registered": "הרשמתך התבצעה בהצלחה",
     "free": "חינם",
     "tickets_needs_membership": "כדי להירשם לאירוע יש צורך במנוי פעיל. לאחר הפעלת המנוי, ניתן לחזור לדף זה ולהשלים את ההרשמה.",
-    "tickets_activate_membership": "להפעלת המנוי - יש ללחוץ כאן"
+    "tickets_activate_membership": "להפעלת המנוי - יש ללחוץ כאן",
+    "payment_initiation_failed": "לא ניתן להתחיל את התשלום. אנא נסה שוב.",
+    "confirming_payment": "מאשר את התשלום שלך...",
+    "confirmation_failed": "התשלום בוצע אך לא הצלחנו לאשר אותו. אנא פנה לתמיכה ב-help@kli.one או נסה שוב.",
+    "confirmation_failed_title": "בעיה באישור",
+    "session_expired": "פג תוקף ההתחברות. אנא חזור למנוי ונסה שוב."
   },
   "userMenu": {
     "logOut": "להתנתק",
@@ -58,7 +63,7 @@
   "error": {
     "page_not_found": "Page Not found",
     "retry": "Please go back or",
-    "try_again": "Try again"
+    "try_again": "נסה שוב"
   },
   "common": {
     "update": "עדכן",

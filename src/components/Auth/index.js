@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import * as Sentry from "@sentry/react";
 
 import Keycloak from "keycloak-js";
 import {
@@ -45,6 +46,12 @@ const Auth = () => {
         lastName: keycloak.profile.lastName,
         email: keycloak.profile.email,
       };
+
+      Sentry.setUser({
+        id: keycloak.subject,
+        email: keycloak.profile.email,
+        username: keycloak.profile.username,
+      });
 
       setAuth({
         keycloak,
