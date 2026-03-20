@@ -71,7 +71,7 @@ upload_sourcemaps_production:
     - docker pull $PROD_IMAGE
     - docker create --name sourcemap_extract $PROD_IMAGE
     - mkdir -p sourcemaps
-    - docker cp sourcemap_extract:/usr/share/nginx/html/static/js/. sourcemaps/
+    - docker cp sourcemap_extract:/usr/share/nginx/html/. sourcemaps/
     - docker rm sourcemap_extract
     - |
       docker run --rm \
