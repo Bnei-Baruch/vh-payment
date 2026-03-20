@@ -76,7 +76,7 @@ upload_sourcemaps_production:
     - ls -la $(pwd)/build
     - wget -q -O /usr/local/bin/sentry-cli https://github.com/getsentry/sentry-cli/releases/latest/download/sentry-cli-Linux-x86_64 && chmod +x /usr/local/bin/sentry-cli
     - SENTRY_URL=$SENTRY_URL SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN sentry-cli releases new --org kbb --project vh-payment --finalize "$CI_COMMIT_TAG"
-    - SENTRY_URL=$SENTRY_URL SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN sentry-cli sourcemaps upload --org kbb --project vh-payment --release "$CI_COMMIT_TAG" --url-prefix ~/pay --log-level debug $(pwd)/build
+    - SENTRY_URL=$SENTRY_URL SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN sentry-cli sourcemaps upload --org kbb --project vh-payment --release "$CI_COMMIT_TAG" --url-prefix '~/pay' --log-level debug $(pwd)/build
           
   only:
     - tags
