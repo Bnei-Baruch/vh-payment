@@ -14,6 +14,7 @@ import ContentLayout from "../../layouts/ContentLayout";
 import { useParams } from "react-router-dom";
 import * as qs from "query-string";
 import { paymentSuccess, retryWithBackoff } from "../../services/orderservice";
+import * as Sentry from "@sentry/react";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import WarningIcon from "@material-ui/icons/Warning";
 const useStyles = makeStyles({
@@ -49,7 +50,15 @@ const SuccessMembership = () => {
           }, 3000);
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.statusCode === 401 || error.statusCode === 403) {
+          Sentry.captureException(error, {
+            extra: {
+              context: "payment_confirmation",
+              statusCode: error.statusCode
+            },
+          });
+        }
         setConfirmationStatus(false);
       });
   };
