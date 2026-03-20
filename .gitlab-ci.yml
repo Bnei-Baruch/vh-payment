@@ -73,7 +73,7 @@ upload_sourcemaps_production:
     - mkdir -p sourcemaps
     - docker cp sourcemap_extract:/usr/share/nginx/html/. sourcemaps/
     - docker rm sourcemap_extract
-    - la -la $(pwd)/sourcemaps
+    - ls -la $(pwd)/sourcemaps
     - |
       docker run --rm \
         -e SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN \
