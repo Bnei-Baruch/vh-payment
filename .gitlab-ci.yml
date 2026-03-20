@@ -70,10 +70,10 @@ upload_sourcemaps_production:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker pull $PROD_IMAGE
     - docker create --name sourcemap_extract $PROD_IMAGE
-    - mkdir -p sourcemaps
-    - docker cp sourcemap_extract:/usr/share/nginx/html/. sourcemaps/
+    - mkdir -p build
+    - docker cp sourcemap_extract:/usr/share/nginx/html/. build/
     - docker rm sourcemap_extract
-    - ls -la $(pwd)/sourcemaps
+    - ls -la $(pwd)/build
     - |
       docker run --rm \
         -e SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN \
@@ -81,10 +81,10 @@ upload_sourcemaps_production:
         getsentry/sentry-cli releases new --org kbb --project vh-payment --finalize "$CI_COMMIT_TAG"
     - |
       docker run --rm \
-        -v $(pwd)/sourcemaps:/work \
+        -v $(pwd)/build:/work \
         -e SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN \
         -e SENTRY_URL=$SENTRY_URL \
-        getsentry/sentry-cli sourcemaps upload --org kbb --project vh-payment --release "$CI_COMMIT_TAG" --url-prefix "~/static/js" --log-level=debug /work
+        getsentry/sentry-cli sourcemaps upload --org kbb --project vh-payment --release "$CI_COMMIT_TAG" --log-level debug /work
           
   only:
     - tags
