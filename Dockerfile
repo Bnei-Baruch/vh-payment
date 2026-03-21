@@ -12,7 +12,10 @@ ADD . /vh-payment
 RUN mkdir vh-payment && \
     chown -R node:node vh-payment && \
     yarn install && \
-    npm run-script build --output-path=build
+    npm run-script build --output-path=build && \
+    curl -sL https://github.com/getsentry/sentry-cli/releases/latest/download/sentry-cli-Linux-x86_64 -o /usr/local/bin/sentry-cli && \
+    chmod +x /usr/local/bin/sentry-cli && \
+    sentry-cli sourcemaps inject build/
 
 FROM nginx:1.25
 
