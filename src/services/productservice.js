@@ -56,7 +56,7 @@ export const getMembershipMonthlyPricing = async (kc_id) => {
   // Build API URL with parameters
   const params = new URLSearchParams();
   if (preferredCurrency) params.append("currency", preferredCurrency);
-  if (forcedPricingVersion) params.append("pricingVersion", forcedPricingVersion);
+  if (forcedPricingVersion) params.append("pricing_version", forcedPricingVersion);
 
   const apiUrl = `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/pricing/monthly/${kc_id}?${params.toString()}`;
 
@@ -67,12 +67,17 @@ export const getMembershipMonthlyPricing = async (kc_id) => {
     const response = await axios.get(apiUrl);
 
     if (response.data && response.data.data) {
-      const { amount, currency, pricingVersion } = response.data.data;
+      const data = response.data.data;
       console.log('[Pricing] Backend returned:',
-                  'version:', pricingVersion,
-                  'amount:', amount,
-                  'currency:', currency);
-      return response.data.data;
+                  'version:', data.pricing_version,
+                  'amount:', data.amount,
+                  'currency:', data.currency);
+      return {
+        amount: data.amount,
+        currency: data.currency,
+        pricingVersion: data.pricing_version,
+        v2Details: data.v2_details,
+      };
     } else {
       console.warn('[Pricing] Invalid response format:', response.data);
       return null;
@@ -122,7 +127,7 @@ export const getMembershipProduct = async (kc_id) => {
 
   console.log(`[Pricing] Applying price: ${price.amount} ${price.currency.toUpperCase()} (version: ${price.pricingVersion})`);
 
-  const copy = structuredClone(membershipsplans);
+  const copy = JSON.parse(JSON.stringify(membershipsplans));
   copy.plans.forEach((plan) => {
     plan.price = {
       [price.currency.toLowerCase()]: {
@@ -135,6 +140,7 @@ export const getMembershipProduct = async (kc_id) => {
   // Attach pricing metadata to the product
   copy.pricingVersion = price.pricingVersion;
   copy.pricingCurrency = price.currency;
+  copy.v2Details = price.v2Details || null;
 
   return copy;
 };

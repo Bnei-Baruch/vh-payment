@@ -34,14 +34,14 @@
     "returnToPersonalArea": "Вернуться в личный кабинет",
     "payment_success": "Оплата прошла успешно",
     "payment_error": "Ваш платеж не выполнен",
-    "payment_cancel": "Tu pago ha sido cancelado",
-    "payment_cancel_error": "Your payment was cancel. Please try again",
+    "payment_cancel": "Ваш платёж был отменён",
+    "payment_cancel_error": "Ваш платёж был отменён. Пожалуйста, попробуйте снова",
     "error_paid": "Мы не можем обработать ваш платеж. Пожалуйста, попробуйте еще раз.",
     "successfully_paid": "Поздравляем! Вы зарегистрированы на конгресс",
     "back_to_event": "Вернуться в личный кабинет/события",
     "back_to_my_membership": "вернуться в личный кабинет",
     "become_a_member": "Активировать подписку",
-    "membershipPaymentSuccess": "You have successfully paid for your subscription",
+    "membershipPaymentSuccess": "Вы успешно оплатили подписку",
     "processing_event_registration_mb": "Статус вашего абонемента активный, мы обрабатываем вашу регистрацию.",
     "successfully_registered": "Вы успешно зарегистрировались на конгресс",
     "free": "Бесплатно",
@@ -61,9 +61,9 @@
     "cancelBtn": "Отменить"
   },
   "error": {
-    "page_not_found": "Page Not found",
-    "retry": "Please go back or",
-    "try_again": "Попробовать снова"
+    "page_not_found": "Страница не найдена",
+    "retry": "Пожалуйста, вернитесь назад или",
+    "try_again": "Попробуйте снова"
   },
   "common": {
     "update": "Обновлять",
@@ -84,7 +84,7 @@
     "select_option": "Выбрать",
     "successHeader": "Вы успешно зарегистрировались на это мероприятие!",
     "successDescription": "После регистрации мы вышлем ваш билет по электронной почте",
-    "viewTicket": "View Event Ticket",
+    "viewTicket": "Просмотреть билет на мероприятие",
     "period": "Количество месяцев",
     "currency": "Валюта",
     "month": "месяц",
@@ -142,10 +142,11 @@
     "pleaseSelectOption": "Вы должны выбрать вариант"
   },
   "somethingWentWrong": {
-    "header": "Something went wrong",
-    "description": "Something went wrong while processing your request. Please start your registration by clicking below",
-    "return": "Return to Registration",
-    "returnMembership": "Return to Membership"
+    "header": "Что-то пошло не так",
+    "description": "Что-то пошло не так при обработке вашего запроса. Пожалуйста, начните регистрацию заново, нажав кнопку ниже",
+    "return": "Вернуться к регистрации",
+    "returnMembership": "Вернуться к подписке",
+    "retry": "Попробовать снова"
   },
   "specialOption": {
     "title": "Другие варинаты оплаты",
@@ -163,8 +164,20 @@
     "title": "Подписка",
     "confirmation": "Подтверждение",
     "active": "Активный",
-    "inactive": "Неактинвый",
+    "inactive": "Неактивный",
     "back_to_status": "Назад",
+    "pricing_breakdown": "Детализация цены",
+    "country": "Страна",
+    "base_price": "Базовая цена",
+    "discounts": "Скидки",
+    "discount_type": "Тип скидки",
+    "discount_amount": "Скидка",
+    "eligibility": "Применимо",
+    "discount_error": "Не удалось проверить, попробуйте снова",
+    "final_price": "Итоговая цена",
+    "discount_types": {
+      "donations": "Пожертвования"
+    },
     "monthly_manual_subscription": "Обычная подписка",
     "monthly_auto_subscription": "Автоматическая подписка",
     "manual_subscription_description": "Это единоразовый платеж за выбранный вами период",

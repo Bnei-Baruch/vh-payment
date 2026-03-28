@@ -10,8 +10,6 @@ import {
   Typography,
   Paper,
   Checkbox,
-  Select,
-  MenuItem,
   InputAdornment,
   OutlinedInput,
   FormHelperText,
@@ -27,13 +25,13 @@ import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
-import { getMembershipProduct } from "../../../services/productservice";
 import { setSelectedMembership } from "../../../redux/actions/orderActions";
+import { useMembershipProduct } from "../../../hooks/useMembershipProduct";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
-import { getDebugUser, shouldShowCurrencyPicker } from "../../../shared/featureFlags";
+import { shouldShowCurrencyPicker } from "../../../shared/featureFlags";
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
     margin-bottom: 10px;
@@ -154,23 +152,7 @@ export default function MembershipPayment() {
     (state) => state.order.selectedMembership
   );
 
-  const periods = [
-    { value: 1, name: "1" },
-    { value: 2, name: "2" },
-    { value: 3, name: "3" },
-    { value: 4, name: "4" },
-    { value: 5, name: "5" },
-    { value: 6, name: "6" },
-    { value: 7, name: "7" },
-    { value: 8, name: "8" },
-    { value: 9, name: "9" },
-    { value: 10, name: "10" },
-    { value: 11, name: "11" },
-    { value: 12, name: "12" },
-  ];
-
   const [profileData, setUserProfileData] = React.useState(null);
-  const [period, setPeriod] = React.useState('');
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
@@ -178,27 +160,16 @@ export default function MembershipPayment() {
   const [payClicked, setOnPayClicked] = React.useState(false);
   const [payError, setPayError] = React.useState(null);
   const [minAmount, setMinAmount] = React.useState(0);
-  const [nextClicked, setNextAmount] = React.useState(false);
   const [amount, setAmount] = React.useState(0);
-  const [pricingVersion, setPricingVersion] = React.useState(null);
+  const { membershipProduct } = useMembershipProduct();
+  const pricingVersion = membershipProduct?.pricingVersion;
   const totalToPay = useMemo(
-    () => {
-      if (!selectedMembership) {
-        return 0;
-      } else if (selectedMembership.name === "manual") {
-        return amount * (period || 1);
-      }
-      return amount;
-    },
-    [amount, period, selectedMembership]
+    () => (!selectedMembership ? 0 : amount),
+    [amount, selectedMembership]
   );
 
   const nextStep = () => {
-    setNextAmount(true);
-    if (
-      activeStep === 0 &&
-      (amount < minAmount || (selectedMembership.name === "manual" && !period))
-    ) {
+    if (activeStep === 0 && amount < minAmount) {
       return;
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -254,7 +225,7 @@ export default function MembershipPayment() {
       Currency: currency.id?.toUpperCase(),
       Amount: totalToPay,
       AmountItem: amount,
-      Quantity: period,
+      Quantity: 1,
       TerminalId: selectedMembership.TerminalId,
       // Amount: 1,
       Type: selectedMembership.product?.type,
@@ -277,21 +248,16 @@ export default function MembershipPayment() {
   };
 
   React.useEffect(() => {
-    if (!selectedMembership && user && user.keycloak && user.keycloak.subject) {
-      const fetch = async () => {
-        const debugUser = getDebugUser();
-        const userId = debugUser || user.keycloak.subject;
-        const membership = await getMembershipProduct(userId);
-        if (membership) {
-          setPricingVersion(membership.pricingVersion);
-          const selectedPlan = membership.plans.find(plan => window.location.pathname.endsWith(plan.name));
-          dispatch(setSelectedMembership(selectedPlan));
-        }
-        // If membership is null, selectedMembership will remain null and SomethingWentWrong will be shown
-      };
-      fetch();
+    if (!selectedMembership && membershipProduct) {
+      const selectedPlan = membershipProduct.plans.find(
+        p => window.location.pathname.split('/').pop() === p.name
+      );
+      if (!selectedPlan) {
+        console.error('[MembershipPayment] No plan found for path:', window.location.pathname);
+      }
+      dispatch(setSelectedMembership(selectedPlan));
     }
-  }, [selectedMembership, user, dispatch]);
+  }, [selectedMembership, membershipProduct, dispatch]);
 
   React.useEffect(() => {
     getUserProfileData();
@@ -385,33 +351,6 @@ export default function MembershipPayment() {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              {selectedMembership.name === "manual" && (
-                <Grid item xs={12}>
-                  <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">
-                      {t("common.period")}
-                    </FormLabel>
-                    <Select
-                      value={period}
-                      variant="outlined"
-                      error={!period && nextClicked}
-                      onChange={(event) => setPeriod(event.target.value)}
-                    >
-                      {periods.map((l) => (
-                        <MenuItem key={l.value} value={l.value}>
-                          {l.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    <FormHelperText id="filled-weight-helper-text">
-                      {t("membership.pay_more_than_month")}
-                    </FormHelperText>
-                  </FormControl>
-                  <Grid>
-                    <div></div>
-                  </Grid>
-                </Grid>
-              )}
               {shouldShowCurrencyPicker(pricingVersion) && (
                 <Grid item xs={12}>
                   <FormControl>
@@ -425,7 +364,7 @@ export default function MembershipPayment() {
               <Grid item xs={12}>
                 <FormControl>
                   <FormLabel id="demo-radio-buttons-group-label">
-                    {t("common.amount")} {t("common.per_month")}
+                    {t("common.amount")}
                   </FormLabel>
                   <PaymentTile>
                     <span
@@ -527,7 +466,7 @@ export default function MembershipPayment() {
                     </Summarylabel>{" "}
                     <Grid item xs={8}>
                       {" "}
-                      {period} {t("common.month")}
+                      1 {t("common.month")}
                     </Grid>
                   </SummaryGrid>
                   <SummaryGrid container item xs={12}>

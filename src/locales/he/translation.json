@@ -34,8 +34,8 @@
     "returnToPersonalArea": "חזרה לעמוד האישי",
     "payment_success": "שולם בהצלחה!",
     "payment_error": "התשלום נכשל",
-    "payment_cancel": "Tu pago ha sido cancelado",
-    "payment_cancel_error": "Your payment was cancel. Please try again",
+    "payment_cancel": "התשלום שלך בוטל",
+    "payment_cancel_error": "התשלום שלך בוטל. אנא נסה שוב",
     "error_paid": "החיוב באופן תשלום זה לא הצליח, אנא נסה שוב",
     "successfully_paid": "רכשת בהצלחה כרטיס לאירוע",
     "back_to_event": "חזרה לאיזור אישי / אירועים",
@@ -61,8 +61,8 @@
     "cancelBtn": "לבטל"
   },
   "error": {
-    "page_not_found": "Page Not found",
-    "retry": "Please go back or",
+    "page_not_found": "הדף לא נמצא",
+    "retry": "אנא חזור אחורה או",
     "try_again": "נסה שוב"
   },
   "common": {
@@ -82,9 +82,9 @@
     "paymentMethod": "אמצעי תשלום",
     "registration": "רשום",
     "select_option": "בחר",
-    "successHeader": "Congratulations! You have successfully registered for the event",
-    "successDescription": "Thanks You for the confirmation. Your details have been saved and ticket is generated. Please click on below link to view your event ticket.",
-    "viewTicket": "View Event Ticket",
+    "successHeader": "מזל טוב! נרשמת בהצלחה לאירוע",
+    "successDescription": "תודה על האישור. פרטיך נשמרו והכרטיס הופק. לחץ על הקישור להצגת הכרטיס.",
+    "viewTicket": "הצג כרטיס לאירוע",
     "period": "מספר חודשים",
     "currency": "מטבע",
     "month": "חודש",
@@ -142,10 +142,11 @@
     "pleaseSelectOption": "בבקשה בחר אפשרות"
   },
   "somethingWentWrong": {
-    "header": "Something went wrong",
-    "description": "Something went wrong while processing your request. Please start your registration by clicking below",
-    "return": "Return to Registration",
-    "returnMembership": "חזרה למנוי שלי"
+    "header": "משהו השתבש",
+    "description": "משהו השתבש בעת עיבוד בקשתך. אנא התחל את ההרשמה מחדש על ידי לחיצה למטה",
+    "return": "חזרה להרשמה",
+    "returnMembership": "חזרה למנוי שלי",
+    "retry": "נסה שוב"
   },
   "specialOption": {
     "title": "אפשרויות רכישה מיוחדות",
@@ -165,6 +166,18 @@
     "active": "פעיל",
     "inactive": "לא פעיל",
     "back_to_status": "חזרה לסטטוס",
+    "pricing_breakdown": "פירוט התמחור",
+    "country": "מדינה",
+    "base_price": "מחיר בסיס",
+    "discounts": "הנחות",
+    "discount_type": "סוג הנחה",
+    "discount_amount": "הנחה",
+    "eligibility": "זכאות",
+    "discount_error": "לא ניתן לאמת, נסה שוב",
+    "final_price": "מחיר סופי",
+    "discount_types": {
+      "donations": "תרומות"
+    },
     "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",
     "manual_subscription_description": "זהו תשלום חד פעמי לתקופה שאתה בוחר",

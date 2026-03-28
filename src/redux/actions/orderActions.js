@@ -2,6 +2,7 @@ import {
   SET_ORDER,
   SET_SELECTED_TICKET,
   SET_SELECTED_MEMBERSHIP,
+  SET_MEMBERSHIP_PRODUCT,
   SET_PRODUCT,
   SPECIAL_SELECTED_OPTION,
 } from "../types";
@@ -16,6 +17,13 @@ export function setOrder(value) {
 export function setSelectedTicket(value) {
   return {
     type: SET_SELECTED_TICKET,
+    payload: value,
+  };
+}
+
+export function setMembershipProduct(value) {
+  return {
+    type: SET_MEMBERSHIP_PRODUCT,
     payload: value,
   };
 }

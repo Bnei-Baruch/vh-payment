@@ -1,13 +1,17 @@
 import {
+  Box,
   Button,
   FormControl,
   FormControlLabel,
   FormLabel,
   Grid,
+  IconButton,
+  Popover,
   Radio,
   RadioGroup,
   Typography,
 } from "@material-ui/core";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
@@ -17,13 +21,14 @@ import {
   setSelectedMembership,
   setSpecialSelectedOption,
 } from "../../../redux/actions/orderActions";
+import { useMembershipProduct } from "../../../hooks/useMembershipProduct";
 import { setCurrency } from "../../../redux/actions/currencyActions";
 import { currencies } from "../../../shared/currencies";
 
 import { useHistory } from "react-router-dom";
-import { getMembershipProduct } from "../../../services/productservice";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
+import PricingBreakdown from "./PricingBreakdown";
 
 const TicketCard = styled(Grid)`
   background-color: #fff;
@@ -94,29 +99,14 @@ export default function Membership() {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
-  const keycloak = useSelector((state) => state.user.keycloak);
   const currency = useSelector((state) => state.currency);
   const [errorMessage, setErrorMessage] = React.useState(undefined);
   const selectedMembership = useSelector(
     (state) => state.order.selectedMembership
   );
   const [specialOption, setSpecialOption] = React.useState("Help Haver");
-  const [membership, setMembership] = React.useState(undefined);
-  const [pricingError, setPricingError] = React.useState(false);
-
-  useEffect(() => {
-    if (!membership && keycloak && !pricingError) {
-      const fetch = async () => {
-        const result = await getMembershipProduct(keycloak.subject);
-        if (result === null) {
-          setPricingError(true);
-        } else {
-          setMembership(result);
-        }
-      };
-      fetch();
-    }
-  }, [membership, keycloak, pricingError]);
+  const { membershipProduct: membership, error: pricingError } = useMembershipProduct();
+  const [formulaAnchor, setFormulaAnchor] = React.useState(null);
 
   useEffect(() => {
     const { plans } = membership || { plans: [] };
@@ -212,6 +202,15 @@ export default function Membership() {
                       }
                       {" "}
                       <TenureText>{t("common.per_month")}</TenureText>
+                      {membership.pricingVersion !== "v1" && membership.v2Details && (
+                        <IconButton
+                          size="small"
+                          onClick={(e) => { e.stopPropagation(); setFormulaAnchor(e.currentTarget); }}
+                          style={{ padding: 2, color: "#888", verticalAlign: "middle" }}
+                        >
+                          <InfoOutlinedIcon style={{ fontSize: 16 }} />
+                        </IconButton>
+                      )}
                     </>
                   )}
                 </CurrencyText>
@@ -274,6 +273,21 @@ export default function Membership() {
           {t("membership.back_to_status")}
         </Button>
       </Grid>
+
+      <Popover
+        open={Boolean(formulaAnchor)}
+        anchorEl={formulaAnchor}
+        onClose={() => setFormulaAnchor(null)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        transformOrigin={{ vertical: "top", horizontal: "left" }}
+      >
+        <Box p={2} style={{ minWidth: 220 }}>
+          <Typography variant="subtitle2" style={{ fontWeight: 700, marginBottom: 8 }}>
+            {t("membership.pricing_breakdown")}
+          </Typography>
+          {membership.v2Details && <PricingBreakdown v2Details={membership.v2Details} />}
+        </Box>
+      </Popover>
     </TicketGrid>
   );
 }
