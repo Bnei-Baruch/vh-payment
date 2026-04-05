@@ -2,6 +2,7 @@ import {
   SET_ORDER,
   SET_SELECTED_MEMBERSHIP,
   SET_SELECTED_TICKET,
+  SET_MEMBERSHIP_PRODUCT,
   SET_PRODUCT,
   SPECIAL_SELECTED_OPTION,
 } from "../types";
@@ -45,6 +46,7 @@ const DEFAULT = {
   ticketProduct: undefined,
   selectedTicket: undefined,
   selectedMembership: undefined,
+  membershipProduct: undefined,
 };
 
 export default function reducer(state = DEFAULT, { type, payload }) {
@@ -59,6 +61,12 @@ export default function reducer(state = DEFAULT, { type, payload }) {
         currency: { ...state.currency },
         product: { ...state.product },
         ...payload,
+      };
+
+    case SET_MEMBERSHIP_PRODUCT:
+      return {
+        ...state,
+        membershipProduct: payload,
       };
 
     case SET_SELECTED_MEMBERSHIP:

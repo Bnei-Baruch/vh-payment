@@ -38,6 +38,13 @@ export default function SomethingWentWrong({isMembership}) {
                             ? t("somethingWentWrong.returnMembership")
                             : t("somethingWentWrong.return")}
                     </Button>
+                    {" "}
+                    <Button
+                        color="primary"
+                        onClick={() => window.location.reload()}
+                        variant="contained">
+                        {t("somethingWentWrong.retry")}
+                    </Button>
                 </div>
             </ContentLayout>
         </>

@@ -10,15 +10,13 @@ import {
   Typography,
   Paper,
   Checkbox,
-  Select,
-  MenuItem,
   InputAdornment,
   OutlinedInput,
   FormHelperText,
 } from "@material-ui/core";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useStyles } from "../index";
@@ -27,10 +25,13 @@ import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
+import { setSelectedMembership } from "../../../redux/actions/orderActions";
+import { useMembershipProduct } from "../../../hooks/useMembershipProduct";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import { shouldShowCurrencyPicker } from "../../../shared/featureFlags";
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
     margin-bottom: 10px;
@@ -140,6 +141,7 @@ const SummaryGrid = styled(Grid)`
 `;
 export default function MembershipPayment() {
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
   const { plan } = useParams();
   const history = useHistory();
   const classes = useStyles();
@@ -150,23 +152,7 @@ export default function MembershipPayment() {
     (state) => state.order.selectedMembership
   );
 
-  const periods = [
-    { value: 1, name: "1" },
-    { value: 2, name: "2" },
-    { value: 3, name: "3" },
-    { value: 4, name: "4" },
-    { value: 5, name: "5" },
-    { value: 6, name: "6" },
-    { value: 7, name: "7" },
-    { value: 8, name: "8" },
-    { value: 9, name: "9" },
-    { value: 10, name: "10" },
-    { value: 11, name: "11" },
-    { value: 12, name: "12" },
-  ];
-
   const [profileData, setUserProfileData] = React.useState(null);
-  const [period, setPeriod] = React.useState();
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
@@ -174,19 +160,16 @@ export default function MembershipPayment() {
   const [payClicked, setOnPayClicked] = React.useState(false);
   const [payError, setPayError] = React.useState(null);
   const [minAmount, setMinAmount] = React.useState(0);
-  const [nextClicked, setNextAmount] = React.useState(false);
   const [amount, setAmount] = React.useState(0);
+  const { membershipProduct } = useMembershipProduct();
+  const pricingVersion = membershipProduct?.pricingVersion;
   const totalToPay = useMemo(
-    () => (selectedMembership.name === "manual" ? amount * period : amount),
-    [amount, period, selectedMembership.name]
+    () => (!selectedMembership ? 0 : amount),
+    [amount, selectedMembership]
   );
 
   const nextStep = () => {
-    setNextAmount(true);
-    if (
-      activeStep === 0 &&
-      (amount < minAmount || (selectedMembership.name === "manual" && !period))
-    ) {
+    if (activeStep === 0 && amount < minAmount) {
       return;
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -242,7 +225,7 @@ export default function MembershipPayment() {
       Currency: currency.id?.toUpperCase(),
       Amount: totalToPay,
       AmountItem: amount,
-      Quantity: period,
+      Quantity: 1,
       TerminalId: selectedMembership.TerminalId,
       // Amount: 1,
       Type: selectedMembership.product?.type,
@@ -265,6 +248,18 @@ export default function MembershipPayment() {
   };
 
   React.useEffect(() => {
+    if (!selectedMembership && membershipProduct) {
+      const selectedPlan = membershipProduct.plans.find(
+        p => window.location.pathname.split('/').pop() === p.name
+      );
+      if (!selectedPlan) {
+        console.error('[MembershipPayment] No plan found for path:', window.location.pathname);
+      }
+      dispatch(setSelectedMembership(selectedPlan));
+    }
+  }, [selectedMembership, membershipProduct, dispatch]);
+
+  React.useEffect(() => {
     getUserProfileData();
     // eslint-disable-next-line
   }, []);
@@ -284,8 +279,7 @@ export default function MembershipPayment() {
       setAmount(selectedMembership.price[currency.id]?.amount);
       setMinAmount(selectedMembership.price[currency.id]?.amount);
     }
-    // eslint-disable-next-line
-  }, [currency]);
+  }, [currency, selectedMembership]);
 
   if (loading) return <Loader />;
   if (!loading && !selectedMembership)
@@ -357,41 +351,16 @@ export default function MembershipPayment() {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              {selectedMembership.name === "manual" && (
+              {shouldShowCurrencyPicker(pricingVersion) && (
                 <Grid item xs={12}>
                   <FormControl>
                     <FormLabel id="demo-radio-buttons-group-label">
-                      {t("common.period")}
+                      {t("common.currency")}
                     </FormLabel>
-                    <Select
-                      value={period}
-                      variant="outlined"
-                      error={!period && nextClicked}
-                      onChange={(event) => setPeriod(event.target.value)}
-                    >
-                      {periods.map((l) => (
-                        <MenuItem key={l.value} value={l.value}>
-                          {l.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    <FormHelperText id="filled-weight-helper-text">
-                      {t("membership.pay_more_than_month")}
-                    </FormHelperText>
+                    <CurrencyPicker variant="outlined" />
                   </FormControl>
-                  <Grid>
-                    <div></div>
-                  </Grid>
                 </Grid>
               )}
-              <Grid item xs={12}>
-                <FormControl>
-                  <FormLabel id="demo-radio-buttons-group-label">
-                    {t("common.currency")}
-                  </FormLabel>
-                  <CurrencyPicker variant="outlined" />
-                </FormControl>
-              </Grid>
               <Grid item xs={12}>
                 <FormControl>
                   <FormLabel id="demo-radio-buttons-group-label">
@@ -413,9 +382,6 @@ export default function MembershipPayment() {
                         id="standard-adornment-amount"
                         value={amount}
                         fullWidth
-                        inputProps={{
-                          fullWidth: true,
-                        }}
                         type="number"
                         error={amount < minAmount}
                         onChange={(event) => {
@@ -500,7 +466,7 @@ export default function MembershipPayment() {
                     </Summarylabel>{" "}
                     <Grid item xs={8}>
                       {" "}
-                      {period} {t("common.month")}
+                      1 {t("common.month")}
                     </Grid>
                   </SummaryGrid>
                   <SummaryGrid container item xs={12}>

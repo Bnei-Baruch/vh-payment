@@ -1288,28 +1288,28 @@ exports.membershipsplans = {
         en: {
           name: "Manual",
           description: [
-            "You pay manually every time, no automatical renewal. You can also pay in advance for a few months. Also for Direct Cards (Debit).",
+            "You pay manually every time, no automatical renewal. Also for Direct Cards (Debit).",
           ],
           button_label: "Select this Plan",
         },
         es: {
           name: "Manual",
           description: [
-            "Pagas manualmente cada vez, no hay renovación automática. También puedes pagar por adelantado cualquier periodo de tiempo. También es apto para tarjetas Direct (débito)",
+            "Pagas manualmente cada vez, no hay renovación automática. También es apto para tarjetas Direct (débito)",
           ],
           button_label: "Seleccione este plan",
         },
         ru: {
           name: "Ручной",
           description: [
-            "Вы платите каждый раз вручную, автоматического списания средств не будет. Вы также можете оплатить вперед за любой период времени. Также подходит для владельцев карт Direct (дебетовая карта)",
+            "Вы платите каждый раз вручную, автоматического списания средств не будет. Также подходит для владельцев карт Direct (дебетовая карта)",
           ],
           button_label: "Выбрать этот варинат",
         },
         he: {
           name: "ידני",
           description: [
-            "אתה משלם בכל פעם מחדש, אין חידוש אוטומטי. אפשר לשלם מראש עבור כמה חודשים. מתאים גם לבעלי כרטיס דיירקט (דביט).",
+            "אתה משלם בכל פעם מחדש, אין חידוש אוטומטי. מתאים גם לבעלי כרטיס דיירקט (דביט).",
           ],
           button_label: "בחר תכנית זו",
         },
@@ -1339,29 +1339,7 @@ exports.membershipsplans = {
       name: "manual",
       order: 1,
       TerminalId: "ben_regular_pelecard",
-      price: {
-        usd: {
-          fixed: false,
-          amount: 20,
-          min: 20,
-          max: 240,
-          step: 1,
-        },
-        eur: {
-          fixed: false,
-          amount: 20,
-          min: 20,
-          max: 240,
-          step: 1,
-        },
-        nis: {
-          fixed: false,
-          amount: 80,
-          min: 80,
-          max: 960,
-          step: 5,
-        },
-      },
+      // price: removed - fetched from backend API
       product: {
         SKU: "40037",
         reference: "Membership",
@@ -1423,29 +1401,7 @@ exports.membershipsplans = {
       ],
       name: "automatic",
       order: 2,
-      price: {
-        usd: {
-          fixed: false,
-          amount: 20,
-          min: 20,
-          max: 240,
-          step: 1,
-        },
-        eur: {
-          fixed: false,
-          amount: 20,
-          min: 20,
-          max: 240,
-          step: 1,
-        },
-        nis: {
-          fixed: false,
-          amount: 80,
-          min: 80,
-          max: 960,
-          step: 5,
-        },
-      },
+      // price: removed - fetched from backend API
       product: {
         SKU: "40037",
         reference: "Membership",
@@ -1524,17 +1480,7 @@ exports.membershipsplans = {
       isFree: true,
       name: "membership-hh",
       order: 3,
-      price: {
-        usd: {
-          amount: 0,
-        },
-        nis: {
-          amount: 100,
-        },
-        eur: {
-          amount: 25,
-        },
-      },
+      // price: removed - fetched from backend API
       product: {
         SKU: "40037",
         reference: "Membership",

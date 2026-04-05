@@ -1,14 +1,18 @@
 import {
+  Box,
   Button,
   FormControl,
   FormControlLabel,
   FormLabel,
   Grid,
+  IconButton,
+  Popover,
   Radio,
   RadioGroup,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -17,9 +21,15 @@ import {
   setSelectedMembership,
   setSpecialSelectedOption,
 } from "../../../redux/actions/orderActions";
+import { useMembershipProduct } from "../../../hooks/useMembershipProduct";
+import { setCurrency } from "../../../redux/actions/currencyActions";
+import { currencies } from "../../../shared/currencies";
+
 import { useHistory } from "react-router-dom";
-import { getMembershipProduct } from "../../../services/productservice";
 import Loader from "../../../components/Loader";
+import SomethingWentWrong from "../SomethingWentWrong";
+import PricingBreakdown from "./PricingBreakdown";
+
 const TicketCard = styled(Grid)`
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -95,10 +105,24 @@ export default function Membership() {
     (state) => state.order.selectedMembership
   );
   const [specialOption, setSpecialOption] = React.useState("Help Haver");
-  const [membership, setMembership] = React.useState(undefined);
-  React.useEffect(() => {
-    setMembership(getMembershipProduct());
-  }, []);
+  const { membershipProduct: membership, error: pricingError } = useMembershipProduct();
+  const [formulaAnchor, setFormulaAnchor] = React.useState(null);
+
+  useEffect(() => {
+    const { plans } = membership || { plans: [] };
+    const planCurrencies = new Set();
+    plans.forEach((plan) => {
+      for (const cur of Object.keys(plan.price)) {
+        planCurrencies.add(cur);
+      }
+    });
+    // Auto-detect currency from backend response
+    if (planCurrencies.size && !planCurrencies.has(currency.id)) {
+      const cr = currencies.find((l) => l.id === planCurrencies.values().next().value);
+      dispatch(setCurrency(cr));
+    }
+  }, [dispatch, currency, membership]);
+
 
   const planSelected = (membership) => {
     dispatch(setSelectedMembership(membership));
@@ -121,6 +145,11 @@ export default function Membership() {
       history.push("/pay/membership/payment/" + membership.name);
     }
   };
+
+  if (pricingError) {
+    return <SomethingWentWrong />;
+  }
+
   if (!membership) return <Loader />;
 
   const { content, plans } = membership;
@@ -167,11 +196,21 @@ export default function Membership() {
                   ) : (
                     <>
                       {" "}
-                      {currency.sign +
-                        " " +
-                        plan.price[currency.id].amount +
-                        " "}{" "}
+                      {
+                        currency.id in plan.price ?
+                        (currency.sign + " " + plan.price[currency.id].amount + " ") : ""
+                      }
+                      {" "}
                       <TenureText>{t("common.per_month")}</TenureText>
+                      {membership.pricingVersion !== "v1" && membership.v2Details && (
+                        <IconButton
+                          size="small"
+                          onClick={(e) => { e.stopPropagation(); setFormulaAnchor(e.currentTarget); }}
+                          style={{ padding: 2, color: "#888", verticalAlign: "middle" }}
+                        >
+                          <InfoOutlinedIcon style={{ fontSize: 16 }} />
+                        </IconButton>
+                      )}
                     </>
                   )}
                 </CurrencyText>
@@ -234,6 +273,21 @@ export default function Membership() {
           {t("membership.back_to_status")}
         </Button>
       </Grid>
+
+      <Popover
+        open={Boolean(formulaAnchor)}
+        anchorEl={formulaAnchor}
+        onClose={() => setFormulaAnchor(null)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        transformOrigin={{ vertical: "top", horizontal: "left" }}
+      >
+        <Box p={2} style={{ minWidth: 220 }}>
+          <Typography variant="subtitle2" style={{ fontWeight: 700, marginBottom: 8 }}>
+            {t("membership.pricing_breakdown")}
+          </Typography>
+          {membership.v2Details && <PricingBreakdown v2Details={membership.v2Details} />}
+        </Box>
+      </Popover>
     </TicketGrid>
   );
 }
