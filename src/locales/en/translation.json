@@ -145,7 +145,8 @@
     "header": "Something went wrong",
     "description": "Something went wrong while processing your request. Please start your registration by clicking below",
     "return": "Return to Registration",
-    "returnMembership": "Return to Membership"
+    "returnMembership": "Return to Membership",
+    "retry": "Try Again"
   },
   "specialOption": {
     "title": "Special Options",
@@ -165,6 +166,18 @@
     "active": "Active",
     "inactive": "Inactive",
     "back_to_status": "Back to Status",
+    "pricing_breakdown": "Pricing Breakdown",
+    "country": "Country",
+    "base_price": "Base price",
+    "discounts": "Discounts",
+    "discount_type": "Discount type",
+    "discount_amount": "Discount",
+    "eligibility": "Eligibility",
+    "discount_error": "Could not verify, try again",
+    "final_price": "Final Price",
+    "discount_types": {
+      "donations": "Donations"
+    },
     "monthly_manual_subscription": "Monthly Manual Subscription",
     "monthly_auto_subscription": "Automatic Subscription",
     "manual_subscription_description": "This is a one time payment for the period you choose",

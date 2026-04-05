@@ -25,7 +25,7 @@ import {
   cardSuccessfullyUpdated,
   getCardDetails,
 } from "../../../services/orderservice";
-import { getMembershipProduct } from "../../../services/productservice";
+import { useMembershipProduct } from "../../../hooks/useMembershipProduct";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
@@ -35,6 +35,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { getProfile } from "../../../services/userservice";
+import { shouldShowCurrencyPicker } from "../../../shared/featureFlags";
 
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
@@ -111,7 +112,7 @@ export default function UpdatePayment() {
   const [payClicked, setOnPayClicked] = useState(false);
   const [minAmount, setMinAmount] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [membership, setMembership] = useState();
+  const { membershipProduct: membership } = useMembershipProduct();
   const [updateStatus, setUpdateStatus] = useState(
     new URLSearchParams(window.location.search).get("card_update_is_failed")
       ? "failed"
@@ -151,9 +152,6 @@ export default function UpdatePayment() {
       updateStatus === "success" ||
       currency?.id !== orderDetails?.Currency?.toLowerCase());
 
-  useEffect(() => {
-    setMembership(getMembershipProduct());
-  }, []);
 
   const UpdatePaymentDetails = () => {
     setOnPayClicked(true);
@@ -282,6 +280,12 @@ export default function UpdatePayment() {
   };
 
   if (loading) return <Loader />;
+  if (!loading && !membership)
+    return (
+      <>
+        <SomethingWentWrong isMembership={true} />
+      </>
+    );
   if (!loading && !orderDetails && false)
     return (
       <>
@@ -324,15 +328,17 @@ export default function UpdatePayment() {
             </ElevatedContainer>
           </Grid>
           <Grid container item xs={12} spacing={6}>
-            <Grid item xs={4}>
-              <FormControl>
-                <FormLabel id="demo-radio-buttons-group-label">
-                  {t("common.currency")}
-                </FormLabel>
-                <CurrencyPicker variant="outlined" />
-              </FormControl>
-            </Grid>
-            <Grid item xs={8}>
+            {shouldShowCurrencyPicker(membership?.pricingVersion) && (
+              <Grid item xs={4}>
+                <FormControl>
+                  <FormLabel id="demo-radio-buttons-group-label">
+                    {t("common.currency")}
+                  </FormLabel>
+                  <CurrencyPicker variant="outlined" />
+                </FormControl>
+              </Grid>
+            )}
+            <Grid item xs={shouldShowCurrencyPicker(membership?.pricingVersion) ? 8 : 12}>
               <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">
                   {t("common.amount")}

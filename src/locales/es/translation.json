@@ -1,6 +1,6 @@
 {
   "appbar": {
-    "language": "Language",
+    "language": "Idioma",
     "currency": "Moneda",
     "membership": "Estatus"
   },
@@ -35,13 +35,13 @@
     "payment_success": "¡El pago ha sido completado con éxito!",
     "payment_error": "Tu pago ha fallado",
     "payment_cancel": "Tu pago ha sido cancelado",
-    "payment_cancel_error": "Your payment was cancel. Please try again",
+    "payment_cancel_error": "Tu pago fue cancelado. Por favor, inténtalo de nuevo",
     "error_paid": "No hemos podido procesar tu pago. Por favor inténtalo de nuevo",
     "successfully_paid": "Has adquirido el boleto para el event ",
     "back_to_event": "Volver a Eventos",
     "back_to_my_membership": "Volver a Mi Membresía",
     "become_a_member": "Activar membresía",
-    "membershipPaymentSuccess": "You have successfully paid for your subscription",
+    "membershipPaymentSuccess": "Has pagado exitosamente tu membresía",
     "processing_event_registration_mb": "Tienes una membresía activa, estamos procesando tu registro.",
     "successfully_registered": "Te has registrado exitosamente al evento",
     "free": "Gratis",
@@ -61,8 +61,8 @@
     "cancelBtn": "Cancelar"
   },
   "error": {
-    "page_not_found": "Page Not found",
-    "retry": "Please go back or",
+    "page_not_found": "Página no encontrada",
+    "retry": "Por favor vuelve atrás o",
     "try_again": "Inténtalo de nuevo"
   },
   "common": {
@@ -77,14 +77,14 @@
     "step": "Paso",
     "amount": "Cantidad",
     "ok": "Ok",
-    "register": "Register",
-    "buy_ticket": "Buy ticket",
+    "register": "Registrarse",
+    "buy_ticket": "Comprar entrada",
     "paymentMethod": "Método de pago",
     "registration": "Registro",
     "select_option": "Elige",
     "successHeader": "Te has inscrito con éxito en el evento.",
     "successDescription": "Después de la inscripción, te enviaremos una entrada al evento por correo electrónico.",
-    "viewTicket": "View Event Ticket",
+    "viewTicket": "Ver entrada al evento",
     "period": "Número de meses",
     "currency": "Moneda",
     "month": "Mes",
@@ -143,10 +143,11 @@
     "pleaseSelectOption": "Tienes que elegir una opción"
   },
   "somethingWentWrong": {
-    "header": "Something went wrong",
-    "description": "Something went wrong while processing your request. Please start your registration by clicking below",
-    "return": "Return to Registration",
-    "returnMembership": "Return to Membership"
+    "header": "Algo salió mal",
+    "description": "Algo salió mal al procesar tu solicitud. Por favor, comienza tu registro haciendo clic a continuación",
+    "return": "Volver al registro",
+    "returnMembership": "Volver a la membresía",
+    "retry": "Intentar de nuevo"
   },
   "specialOption": {
     "title": "Opciones especiales",
@@ -166,6 +167,18 @@
     "active": "Activo",
     "inactive": "Inactivo",
     "back_to_status": "Volver a Estatus",
+    "pricing_breakdown": "Desglose de precio",
+    "country": "País",
+    "base_price": "Precio base",
+    "discounts": "Descuentos",
+    "discount_type": "Tipo de descuento",
+    "discount_amount": "Descuento",
+    "eligibility": "Elegibilidad",
+    "discount_error": "No se pudo verificar, inténtalo de nuevo",
+    "final_price": "Precio final",
+    "discount_types": {
+      "donations": "Donaciones"
+    },
     "monthly_manual_subscription": "Suscripción manual",
     "monthly_auto_subscription": "Suscripción automática",
     "manual_subscription_description": "Se trata de un pago único por el periodo que elija",

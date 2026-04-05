@@ -19,6 +19,8 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { UserMenu } from "../components/UserMenu/UserMenu";
 import styled from "styled-components";
+import { shouldShowCurrencyPicker } from "../shared/featureFlags";
+import { useMembershipProduct } from "../hooks/useMembershipProduct";
 
 const useStyles = makeStyles({
   appbar: {
@@ -105,6 +107,8 @@ const HeaderLayout = () => {
   const { appbar } = useSelector((state) => state.order);
   const membership = useSelector((state) => state.user.membershipdataV2);
   const [active, setActive] = useState(false);
+  const { membershipProduct } = useMembershipProduct();
+  const pricingVersion = membershipProduct?.pricingVersion;
 
   // Choose logo based on language
   const currentLogo = languageId === 'he' ? hebLogo : enLogo;
@@ -132,19 +136,21 @@ const HeaderLayout = () => {
         </Box>
 
         <Box className={classes.menu}>
-          <Box
-            display="flex"
-            alignItems="center"
-            className={classes.mobileHidden}
-          >
-            <InputLabel style={{ color: "#000" }}>
-              {t("appbar.currency")} :{" "}
-            </InputLabel>{" "}
-            &nbsp;
-            <FormControl>
-              <CurrencyPicker />
-            </FormControl>
-          </Box>
+          {shouldShowCurrencyPicker(pricingVersion) && (
+            <Box
+              display="flex"
+              alignItems="center"
+              className={classes.mobileHidden}
+            >
+              <InputLabel style={{ color: "#000" }}>
+                {t("appbar.currency")} :{" "}
+              </InputLabel>{" "}
+              &nbsp;
+              <FormControl>
+                <CurrencyPicker />
+              </FormControl>
+            </Box>
+          )}
           <MemberShipContainer item xs>
             <MembershipStatusContainer component="span">
               <MembershipHeaderText variant="body1">
