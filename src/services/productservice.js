@@ -77,6 +77,7 @@ export const getMembershipMonthlyPricing = async (kc_id) => {
         currency: data.currency,
         pricingVersion: data.pricing_version,
         v2Details: data.v2_details,
+        v1AllPrices: data.v1_all_prices || null,
       };
     } else {
       console.warn('[Pricing] Invalid response format:', response.data);
@@ -129,12 +130,17 @@ export const getMembershipProduct = async (kc_id) => {
 
   const copy = JSON.parse(JSON.stringify(membershipsplans));
   copy.plans.forEach((plan) => {
-    plan.price = {
-      [price.currency.toLowerCase()]: {
-        amount: price.amount,
-        fixed: true,
-      }
-    };
+    if (price.v1AllPrices) {
+      plan.price = Object.fromEntries(
+        Object.entries(price.v1AllPrices).map(([cur, amount]) => [
+          cur, { amount, fixed: true },
+        ])
+      );
+    } else {
+      plan.price = {
+        [price.currency.toLowerCase()]: { amount: price.amount, fixed: true },
+      };
+    }
   });
 
   // Attach pricing metadata to the product
