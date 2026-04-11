@@ -29,6 +29,7 @@ import { useHistory } from "react-router-dom";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import PricingBreakdown from "./PricingBreakdown";
+import FormattedAmount from "../../../components/FormattedAmount";
 
 const TicketCard = styled(Grid)`
   background-color: #fff;
@@ -198,7 +199,7 @@ export default function Membership() {
                       {" "}
                       {
                         currency.id in plan.price ?
-                        (currency.sign + " " + plan.price[currency.id].amount + " ") : ""
+                        <FormattedAmount amount={plan.price[currency.id].amount} currency={currency} /> : ""
                       }
                       {" "}
                       <TenureText>{t("common.per_month")}</TenureText>

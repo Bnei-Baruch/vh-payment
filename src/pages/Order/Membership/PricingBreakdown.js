@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import countries from "../../../shared/countries";
+import FormattedAmount from "../../../components/FormattedAmount";
 
 export default function PricingBreakdown({ v2Details }) {
   const { t } = useTranslation();
@@ -12,7 +13,7 @@ export default function PricingBreakdown({ v2Details }) {
         {t("membership.country")}: <b>{countryName}</b>
       </Typography>
       <Typography variant="body2" style={{ marginBottom: 8 }}>
-        {t("membership.base_price")}: <b>{v2Details.country_base?.amount} {v2Details.country_base?.currency}</b>
+        {t("membership.base_price")}: <b><FormattedAmount amount={v2Details.country_base?.amount} currency={v2Details.country_base?.currency} /></b>
       </Typography>
       {v2Details.discounts?.length > 0 && (
         <>
@@ -41,7 +42,7 @@ export default function PricingBreakdown({ v2Details }) {
       )}
       <Box style={{ marginTop: 10, borderTop: "1px solid #eee", paddingTop: 8 }}>
         <Typography variant="body2">
-          {t("membership.final_price")}: <b>{v2Details.final_price?.amount} {v2Details.final_price?.currency}</b>
+          {t("membership.final_price")}: <b><FormattedAmount amount={v2Details.final_price?.amount} currency={v2Details.final_price?.currency} /></b>
         </Typography>
       </Box>
     </>
