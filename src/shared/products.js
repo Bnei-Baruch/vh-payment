@@ -1364,7 +1364,7 @@ exports.membershipsplans = {
           button_label: "Seleccione este plan",
         },
         ru: {
-          name: "автоматический",
+          name: "Автоматический",
           description: [
             "Платёж будет списываться автоматически 20-го числа каждого месяца.",
           ],

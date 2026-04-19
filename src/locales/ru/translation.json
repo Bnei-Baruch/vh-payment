@@ -6,14 +6,14 @@
   },
   "languages": {
     "en": "English",
-    "ru": "русский",
+    "ru": "Русский",
     "es": "Español",
     "he": "עִברִית"
   },
   "currencies": {
     "usd": "USD",
-    "eur": "EURO",
-    "nis": "SHEKELS"
+    "eur": "EUR",
+    "nis": "NIS"
   },
   "order": {
     "title": "Добро пожаловать",
