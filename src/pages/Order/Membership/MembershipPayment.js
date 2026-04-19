@@ -13,6 +13,8 @@ import {
   InputAdornment,
   OutlinedInput,
   FormHelperText,
+  Divider,
+  Box,
 } from "@material-ui/core";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -32,6 +34,8 @@ import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { shouldShowCurrencyPicker } from "../../../shared/featureFlags";
+import countries from "../../../shared/countries";
+import FormattedAmount from "../../../components/FormattedAmount";
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
     margin-bottom: 10px;
@@ -163,10 +167,16 @@ export default function MembershipPayment() {
   const [amount, setAmount] = React.useState(0);
   const { membershipProduct } = useMembershipProduct();
   const pricingVersion = membershipProduct?.pricingVersion;
+  const showPricingInfo = pricingVersion !== "v1" && membershipProduct?.v2Details;
+  const v2Details = membershipProduct?.v2Details;
   const totalToPay = useMemo(
     () => (!selectedMembership ? 0 : amount),
     [amount, selectedMembership]
   );
+
+  React.useEffect(() => {
+    if (showPricingInfo && activeStep === 0) setActiveStep(1);
+  }, [showPricingInfo, activeStep]);
 
   const nextStep = () => {
     if (activeStep === 0 && amount < minAmount) {
@@ -176,7 +186,7 @@ export default function MembershipPayment() {
   };
 
   const prevStep = () => {
-    if (activeStep === 0) {
+    if (activeStep === 0 || (showPricingInfo && activeStep === 1)) {
       history.goBack();
       return;
     }
@@ -311,7 +321,6 @@ export default function MembershipPayment() {
           <FormContainer container spacing={6}>
             <Grid item xs={12}>
               <Typography variant="h6">
-                {" "}
                 {selectedMembership.name === "manual"
                   ? t("membership.monthly_manual_subscription")
                   : t("membership.monthly_auto_subscription")}
@@ -362,54 +371,61 @@ export default function MembershipPayment() {
                 </Grid>
               )}
               <Grid item xs={12}>
-                <FormControl>
+                <FormControl variant="outlined">
                   <FormLabel id="demo-radio-buttons-group-label">
                     {t("common.amount")}
                   </FormLabel>
-                  <PaymentTile>
-                    <span
-                      className={amount <= minAmount ? "grey" : "regular"}
-                      onClick={() => {
-                        if (amount > minAmount) {
-                          setAmount(amount - 1);
+                  <Box style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <OutlinedInput
+                      id="standard-adornment-amount"
+                      value={amount}
+                      type="number"
+                      error={amount < minAmount}
+                      style={{ width: 160 }}
+                      onChange={(event) => {
+                        if (!isNaN(parseInt(event.target.value))) {
+                          setAmount(parseInt(event.target.value));
+                        } else {
+                          setAmount("");
                         }
                       }}
-                    >
-                      -
-                    </span>
-                    <FormControl fullWidth variant="outlined">
-                      <OutlinedInput
-                        id="standard-adornment-amount"
-                        value={amount}
-                        fullWidth
-                        type="number"
-                        error={amount < minAmount}
-                        onChange={(event) => {
-                          if (!isNaN(parseInt(event.target.value))) {
-                            setAmount(parseInt(event.target.value));
-                          } else {
-                            setAmount("");
-                          }
-                        }}
-                        startAdornment={
-                          <InputAdornment position="start">
-                            {currency?.sign || "$"}
-                          </InputAdornment>
-                        }
-                      />
-                      <FormHelperText id="filled-weight-helper-text">
-                        {t("membership.pay_more_than")} {currency.sign}
-                        {selectedMembership.price[currency.id]?.amount}
-                      </FormHelperText>
-                    </FormControl>
-                    <span
-                      className="regular"
-                      onClick={() => setAmount(amount + 1)}
-                    >
-                      +
-                    </span>
-                  </PaymentTile>
-                  <div></div>
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <span
+                            onClick={() => { if (amount > minAmount) setAmount(amount - 1); }}
+                            style={{
+                              padding: "3px 8px",
+                              borderRadius: "50%",
+                              backgroundColor: amount <= minAmount ? "#9b9b9b" : "rgba(21, 101, 192, 1)",
+                              color: "#fff",
+                              cursor: amount <= minAmount ? "not-allowed" : "pointer",
+                              userSelect: "none",
+                            }}
+                          >-</span>
+                          &nbsp;{currency?.sign}
+                        </InputAdornment>
+                      }
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <span
+                            onClick={() => setAmount(amount + 1)}
+                            style={{
+                              padding: "3px 8px",
+                              borderRadius: "50%",
+                              backgroundColor: "rgba(21, 101, 192, 1)",
+                              color: "#fff",
+                              cursor: "pointer",
+                              userSelect: "none",
+                            }}
+                          >+</span>
+                        </InputAdornment>
+                      }
+                    />
+                  </Box>
+                  <FormHelperText id="filled-weight-helper-text">
+                    {t("membership.pay_more_than")} {currency.sign}
+                    {selectedMembership.price[currency.id]?.amount}
+                  </FormHelperText>
                 </FormControl>
               </Grid>
             </Grid>
@@ -452,60 +468,113 @@ export default function MembershipPayment() {
                         : t("membership.monthly_auto_subscription")}
                     </Typography>
                   </Grid>
-                  <OrderSummary container item xs={12}>
-                    <Grid item xs={12}>
-                      <SummaryCurrency>
-                        {currency.sign + " " + amount}
-                      </SummaryCurrency>{" "}
-                      / {t("common.month")}
+                  {showPricingInfo && (
+                    <Grid item xs={12} style={{ marginTop: 12 }}>
+                      <Box style={{ display: "flex", alignItems: "center", background: "#f0f4ff", borderRadius: 4, padding: "10px 14px" }}>
+                        <InfoIcon style={{ color: "#1976d2", flexShrink: 0 }} />&nbsp;
+                        <span>
+                          {selectedMembership.name === "manual"
+                            ? t("membership.manual_subscription_description")
+                            : t("membership.auto_subscription_description")}
+                        </span>
+                      </Box>
                     </Grid>
-                  </OrderSummary>
-                  <SummaryGrid container item xs={12}>
-                    <Summarylabel item xs={4}>
-                      {t("membership.period")} :{" "}
-                    </Summarylabel>{" "}
-                    <Grid item xs={8}>
-                      {" "}
-                      1 {t("common.month")}
-                    </Grid>
-                  </SummaryGrid>
-                  <SummaryGrid container item xs={12}>
-                    <Summarylabel item xs={4}>
-                      {t("membership.method")} :{" "}
-                    </Summarylabel>
-                    <Grid item xs={8}>
-                      {
-                        paymentOption.find(
-                          (item) => item.name === paymentMethod
-                        ).content[i18n.language].label
-                      }
-                    </Grid>
-                  </SummaryGrid>
-                  {selectedMembership && (
-                    <SummaryGrid
-                      container
-                      item
-                      xs={12}
-                      style={{ marginBottom: "20px" }}
-                    >
-                      <Summarylabel item xs={4}>
-                        {t("membership.type")} :{" "}
-                      </Summarylabel>
-                      <Grid item xs={8}>
-                        {selectedMembership.name.toUpperCase()}
+                  )}
+                  {!showPricingInfo && (
+                    <>
+                      <OrderSummary container item xs={12}>
+                        <Grid item xs={12}>
+                          <SummaryCurrency>
+                            <FormattedAmount amount={amount} currency={currency} />
+                          </SummaryCurrency>{" "}
+                          / {t("common.month")}
+                        </Grid>
+                      </OrderSummary>
+                      <SummaryGrid container item xs={12}>
+                        <Summarylabel item xs={4}>
+                          {t("membership.period")} :{" "}
+                        </Summarylabel>{" "}
+                        <Grid item xs={8}>
+                          {" "}
+                          1 {t("common.month")}
+                        </Grid>
+                      </SummaryGrid>
+                      <SummaryGrid container item xs={12}>
+                        <Summarylabel item xs={4}>
+                          {t("membership.method")} :{" "}
+                        </Summarylabel>
+                        <Grid item xs={8}>
+                          {
+                            paymentOption.find(
+                              (item) => item.name === paymentMethod
+                            ).content[i18n.language].label
+                          }
+                        </Grid>
+                      </SummaryGrid>
+                      {selectedMembership && (
+                        <SummaryGrid
+                          container
+                          item
+                          xs={12}
+                          style={{ marginBottom: "20px" }}
+                        >
+                          <Summarylabel item xs={4}>
+                            {t("membership.type")} :{" "}
+                          </Summarylabel>
+                          <Grid item xs={8}>
+                            {selectedMembership.name.toUpperCase()}
+                          </Grid>
+                        </SummaryGrid>
+                      )}
+                    </>
+                  )}
+                  {showPricingInfo && v2Details && (
+                    <>
+                      <Grid item xs={12} style={{ margin: "8px 0" }}>
+                        <Divider />
                       </Grid>
-                    </SummaryGrid>
+                      <SummaryGrid container item xs={12}>
+                        <Summarylabel item xs={6}>{t("membership.country")}:</Summarylabel>
+                        <Grid item xs={6}><b>{countries.find(c => c.ISO === v2Details.country_code)?.label || v2Details.country_code}</b></Grid>
+                      </SummaryGrid>
+                      <SummaryGrid container item xs={12}>
+                        <Summarylabel item xs={6}>{t("membership.base_price")}:</Summarylabel>
+                        <Grid item xs={6}><b><FormattedAmount amount={v2Details.country_base?.amount} currency={v2Details.country_base?.currency} /></b></Grid>
+                      </SummaryGrid>
+                      {v2Details.discounts?.map((d, i) => (
+                        <React.Fragment key={i}>
+                          <SummaryGrid container item xs={12}>
+                            <Summarylabel item xs={6}>{t("membership.discount_type")}:</Summarylabel>
+                            <Grid item xs={6}><b>{t(`membership.discount_types.${d.type}`, { defaultValue: d.type })}</b></Grid>
+                          </SummaryGrid>
+                          <SummaryGrid container item xs={12}>
+                            <Summarylabel item xs={6}>{t("membership.discount_amount")}:</Summarylabel>
+                            <Grid item xs={6}><b>{d.eligible ? `${d.amount_pct}%` : "—"}</b></Grid>
+                          </SummaryGrid>
+                          <SummaryGrid container item xs={12}>
+                            <Summarylabel item xs={6}>{t("membership.eligibility")}:</Summarylabel>
+                            <Grid item xs={6}>
+                              <b>{d.eligible ? "✓" : "✗"}</b>
+                              {d.error && (
+                                <Typography variant="caption" style={{ color: "#d32f2f", marginLeft: 6 }}>
+                                  {t("membership.discount_error")}
+                                </Typography>
+                              )}
+                            </Grid>
+                          </SummaryGrid>
+                        </React.Fragment>
+                      ))}
+                    </>
                   )}
 
                   <OrderFinal container item xs={12}>
                     <Grid
                       item
-                      xs={6}
-                      style={{ fontSize: "44px", color: "#2F6DC7" }}
+                      style={{ fontSize: "44px", color: "#2F6DC7", whiteSpace: "nowrap" }}
                     >
-                      {currency.sign} {totalToPay}
+                      <FormattedAmount amount={totalToPay} currency={currency} />
                     </Grid>
-                    <Grid item xs={6} style={{ textAlign: "right" }}>
+                    <Grid item style={{ padding: "0 12px", alignSelf: "center" }}>
                       {t("membership.total_to_pay")}
                     </Grid>
                   </OrderFinal>
