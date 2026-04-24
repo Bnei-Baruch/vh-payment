@@ -162,6 +162,7 @@
   },
   "membership": {
     "title": "Подписка",
+    "select_country_to_continue": "Пожалуйста, выберите вашу страну для продолжения",
     "confirmation": "Подтверждение",
     "active": "Активный",
     "inactive": "Неактивный",

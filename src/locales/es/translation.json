@@ -163,6 +163,7 @@
   },
   "membership": {
     "title": "Membresía",
+    "select_country_to_continue": "Por favor, selecciona tu país para continuar",
     "confirmation": "Confirmación",
     "active": "Activo",
     "inactive": "Inactivo",
