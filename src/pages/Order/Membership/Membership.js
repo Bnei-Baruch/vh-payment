@@ -17,9 +17,13 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import SelectElement from "../../../components/SelectElement";
+import countries from "../../../shared/countries";
+import { saveUserProfileData } from "../../../services/userservice";
 import {
   setSelectedMembership,
   setSpecialSelectedOption,
+  setMembershipProduct,
 } from "../../../redux/actions/orderActions";
 import { useMembershipProduct } from "../../../hooks/useMembershipProduct";
 import { setCurrency } from "../../../redux/actions/currencyActions";
@@ -108,6 +112,8 @@ export default function Membership() {
   const [specialOption, setSpecialOption] = React.useState("Help Haver");
   const { membershipProduct: membership, error: pricingError } = useMembershipProduct();
   const [formulaAnchor, setFormulaAnchor] = React.useState(null);
+  const keycloakSubject = useSelector((state) => state.user.keycloak?.subject);
+  const [selectedCountry, setSelectedCountry] = React.useState("");
 
   useEffect(() => {
     const { plans } = membership || { plans: [] };
@@ -124,6 +130,11 @@ export default function Membership() {
     }
   }, [dispatch, currency, membership]);
 
+
+  const handleConfirmCountry = async () => {
+    await saveUserProfileData({ keycloak_id: keycloakSubject, country: selectedCountry });
+    dispatch(setMembershipProduct(undefined));
+  };
 
   const planSelected = (membership) => {
     dispatch(setSelectedMembership(membership));
@@ -153,6 +164,7 @@ export default function Membership() {
 
   if (!membership) return <Loader />;
 
+  const needsCountrySelection = membership.pricingVersion !== "v1" && !membership.v2Details?.country_code;
   const { content, plans } = membership;
   const header =
     typeof content[i18n.language] !== "undefined"
@@ -162,7 +174,7 @@ export default function Membership() {
     <TicketGrid container spacing={6}>
       <Grid item xs={12}>
         <br />
-        <Typography variant="h3">{header.title}</Typography>
+        <Typography variant="h3">{needsCountrySelection ? t("membership.select_country_to_continue") : header.title}</Typography>
         <CenterTextGrey variant="h6">{header.subtitle}</CenterTextGrey>
         <br />
         <CenterText variant="h6">{header.action}</CenterText>
@@ -172,6 +184,19 @@ export default function Membership() {
           <div style={{ color: "red" }}>{errorMessage}</div>
         </Grid>
       )}
+      {needsCountrySelection ? (
+        <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
+          <Box style={{ maxWidth: 400, width: "100%", direction: "ltr" }}>
+            <SelectElement
+              id="country-select"
+              label={t("membership.country")}
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              selectData={countries}
+            />
+          </Box>
+        </Grid>
+      ) : (
       <Grid container item xs={12} spacing={6}>
         {plans.map((plan, index) => {
           const planContent =
@@ -263,7 +288,8 @@ export default function Membership() {
           );
         })}
       </Grid>
-      <Grid item xs={12}>
+      )}
+      <Grid item xs={12} style={{ display: "flex", gap: 16 }}>
         <Button
           variant="outlined"
           color="primary"
@@ -273,6 +299,16 @@ export default function Membership() {
         >
           {t("membership.back_to_status")}
         </Button>
+        {needsCountrySelection && (
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={!selectedCountry}
+            onClick={handleConfirmCountry}
+          >
+            {t("common.confirm")}
+          </Button>
+        )}
       </Grid>
 
       <Popover

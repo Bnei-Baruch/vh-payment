@@ -162,6 +162,7 @@
   },
   "membership": {
     "title": "מנוי",
+    "select_country_to_continue": "אנא בחר את המדינה שלך כדי להמשיך",
     "confirmation": "אישור",
     "active": "פעיל",
     "inactive": "לא פעיל",
