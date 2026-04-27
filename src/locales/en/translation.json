@@ -162,6 +162,7 @@
   },
   "membership": {
     "title": "Membership",
+    "select_country_to_continue": "Please select your country to continue",
     "confirmation": "Confirmation",
     "active": "Active",
     "inactive": "Inactive",
