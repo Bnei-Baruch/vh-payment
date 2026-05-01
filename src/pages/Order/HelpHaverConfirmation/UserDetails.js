@@ -63,22 +63,11 @@ export default function UserDetails() {
   const [requestData, setRequestData] = React.useState({
     period: 1,
     situation: "",
+    type: "",
+    discountPct: "",
   });
 
-  const periods = [
-    { value: 1, name: "1" },
-    { value: 2, name: "2" },
-    { value: 3, name: "3" },
-    { value: 4, name: "4" },
-    { value: 5, name: "5" },
-    { value: 6, name: "6" },
-    { value: 7, name: "7" },
-    { value: 8, name: "8" },
-    { value: 9, name: "9" },
-    { value: 10, name: "10" },
-    { value: 11, name: "11" },
-    { value: 12, name: "12" },
-  ];
+  const periods = [1, 2, 3, 4, 5, 6].map((n) => ({ value: n, name: String(n) }));
 
   const [activeStep, setActionStep] = React.useState(0);
 
@@ -93,9 +82,9 @@ export default function UserDetails() {
   const handleNext = (e) => {
     e.preventDefault();
     if (activeStep === 2) {
+      if (!requestData.discountPct) return;
       if (originProfileData !== profileData) {
         // update profile
-
         saveUserProfileData({
           ...originProfileData,
           ...profileData,
@@ -118,7 +107,8 @@ export default function UserDetails() {
       status: "REQUESTED",
       nb_month: requestData.period,
       request_note: requestData.situation,
-      type: "hhmembership",
+      type: requestData.type,
+      properties: { discount_pct: parseInt(requestData.discountPct) },
     };
     requestHelpHaver(data)
       .then(() => {
@@ -389,21 +379,72 @@ export default function UserDetails() {
                       {t("userDetail.details")}
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} md={12}>
+                  <Grid item xs={12}>
+                    <FormControl fullWidth variant="outlined">
+                      <FormLabel htmlFor="requestType">
+                        {t("userDetail.request_type")}
+                      </FormLabel>
+                      <Select
+                        id="requestType"
+                        value={requestData.type}
+                        variant="outlined"
+                        required
+                        displayEmpty
+                        onChange={(e) =>
+                          setRequestData({ ...requestData, type: e.target.value, situation: "" })
+                        }
+                      >
+                        <MenuItem value="" disabled>
+                          {t("userDetail.request_type_placeholder")}
+                        </MenuItem>
+                        {profileData.country === "IL" && (
+                          <MenuItem value="hh-hayal">
+                            {t("userDetail.type_hayal")}
+                          </MenuItem>
+                        )}
+                        <MenuItem value="hh-gimlaj">
+                          {t("userDetail.type_gimlay")}
+                        </MenuItem>
+                        <MenuItem value="hh-other">
+                          {t("userDetail.type_other")}
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
                     <FormControl fullWidth>
-                      <FormLabel htmlFor="email">
+                      <FormLabel>{t("userDetail.discount_pct")}</FormLabel>
+                      <RadioGroup
+                        row
+                        value={requestData.discountPct}
+                        onChange={(e) =>
+                          setRequestData({ ...requestData, discountPct: e.target.value })
+                        }
+                      >
+                        {[25, 50, 75, 100].map((pct) => (
+                          <FormControlLabel
+                            key={pct}
+                            value={String(pct)}
+                            control={<Radio required />}
+                            label={`${pct}%`}
+                          />
+                        ))}
+                      </RadioGroup>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControl fullWidth>
+                      <FormLabel htmlFor="month_needed">
                         {t("userDetail.month_needed")}
                       </FormLabel>
                       <Select
+                        id="month_needed"
                         value={requestData.period}
                         variant="outlined"
                         required
-                        onChange={(event) => {
-                          setRequestData({
-                            ...requestData,
-                            period: event.target.value,
-                          });
-                        }}
+                        onChange={(e) =>
+                          setRequestData({ ...requestData, period: e.target.value })
+                        }
                       >
                         {periods.map((l) => (
                           <MenuItem key={l.value} value={l.value}>
@@ -413,24 +454,23 @@ export default function UserDetails() {
                       </Select>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={12} md={12}>
+                  <Grid item xs={12}>
                     <FormControl fullWidth>
-                      <FormLabel htmlFor="email">
-                        {t("userDetail.explain_situation")}
+                      <FormLabel htmlFor="situation">
+                        {requestData.type === "hh-other"
+                          ? t("userDetail.explain_situation_required")
+                          : t("userDetail.explain_situation")}
                       </FormLabel>
                       <TextField
-                        id="email"
+                        id="situation"
                         variant="outlined"
                         multiline
-                        required
+                        required={requestData.type === "hh-other"}
                         minRows={4}
                         value={requestData.situation}
-                        onChange={(e) => {
-                          setRequestData({
-                            ...requestData,
-                            situation: e.target.value,
-                          });
-                        }}
+                        onChange={(e) =>
+                          setRequestData({ ...requestData, situation: e.target.value })
+                        }
                       />
                     </FormControl>
                   </Grid>
