@@ -136,8 +136,15 @@
     "tenName": "Nombre de la decena",
     "help_haver_title": "Help Haver para la Membresía",
     "month_needed": "¿Cuántos meses necesita?",
-    "explain_situation": "Explique su situación",
-    "explain_situation_text": "Por favor, explique su situación financiera, y por favor mencione su contribución anterior (ya sea financiera o de voluntariado)"
+    "explain_situation": "Explique su situación (opcional)",
+    "explain_situation_required": "Explique su situación (requerido)",
+    "explain_situation_text": "Por favor, explique su situación financiera, y por favor mencione su contribución anterior (ya sea financiera o de voluntariado)",
+    "request_type": "Motivo de la solicitud",
+    "request_type_placeholder": "Seleccione un motivo...",
+    "type_hayal": "Hayal (FDI / Servicio Nacional)",
+    "type_gimlay": "Jubilado",
+    "type_other": "Otro",
+    "discount_pct": "Descuento solicitado"
   },
   "errorMessage": {
     "pleaseSelectOption": "Tienes que elegir una opción"

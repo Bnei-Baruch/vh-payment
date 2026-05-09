@@ -135,8 +135,15 @@
     "tenName": "What is your Ten Name?",
     "help_haver_title": "Help Haver for Membership",
     "month_needed": "How many months do you need ?",
-    "explain_situation": "Explain your situation",
-    "explain_situation_text": "Please explain your financial situation, and please mention you previous contribution (either financial, or volunteering)"
+    "explain_situation": "Explain your situation (optional)",
+    "explain_situation_required": "Explain your situation (required)",
+    "explain_situation_text": "Please explain your financial situation, and please mention you previous contribution (either financial, or volunteering)",
+    "request_type": "Reason for request",
+    "request_type_placeholder": "Select a reason...",
+    "type_hayal": "Hayal (IDF / National Service)",
+    "type_gimlay": "Retiree",
+    "type_other": "Other",
+    "discount_pct": "Requested discount"
   },
   "errorMessage": {
     "pleaseSelectOption": "Please select an option"
