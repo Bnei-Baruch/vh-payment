@@ -175,10 +175,10 @@
     "discount_type": "Tipo de descuento",
     "discount_amount": "Descuento",
     "eligibility": "Elegibilidad",
-    "discount_error": "No se pudo verificar, inténtalo de nuevo",
     "final_price": "Precio final",
     "discount_types": {
-      "donations": "Donaciones"
+      "donations": "Donaciones",
+      "manual": "Manual"
     },
     "monthly_manual_subscription": "Suscripción manual",
     "monthly_auto_subscription": "Suscripción automática",
