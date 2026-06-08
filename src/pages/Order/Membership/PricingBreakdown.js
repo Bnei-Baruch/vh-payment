@@ -30,11 +30,6 @@ export default function PricingBreakdown({ v2Details }) {
               </Typography>
               <Typography variant="body2">
                 {t("membership.eligibility")}: <b>{d.eligible ? "✓" : "✗"}</b>
-                {d.error && (
-                  <Typography variant="caption" style={{ color: "#d32f2f", marginLeft: 6 }}>
-                    {t("membership.discount_error")}
-                  </Typography>
-                )}
               </Typography>
             </Box>
           ))}

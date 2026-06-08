@@ -174,10 +174,10 @@
     "discount_type": "Тип скидки",
     "discount_amount": "Скидка",
     "eligibility": "Применимо",
-    "discount_error": "Не удалось проверить, попробуйте снова",
     "final_price": "Итоговая цена",
     "discount_types": {
-      "donations": "Пожертвования"
+      "donations": "Пожертвования",
+      "manual": "Ручная скидка"
     },
     "monthly_manual_subscription": "Обычная подписка",
     "monthly_auto_subscription": "Автоматическая подписка",

@@ -61,45 +61,22 @@ export const getMembershipMonthlyPricing = async (kc_id) => {
   const apiUrl = `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/pricing/monthly/${kc_id}?${params.toString()}`;
 
   try {
-    console.log('[Pricing] Fetching pricing for user:', kc_id,
-                'requested version:', forcedPricingVersion || 'auto (backend decides)',
-                'currency:', preferredCurrency || '(not set)');
     const response = await axios.get(apiUrl);
 
     if (response.data && response.data.data) {
       const data = response.data.data;
-      console.log('[Pricing] Backend returned:',
-                  'version:', data.pricing_version,
-                  'amount:', data.amount,
-                  'currency:', data.currency);
       return {
         amount: data.amount,
         currency: data.currency,
         pricingVersion: data.pricing_version,
+        hasErrors: data.has_errors || false,
         v2Details: data.v2_details,
         v1AllPrices: data.v1_all_prices || null,
       };
     } else {
-      console.warn('[Pricing] Invalid response format:', response.data);
       return null;
     }
   } catch (err) {
-    // Log detailed error information for debugging
-    if (err.response) {
-      // Server responded with error status
-      console.warn(
-        `[Pricing] API error ${err.response.status}:`,
-        err.response.data?.message || err.response.statusText,
-        '\nUsing fallback pricing'
-      );
-    } else if (err.request) {
-      // Request made but no response received
-      console.warn('[Pricing] No response from API. Network error or server down. Using fallback pricing');
-    } else {
-      // Error setting up request
-      console.warn('[Pricing] Request setup error:', err.message, '\nUsing fallback pricing');
-    }
-
     return null;
   }
 }
@@ -116,17 +93,16 @@ export const getMembershipProduct = async (kc_id) => {
   const price = await getMembershipMonthlyPricing(kc_id);
 
   if (!price) {
-    console.error('[Pricing] Failed to fetch pricing from API');
     return null;
   }
 
-  // Validate pricing data
   if (!price.currency || !price.amount || !price.pricingVersion) {
-    console.error('[Pricing] Invalid pricing data, missing required fields:', price);
     return null;
   }
 
-  console.log(`[Pricing] Applying price: ${price.amount} ${price.currency.toUpperCase()} (version: ${price.pricingVersion})`);
+  if (price.hasErrors) {
+    return null;
+  }
 
   const copy = JSON.parse(JSON.stringify(membershipsplans));
   copy.plans.forEach((plan) => {

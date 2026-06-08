@@ -174,10 +174,10 @@
     "discount_type": "סוג הנחה",
     "discount_amount": "הנחה",
     "eligibility": "זכאות",
-    "discount_error": "לא ניתן לאמת, נסה שוב",
     "final_price": "מחיר סופי",
     "discount_types": {
-      "donations": "תרומות"
+      "donations": "תרומות",
+      "manual": "הנחה ידנית"
     },
     "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",
