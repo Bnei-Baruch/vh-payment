@@ -174,10 +174,10 @@
     "discount_type": "Discount type",
     "discount_amount": "Discount",
     "eligibility": "Eligibility",
-    "discount_error": "Could not verify, try again",
     "final_price": "Final Price",
     "discount_types": {
-      "donations": "Donations"
+      "donations": "Donations",
+      "manual": "Manual"
     },
     "monthly_manual_subscription": "Monthly Manual Subscription",
     "monthly_auto_subscription": "Automatic Subscription",
