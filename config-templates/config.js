@@ -1,7 +1,5 @@
 window.APP_CONFIG = {
-    BUILD_TIME: '{{ (time.Now).UTC }}',
-    REG_BRANCH: '{{env.Getenv "CI_COMMIT_REF_NAME" "-"}}',
-    REF_VERSION: '{{env.Getenv "CI_COMMIT_SHA" "-"}}',
+    SHORT_SHA: '{{env.Getenv "SHORT_SHA" "-"}}',
     VH_API_BASE_URL: '{{env.Getenv "VH_API_BASE_URL" "http://api.eurokab.info"}}',
     VH_BASE_URL: '{{env.Getenv "VH_BASE_URL" "http://eurokab.info"}}',
     KEYCLOAK_CONFIG: {

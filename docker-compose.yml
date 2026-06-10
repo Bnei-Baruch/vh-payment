@@ -1,4 +1,3 @@
-version: '2.2'
 services:
   vh-payment:
     container_name: vh-payment
@@ -9,8 +8,8 @@ services:
     ports:
       - 8084:80
     volumes:
-      - /opt/$CI_PROJECT_PATH/public/config/:/usr/share/nginx/html/config/
+      - /opt/vh/vh-payment/public/config/:/usr/share/nginx/html/config/
 networks:
-    default:
-        external:
-            name: vh
+  default:
+    name: vh
+    external: true
