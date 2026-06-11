@@ -92,6 +92,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0   # full history so sentry-cli set-commits --auto can walk commits
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v4
@@ -117,6 +119,7 @@ jobs:
           SENTRY_PROJECT: vh-payment
         with:
           environment: production
-          version: ${{ github.sha }}
+          release: ${{ github.sha }}
           sourcemaps: ./build
           inject: false
+          ignore_missing: true   # first GitHub-style release has no prior release SHA to anchor --auto
