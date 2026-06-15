@@ -50,6 +50,14 @@ export const requestHelpHaver = (data) => {
     .catch(handleAxiosError);
 };
 
+// V2 Help Haver requests are stored in the orders service.
+export const requestHelpHaverV2 = (data) => {
+  return axios
+    .post(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/hh_request/`, data)
+    .then((res) => res.data)
+    .catch(handleAxiosError);
+};
+
 export const cancelMembership = (data) => {
   return axios
     .post(
