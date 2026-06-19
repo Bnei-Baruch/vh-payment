@@ -136,10 +136,19 @@
     "help_haver_title": "״הלפ חבר״ למנויים",
     "month_needed": "לכמה חודשים אתה מבקש עזרה ?",
     "explain_situation": "הסבר את מצבך הכלכלי",
-    "explain_situation_text": "אנא הסבר את מצבך הכלכלי, ספר על תרומותיך עד כה (כספית, התנדבותית)"
+    "explain_situation_optional": "הסבר את מצבך הכלכלי (אופציונלי)",
+    "explain_situation_required": "הסבר את מצבך הכלכלי (חובה)",
+    "explain_situation_text": "אנא הסבר את מצבך הכלכלי, ספר על תרומותיך עד כה (כספית, התנדבותית)",
+    "request_type": "סיבת הבקשה",
+    "request_type_placeholder": "בחר סיבה...",
+    "type_hayal": "חייל (צבא / שירות לאומי)",
+    "type_gimlay": "גמלאי",
+    "type_other": "אחר",
+    "discount_pct": "אחוז הנחה מבוקש"
   },
   "errorMessage": {
-    "pleaseSelectOption": "בבקשה בחר אפשרות"
+    "pleaseSelectOption": "בבקשה בחר אפשרות",
+    "generic": "לא ניתן לאמת, נסה שוב"
   },
   "somethingWentWrong": {
     "header": "משהו השתבש",
@@ -176,8 +185,7 @@
     "eligibility": "זכאות",
     "final_price": "מחיר סופי",
     "discount_types": {
-      "donations": "תרומות",
-      "manual": "הנחה ידנית"
+      "donations": "תרומות"
     },
     "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",

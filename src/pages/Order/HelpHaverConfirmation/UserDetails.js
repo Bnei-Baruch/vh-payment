@@ -26,8 +26,10 @@ import MuiPhoneInput from "material-ui-phone-number";
 import countries from "../../../shared/countries";
 import {
   requestHelpHaver,
+  requestHelpHaverV2,
   saveUserProfileData,
 } from "../../../services/userservice";
+import { getMembershipMonthlyPricing } from "../../../services/productservice";
 import moment from "moment";
 const DetailGrid = styled(Grid)`
   max-width: 70%;
@@ -63,24 +65,25 @@ export default function UserDetails() {
   const [requestData, setRequestData] = React.useState({
     period: 1,
     situation: "",
+    type: "",
+    discountPct: "",
   });
+  // V1 members use the legacy profiles request flow; V2 members request a
+  // discount grant stored in the orders service.
+  const [pricingVersion, setPricingVersion] = React.useState(null);
+  const [pricingFailed, setPricingFailed] = React.useState(false);
+  const isV2 = pricingVersion === "v2";
+  const pricingKnown = pricingVersion !== null; // resolved to "v1" or "v2"
+  const pricingLoading = !pricingKnown && !pricingFailed; // fetch still in flight
 
-  const periods = [
-    { value: 1, name: "1" },
-    { value: 2, name: "2" },
-    { value: 3, name: "3" },
-    { value: 4, name: "4" },
-    { value: 5, name: "5" },
-    { value: 6, name: "6" },
-    { value: 7, name: "7" },
-    { value: 8, name: "8" },
-    { value: 9, name: "9" },
-    { value: 10, name: "10" },
-    { value: 11, name: "11" },
-    { value: 12, name: "12" },
-  ];
+  const periods = [...Array(isV2 ? 6 : 12)].map((_, i) => ({
+    value: i + 1,
+    name: String(i + 1),
+  }));
 
   const [activeStep, setActionStep] = React.useState(0);
+  const [submitting, setSubmitting] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState(undefined);
 
   const moveback = () => {
     if (activeStep === 0) {
@@ -93,6 +96,7 @@ export default function UserDetails() {
   const handleNext = (e) => {
     e.preventDefault();
     if (activeStep === 2) {
+      if (isV2 && (!requestData.type || !requestData.discountPct)) return;
       if (originProfileData !== profileData) {
         // update profile
 
@@ -112,6 +116,37 @@ export default function UserDetails() {
   };
 
   const handlePay = async () => {
+    if (submitting) return; // guard against double-submit
+    if (!pricingKnown) {
+      // pricing hasn't resolved (loading or failed) — don't submit against an unknown plan
+      setErrorMessage(t("errorMessage.generic"));
+      return;
+    }
+    if (isV2 && (!requestData.type || !requestData.discountPct)) {
+      // validation must hold at the POST site, not only in handleNext
+      setErrorMessage(t("errorMessage.generic"));
+      return;
+    }
+    setErrorMessage(undefined);
+    setSubmitting(true);
+    if (isV2) {
+      requestHelpHaverV2({
+        keycloak_id: user.keycloak.subject,
+        type: requestData.type,
+        requested_pct: parseInt(requestData.discountPct, 10),
+        months: requestData.period,
+        note: requestData.situation || undefined,
+      })
+        .then(() => {
+          history.push("/pay/order/membership/successhelphaver");
+        })
+        .catch((er) => {
+          console.log(er);
+          setErrorMessage(t("errorMessage.generic"));
+          setSubmitting(false);
+        });
+      return;
+    }
     const data = {
       name: user.profile.firstName + " " + user.profile.lastName,
       keycloak_id: user.keycloak.subject,
@@ -132,6 +167,18 @@ export default function UserDetails() {
     if (user && user.profileData && profileData === undefined) {
       setOriginalProfileData(user.profileData);
       setProfiledata(user.profileData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  React.useEffect(() => {
+    if (user?.keycloak?.subject && pricingLoading) {
+      getMembershipMonthlyPricing(user.keycloak.subject)
+        .then((pricing) => setPricingVersion(pricing?.pricingVersion ?? "v1"))
+        .catch((er) => {
+          console.error(er);
+          setPricingFailed(true);
+        });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -389,6 +436,65 @@ export default function UserDetails() {
                       {t("userDetail.details")}
                     </Typography>
                   </Grid>
+                  {isV2 && (
+                    <>
+                      <Grid item xs={12}>
+                        <FormControl fullWidth variant="outlined">
+                          <FormLabel htmlFor="requestType">
+                            {t("userDetail.request_type")}
+                          </FormLabel>
+                          <Select
+                            id="requestType"
+                            value={requestData.type}
+                            variant="outlined"
+                            required
+                            displayEmpty
+                            onChange={(e) =>
+                              setRequestData({ ...requestData, type: e.target.value })
+                            }
+                          >
+                            <MenuItem value="" disabled>
+                              {t("userDetail.request_type_placeholder")}
+                            </MenuItem>
+                            {profileData?.country === "IL" && (
+                              <MenuItem value="hh-hayal">
+                                {t("userDetail.type_hayal")}
+                              </MenuItem>
+                            )}
+                            <MenuItem value="hh-gimlaj">
+                              {t("userDetail.type_gimlay")}
+                            </MenuItem>
+                            <MenuItem value="hh-other">
+                              {t("userDetail.type_other")}
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <FormControl fullWidth>
+                          <FormLabel htmlFor="discountPct">
+                            {t("userDetail.discount_pct")}
+                          </FormLabel>
+                          <RadioGroup
+                            row
+                            value={requestData.discountPct}
+                            onChange={(e) =>
+                              setRequestData({ ...requestData, discountPct: e.target.value })
+                            }
+                          >
+                            {[25, 50, 75, 100].map((pct) => (
+                              <FormControlLabel
+                                key={pct}
+                                value={String(pct)}
+                                control={<Radio required />}
+                                label={`${pct}%`}
+                              />
+                            ))}
+                          </RadioGroup>
+                        </FormControl>
+                      </Grid>
+                    </>
+                  )}
                   <Grid item xs={12} md={12}>
                     <FormControl fullWidth>
                       <FormLabel htmlFor="email">
@@ -416,13 +522,17 @@ export default function UserDetails() {
                   <Grid item xs={12} md={12}>
                     <FormControl fullWidth>
                       <FormLabel htmlFor="email">
-                        {t("userDetail.explain_situation")}
+                        {t(!isV2
+                          ? "userDetail.explain_situation"
+                          : requestData.type === "hh-other"
+                          ? "userDetail.explain_situation_required"
+                          : "userDetail.explain_situation_optional")}
                       </FormLabel>
                       <TextField
                         id="email"
                         variant="outlined"
                         multiline
-                        required
+                        required={!isV2 || requestData.type === "hh-other"}
                         minRows={4}
                         value={requestData.situation}
                         onChange={(e) => {
@@ -439,6 +549,11 @@ export default function UserDetails() {
             </DetailGrid>
           )}
 
+          {(errorMessage || pricingFailed) && (
+            <Grid item xs={12}>
+              <div style={{ color: "red" }}>{errorMessage || t("errorMessage.generic")}</div>
+            </Grid>
+          )}
           <Grid
             item
             xs={12}
@@ -458,7 +573,8 @@ export default function UserDetails() {
               )}
               {t("common.back")}
             </Button>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit"
+              disabled={submitting || (activeStep === 2 && !pricingKnown)}>
               {t("common.next")}
             </Button>
           </Grid>
