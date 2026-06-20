@@ -96,7 +96,9 @@ export const getMembershipProduct = async (kc_id) => {
     return null;
   }
 
-  if (!price.currency || !price.amount || !price.pricingVersion) {
+  // Validate pricing data. Note: amount may legitimately be 0 (e.g. a 100% Help
+  // Haver grant = free membership), so check for presence, not truthiness.
+  if (!price.currency || price.amount == null || !price.pricingVersion) {
     return null;
   }
 
