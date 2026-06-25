@@ -20,13 +20,13 @@ export function useMembershipProduct() {
   const dispatch = useDispatch();
   const keycloakSubject = useSelector((state) => state.user.keycloak?.subject);
   const membershipProduct = useSelector((state) => state.order.membershipProduct);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (keycloakSubject && !membershipProduct && !error) {
-      fetchMembershipProduct(keycloakSubject).then((result) => {
-        if (result) dispatch(setMembershipProduct(result));
-        else setError(true);
+      fetchMembershipProduct(keycloakSubject).then(({ product, error: fetchError }) => {
+        if (product) dispatch(setMembershipProduct(product));
+        else setError(fetchError || { reason: "unknown" });
       });
     }
   }, [keycloakSubject, membershipProduct, error, dispatch]);

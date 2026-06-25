@@ -112,7 +112,7 @@ export default function UpdatePayment() {
   const [payClicked, setOnPayClicked] = useState(false);
   const [minAmount, setMinAmount] = useState(0);
   const [amount, setAmount] = useState(0);
-  const { membershipProduct: membership } = useMembershipProduct();
+  const { membershipProduct: membership, error: pricingError } = useMembershipProduct();
   const [updateStatus, setUpdateStatus] = useState(
     new URLSearchParams(window.location.search).get("card_update_is_failed")
       ? "failed"
@@ -283,7 +283,7 @@ export default function UpdatePayment() {
   if (!loading && !membership)
     return (
       <>
-        <SomethingWentWrong isMembership={true} />
+        <SomethingWentWrong isMembership={true} details={pricingError} />
       </>
     );
   if (!loading && !orderDetails && false)

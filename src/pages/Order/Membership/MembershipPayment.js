@@ -165,7 +165,7 @@ export default function MembershipPayment() {
   const [payError, setPayError] = React.useState(null);
   const [minAmount, setMinAmount] = React.useState(0);
   const [amount, setAmount] = React.useState(0);
-  const { membershipProduct } = useMembershipProduct();
+  const { membershipProduct, error: pricingError } = useMembershipProduct();
   const pricingVersion = membershipProduct?.pricingVersion;
   const showPricingInfo = pricingVersion !== "v1" && membershipProduct?.v2Details;
   const v2Details = membershipProduct?.v2Details;
@@ -295,7 +295,7 @@ export default function MembershipPayment() {
   if (!loading && !selectedMembership)
     return (
       <>
-        <SomethingWentWrong isMembership={true} />
+        <SomethingWentWrong isMembership={true} details={pricingError} />
       </>
     );
   let { content } = selectedMembership;
