@@ -155,7 +155,9 @@
     "description": "Something went wrong while processing your request. Please start your registration by clicking below",
     "return": "Return to Registration",
     "returnMembership": "Return to Membership",
-    "retry": "Try Again"
+    "retry": "Try Again",
+    "copyDetails": "Copy error details",
+    "copied": "Copied!"
   },
   "specialOption": {
     "title": "Special Options",

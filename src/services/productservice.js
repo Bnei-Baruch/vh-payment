@@ -82,49 +82,57 @@ export const getMembershipMonthlyPricing = async (kc_id) => {
 }
 
 /**
- * Get membership product with pricing
- * Fetches pricing from backend API which handles version logic (v1/v2/t1)
- * Returns null if API fails - caller must handle error
+ * Get membership product with pricing.
+ * Fetches pricing from backend API which handles version logic (v1/v2/t1).
  *
  * @param {string} kc_id - Keycloak user subject ID
- * @returns {Promise<Object|null>} Product object with pricing, or null on error
+ * @returns {Promise<{product: Object|null, error: Object|null}>} On success
+ *   `{ product, error: null }`; on any failure `{ product: null, error: { reason, ... } }`.
+ *   (Never returns null — callers must check `error`/`product`, not falsiness.)
  */
 export const getMembershipProduct = async (kc_id) => {
-  const price = await getMembershipMonthlyPricing(kc_id);
+  // Local capture: this is the single chokepoint behind every membership/HH
+  // "Something went wrong". On failure we return the real cause so the dialog
+  // can offer it for copy-to-clipboard. (No global state — caller threads it.)
+  try {
+    const price = await getMembershipMonthlyPricing(kc_id);
 
-  if (!price) {
-    return null;
-  }
-
-  // Validate pricing data. Note: amount may legitimately be 0 (e.g. a 100% Help
-  // Haver grant = free membership), so check for presence, not truthiness.
-  if (!price.currency || price.amount == null || !price.pricingVersion) {
-    return null;
-  }
-
-  if (price.hasErrors) {
-    return null;
-  }
-
-  const copy = JSON.parse(JSON.stringify(membershipsplans));
-  copy.plans.forEach((plan) => {
-    if (price.v1AllPrices) {
-      plan.price = Object.fromEntries(
-        Object.entries(price.v1AllPrices).map(([cur, amount]) => [
-          cur, { amount, fixed: true },
-        ])
-      );
-    } else {
-      plan.price = {
-        [price.currency.toLowerCase()]: { amount: price.amount, fixed: true },
-      };
+    if (!price) {
+      return { product: null, error: { reason: "pricing_unavailable", kc_id } };
     }
-  });
 
-  // Attach pricing metadata to the product
-  copy.pricingVersion = price.pricingVersion;
-  copy.pricingCurrency = price.currency;
-  copy.v2Details = price.v2Details || null;
+    // Validate pricing data. Note: amount may legitimately be 0 (e.g. a 100% Help
+    // Haver grant = free membership), so check for presence, not truthiness.
+    if (!price.currency || price.amount == null || !price.pricingVersion) {
+      return { product: null, error: { reason: "missing_fields", price } };
+    }
 
-  return copy;
+    if (price.hasErrors) {
+      return { product: null, error: { reason: "has_errors", price } };
+    }
+
+    const copy = JSON.parse(JSON.stringify(membershipsplans));
+    copy.plans.forEach((plan) => {
+      if (price.v1AllPrices) {
+        plan.price = Object.fromEntries(
+          Object.entries(price.v1AllPrices).map(([cur, amount]) => [
+            cur, { amount, fixed: true },
+          ])
+        );
+      } else {
+        plan.price = {
+          [price.currency.toLowerCase()]: { amount: price.amount, fixed: true },
+        };
+      }
+    });
+
+    // Attach pricing metadata to the product
+    copy.pricingVersion = price.pricingVersion;
+    copy.pricingCurrency = price.currency;
+    copy.v2Details = price.v2Details || null;
+
+    return { product: copy, error: null };
+  } catch (e) {
+    return { product: null, error: { reason: "exception", message: e.message } };
+  }
 };

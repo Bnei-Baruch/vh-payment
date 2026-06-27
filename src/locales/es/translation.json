@@ -156,7 +156,9 @@
     "description": "Algo salió mal al procesar tu solicitud. Por favor, comienza tu registro haciendo clic a continuación",
     "return": "Volver al registro",
     "returnMembership": "Volver a la membresía",
-    "retry": "Intentar de nuevo"
+    "retry": "Intentar de nuevo",
+    "copyDetails": "Copiar detalles del error",
+    "copied": "¡Copiado!"
   },
   "specialOption": {
     "title": "Opciones especiales",

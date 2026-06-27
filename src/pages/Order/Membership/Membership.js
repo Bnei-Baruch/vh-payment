@@ -159,7 +159,7 @@ export default function Membership() {
   };
 
   if (pricingError) {
-    return <SomethingWentWrong />;
+    return <SomethingWentWrong details={pricingError} />;
   }
 
   if (!membership) return <Loader />;
