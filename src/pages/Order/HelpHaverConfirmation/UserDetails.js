@@ -482,7 +482,7 @@ export default function UserDetails() {
                               setRequestData({ ...requestData, discountPct: e.target.value })
                             }
                           >
-                            {[25, 50, 75, 100].map((pct) => (
+                            {[25, 50, 75].map((pct) => (
                               <FormControlLabel
                                 key={pct}
                                 value={String(pct)}
