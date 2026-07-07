@@ -279,8 +279,10 @@ export default function UpdatePayment() {
       });
   };
 
-  if (loading) return <Loader />;
-  if (!loading && !membership)
+  // membership==null means the pricing fetch is still in flight (the hook
+  // guarantees product-or-error eventually) — only a real error is an error.
+  if (loading || (!membership && !pricingError)) return <Loader />;
+  if (!membership)
     return (
       <>
         <SomethingWentWrong isMembership={true} details={pricingError} />

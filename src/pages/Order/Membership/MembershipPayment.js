@@ -159,7 +159,6 @@ export default function MembershipPayment() {
   const [profileData, setUserProfileData] = React.useState(null);
   const [paymentMethod, setPaymentMethod] = React.useState("pelecard");
   const [activeStep, setActiveStep] = React.useState(0);
-  const [loading, setLoading] = React.useState(true);
   const [termsAccepted, setTermsAccepted] = React.useState(false);
   const [payClicked, setOnPayClicked] = React.useState(false);
   const [payError, setPayError] = React.useState(null);
@@ -200,15 +199,6 @@ export default function MembershipPayment() {
     }
   };
 
-  React.useEffect(() => {
-    if (selectedMembership) {
-      setLoading(false);
-    } else {
-      setTimeout(() => {
-        setLoading(false);
-      }, 3000);
-    }
-  }, []);
 
   const handlePay = async () => {
     setOnPayClicked(true);
@@ -291,13 +281,29 @@ export default function MembershipPayment() {
     }
   }, [currency, selectedMembership]);
 
-  if (loading) return <Loader />;
-  if (!loading && !selectedMembership)
-    return (
-      <>
-        <SomethingWentWrong isMembership={true} details={pricingError} />
-      </>
-    );
+  if (!selectedMembership) {
+    if (pricingError)
+      return <SomethingWentWrong isMembership={true} details={pricingError} />;
+
+    // Pricing succeeded but the URL's plan segment matches no plan — a routing
+    // problem, not a pricing one; report it with the data needed to diagnose.
+    const planName = window.location.pathname.split("/").pop();
+    if (membershipProduct && !membershipProduct.plans.some((p) => p.name === planName))
+      return (
+        <SomethingWentWrong
+          isMembership={true}
+          details={{
+            reason: "no_plan_for_path",
+            path: window.location.pathname,
+            knownPlans: membershipProduct.plans.map((p) => p.name),
+          }}
+        />
+      );
+
+    // Pricing fetch or plan selection still resolving — the hook guarantees
+    // product-or-error, so this never shows the error screen while loading.
+    return <Loader />;
+  }
   let { content } = selectedMembership;
   let event = content[i18n.language]
     ? content[i18n.language].title

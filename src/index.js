@@ -1,3 +1,4 @@
+import "./shared/consoleCapture"; // must be first: captures console.error from all later modules
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
