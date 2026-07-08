@@ -7,6 +7,7 @@ import ContentLayout from "../../layouts/ContentLayout";
 import WarningIcon from "@material-ui/icons/Warning";
 import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import DoneIcon from "@material-ui/icons/Done";
+import { getRecentConsoleErrors } from "../../shared/consoleCapture";
 
 export default function SomethingWentWrong({ isMembership, details }) {
     const history = useHistory();
@@ -35,11 +36,18 @@ export default function SomethingWentWrong({ isMembership, details }) {
         if (details) {
             lines.push(`Details: ${typeof details === "string" ? details : JSON.stringify(details)}`);
         }
-        lines.push(`Time: ${new Date().toISOString()}`);
+        lines.push(`Copied: ${new Date().toISOString()}`);
         lines.push(`URL: ${window.location.href}`);
         lines.push(`User: ${keycloakSubject || "(not logged in)"}`);
         lines.push(`Version: ${window.APP_CONFIG?.REG_BRANCH || "unknown"}`);
         lines.push(`Agent: ${navigator.userAgent}`);
+        // Recent console errors, each with its own timestamp, so the report
+        // shows when things happened relative to the copy click above.
+        const consoleErrors = getRecentConsoleErrors();
+        if (consoleErrors.length) {
+            lines.push("Console:");
+            consoleErrors.forEach((e) => lines.push(`  [${e.time}] ${e.message}`));
+        }
         return lines.join("\n");
     };
 
