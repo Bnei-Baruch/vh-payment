@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import ContentLayout from "../../layouts/ContentLayout";
+import CancellationPolicyLink from "../../components/CancellationPolicyLink";
 const CancellatioContainer = styled(Grid)`
   padding: 40px;
 
@@ -81,6 +82,9 @@ export default function PreCancellation() {
               }}
             />
           </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <CancellationPolicyLink />
         </Grid>
         <Grid
           item

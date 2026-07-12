@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import SelectElement from "../../../components/SelectElement";
+import CancellationPolicyLink from "../../../components/CancellationPolicyLink";
 import countries from "../../../shared/countries";
 import { saveUserProfileData } from "../../../services/userservice";
 import {
@@ -289,7 +290,7 @@ export default function Membership() {
         })}
       </Grid>
       )}
-      <Grid item xs={12} style={{ display: "flex", gap: 16 }}>
+      <Grid item xs={12} style={{ display: "flex", gap: 16, alignItems: "center" }}>
         <Button
           variant="outlined"
           color="primary"
@@ -299,6 +300,7 @@ export default function Membership() {
         >
           {t("membership.back_to_status")}
         </Button>
+        <CancellationPolicyLink />
         {needsCountrySelection && (
           <Button
             variant="contained"
