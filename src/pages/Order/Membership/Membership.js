@@ -289,7 +289,7 @@ export default function Membership() {
         })}
       </Grid>
       )}
-      <Grid item xs={12} style={{ display: "flex", gap: 16 }}>
+      <Grid item xs={12} style={{ display: "flex", gap: 16, alignItems: "center" }}>
         <Button
           variant="outlined"
           color="primary"
@@ -298,6 +298,16 @@ export default function Membership() {
           }
         >
           {t("membership.back_to_status")}
+        </Button>
+        <Button
+          variant="text"
+          color="primary"
+          href={`${window.APP_CONFIG.VH_BASE_URL}/cancellation-policy?lang=${
+            i18n.language !== "he" ? i18n.language : "il"
+          }`}
+          target="_blank"
+        >
+          {t("membership.cancellation_policy")}
         </Button>
         {needsCountrySelection && (
           <Button
