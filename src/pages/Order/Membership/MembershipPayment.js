@@ -36,6 +36,7 @@ import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { shouldShowCurrencyPicker } from "../../../shared/featureFlags";
 import countries from "../../../shared/countries";
 import FormattedAmount from "../../../components/FormattedAmount";
+import CancellationPolicyLink from "../../../components/CancellationPolicyLink";
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
     margin-bottom: 10px;
@@ -579,6 +580,9 @@ export default function MembershipPayment() {
                       {t("membership.total_to_pay")}
                     </Grid>
                   </OrderFinal>
+                  <Grid item xs={12}>
+                    <CancellationPolicyLink />
+                  </Grid>
                 </SummartyContainer>
               </ElevatedContainer>
             </Grid>

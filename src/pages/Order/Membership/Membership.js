@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import SelectElement from "../../../components/SelectElement";
+import CancellationPolicyLink from "../../../components/CancellationPolicyLink";
 import countries from "../../../shared/countries";
 import { saveUserProfileData } from "../../../services/userservice";
 import {
@@ -299,16 +300,7 @@ export default function Membership() {
         >
           {t("membership.back_to_status")}
         </Button>
-        <Button
-          variant="text"
-          color="primary"
-          href={`${window.APP_CONFIG.VH_BASE_URL}/cancellation-policy?lang=${
-            i18n.language !== "he" ? i18n.language : "il"
-          }`}
-          target="_blank"
-        >
-          {t("membership.cancellation_policy")}
-        </Button>
+        <CancellationPolicyLink />
         {needsCountrySelection && (
           <Button
             variant="contained"
