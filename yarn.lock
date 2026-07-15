@@ -6809,10 +6809,10 @@ jss@10.10.0, jss@^10.5.1:
     object.assign "^4.1.4"
     object.values "^1.1.6"
 
-keycloak-js@^26.2.0:
-  version "26.2.3"
-  resolved "https://registry.yarnpkg.com/keycloak-js/-/keycloak-js-26.2.3.tgz#f68a7dae060de6a0f87bb6a378d57381cc617c5a"
-  integrity sha512-widjzw/9T6bHRgEp6H/Se3NCCarU7u5CwFKBcwtu7xfA1IfdZb+7Q7/KGusAnBo34Vtls8Oz9vzSqkQvQ7+b4Q==
+keycloak-js@^26.2.4:
+  version "26.2.4"
+  resolved "https://registry.yarnpkg.com/keycloak-js/-/keycloak-js-26.2.4.tgz#b96ff33ed08ff6fd8d1e09d9e5055c7b3f2fa918"
+  integrity sha512-PnXpR3ubETGOt0B/Qt2lxmPbkZr5bc3vlQsOqDoTPPQsZRp7JjhTKxlJ187uWh8qJhvBab6Gsjb06a8ayOPfuw==
 
 keyv@^4.5.3:
   version "4.5.4"
