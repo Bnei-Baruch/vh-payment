@@ -187,7 +187,16 @@
     "eligibility": "זכאות",
     "final_price": "מחיר סופי",
     "discount_types": {
-      "donations": "תרומות"
+      "donations": "תרומות",
+      "help_haver": "עזרת חבר",
+      "manual": "הנחה ידנית",
+      "coupon": "קופון"
+    },
+    "coupon": {
+      "title": "יש לך קופון?",
+      "placeholder": "הזן קוד קופון",
+      "apply": "החל",
+      "error": "לא ניתן להחיל את הקופון"
     },
     "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",

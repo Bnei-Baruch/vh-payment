@@ -187,7 +187,16 @@
     "eligibility": "Применимо",
     "final_price": "Итоговая цена",
     "discount_types": {
-      "donations": "Пожертвования"
+      "donations": "Пожертвования",
+      "help_haver": "Help Haver",
+      "manual": "Ручная скидка",
+      "coupon": "Купон"
+    },
+    "coupon": {
+      "title": "Есть купон?",
+      "placeholder": "Введите код купона",
+      "apply": "Применить",
+      "error": "Не удалось применить купон"
     },
     "monthly_manual_subscription": "Обычная подписка",
     "monthly_auto_subscription": "Автоматическая подписка",

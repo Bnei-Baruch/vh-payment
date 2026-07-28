@@ -188,7 +188,16 @@
     "eligibility": "Elegibilidad",
     "final_price": "Precio final",
     "discount_types": {
-      "donations": "Donaciones"
+      "donations": "Donaciones",
+      "help_haver": "Help Haver",
+      "manual": "Descuento manual",
+      "coupon": "Cupón"
+    },
+    "coupon": {
+      "title": "¿Tienes un cupón?",
+      "placeholder": "Introduce el código del cupón",
+      "apply": "Aplicar",
+      "error": "No se pudo aplicar el cupón"
     },
     "monthly_manual_subscription": "Suscripción manual",
     "monthly_auto_subscription": "Suscripción automática",

@@ -33,6 +33,7 @@ import { useHistory } from "react-router-dom";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import PricingBreakdown from "./PricingBreakdown";
+import CouponInput from "./CouponInput";
 import FormattedAmount from "../../../components/FormattedAmount";
 
 const TicketCard = styled(Grid)`
@@ -288,6 +289,11 @@ export default function Membership() {
           );
         })}
       </Grid>
+      )}
+      {membership.pricingVersion !== "v1" && membership.v2Details?.country_code && (
+        <Grid item xs={12}>
+          <CouponInput />
+        </Grid>
       )}
       <Grid item xs={12} style={{ display: "flex", gap: 16 }}>
         <Button
