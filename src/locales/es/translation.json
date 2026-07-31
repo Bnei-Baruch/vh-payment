@@ -203,7 +203,8 @@
       "coupon_already_redeemed": "Este cupón ya ha sido utilizado",
       "coupon_exhausted": "Este cupón ya no está disponible",
       "coupon_country_mismatch": "Este cupón no está disponible en tu país",
-      "coupon_country_required": "Por favor, establece tu país antes de aplicar un cupón"
+      "coupon_country_required": "Por favor, establece tu país antes de aplicar un cupón",
+      "applied": "Cupón aplicado — activo hasta {{date}}"
     },
     "monthly_manual_subscription": "Suscripción manual",
     "monthly_auto_subscription": "Suscripción automática",

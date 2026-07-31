@@ -202,7 +202,8 @@
       "coupon_already_redeemed": "Этот купон уже был использован",
       "coupon_exhausted": "Этот купон больше недоступен",
       "coupon_country_mismatch": "Этот купон недоступен в вашей стране",
-      "coupon_country_required": "Пожалуйста, укажите страну перед применением купона"
+      "coupon_country_required": "Пожалуйста, укажите страну перед применением купона",
+      "applied": "Купон применён — действует до {{date}}"
     },
     "monthly_manual_subscription": "Обычная подписка",
     "monthly_auto_subscription": "Автоматическая подписка",

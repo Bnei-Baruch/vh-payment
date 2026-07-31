@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Box, Button, TextField, Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { redeemCoupon } from "../../../services/couponservice";
-import { setMembershipProduct } from "../../../redux/actions/orderActions";
+import { setMembershipProduct, setCouponMessage } from "../../../redux/actions/orderActions";
 
 // Coupon redemption on the membership price-summary step. On success it clears
 // the cached membership product, which makes useMembershipProduct re-fetch the
@@ -12,6 +12,7 @@ import { setMembershipProduct } from "../../../redux/actions/orderActions";
 export default function CouponInput() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const couponMessage = useSelector((state) => state.order.couponMessage);
   const [code, setCode] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -21,12 +22,16 @@ export default function CouponInput() {
     if (!trimmed || submitting) return;
     setSubmitting(true);
     setError("");
+    dispatch(setCouponMessage(null));
     try {
-      await redeemCoupon(trimmed);
+      const result = await redeemCoupon(trimmed);
+      const benefitEnd = new Date(result.data.data.benefit_end);
+      dispatch(setCouponMessage(t("membership.coupon.applied", { date: benefitEnd.toLocaleDateString() })));
       dispatch(setMembershipProduct(undefined)); // triggers pricing re-fetch
     } catch (e) {
       const code = e?.response?.data?.code;
       setError(code ? t(`membership.coupon.${code}`) : t("membership.coupon.error"));
+    } finally {
       setSubmitting(false);
     }
   };
@@ -43,7 +48,7 @@ export default function CouponInput() {
           variant="outlined"
           placeholder={t("membership.coupon.placeholder")}
           value={code}
-          onChange={(e) => setCode(e.target.value.toUpperCase())}
+          onChange={(e) => { setCode(e.target.value.toUpperCase()); dispatch(setCouponMessage(null)); }}
           onKeyDown={(e) => {
             if (e.key === "Enter") onApply();
           }}
@@ -53,6 +58,11 @@ export default function CouponInput() {
           {t("membership.coupon.apply")}
         </Button>
       </Box>
+      {couponMessage && (
+        <Typography variant="body2" style={{ color: "green", marginTop: 8 }}>
+          {couponMessage}
+        </Typography>
+      )}
       {error && (
         <Typography variant="body2" style={{ color: "red", marginTop: 8 }}>
           {error}

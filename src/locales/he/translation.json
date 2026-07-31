@@ -202,7 +202,8 @@
       "coupon_already_redeemed": "קופון זה כבר מומש",
       "coupon_exhausted": "קופון זה אינו זמין יותר",
       "coupon_country_mismatch": "קופון זה אינו זמין במדינתך",
-      "coupon_country_required": "יש להגדיר מדינה לפני הפעלת קופון"
+      "coupon_country_required": "יש להגדיר מדינה לפני הפעלת קופון",
+      "applied": "קופון הופעל — בתוקף עד {{date}}"
     },
     "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",

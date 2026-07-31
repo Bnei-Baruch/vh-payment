@@ -202,7 +202,8 @@
       "coupon_already_redeemed": "This coupon has already been redeemed",
       "coupon_exhausted": "This coupon is no longer available",
       "coupon_country_mismatch": "This coupon is not available in your country",
-      "coupon_country_required": "Please set your country before applying a coupon"
+      "coupon_country_required": "Please set your country before applying a coupon",
+      "applied": "Coupon applied — active until {{date}}"
     },
     "monthly_manual_subscription": "Monthly Manual Subscription",
     "monthly_auto_subscription": "Automatic Subscription",
