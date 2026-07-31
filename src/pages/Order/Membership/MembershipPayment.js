@@ -27,7 +27,7 @@ import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
-import { setSelectedMembership } from "../../../redux/actions/orderActions";
+import { setSelectedMembership, setMembershipProduct } from "../../../redux/actions/orderActions";
 import { useMembershipProduct } from "../../../hooks/useMembershipProduct";
 import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
@@ -243,7 +243,13 @@ export default function MembershipPayment() {
       })
       .catch((error) => {
         setOnPayClicked(false);
-        setPayError(t("order.payment_initiation_failed"));
+        const body = error?.response?.data;
+        if (error?.response?.status === 400 && body?.amount != null) {
+          dispatch(setMembershipProduct(undefined));
+          setPayError(t("order.price_changed"));
+        } else {
+          setPayError(t("order.payment_initiation_failed"));
+        }
       });
   };
 
