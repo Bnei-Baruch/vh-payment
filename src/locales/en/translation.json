@@ -196,7 +196,12 @@
       "title": "Have a coupon?",
       "placeholder": "Enter coupon code",
       "apply": "Apply",
-      "error": "Could not apply coupon"
+      "error": "Could not apply coupon",
+      "coupon_invalid": "Invalid or expired coupon code",
+      "coupon_already_redeemed": "This coupon has already been redeemed",
+      "coupon_exhausted": "This coupon is no longer available",
+      "coupon_country_mismatch": "This coupon is not available in your country",
+      "coupon_country_required": "Please set your country before applying a coupon"
     },
     "monthly_manual_subscription": "Monthly Manual Subscription",
     "monthly_auto_subscription": "Automatic Subscription",

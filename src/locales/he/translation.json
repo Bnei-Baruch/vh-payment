@@ -196,7 +196,12 @@
       "title": "יש לך קופון?",
       "placeholder": "הזן קוד קופון",
       "apply": "החל",
-      "error": "לא ניתן להחיל את הקופון"
+      "error": "לא ניתן להחיל את הקופון",
+      "coupon_invalid": "קוד קופון לא תקין או פג תוקף",
+      "coupon_already_redeemed": "קופון זה כבר מומש",
+      "coupon_exhausted": "קופון זה אינו זמין יותר",
+      "coupon_country_mismatch": "קופון זה אינו זמין במדינתך",
+      "coupon_country_required": "יש להגדיר מדינה לפני הפעלת קופון"
     },
     "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",

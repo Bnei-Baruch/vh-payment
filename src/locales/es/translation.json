@@ -197,7 +197,12 @@
       "title": "¿Tienes un cupón?",
       "placeholder": "Introduce el código del cupón",
       "apply": "Aplicar",
-      "error": "No se pudo aplicar el cupón"
+      "error": "No se pudo aplicar el cupón",
+      "coupon_invalid": "Código de cupón no válido o caducado",
+      "coupon_already_redeemed": "Este cupón ya ha sido utilizado",
+      "coupon_exhausted": "Este cupón ya no está disponible",
+      "coupon_country_mismatch": "Este cupón no está disponible en tu país",
+      "coupon_country_required": "Por favor, establece tu país antes de aplicar un cupón"
     },
     "monthly_manual_subscription": "Suscripción manual",
     "monthly_auto_subscription": "Suscripción automática",

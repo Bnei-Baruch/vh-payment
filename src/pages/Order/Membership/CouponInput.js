@@ -25,7 +25,8 @@ export default function CouponInput() {
       await redeemCoupon(trimmed);
       dispatch(setMembershipProduct(undefined)); // triggers pricing re-fetch
     } catch (e) {
-      setError(e?.response?.data?.error || t("membership.coupon.error"));
+      const code = e?.response?.data?.code;
+      setError(code ? t(`membership.coupon.${code}`) : t("membership.coupon.error"));
       setSubmitting(false);
     }
   };
