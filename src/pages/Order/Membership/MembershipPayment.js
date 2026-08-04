@@ -246,6 +246,7 @@ export default function MembershipPayment() {
         const body = error?.response?.data;
         if (error?.response?.status === 400 && body?.amount != null) {
           dispatch(setMembershipProduct(undefined));
+          dispatch(setSelectedMembership(undefined));
           setPayError(t("order.price_changed"));
         } else {
           setPayError(t("order.payment_initiation_failed"));

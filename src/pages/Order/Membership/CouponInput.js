@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, TextField, Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +17,8 @@ export default function CouponInput() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => () => { dispatch(setCouponMessage(null)); }, [dispatch]);
+
   const onApply = async () => {
     const trimmed = code.trim();
     if (!trimmed || submitting) return;
@@ -25,12 +27,13 @@ export default function CouponInput() {
     dispatch(setCouponMessage(null));
     try {
       const result = await redeemCoupon(trimmed);
-      const benefitEnd = new Date(result.data.data.benefit_end);
-      dispatch(setCouponMessage(t("membership.coupon.applied", { date: benefitEnd.toLocaleDateString() })));
+      const benefitEnd = result.data.data.benefit_end; // inclusive YYYY-MM-DD from server
+      const [y, m, d] = benefitEnd.split("-");
+      dispatch(setCouponMessage(t("membership.coupon.applied", { date: `${d}-${m}-${y}` })));
       dispatch(setMembershipProduct(undefined)); // triggers pricing re-fetch
     } catch (e) {
       const code = e?.response?.data?.code;
-      setError(code ? t(`membership.coupon.${code}`) : t("membership.coupon.error"));
+      setError(code ? t(`membership.coupon.${code}`, { defaultValue: t("membership.coupon.error") }) : t("membership.coupon.error"));
     } finally {
       setSubmitting(false);
     }
