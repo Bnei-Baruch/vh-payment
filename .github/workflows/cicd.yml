@@ -10,7 +10,9 @@ on:
         type: choice
         options:
           - staging
+          - staging-new
           - production
+          - production-new
 
 jobs:
   build:
@@ -51,11 +53,14 @@ jobs:
 
       - name: Set environment variables
         run: |
-          if [[ "${{ inputs.environment }}" == "production" ]]; then
-            echo "SSH_HOST=${{ secrets.VH_HOST_PRODUCTION }}" >> $GITHUB_ENV
-          else
-            echo "SSH_HOST=${{ secrets.VH_HOST_STAGING }}" >> $GITHUB_ENV
-          fi
+          # Explicit per-environment selection with no fall-through.
+          case "${{ inputs.environment }}" in
+            production)     echo "SSH_HOST=${{ secrets.VH_HOST_PRODUCTION }}"     >> $GITHUB_ENV ;;
+            production-new) echo "SSH_HOST=${{ secrets.VH_HOST_PRODUCTION_NEW }}" >> $GITHUB_ENV ;;
+            staging)        echo "SSH_HOST=${{ secrets.VH_HOST_STAGING }}"        >> $GITHUB_ENV ;;
+            staging-new)    echo "SSH_HOST=${{ secrets.VH_HOST_STAGING_NEW }}"    >> $GITHUB_ENV ;;
+            *) echo "Unknown environment: ${{ inputs.environment }}" >&2; exit 1 ;;
+          esac
           echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Copy deployment files to VM
@@ -64,8 +69,12 @@ jobs:
           host: ${{ env.SSH_HOST }}
           username: root
           key: ${{ secrets.BBDEPLOYMENT_SSH_PRIVATE_KEY }}
+          # The on-prem VMs are only reachable through the bastion.
+          proxy_host: ${{ secrets.SSH_PROXY_HOST }}
+          proxy_username: ${{ secrets.SSH_PROXY_USERNAME }}
+          proxy_key: ${{ secrets.BBDEPLOYMENT_SSH_PRIVATE_KEY }}
           source: "docker-compose.yml,config-templates/"
-          target: /opt/vh/vh-payment/
+          target: /root/vh-docker/apps/vh-payment/
 
       - name: Deploy to VM
         uses: appleboy/ssh-action@v1
@@ -73,15 +82,19 @@ jobs:
           host: ${{ env.SSH_HOST }}
           username: root
           key: ${{ secrets.BBDEPLOYMENT_SSH_PRIVATE_KEY }}
+          # The on-prem VMs are only reachable through the bastion.
+          proxy_host: ${{ secrets.SSH_PROXY_HOST }}
+          proxy_username: ${{ secrets.SSH_PROXY_USERNAME }}
+          proxy_key: ${{ secrets.BBDEPLOYMENT_SSH_PRIVATE_KEY }}
           envs: SHORT_SHA
           script: |
-            cd /opt/vh/vh-payment
+            cd /root/vh-docker/apps/vh-payment
             set -a
             source .env
             set +a
             mkdir -p public/config
             gomplate --input-dir=config-templates \
-              --output-map="/opt/vh/vh-payment/public/config/{{ .in | strings.ReplaceAll \".js\" \"-$SHORT_SHA.js\" }}"
+              --output-map="/root/vh-docker/apps/vh-payment/public/config/{{ .in | strings.ReplaceAll \".js\" \"-$SHORT_SHA.js\" }}"
             export IMAGE_NAME=ghcr.io/bnei-baruch/vh-payment:$SHORT_SHA
             docker compose pull
             docker compose up -d
