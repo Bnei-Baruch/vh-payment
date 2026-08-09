@@ -5,6 +5,7 @@ import {
   SET_MEMBERSHIP_PRODUCT,
   SET_PRODUCT,
   SPECIAL_SELECTED_OPTION,
+  SET_COUPON_MESSAGE,
 } from "../types";
 
 const DEFAULT = {
@@ -47,6 +48,7 @@ const DEFAULT = {
   selectedTicket: undefined,
   selectedMembership: undefined,
   membershipProduct: undefined,
+  couponMessage: null,
 };
 
 export default function reducer(state = DEFAULT, { type, payload }) {
@@ -92,6 +94,9 @@ export default function reducer(state = DEFAULT, { type, payload }) {
         ...state,
         specialSelectedOption: payload,
       };
+
+    case SET_COUPON_MESSAGE:
+      return { ...state, couponMessage: payload };
 
     default:
       return state;

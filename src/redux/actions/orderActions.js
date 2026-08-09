@@ -5,6 +5,7 @@ import {
   SET_MEMBERSHIP_PRODUCT,
   SET_PRODUCT,
   SPECIAL_SELECTED_OPTION,
+  SET_COUPON_MESSAGE,
 } from "../types";
 
 export function setOrder(value) {
@@ -47,4 +48,8 @@ export function setSpecialSelectedOption(value) {
     type: SPECIAL_SELECTED_OPTION,
     payload: value,
   };
+}
+
+export function setCouponMessage(value) {
+  return { type: SET_COUPON_MESSAGE, payload: value };
 }
