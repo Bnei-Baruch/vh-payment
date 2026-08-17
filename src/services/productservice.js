@@ -60,24 +60,26 @@ export const getMembershipMonthlyPricing = async (kc_id) => {
 
   const apiUrl = `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/pricing/monthly/${kc_id}?${params.toString()}`;
 
-  try {
-    const response = await axios.get(apiUrl);
-
-    if (response.data && response.data.data) {
-      const data = response.data.data;
-      return {
-        amount: data.amount,
-        currency: data.currency,
-        pricingVersion: data.pricing_version,
-        hasErrors: data.has_errors || false,
-        v2Details: data.v2_details,
-        v1AllPrices: data.v1_all_prices || null,
-      };
-    } else {
-      return null;
+  // Retry on failure (upstream 504) or an empty 200 body: 3 tries total, no delay.
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const response = await axios.get(apiUrl);
+      const data = response.data && response.data.data;
+      if (data) {
+        return {
+          amount: data.amount,
+          currency: data.currency,
+          pricingVersion: data.pricing_version,
+          hasErrors: data.has_errors || false,
+          v2Details: data.v2_details,
+          v1AllPrices: data.v1_all_prices || null,
+        };
+      }
+      // 200 but missing/empty payload — fall through and retry
+    } catch (err) {
+      // network / 5xx / 504 — fall through and retry
     }
-  } catch (err) {
-    return null;
+    if (attempt >= 2) return null;
   }
 }
 
