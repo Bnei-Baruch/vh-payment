@@ -48,6 +48,7 @@
     "tickets_needs_membership": "You need an active membership to register for the event. Once your membership is activated, you can return to this page and complete your registration.",
     "tickets_activate_membership": "Activate your membership here",
     "payment_initiation_failed": "Unable to start payment. Please try again.",
+    "price_changed": "The price has been updated. Please review the new amount and try again.",
     "confirming_payment": "Confirming your payment...",
     "confirmation_failed": "Your payment was processed but we couldn't confirm it. Please contact support at help@kli.one or try again.",
     "confirmation_failed_title": "Confirmation Issue",
@@ -187,7 +188,22 @@
     "eligibility": "Eligibility",
     "final_price": "Final Price",
     "discount_types": {
-      "donations": "Donations"
+      "donations": "Donations",
+      "help_haver": "Help Haver",
+      "manual": "Manual discount",
+      "coupon": "Coupon"
+    },
+    "coupon": {
+      "title": "Have a coupon?",
+      "placeholder": "Enter coupon code",
+      "apply": "Apply",
+      "error": "Could not apply coupon",
+      "coupon_invalid": "Invalid or expired coupon code",
+      "coupon_already_redeemed": "This coupon has already been redeemed",
+      "coupon_exhausted": "This coupon is no longer available",
+      "coupon_country_mismatch": "This coupon is not available in your country",
+      "coupon_country_required": "Please set your country before applying a coupon",
+      "applied": "Coupon applied — active until {{date}}"
     },
     "monthly_manual_subscription": "Monthly Manual Subscription",
     "monthly_auto_subscription": "Automatic Subscription",

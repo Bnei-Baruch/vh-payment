@@ -48,6 +48,7 @@
     "tickets_needs_membership": "Necesita una membresía activa para inscribirse en el evento. Una vez activada su membresía, puede volver a esta página y completar su inscripción.",
     "tickets_activate_membership": "Active su membresía aquí",
     "payment_initiation_failed": "No se pudo iniciar el pago. Por favor, inténtalo de nuevo.",
+    "price_changed": "El precio ha sido actualizado. Por favor, revisa el nuevo importe e inténtalo de nuevo.",
     "confirming_payment": "Confirmando tu pago...",
     "confirmation_failed": "Tu pago fue procesado pero no pudimos confirmarlo. Por favor contacta soporte en help@kli.one o inténtalo de nuevo.",
     "confirmation_failed_title": "Problema de confirmación",
@@ -188,7 +189,22 @@
     "eligibility": "Elegibilidad",
     "final_price": "Precio final",
     "discount_types": {
-      "donations": "Donaciones"
+      "donations": "Donaciones",
+      "help_haver": "Help Haver",
+      "manual": "Descuento manual",
+      "coupon": "Cupón"
+    },
+    "coupon": {
+      "title": "¿Tienes un cupón?",
+      "placeholder": "Introduce el código del cupón",
+      "apply": "Aplicar",
+      "error": "No se pudo aplicar el cupón",
+      "coupon_invalid": "Código de cupón no válido o caducado",
+      "coupon_already_redeemed": "Este cupón ya ha sido utilizado",
+      "coupon_exhausted": "Este cupón ya no está disponible",
+      "coupon_country_mismatch": "Este cupón no está disponible en tu país",
+      "coupon_country_required": "Por favor, establece tu país antes de aplicar un cupón",
+      "applied": "Cupón aplicado — activo hasta {{date}}"
     },
     "monthly_manual_subscription": "Suscripción manual",
     "monthly_auto_subscription": "Suscripción automática",

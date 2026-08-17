@@ -48,6 +48,7 @@
     "tickets_needs_membership": "כדי להירשם לאירוע יש צורך במנוי פעיל. לאחר הפעלת המנוי, ניתן לחזור לדף זה ולהשלים את ההרשמה.",
     "tickets_activate_membership": "להפעלת המנוי - יש ללחוץ כאן",
     "payment_initiation_failed": "לא ניתן להתחיל את התשלום. אנא נסה שוב.",
+    "price_changed": "המחיר עודכן. אנא בדוק את הסכום החדש ונסה שוב.",
     "confirming_payment": "מאשר את התשלום שלך...",
     "confirmation_failed": "התשלום בוצע אך לא הצלחנו לאשר אותו. אנא פנה לתמיכה ב-help@kli.one או נסה שוב.",
     "confirmation_failed_title": "בעיה באישור",
@@ -187,7 +188,22 @@
     "eligibility": "זכאות",
     "final_price": "מחיר סופי",
     "discount_types": {
-      "donations": "תרומות"
+      "donations": "תרומות",
+      "help_haver": "עזרת חבר",
+      "manual": "הנחה ידנית",
+      "coupon": "קופון"
+    },
+    "coupon": {
+      "title": "יש לך קופון?",
+      "placeholder": "הזן קוד קופון",
+      "apply": "החל",
+      "error": "לא ניתן להחיל את הקופון",
+      "coupon_invalid": "קוד קופון לא תקין או פג תוקף",
+      "coupon_already_redeemed": "קופון זה כבר מומש",
+      "coupon_exhausted": "קופון זה אינו זמין יותר",
+      "coupon_country_mismatch": "קופון זה אינו זמין במדינתך",
+      "coupon_country_required": "יש להגדיר מדינה לפני הפעלת קופון",
+      "applied": "קופון הופעל — בתוקף עד {{date}}"
     },
     "monthly_manual_subscription": "מנוי לא מתחדש אוטומטית",
     "monthly_auto_subscription": "מנוי מתחדש אוטומטית",

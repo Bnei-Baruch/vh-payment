@@ -174,7 +174,12 @@ export default function UserDetails() {
   React.useEffect(() => {
     if (user?.keycloak?.subject && pricingLoading) {
       getMembershipMonthlyPricing(user.keycloak.subject)
-        .then((pricing) => setPricingVersion(pricing?.pricingVersion ?? "v1"))
+        .then((pricing) => {
+          // getMembershipMonthlyPricing resolves to null on failure (never rejects),
+          // so a failed fetch must surface as pricingFailed — not silently become v1.
+          if (pricing?.pricingVersion) setPricingVersion(pricing.pricingVersion);
+          else setPricingFailed(true);
+        })
         .catch((er) => {
           console.error(er);
           setPricingFailed(true);
