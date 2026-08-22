@@ -23,7 +23,7 @@ export const retryWithBackoff = async (fn, maxRetries = 3) => {
 
 export const handlePayment = (data) => {
   return axios
-    .post(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/transaction`, data)
+    .post(`${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/transaction/`, data)
     .then((response) => response)
     .catch(handleAxiosError);
 };
