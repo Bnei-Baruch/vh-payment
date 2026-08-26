@@ -9,7 +9,6 @@ import {
 } from "../shared/products";
 
 import axios from "axios";
-import { getForcedPricingVersion } from "../shared/featureFlags";
 
 //Getting the Product.
 /**
@@ -46,19 +45,7 @@ export const getEventsProductBySlug = (slug) => {
  * @returns {Promise<Object|null>} Pricing object with {currency, amount, pricingVersion} or null on error
  */
 export const getMembershipMonthlyPricing = async (kc_id) => {
-  // Read user's preferred currency from localStorage
-  const preferredCurrency = localStorage.getItem("VH_DEFAULT_CURRENCY") || "";
-
-  // Get forced pricing version from URL parameter (if set)
-  // null (default) = backend automatically determines appropriate version (RECOMMENDED)
-  const forcedPricingVersion = getForcedPricingVersion();
-
-  // Build API URL with parameters
-  const params = new URLSearchParams();
-  if (preferredCurrency) params.append("currency", preferredCurrency);
-  if (forcedPricingVersion) params.append("pricing_version", forcedPricingVersion);
-
-  const apiUrl = `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/pricing/monthly/${kc_id}?${params.toString()}`;
+  const apiUrl = `${window.APP_CONFIG.VH_API_BASE_URL}/pay/v2/pricing/monthly/${kc_id}`;
 
   try {
     const response = await axios.get(apiUrl);
@@ -71,7 +58,6 @@ export const getMembershipMonthlyPricing = async (kc_id) => {
         pricingVersion: data.pricing_version,
         hasErrors: data.has_errors || false,
         v2Details: data.v2_details,
-        v1AllPrices: data.v1_all_prices || null,
       };
     } else {
       return null;
@@ -113,17 +99,9 @@ export const getMembershipProduct = async (kc_id) => {
 
     const copy = JSON.parse(JSON.stringify(membershipsplans));
     copy.plans.forEach((plan) => {
-      if (price.v1AllPrices) {
-        plan.price = Object.fromEntries(
-          Object.entries(price.v1AllPrices).map(([cur, amount]) => [
-            cur, { amount, fixed: true },
-          ])
-        );
-      } else {
-        plan.price = {
-          [price.currency.toLowerCase()]: { amount: price.amount, fixed: true },
-        };
-      }
+      plan.price = {
+        [price.currency.toLowerCase()]: { amount: price.amount, fixed: true },
+      };
     });
 
     // Attach pricing metadata to the product

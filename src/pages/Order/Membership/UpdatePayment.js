@@ -16,7 +16,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
 import {
   getOrderByID,
@@ -35,7 +34,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { getProfile } from "../../../services/userservice";
-import { shouldShowCurrencyPicker } from "../../../shared/featureFlags";
 
 const FormContainer = styled(Grid)`
   & .MuiFormLabel-root {
@@ -330,17 +328,7 @@ export default function UpdatePayment() {
             </ElevatedContainer>
           </Grid>
           <Grid container item xs={12} spacing={6}>
-            {shouldShowCurrencyPicker(membership?.pricingVersion) && (
-              <Grid item xs={4}>
-                <FormControl>
-                  <FormLabel id="demo-radio-buttons-group-label">
-                    {t("common.currency")}
-                  </FormLabel>
-                  <CurrencyPicker variant="outlined" />
-                </FormControl>
-              </Grid>
-            )}
-            <Grid item xs={shouldShowCurrencyPicker(membership?.pricingVersion) ? 8 : 12}>
+            <Grid item xs={12}>
               <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">
                   {t("common.amount")}

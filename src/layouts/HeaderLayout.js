@@ -2,10 +2,8 @@ import React, {useEffect, useState} from "react";
 import {
   AppBar,
   Box,
-  FormControl,
   Grid,
   Hidden,
-  InputLabel,
   Toolbar,
   Typography,
 } from "@material-ui/core";
@@ -13,14 +11,11 @@ import hebLogo from "../images/heb-logo.png";
 import enLogo from "../images/en-logo.png";
 import { makeStyles } from "@material-ui/styles";
 import LanguagePicker from "../components/LanguagePicker";
-import CurrencyPicker from "../components/CurencyPicker";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { UserMenu } from "../components/UserMenu/UserMenu";
 import styled from "styled-components";
-import { shouldShowCurrencyPicker } from "../shared/featureFlags";
-import { useMembershipProduct } from "../hooks/useMembershipProduct";
 
 const useStyles = makeStyles({
   appbar: {
@@ -107,9 +102,6 @@ const HeaderLayout = () => {
   const { appbar } = useSelector((state) => state.order);
   const membership = useSelector((state) => state.user.membershipdataV2);
   const [active, setActive] = useState(false);
-  const { membershipProduct } = useMembershipProduct();
-  const pricingVersion = membershipProduct?.pricingVersion;
-
   // Choose logo based on language
   const currentLogo = languageId === 'he' ? hebLogo : enLogo;
 
@@ -136,21 +128,6 @@ const HeaderLayout = () => {
         </Box>
 
         <Box className={classes.menu}>
-          {shouldShowCurrencyPicker(pricingVersion) && (
-            <Box
-              display="flex"
-              alignItems="center"
-              className={classes.mobileHidden}
-            >
-              <InputLabel style={{ color: "#000" }}>
-                {t("appbar.currency")} :{" "}
-              </InputLabel>{" "}
-              &nbsp;
-              <FormControl>
-                <CurrencyPicker />
-              </FormControl>
-            </Box>
-          )}
           <MemberShipContainer item xs>
             <MembershipStatusContainer component="span">
               <MembershipHeaderText variant="body1">

@@ -25,7 +25,6 @@ import styled from "styled-components";
 import MuiPhoneInput from "material-ui-phone-number";
 import countries from "../../../shared/countries";
 import {
-  requestHelpHaver,
   requestHelpHaverV2,
   saveUserProfileData,
 } from "../../../services/userservice";
@@ -68,15 +67,14 @@ export default function UserDetails() {
     type: "",
     discountPct: "",
   });
-  // V1 members use the legacy profiles request flow; V2 members request a
-  // discount grant stored in the orders service.
+  // Members request a discount grant stored in the orders service, gated on
+  // pricing having resolved (pricingKnown).
   const [pricingVersion, setPricingVersion] = React.useState(null);
   const [pricingFailed, setPricingFailed] = React.useState(false);
-  const isV2 = pricingVersion === "v2";
-  const pricingKnown = pricingVersion !== null; // resolved to "v1" or "v2"
+  const pricingKnown = pricingVersion !== null; // resolved (always "v2")
   const pricingLoading = !pricingKnown && !pricingFailed; // fetch still in flight
 
-  const periods = [...Array(isV2 ? 6 : 12)].map((_, i) => ({
+  const periods = [...Array(pricingKnown ? 6 : 12)].map((_, i) => ({
     value: i + 1,
     name: String(i + 1),
   }));
@@ -96,7 +94,7 @@ export default function UserDetails() {
   const handleNext = (e) => {
     e.preventDefault();
     if (activeStep === 2) {
-      if (isV2 && (!requestData.type || !requestData.discountPct)) return;
+      if (pricingKnown && (!requestData.type || !requestData.discountPct)) return;
       if (originProfileData !== profileData) {
         // update profile
 
@@ -122,45 +120,27 @@ export default function UserDetails() {
       setErrorMessage(t("errorMessage.generic"));
       return;
     }
-    if (isV2 && (!requestData.type || !requestData.discountPct)) {
+    if (!requestData.type || !requestData.discountPct) {
       // validation must hold at the POST site, not only in handleNext
       setErrorMessage(t("errorMessage.generic"));
       return;
     }
     setErrorMessage(undefined);
     setSubmitting(true);
-    if (isV2) {
-      requestHelpHaverV2({
-        keycloak_id: user.keycloak.subject,
-        type: requestData.type,
-        requested_pct: parseInt(requestData.discountPct, 10),
-        months: requestData.period,
-        note: requestData.situation || undefined,
-      })
-        .then(() => {
-          history.push("/pay/order/membership/successhelphaver");
-        })
-        .catch((er) => {
-          console.log(er);
-          setErrorMessage(t("errorMessage.generic"));
-          setSubmitting(false);
-        });
-      return;
-    }
-    const data = {
-      name: user.profile.firstName + " " + user.profile.lastName,
+    requestHelpHaverV2({
       keycloak_id: user.keycloak.subject,
-      status: "REQUESTED",
-      nb_month: requestData.period,
-      request_note: requestData.situation,
-      type: "hhmembership",
-    };
-    requestHelpHaver(data)
+      type: requestData.type,
+      requested_pct: parseInt(requestData.discountPct, 10),
+      months: requestData.period,
+      note: requestData.situation || undefined,
+    })
       .then(() => {
         history.push("/pay/order/membership/successhelphaver");
       })
       .catch((er) => {
         console.log(er);
+        setErrorMessage(t("errorMessage.generic"));
+        setSubmitting(false);
       });
   };
   React.useEffect(() => {
@@ -441,7 +421,7 @@ export default function UserDetails() {
                       {t("userDetail.details")}
                     </Typography>
                   </Grid>
-                  {isV2 && (
+                  {pricingKnown && (
                     <>
                       <Grid item xs={12}>
                         <FormControl fullWidth variant="outlined">
@@ -527,7 +507,7 @@ export default function UserDetails() {
                   <Grid item xs={12} md={12}>
                     <FormControl fullWidth>
                       <FormLabel htmlFor="email">
-                        {t(!isV2
+                        {t(!pricingKnown
                           ? "userDetail.explain_situation"
                           : requestData.type === "hh-other"
                           ? "userDetail.explain_situation_required"
@@ -537,7 +517,7 @@ export default function UserDetails() {
                         id="email"
                         variant="outlined"
                         multiline
-                        required={!isV2 || requestData.type === "hh-other"}
+                        required={!pricingKnown || requestData.type === "hh-other"}
                         minRows={4}
                         value={requestData.situation}
                         onChange={(e) => {
