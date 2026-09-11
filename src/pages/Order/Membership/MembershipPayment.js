@@ -23,7 +23,6 @@ import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useStyles } from "../index";
 import styled from "styled-components";
-import CurrencyPicker from "../../../components/CurencyPicker";
 import ContentLayout from "../../../layouts/ContentLayout";
 import { handlePayment } from "../../../services/orderservice";
 import { getProfile } from "../../../services/userservice";
@@ -33,7 +32,6 @@ import Loader from "../../../components/Loader";
 import SomethingWentWrong from "../SomethingWentWrong";
 import InfoIcon from "@material-ui/icons/Info";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
-import { shouldShowCurrencyPicker } from "../../../shared/featureFlags";
 import countries from "../../../shared/countries";
 import FormattedAmount from "../../../components/FormattedAmount";
 const FormContainer = styled(Grid)`
@@ -165,8 +163,7 @@ export default function MembershipPayment() {
   const [minAmount, setMinAmount] = React.useState(0);
   const [amount, setAmount] = React.useState(0);
   const { membershipProduct, error: pricingError } = useMembershipProduct();
-  const pricingVersion = membershipProduct?.pricingVersion;
-  const showPricingInfo = pricingVersion !== "v1" && membershipProduct?.v2Details;
+  const showPricingInfo = !!membershipProduct?.v2Details;
   const v2Details = membershipProduct?.v2Details;
   const totalToPay = useMemo(
     () => (!selectedMembership ? 0 : amount),
@@ -373,16 +370,6 @@ export default function MembershipPayment() {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              {shouldShowCurrencyPicker(pricingVersion) && (
-                <Grid item xs={12}>
-                  <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">
-                      {t("common.currency")}
-                    </FormLabel>
-                    <CurrencyPicker variant="outlined" />
-                  </FormControl>
-                </Grid>
-              )}
               <Grid item xs={12}>
                 <FormControl variant="outlined">
                   <FormLabel id="demo-radio-buttons-group-label">

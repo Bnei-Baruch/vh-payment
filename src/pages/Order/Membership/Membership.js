@@ -165,7 +165,7 @@ export default function Membership() {
 
   if (!membership) return <Loader />;
 
-  const needsCountrySelection = membership.pricingVersion !== "v1" && !membership.v2Details?.country_code;
+  const needsCountrySelection = !membership.v2Details?.country_code;
   const { content, plans } = membership;
   const header =
     typeof content[i18n.language] !== "undefined"
@@ -229,7 +229,7 @@ export default function Membership() {
                       }
                       {" "}
                       <TenureText>{t("common.per_month")}</TenureText>
-                      {membership.pricingVersion !== "v1" && membership.v2Details && (
+                      {membership.v2Details && (
                         <IconButton
                           size="small"
                           onClick={(e) => { e.stopPropagation(); setFormulaAnchor(e.currentTarget); }}
@@ -290,7 +290,7 @@ export default function Membership() {
         })}
       </Grid>
       )}
-      {membership.pricingVersion !== "v1" && membership.v2Details?.country_code && (
+      {membership.v2Details?.country_code && (
         <Grid item xs={12}>
           <CouponInput />
         </Grid>

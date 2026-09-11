@@ -35,7 +35,6 @@ const LanguagePicker = () => {
   const changeCurrency = () => {
     const cr = currencies.find((l) => l.id === "nis");
     dispatch(setCurrency(cr));
-    localStorage.setItem("VH_DEFAULT_CURRENCY", "he");
   };
   useEffect(() => {
     const langId = localStorage.getItem(VH_DEFAULT_LANG) || i18n.language;
