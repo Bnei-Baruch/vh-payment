@@ -7,7 +7,7 @@
 //     url: "https://auth.2serv.eu/auth/",
 //     clientId: "membership_pay_dev",
 //   },
-//   GLASSIX_API_KEY: 'glassix-api-key
+//   CRISP_WEBSITE_ID: 'a88f7eac-d881-450b-b589-ab82160fb08a'
 // };
 
 // production
@@ -19,7 +19,7 @@
 //     url: "https://accounts.kab.info/auth/",
 //     clientId: "membership_pay",
 //   },
-//   GLASSIX_API_KEY: 'glassix-api-key'
+//   CRISP_WEBSITE_ID: 'a88f7eac-d881-450b-b589-ab82160fb08a'
 // };
 
 // local backend, production keycloak
@@ -31,7 +31,7 @@ window.APP_CONFIG = {
     url: "https://accounts.kab.info/auth/",
     clientId: "membership_pay",
   },
-  GLASSIX_API_KEY: 'glassix-api-key',
+  CRISP_WEBSITE_ID: 'a88f7eac-d881-450b-b589-ab82160fb08a',
   SENTRY_DSN: '',
   SENTRY_ENVIRONMENT: 'development'
 };
