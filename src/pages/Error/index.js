@@ -49,8 +49,7 @@ const Error = () => {
   useEffect(() => {
     let q = qs.parse(window.location.search);
 
-    // Checkout is renaming "error" to "pc_error": Keycloak 26.8 refuses a login
-    // whose return URL carries an OAuth-reserved name such as "error".
+    // Checkout sends "pc_error": Keycloak 26.8+ rejects "error" in the login return URL.
     const message = q.pc_error || q.error;
     if (message != null && message.length > 0) {
       setErrorMesg(message);
