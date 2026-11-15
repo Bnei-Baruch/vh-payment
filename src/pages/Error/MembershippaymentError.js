@@ -49,8 +49,11 @@ const MembershippaymentError = () => {
   useEffect(() => {
     let q = qs.parse(window.location.search);
 
-    if (q.error != null && q.error.length > 0) {
-      setErrorMesg(q.error);
+    // Checkout is renaming "error" to "pc_error": Keycloak 26.8 refuses a login
+    // whose return URL carries an OAuth-reserved name such as "error".
+    const message = q.pc_error || q.error;
+    if (message != null && message.length > 0) {
+      setErrorMesg(message);
     }
 
     setTimeout(() => {
