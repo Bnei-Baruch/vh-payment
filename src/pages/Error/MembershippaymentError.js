@@ -49,8 +49,10 @@ const MembershippaymentError = () => {
   useEffect(() => {
     let q = qs.parse(window.location.search);
 
-    if (q.error != null && q.error.length > 0) {
-      setErrorMesg(q.error);
+    // Checkout sends "pc_error": Keycloak 26.8+ rejects "error" in the login return URL.
+    const message = q.pc_error || q.error;
+    if (message != null && message.length > 0) {
+      setErrorMesg(message);
     }
 
     setTimeout(() => {
