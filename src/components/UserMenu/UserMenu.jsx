@@ -8,6 +8,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { PAYMENT_ROUTES } from "../../routes/paymentRoutes";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import { setLoggedInUser } from "../../redux/actions/userActions";
+import { resetCrispOnLogout } from "../CrispChat";
 
 const UserIconButton = styled(MuiIconButton)`
   font-size: 16px !important;
@@ -54,6 +55,7 @@ export const UserMenu = () => {
   };
 
   const onAuthLogout = () => {
+    resetCrispOnLogout();
     state.keycloak.logout();
     dispatch(setLoggedInUser(null));
     handleCloseModal();

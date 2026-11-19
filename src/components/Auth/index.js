@@ -17,7 +17,7 @@ import {
 } from "../../services/userservice";
 import { useSelector } from "react-redux";
 import HeaderLayout from "../../layouts/HeaderLayout";
-import GlassixWidget from "../Glassix";
+import CrispChat from "../CrispChat";
 import { getDebugUser } from "../../shared/featureFlags";
 
 const Auth = () => {
@@ -99,7 +99,7 @@ const Auth = () => {
         <Theme>
           <HeaderLayout />
           <Routes />
-          <GlassixWidget />
+          <CrispChat />
         </Theme>
       );
     }
