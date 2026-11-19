@@ -7,7 +7,7 @@
 //     url: "https://auth.2serv.eu/auth/",
 //     clientId: "membership_pay_dev",
 //   },
-//   CRISP_WEBSITE_ID: 'a88f7eac-d881-450b-b589-ab82160fb08a'
+//   CRISP_WEBSITE_ID: ''
 // };
 
 // production
@@ -31,7 +31,7 @@ window.APP_CONFIG = {
     url: "https://accounts.kab.info/auth/",
     clientId: "membership_pay",
   },
-  CRISP_WEBSITE_ID: 'a88f7eac-d881-450b-b589-ab82160fb08a',
+  CRISP_WEBSITE_ID: '', // chat off locally; the live ID is in the production block above
   SENTRY_DSN: '',
   SENTRY_ENVIRONMENT: 'development'
 };

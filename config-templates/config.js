@@ -7,7 +7,7 @@ window.APP_CONFIG = {
         url: '{{env.Getenv "KEYCLOAK_URL" "https://auth.2serv.eu/auth/"}}',
         clientId: '{{env.Getenv "KEYCLOAK_CLIENT_ID" "membership_pay_dev"}}'
     },
-    CRISP_WEBSITE_ID: '{{env.Getenv "CRISP_WEBSITE_ID" "a88f7eac-d881-450b-b589-ab82160fb08a"}}',
+    CRISP_WEBSITE_ID: '{{env.Getenv "CRISP_WEBSITE_ID" ""}}',
     SENTRY_DSN: '{{env.Getenv "SENTRY_DSN" ""}}',
     SENTRY_ENVIRONMENT: '{{env.Getenv "SENTRY_ENVIRONMENT" "production"}}'
 };
