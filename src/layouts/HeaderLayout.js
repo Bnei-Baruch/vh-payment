@@ -158,7 +158,7 @@ const HeaderLayout = () => {
             <LanguagePicker />
           </Box>
 
-          <Box>
+          <Box display="flex" alignItems="center">
             <CookieSettings />
           </Box>
 
