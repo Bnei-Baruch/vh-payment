@@ -10,6 +10,7 @@ i18n
   .use(initReactI18next)
   .use(Backend)
   .use(LanguageDetector)
+  .on("languageChanged", (l) => { document.documentElement.lang = l === "il" ? "he" : l; }) // CookieYes picks its banner language from <html lang>
   .init({
     detection: {
       caches: ["localStorage"],
