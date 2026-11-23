@@ -1,5 +1,6 @@
 {
   "appbar": {
+    "cookieSettings": "Настройки cookie",
     "language": "Язык",
     "currency": "Валюта",
     "membership": "Статус"
