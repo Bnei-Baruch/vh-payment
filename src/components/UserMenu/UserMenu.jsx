@@ -8,6 +8,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { PAYMENT_ROUTES } from "../../routes/paymentRoutes";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import { setLoggedInUser } from "../../redux/actions/userActions";
+import { useCookieYesLoaded } from "../CookieSettings";
 
 const UserIconButton = styled(MuiIconButton)`
   font-size: 16px !important;
@@ -28,6 +29,7 @@ export const UserMenu = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
+  const ckyLoaded = useCookieYesLoaded();
 
   const [anchorMenu, setAnchorMenu] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -82,6 +84,7 @@ export const UserMenu = () => {
         <MenuItem onClick={onProfileClick}>
           {t("userMenu.profile")}
         </MenuItem>
+        {ckyLoaded && <MenuItem onClick={() => { closeMenu(); window.revisitCkyConsent(); }}>{t("appbar.cookieSettings")}</MenuItem>}
         <MenuItem onClick={onLogOutClick}>{t("userMenu.logOut")}</MenuItem>
       </Menu>
       <ModalWindow

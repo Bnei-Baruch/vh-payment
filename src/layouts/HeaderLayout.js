@@ -158,7 +158,7 @@ const HeaderLayout = () => {
             <LanguagePicker />
           </Box>
 
-          <Box display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" className={classes.mobileHidden}>
             <CookieSettings />
           </Box>
 
