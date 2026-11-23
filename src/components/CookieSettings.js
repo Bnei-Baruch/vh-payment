@@ -18,7 +18,7 @@ const CookieSettings = () => {
   const {t} = useTranslation();
   return useCookieYesLoaded() && (
     <Tooltip title={t("appbar.cookieSettings")}>
-      <IconButton size="small" aria-label={t("appbar.cookieSettings")} onClick={() => window.revisitCkyConsent()}>
+      <IconButton size="small" aria-label={t("appbar.cookieSettings")} onClick={() => window.revisitCkyConsent?.()}>
         <img src={cookieIcon} alt="" width={22} height={22}/>
       </IconButton>
     </Tooltip>

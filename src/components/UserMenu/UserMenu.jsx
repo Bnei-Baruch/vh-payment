@@ -84,7 +84,7 @@ export const UserMenu = () => {
         <MenuItem onClick={onProfileClick}>
           {t("userMenu.profile")}
         </MenuItem>
-        {ckyLoaded && <MenuItem onClick={() => { closeMenu(); window.revisitCkyConsent(); }}>{t("appbar.cookieSettings")}</MenuItem>}
+        {ckyLoaded && <MenuItem onClick={() => { closeMenu(); window.revisitCkyConsent?.(); }}>{t("appbar.cookieSettings")}</MenuItem>}
         <MenuItem onClick={onLogOutClick}>{t("userMenu.logOut")}</MenuItem>
       </Menu>
       <ModalWindow
