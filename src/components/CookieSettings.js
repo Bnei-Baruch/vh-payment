@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {IconButton, Tooltip} from "@material-ui/core";
+import {Box, IconButton, Tooltip} from "@material-ui/core";
 import {useTranslation} from "react-i18next";
 import cookieIcon from "../images/cookie.svg";
 // Reopens the CookieYes preferences, so consent can be changed as easily as it was given (GDPR 7(3)).
@@ -14,14 +14,16 @@ export const useCookieYesLoaded = () => {
   }, []);
   return loaded;
 };
-const CookieSettings = () => {
+const CookieSettings = ({className}) => {
   const {t} = useTranslation();
   return useCookieYesLoaded() && (
-    <Tooltip title={t("appbar.cookieSettings")}>
-      <IconButton size="small" aria-label={t("appbar.cookieSettings")} onClick={() => window.revisitCkyConsent?.()}>
-        <img src={cookieIcon} alt="" width={22} height={22}/>
-      </IconButton>
-    </Tooltip>
+    <Box display="flex" alignItems="center" className={className}>
+      <Tooltip title={t("appbar.cookieSettings")}>
+        <IconButton size="small" aria-label={t("appbar.cookieSettings")} onClick={() => window.revisitCkyConsent?.()}>
+          <img src={cookieIcon} alt="" width={22} height={22}/>
+        </IconButton>
+      </Tooltip>
+    </Box>
   );
 };
 export default CookieSettings;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
@@ -30,6 +30,7 @@ export const UserMenu = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   const ckyLoaded = useCookieYesLoaded();
+  const openCky = useRef(false); // open CookieYes only after the menu has closed and returned focus
 
   const [anchorMenu, setAnchorMenu] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -79,12 +80,13 @@ export const UserMenu = () => {
         anchorEl={anchorMenu}
         open={Boolean(anchorMenu)}
         onClose={closeMenu}
+        TransitionProps={{ onExited: () => { if (openCky.current) { openCky.current = false; window.revisitCkyConsent?.(); } } }}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <MenuItem onClick={onProfileClick}>
           {t("userMenu.profile")}
         </MenuItem>
-        {ckyLoaded && <MenuItem onClick={() => { closeMenu(); window.revisitCkyConsent?.(); }}>{t("appbar.cookieSettings")}</MenuItem>}
+        {ckyLoaded && <MenuItem onClick={() => { openCky.current = true; closeMenu(); }}>{t("appbar.cookieSettings")}</MenuItem>}
         <MenuItem onClick={onLogOutClick}>{t("userMenu.logOut")}</MenuItem>
       </Menu>
       <ModalWindow
