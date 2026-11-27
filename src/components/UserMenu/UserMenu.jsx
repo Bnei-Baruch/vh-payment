@@ -36,6 +36,7 @@ export const UserMenu = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleMenu = (event) => {
+    openCky.current = false;
     setAnchorMenu(event.currentTarget);
   };
 
