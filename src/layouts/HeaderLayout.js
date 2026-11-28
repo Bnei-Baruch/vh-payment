@@ -11,6 +11,7 @@ import hebLogo from "../images/heb-logo.png";
 import enLogo from "../images/en-logo.png";
 import { makeStyles } from "@material-ui/styles";
 import LanguagePicker from "../components/LanguagePicker";
+import CookieSettings from "../components/CookieSettings";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -156,6 +157,8 @@ const HeaderLayout = () => {
           >
             <LanguagePicker />
           </Box>
+
+          <CookieSettings className={classes.mobileHidden} />
 
           <Box>
             <UserMenu />

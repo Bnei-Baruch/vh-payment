@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
@@ -8,6 +8,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { PAYMENT_ROUTES } from "../../routes/paymentRoutes";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import { setLoggedInUser } from "../../redux/actions/userActions";
+import { useCookieYesLoaded } from "../CookieSettings";
 
 const UserIconButton = styled(MuiIconButton)`
   font-size: 16px !important;
@@ -28,11 +29,14 @@ export const UserMenu = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
+  const ckyLoaded = useCookieYesLoaded();
+  const openCky = useRef(false); // open CookieYes only after the menu has closed and returned focus
 
   const [anchorMenu, setAnchorMenu] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleMenu = (event) => {
+    openCky.current = false;
     setAnchorMenu(event.currentTarget);
   };
 
@@ -77,11 +81,13 @@ export const UserMenu = () => {
         anchorEl={anchorMenu}
         open={Boolean(anchorMenu)}
         onClose={closeMenu}
+        TransitionProps={{ onExited: () => { if (openCky.current) { openCky.current = false; window.revisitCkyConsent?.(); } } }}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <MenuItem onClick={onProfileClick}>
           {t("userMenu.profile")}
         </MenuItem>
+        {ckyLoaded && <MenuItem onClick={() => { openCky.current = true; closeMenu(); }}>{t("appbar.cookieSettings")}</MenuItem>}
         <MenuItem onClick={onLogOutClick}>{t("userMenu.logOut")}</MenuItem>
       </Menu>
       <ModalWindow

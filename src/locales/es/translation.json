@@ -1,5 +1,6 @@
 {
   "appbar": {
+    "cookieSettings": "Configuración de cookies",
     "language": "Idioma",
     "currency": "Moneda",
     "membership": "Estatus"
